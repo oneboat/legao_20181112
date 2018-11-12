@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxq.legao.dao.ClassDao">
+    <insert id="insertClass" parameterType="com.zxq.legao.entity.po.ClassPO" >
+        INSERT  INTO legao_class(name,teacherID,remark,createDate) VALUES(#{name},#{teacherID},#{remark},#{status},now());
+    </insert>
+    <delete id="deleteClass" parameterType="java.lang.Integer">
+        DELETE FROM legao_class WHERE id = #{id};
+    </delete>
+    <update id="updateClass" parameterType="com.zxq.legao.entity.po.ClassPO">
+        UPDATE legao_class SET name = #{name},teacherID = #{teacherID},remark = #{remark} WHERE id = #{id};
+    </update>
+    <select id="selectClass" parameterType="com.zxq.legao.entity.po.ClassPO" resultType="com.zxq.legao.entity.po.ClassVO" resultMap="class_map">
+
+        SELECT f.*,s.* FROM (SELECT c.id ,c.name,c.createDate,c.remark,t.name AS teacherName from legao_class c LEFT JOIN legao_teacher t
+        ON t.id = c.teacherID) f LEFT JOIN (SELECT id as studentID,count(1),classID from legao_student GROUP BY id ) s on s.classID = f.id
+
+        <where>
+            <if test="name!=null and name!=''">
+                and name like '%${name}%'
+            </if>
+
+        </where>
+
+    </select>
+    <resultMap id="class_map" type="com.zxq.legao.entity.po.ClassVO" >
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="remark" property="remark"></result>
+        <result column="createDate" property="createDate"></result>
+        <association property="teacherVO" column="teacherName" javaType="com.zxq.legao.entity.vo.TeacherVO" >
+            <result column="teacherName" property="name"></result>
+        </association>
+    </resultMap>
+    <select id="selectClassByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.ClassPO">
+        SELECT id,classname,password,status,createDate FROM legao_class WHERE id = #{id};
+    </select>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxq.legao.dao.DeptDao">
+    <insert id="insertDept" parameterType="com.zxq.legao.entity.po.DeptPO">
+        INSERT  INTO legao_dept(name,remark,createDate) VALUES(#{name},#{remark},now());
+    </insert>
+    <delete id="deleteDept" parameterType="java.lang.Integer">
+        DELETE FROM legao_dept WHERE id = #{id};
+    </delete>
+    <update id="updateDept" parameterType="com.zxq.legao.entity.po.DeptPO">
+        UPDATE legao_dept SET name = #{name},remark = #{remark} WHERE id = #{id};
+    </update>
+    <select id="selectDept" parameterType="com.zxq.legao.entity.po.DeptPO" resultType="com.zxq.legao.entity.po.DeptPO">
+        SELECT
+        id,
+        name,
+        remark,
+        createDate,
+        c.*
+        FROM
+        legao_dept d
+        LEFT JOIN (
+        SELECT
+        deptID,
+        COUNT(1) AS deptAllNum
+        FROM
+        legao_teacher
+        GROUP BY
+        deptID
+        ) c ON d.id = c.deptID;
+
+        <where>
+            <if test="name!=null and name!=''">
+                and name like '%${name}%'
+            </if>
+
+
+        </where>
+
+    </select>
+    <select id="selectDeptByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.DeptPO">
+        SELECT name,remark,createDate FROM legao_dept WHERE id = #{id};
+    </select>
+</mapper>
