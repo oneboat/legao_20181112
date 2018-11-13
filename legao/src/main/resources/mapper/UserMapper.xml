@@ -7,13 +7,17 @@
     <insert id="insertUser" parameterType="com.zxq.legao.entity.po.UserPO" >
         INSERT  INTO legao_user(username,password,status,createDate) VALUES(#{username},#{password},#{status},now());
     </insert>
-    <delete id="deleteUser" parameterType="java.lang.Integer">
-        DELETE FROM legao_user WHERE id = #{id};
+    <delete id="deleteUser" parameterType="java.util.List">
+        DELETE FROM legao_user WHERE id IN
+        <foreach collection="list" separator="," close=")" open="(" item="id">
+            #{id}
+        </foreach>
+
     </delete>
     <update id="updateUser" parameterType="com.zxq.legao.entity.po.UserPO">
         UPDATE legao_user SET username = #{username},password = #{password},status = #{status} WHERE id = #{id};
     </update>
-    <select id="selectUser" parameterType="com.zxq.legao.entity.po.UserPO" resultType="com.zxq.legao.entity.po.UserPO">
+    <select id="selectUser" parameterType="com.zxq.legao.entity.po.UserPO" resultType="com.zxq.legao.entity.vo.UserVO">
         SELECT id,username,password,status,createDate FROM legao_user
 
         <where>
@@ -27,7 +31,7 @@
         </where>
 
     </select>
-    <select id="selectUserByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.UserPO">
+    <select id="selectUserByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.UserVO">
          SELECT id,username,password,status,createDate FROM legao_user WHERE id = #{id};
     </select>
 </mapper>

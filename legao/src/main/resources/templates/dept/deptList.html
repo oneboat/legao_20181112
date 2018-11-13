@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>deptList</title>
+		<link href="../css/bootstrap.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
+		<link href="../css/main.css" type="text/css" charset="UTF-8" rel="stylesheet" />
+	</head>
+	<body>
+		
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left: 250px;" >
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：部门管理&nbsp;&gt;&nbsp;部门查询
+	<a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span class="glyphicon glyphicon-print" ></span>&nbsp;打印</a>
+			<a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span class="glyphicon glyphicon-export" ></span>&nbsp;导出</a>
+		<hr />
+			<form action=""  id="departmentform">
+			
+			部门名称：<input type="text" id="deptName" style="height: 35px;" name="name" class="inputCss"/>&nbsp;
+			<input type="button"  value="搜索" class="btn btn-success" id="selectDepartment"/>&nbsp;&nbsp;
+			<input type="button" class="btn btn-danger" value="删除" id="dropDepartment"/>
+		<br /><br />
+		<table   class="table table-hover table-striped" style="text-align: center;width: 82%;" >
+			<tr><th><input type="checkbox" name="caption" value="0" id="checkAll"></th><th>部门名称</th><th>详细信息</th>
+			
+			<th>操作</th>
+		
+			</tr>
+		</table>
+		
+		
+		</form>
+		
+		</div>
+		<script type="application/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="application/javascript" src="../js/bootstrap.js"></script>
+		<script type="text/javascript">
+		/*提交删除*/ 
+			$("#dropDepartment").click(function(){
+				var chex=$("input[id^='box_']:checked");
+				if (chex.length==0) {
+					alert("请选择你要删除的部门");
+				} else {
+					if(confirm("确定要删除该部门吗？")){
+						$("#departmentform").attr("action", "${dzx}/dropDepartment.action");
+		 		 		$("#departmentform").submit();
+					}
+				}
+				
+			});
+			/* 全选和反选*/
+			$("#checkAll").click(function(){
+				
+				$("input[id^='box_']").prop("checked",this.checked);
+			});
+			
+			
+		</script>
+		
+	</body>
+</html>

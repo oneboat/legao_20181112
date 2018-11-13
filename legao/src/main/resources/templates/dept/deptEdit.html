@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>deptEdit</title>
+		<link href="../css/bootstrap.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
+		<link href="../css/main.css" type="text/css" charset="UTF-8" rel="stylesheet" />
+	</head>
+	<body>
+		
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left: 250px;">
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：部门管理&nbsp;&gt;&nbsp;更改部门
+		<hr /><br />
+		<div id="error" style="color:#FF0000;width: 400px;height: 15px;"></div><br />
+		<form action="${dzx}/editDepartment">
+			部&nbsp;&nbsp;&nbsp;门&nbsp;&nbsp;&nbsp;名：&nbsp;<input type="text"  name="dept.name" id="dept_name" class="inputCss"  maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<br /><br />部门描述名：<input type="text"  name="dept.remark" class="inputCss" id="dept_remark"  maxlength="20"/>&nbsp;<br /><br />
+									<input type="hidden" name="dept.id" id="depart_id" class="" style="height: 35px;"/>
+			<input type="button" name="editDepart" value="修改" class="btn btn-success" id="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="reset" name="cancel" class="btn btn-danger" value="取消"/>
+		</form>
+</div>
+	</body>
+	<script type="application/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="application/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript">
+		
+			/*判断状态，用户名是否为空*/
+			$("#btn").click(function(){
+				var valu1=$("#dept_name").val();
+				var valu2=$("#dept_remark").val();
+				var re =/[`~!@#$%^&*_+<>{}\\/'[\]]/im;
+				if (valu1.length==0) {
+					$("#error").text("*请输入部门名称");
+				}else if (valu2.length==0) {
+					$("#error").text("*请输入描述");
+				}else if (re.test(valu1)) {
+					$("#error").text("*部门名称存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
+				}else {
+					$("#departmentAddform").submit();
+				}
+ 		 		
+			});
+			
+	</script>
+		
+	</body>
+</html>

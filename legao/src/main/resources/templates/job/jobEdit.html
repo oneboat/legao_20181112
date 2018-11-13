@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>deptEdit</title>
+		<link href="../css/bootstrap.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
+		<link href="../css/main.css" type="text/css" charset="UTF-8" rel="stylesheet" />
+	</head>
+	<body>
+		
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left: 250px;">
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：职位管理&nbsp;&gt;&nbsp;修改职位
+		<hr />
+		<div id="error" style="color:#FF0000;width: 400px;height: 15px;"></div><br />
+		<form  id="jobform">
+		    职位名称：<input  name="job.name" class="inputCss" id="job_name"/>&nbsp;<br /><br />
+			详细信息：<input  name="job.remark" id="job_remark" class="inputCss"/>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="hidden" name="job.id" id="job_remark" class="" style="height: 35px;"/>
+			<br/><br/><input type="button"  value="修改" class="btn btn-success"  id="editId"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="reset"   class="btn btn-danger" value="取消"/>
+		</form><br />
+		</div>
+	</body>
+	<script type="application/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="application/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript">
+	$("#editId").click(function(){
+		
+		var job_name=$("#job_name").val();
+		var job_remark=$("#job_remark").val();
+		var re =/[`~!@#$%^&*_+<>{}\\/'[\]]/im;
+		if (job_name=="") {
+			$("#error").text("*部门名称不能为空");
+			
+		}else if (job_remark=="") {
+			$("#error").text("*部门详细信息不能为空");
+		}else if (re.test(job_name)) {
+			$("#error").text("*部门名称存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
+		}else{
+			$("#jobform").attr("action", "${dzx}/editJob.action");
+		   $("#jobform").submit();
+		}
+
+		 
+	});
+	
+	</script>
+		
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>employList</title>
+		<link href="../css/bootstrap.css" type="text/css"  rel="stylesheet" />
+		<link href="../css/main.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
+	</head>
+	<body>
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left: 250px;" >
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：员工管理&nbsp;&gt;&nbsp;员工查询
+		<a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span class="glyphicon glyphicon-print" ></span>&nbsp;打印</a>
+			<a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span class="glyphicon glyphicon-export" ></span>&nbsp;导出</a>
+		<hr />
+		
+	
+		<form   id="employform">
+		
+			职位：
+			<select class="inputCss" id="job_id">
+					<option value="">--请选择职位--</option>
+					<option value="java工程师">java工程师</option>
+				</select>
+			&nbsp;
+			姓名：<input type="text" name="employ.name" class="inputCss"/>
+			身份证号码：<input type="text" name="employ.cardId" class="inputCss"/>
+			<br /><br />
+			性别：<select class="inputCss" id="sex">
+					<option value="">--请选择性别--</option>
+					<option value="男">男</option>
+				</select>
+			手机：<input type="text" name="employ.phone" class="inputCss"/>
+			所属部门：<select class="inputCss" id="dept_id">
+					<option value="">--请选择部门--</option>
+					<option value="产品研发部">产品研发部</option>
+			</select>&nbsp;&nbsp;
+			<input type="button" id="selectEmploy" value="搜索" class="btn btn-success"/>
+			
+			<input type="button" id="dropEmploy" class="btn btn-danger" value="删除"/>
+		
+		<br /><br />
+		<table  class="table table-hover table-striped" style="font-size:12px;width: 82%;">
+			<tr><th><input type="checkbox" name="caption" value="0" id="checkAll">
+			</th><th>姓名</th><th >性别</th><th class="visible-lg">手机号码</th><th class="visible-lg">电话</th>
+			<th class="visible-lg">邮箱</th><th>职位</th><th >学历</th><th class="visible-lg">身份证号码</th>
+			<th>部门</th><th >薪资</th><th>建档日期</th><th class="visible-lg">备注</th>
+			
+			<th>操作</th>
+			
+			</tr>
+			
+			
+		</table>
+		
+		
+		</form>
+		 
+		</div>
+		
+		<script src="../js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+	<script src="../js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
+		<script type="text/javascript">
+		
+			/*提交查询*/
+			$("#selectEmploy").click(function(){
+				$("#employform").attr("action", "${dzx}/selectEmploy.action");
+ 		 		$("#employform").submit();
+			});
+			/*提交删除*/ 
+			$("#dropEmploy").click(function(){
+				var chex=$("input[id^='box_']:checked");
+				if (chex.length==0) {
+					alert("请选择你要删除的用户");
+				} else {
+					if(confirm("确定要删除该用户吗？")){
+						$("#employform").attr("action", "${dzx}/dropEmploy.action");
+		 		 		$("#employform").submit();
+					}
+				}
+				
+			});
+			/* 全选和反选*/
+			$("#checkAll").click(function(){
+				
+				$("input[id^='box_']").prop("checked",this.checked);
+			});
+			
+		</script>
+		
+	</body>
+</html>

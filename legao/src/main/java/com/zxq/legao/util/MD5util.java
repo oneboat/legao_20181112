@@ -2,8 +2,8 @@ package com.zxq.legao.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class MD5util {
-	private final static String salt = "a1b2c3d4e5";
+public class MD5Util {
+	private final static String salt =ConstUtil.MD5_SALT;
 	//md5加密方法
 	public static String md5(String str) {
 		//调用commons-codec依赖包中的DigestUtils.md5Hex方法，直接传入要加密的字符串即可，Digest数字，Hex16进制、魔法

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>userEdit</title>
+		<link href="../css/bootstrap.css" type="text/css"  rel="stylesheet" />
+	<link href="../css/main.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left:  250px;">
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：用户管理&nbsp;&gt;&nbsp;更改用户
+		<hr />
+		<div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
+		<form action="" id="userAddform">
+			用户名：<input  name="username" id="user_name" class="inputCss" style="width:200px ;"   maxlength="20" />&nbsp;&nbsp;&nbsp;&nbsp;
+			状&nbsp;态：<select name="status" id="status" style="height: 35px;" class="inputCss"   >
+				<option value="">请选择状态</option>
+				<option value="超级管理员">超级管理员</option>
+				<option value="普通用户">普通用户</option>
+			</select>&nbsp;&nbsp;&nbsp;&nbsp;<br /><br />
+			登录名：<input name="loginname"  id="login_name" style="height: 35px;width:200px ;"class="inputCss"  maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			密&nbsp;码：<input  name="password" id="pass_word" style="height: 35px;width:200px ;" class="inputCss" />&nbsp;<br /><br />
+			<input type="button"  value="保存" class="btn btn-success" id="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="reset" class="btn btn-danger" value="取消"/>
+			<!--保存用户ID-->
+			<input type="hidden" name="id"  />
+		</form>
+		</div>
+		
+	</body>
+	<script src="../js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+	<script type="text/javascript">
+		 
+			/*判断状态，用户名是否为空*/
+			$("#btn").click(function(){
+				var valu1=$("#user_name").val();
+				var valu2=$("#status").val();
+				var valu3=$("#login_name").val();
+				var valu4=$("#pass_word").val();
+				var re =/[`~!@#$%^&*_+<>{}\\/'[\]]/im;
+				var regx=/^(\w){6,12}$/g;
+				 if (valu1.trim().length==0) {
+					$("#error").text("*请输入用户名");
+				}else if (re.test(valu1.trim())) {
+					$("#error").text("*用户名存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
+				}else if (valu2.trim().length==0) {
+					$("#error").text("*请选择状态");
+				}else if(valu3.trim().length==0){
+					$("#error").text("*请输入登录名");
+				}else if(valu4.trim().length==0){
+					$("#error").text("*请输入密码");
+				}else if(!regx.test(valu4.trim())){
+					$("#error").text("*请输入6-12位的数字和字母密码");
+				}else {
+					$("#userAddform").submit();
+				}
+ 		 		
+			});
+			
+		
+		</script>
+</html>

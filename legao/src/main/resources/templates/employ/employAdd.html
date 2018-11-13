@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>employAdd</title>
+		<link href="../css/bootstrap.css" type="text/css"  rel="stylesheet" />
+		<link href="../css/main.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
+		
+	</head>
+	<body>
+		
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 620px;margin-top: 10px;padding: 10px;margin-left: 250px;">
+			<div id="schedule-box" class="boxshaw hidden "></div>
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：员工管理&nbsp;&gt;&nbsp;添加员工
+		<hr />
+		
+		<h3 style="color: green;height: 30px;"></h3>
+		<div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
+		<form id="employform" >
+		<table width="82%"> 
+		<tr>
+			<td>职位：</td>
+			<td>
+				<select class="inputCss" id="job_id">
+					<option value="">--请选择职位--</option>
+					<option value="java工程师">java工程师</option>
+				</select>
+			</td>
+			
+		
+		
+			<td>所属部门：</td>
+			<td>
+				<select class="inputCss" id="dept_id">
+					<option value="">--请选择部门--</option>
+					<option value="产品研发部">产品研发部</option>
+				</select>
+			</td>
+			<td>性别：</td>
+			<td>
+				<select class="inputCss" id="sex">
+					<option value="">--请选择性别--</option>
+					<option value="男">男</option>
+				</select>
+			
+			</td>
+			
+		</tr>
+		<tr style="height: 10px;"><td></td><td></td><td></td></tr>
+			<tr>
+			<td>姓&nbsp;名：</td>
+		<td><input  type="text" name="employ.name" class="inputCss" style="width:205px;" placeholder="请输入您的姓名" maxlength="20" id="employ_name"/></td>
+				<td>学&nbsp;历：</td><td><input  type="text" name="employ.education" class="inputCss" style="width:205px;" placeholder="请输入您的学历" id="employ_education"/></td>
+			
+			<td>身份证号码：</td><td><input  type="text" name="employ.cardId" class="inputCss" style="width:205px;" placeholder="请输入您的身份证号码" id="employ_cardId" maxlength="18"/></td>
+			</tr>
+			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
+			<tr>
+				<td>邮&nbsp;箱：</td><td><input  type="email" name="employ.email" class="inputCss" style="width:205px;" placeholder="请输入您常用的邮箱" id="employ_email"/></td>
+			
+			<td>手&nbsp;机：</td><td><input  type="text" name="employ.phone" class="inputCss" style="width:205px;" placeholder="请输入您的手机" id="employ_phone"/></td>
+				<td>固定电话：</td><td><input  type="text" name="employ.tel" class="inputCss" style="width:205px;" placeholder="请输入您的电话" id="employ_tel"/></td>
+				
+			
+			</tr>
+			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
+			<tr>
+				<td>政治面貌：</td><td><input  type="text" name="employ.party" class="inputCss" style="width:205px;" placeholder="请输入您的政治面貌" id="employ_party"/></td>
+			<td>QQ账号/微信账号：</td><td><input  type="text" name="employ.qqNum" class="inputCss" style="width:205px;" placeholder="请输入您的QQ账号/微信账号" id="employ_qqNum"/>&nbsp;</td>
+			
+			<td>联系地址：</td><td><input  type="text" name="employ.address" class="inputCss" style="width:205px;" placeholder="请输入您最近的居住地址" id="employ_address"/></td>
+				
+			</tr>
+			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
+			<tr>
+			<td>月薪：</td><td><input  type="text" name="salary" class="inputCss" style="width:205px;" placeholder="请输入您的月薪" id="salary"/></td>
+			<td>出生日期：</td><td><input  type="text" name="employ.birthday" class="inputCss" style="width:205px;" placeholder="请输入您的出生日期" id="employ_birthday"/></td>
+			<td>名族：</td><td><input  type="text" name="employ.race" class="inputCss" style="width:205px;" placeholder="请输入您所属的名族" id="employ_race"/></td>
+			
+			
+			
+			</tr>
+			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
+			<tr>
+				<td>所学专业：</td><td><input  type="text" name="employ.speciality" class="inputCss" style="width:205px;" placeholder="请输入您所学的专业" id="employ_speciality"/></td>
+			<td>爱好：</td><td><input  type="text" name="employ.hobby" class="inputCss" style="width:205px;" placeholder="请输入您的爱好" id="employ_hobby"/></td>
+			<td>备注：</td><td><input type="text" name="employ.remark" class="inputCss" style="width:205px;" placeholder="请输入备注" id="employ_remark"/></td>                                                                         
+			
+			</tr>
+			
+				
+			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
+			<tr>
+			<td colspan="5" align="center"><input type="button"  value="添加" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="reset" name="cancel" class="btn btn-danger" value="取消"/></td>
+			</tr>
+		</table>	 
+		</form> 
+	</div>	
+	
+<script src="../js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+<script src="../js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
+<script src="../js/schedule.js" type="application/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+	$(function() {
+
+		$("#addbtn").click(function() {
+
+			//获取表单值
+			var name = $("#employ_name").val();
+			var dept_id = $("#dept_id").val();
+			var sex = $("#sex").val();
+			var job_id = $("#job_id").val();
+			var education = $("#employ_education").val();
+			var email = $("#employ_email").val();
+			var phone = $("#employ_phone").val();
+			var tel = $("#employ_tel").val();
+			var party = $("#employ_party").val();
+			var qqNum = $("#employ_qqNum").val();
+			var address = $("#employ_address").val();
+			var salary = $("#salary").val();
+			var birthday = $("#employ_birthday").val();
+			var race = $("#employ_race").val();
+			var speciality = $("#employ_speciality").val();
+			var hobby = $("#employ_hobby").val();
+			var remark = $("#employ_remark").val();
+			var cardId = $("#employ_cardId").val();
+			//创建正则模板 
+			var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
+			var card_regx = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(X|x)$)/;
+			/*var name_regx=/^[\u4e00-\u9fa5]{2,4}$/;*/
+			var phone_regx = /^1(3|4|5|7|8)\d{9}$/;
+			var email_regx = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+			var tel_regx = /^0\d{2,3}-?\d{7,8}$/;
+			if(job_id.trim() == "") {
+				$("#error").text("*请选择职位");
+			} else if(dept_id.trim() == "") {
+				$("#error").text("*请选择部门");
+			} else if(sex.trim() == "") {
+				$("#error").text("*请选择性别");
+			} else if(name.trim() == "") {
+				$("#error").text("*姓名不能为空，请补充完整");
+			} else if(re.test(name.trim())) {
+				$("#error").text("*姓名存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
+			} else if(education.trim() == "") {
+				$("#error").text("*学历不能为空，请补充完整");
+			} else if(cardId.trim() == "") {
+				$("#error").text("*身份证号码不能为空，请补充完整");
+			} else if(!card_regx.test(cardId.trim())) {
+				$("#error").text("*身份证号码格式不正确，请正确填写格式");
+			} else if(re.test(cardId.trim())) {
+				$("#error").text("*身份证号码存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
+			} else if(email.trim() == "") {
+				$("#error").text("*邮箱不能为空，请补充完整");
+			} else if(!email_regx.test(email.trim())) {
+				$("#error").text("*邮箱格式不正确，请正确填写邮箱格式");
+			} else if(phone.trim() == "") {
+				$("#error").text("*手机不能为空，请补充完整");
+			} else if(re.test(phone.trim())) {
+				$("#error").text("*手机存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
+			} else if(phone_regx.test(phone.trim())) {
+				$("#error").text("*输入的手机格式不对，请正确输入手机格式");
+			} else if(tel.trim() == "") {
+				$("#error").text("*电话不能为空，请补充完整");
+			} else if(!tel_regx.test(tel.trim())) {
+				$("#error").text("*固定电话格式不对，请正确输入固定电话");
+			} else if(party.trim() == "") {
+				$("#error").text("*政治面貌不能为空，请补充完整");
+			} else if(qqNum.trim() == "") {
+				$("#error").text("*qq账号/微信账号不能为空，请补充完整");
+			} else if(address.trim() == "") {
+				$("#error").text("*联系地址不能为空，请补充完整");
+			} else if(salary.trim() == "") {
+				$("#error").text("*月薪不能为空，请补充完整");
+			} else if(birthday.trim() == "") {
+				$("#error").text("*出生日期不能为空，请补充完整");
+			} else if(race.trim() == "") {
+				$("#error").text("*名族不能为空，请补充完整");
+			} else if(speciality.trim() == "") {
+				$("#error").text("*专业不能为空，请补充完整");
+			} else if(hobby.trim() == "") {
+				$("#error").text("*爱好不能为空，请补充完整");
+			} else if(remark.trim() == "") {
+				$("#error").text("*备注不能为空，请补充完整");
+			} else {
+				$("#employform").attr("action", "${dzx}/addEmploy");
+				$("#employform").submit();
+			}
+
+		});
+
+	});
+	/*时间插件*/
+	var mySchedule = new Schedule({
+		el: '#schedule-box',
+		//date: '2018-9-20',
+		clickCb: function(y, m, d) {
+			document.querySelector('#employ_birthday').value = y + '-' + m + '-' + d
+		},
+		nextMonthCb: function(y, m, d) {
+			document.querySelector('#employ_birthday').value = y + '-' + m + '-' + d
+		},
+		nextYeayCb: function(y, m, d) {
+			document.querySelector('#employ_birthday').value = y + '-' + m + '-' + d
+		},
+		prevMonthCb: function(y, m, d) {
+			document.querySelector('#employ_birthday').value = y + '-' + m + '-' + d
+		},
+		prevYearCb: function(y, m, d) {
+			document.querySelector('#employ_birthday').value = y + '-' + m + '-' + d
+		}
+	});
+	$("#employ_birthday").focus(function  () {
+		$("#schedule-box").removeClass("hidden");
+		$("#schedule-box").addClass("display","block");
+	});
+	$("#schedule-box").mouseover(function  () {
+		$("#schedule-box").removeClass("hidden");
+		$("#schedule-box").addClass("display","block");
+	});
+	$("#schedule-box").mouseout(function  () {
+		$("#schedule-box").removeClass("display","block");
+		$("#schedule-box").addClass("hidden");
+	})
+</script>
+	</body>
+</html>

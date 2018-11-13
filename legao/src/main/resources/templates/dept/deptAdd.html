@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>deptAdd</title>
+		<link href="../css/bootstrap.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
+		<link href="../css/main.css" type="text/css" charset="UTF-8" rel="stylesheet" />
+	</head>
+	<body>
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left: 250px;">
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：部门管理&nbsp;&gt;&nbsp;添加部门
+		<hr />
+		<h3 style="color: green;height: 30px;"></h3>
+		<div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
+		<form action="${dzx}/addDepartment" id="departmentAddform">
+			部门名称：<input type="text"  name="dept.name" id="dept_name" class="inputCss" maxlength="20" placeholder="请输入长度为20的字符"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			详细描述：<input type="text" name="dept.remark" class="inputCss" id="dept_remark" maxlength="20" placeholder="请输入长度为20的字符" />&nbsp;</br></br>
+			<input type="button"  value="添加" class="btn btn-success" id="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="reset" class="btn btn-danger" value="取消"/>
+			
+		</form>
+		</div>
+		<script type="application/javascript" src="../js/jquery-1.12.4.js"></script>
+		<script type="application/javascript" src="../js/bootstrap.js"></script>
+		<script type="text/javascript">
+	
+			
+			/*判断是否为空*/
+			$("#btn").click(function(){
+				var valu1=$("#dept_name").val();
+				var valu2=$("#dept_remark").val();
+				var re =/[`~!@#$%^&*_+<>{}\\/'[\]]/im;
+				if (valu1.length==0) {
+					$("#error").text("请输入部门名称");
+				}else if (valu2.length==0) {
+					$("#error").text("请输入描述");
+				}else if (re.test(valu1)) {
+					$("#error").text("部门名称存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
+				}else {
+					$("#departmentAddform").submit();
+				}
+ 		 		
+			});
+			
+	
+		</script>
+		
+	</body>
+</html>

@@ -2,6 +2,7 @@ package com.zxq.legao.dao;
 
 import com.zxq.legao.entity.po.UserPO;
 
+import com.zxq.legao.entity.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

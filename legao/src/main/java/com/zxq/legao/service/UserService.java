@@ -1,13 +1,11 @@
-package com.zxq.legao.dao;
+package com.zxq.legao.service;
 
 import com.zxq.legao.entity.po.UserPO;
 import com.zxq.legao.entity.vo.UserVO;
-import org.apache.ibatis.annotations.Mapper;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
-@Mapper
-public interface UserDao {
+
+public interface UserService {
 	int insertUser(UserPO userPO);
 
 	int deleteUser(List<Integer> userIDs);

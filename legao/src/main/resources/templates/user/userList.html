@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>userList</title>
+		<link href="../css/bootstrap.css" type="text/css"  rel="stylesheet" />
+	<link href="../css/main.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left: 250px;" >
+			<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			当前位置：用户管理&nbsp;&gt;&nbsp;用户查询
+		
+			<a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span class="glyphicon glyphicon-print" ></span>&nbsp;打印</a>
+			<a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span class="glyphicon glyphicon-export" ></span>&nbsp;导出</a>
+		
+		<hr />
+			<form action=""  id="userform">
+			
+			用户名：<input name="user.username" id="username" style="height: 35px;" class="inputCss"/>&nbsp;&nbsp;
+			用户状态：<select name="status" id="status" style="height: 35px;" class="inputCss"   >
+				<option value="">----全部----</option>
+				<option value="超级管理员">超级管理员</option>
+				<option value="普通用户">普通用户</option>
+			</select>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button"  value="搜索" class="btn btn-success" id="selectUser"/>&nbsp;
+		<input type="button" class="btn btn-danger" value="删除" id="dropUser"/>
+			
+		<br /><br />
+		<table cellspacing="0" cellpadding="" width="100%" class="table table-hover table-striped"style="text-align: center;width: 82%;" >
+			<tr id="tr_th"><th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
+			<th>登录名</th><th>密码</th>
+			<th>用户名</th><th>状态</th><th>创建时间</th><th>操作</th>
+			</tr>
+			</table>
+			</form>
+			
+		<script src="../js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+	<script src="../js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
+	<script type="text/javascript">
+		
+		/*提交删除*/
+		$("#dropUser").click(function() {
+			var chex = $("input[id^='box_']:checked");
+			if (chex.length == 0) {
+				alert("请选择你要删除的用户");
+			} else {
+				if (confirm("确定要删除该用户吗？")) {
+					$("#userform").attr("action", "${dzx}/dropUser.action");
+					$("#userform").submit();
+				}
+			}
+
+		});
+		
+		/* 全选和反选*/
+		$("#checkAll").click(function() {
+
+			$("input[id^='box_']").prop("checked", this.checked);
+		});
+		
+
+</script>
+		
+	</body>
+</html>
