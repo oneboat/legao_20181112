@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;height:700px;" id="content_box">
+    <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
+    当前位置：系统设置&nbsp;&gt;&nbsp;字段设置
+
+    <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
+            class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
+    <a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span
+            class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
+
+    <hr/>
+    <form class="layui-form" id="selectField">
+        <h2> 学员管理：<span id="info" style="color: green;height: 30px;">[[${setStatus}]]</span></h2>
+        <div class="layui-form-item" style="margin-left: 30px;">
+
+
+
+                <div data-toggle="tooltip" data-placement="bottom" title="学生昵称" style="display: inline">
+                    <input type="checkbox" name="selectFields" title="昵称" value="0"/>
+                </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学生姓名" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="姓名" value="1">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="描述学员与家长的关系" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="家长关系" value="2">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员的家长姓名" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="家长姓名" value="3" >
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员联系电话" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="联系电话" value="4" >
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="微信" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="微信"  value="5">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员学历" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="学历"  value="6">
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员生日" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="生日"value="7" >
+                    </div>
+            </br></br>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员性别" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="性别" value="8">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员录入日期" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="录入日期" value="9">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员的备用电话" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="备用电话" value="10">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="市场人员" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="市场人员" value="11" >
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员顾问" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="顾问" value="12">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员所属地区" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="学员所属地区" value="13">
+                    </div>
+
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员期望到课时间" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="期望时间" value="14">
+                    </div>
+            </br></br>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员的基本情况" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="基本情况" value="15">
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员的状态：1代表新客户，2代表试听客户，3代表号码无效客户，4其他" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="状态" value="16">
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="重要程度：1代表重点，2代表优质，3会员，4一般，5放弃，6未知" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="重要程度" value="17">
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员的来源" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="来源" value="18">
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员的老师" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="老师" value="19" >
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="校区名" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="校区" value="20" >
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="学员的跟进人" style="display: inline">
+
+                        <input type="checkbox" name="selectFields" title="跟进" value="21" >
+                    </div>
+            <input type="button"  value="设置" class="btn btn-success" id="setbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="reset" name="cancel" class="btn btn-danger" value="重置"/></td>
+                </div>
+
+
+    </form>
+</div>
+</body>
+<script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+<script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
+<script src="../layui/layui.js"></script>
+<script>
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer
+            , form = layui.form;
+    });
+    $(function () {
+        setTimeout(function () {$("#info").text('');}, 5000);
+        $('[data-toggle="tooltip"]').tooltip()
+        $("#setbtn").click(function () {
+            var chex =  $("input:checked")
+           if (chex.length==0){
+                alert("请选择要展示的字段")
+           }else if(chex.length<5){
+               alert("至少展示5个字段")
+           }else if(chex.length>8){
+               alert("至多展示8个字段")
+           }else {
+               $("#selectField").attr("action","selectField");
+               $("#selectField").submit();
+           }
+
+
+
+        });
+    })
+</script>
+</html>

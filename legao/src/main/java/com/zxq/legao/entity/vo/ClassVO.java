@@ -15,7 +15,7 @@ public class ClassVO implements Serializable {
 	private String name;
 	private String remark;
 	private Date createDate;
-	private TeacherVO teacherVO;//班主任信息
+	private EmployVO teacherVO;//班主任信息
 	private Integer classAllNum;//班级总人数
 
 

@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<title>deptList</title>
-		<link href="../css/bootstrap.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
-		<link href="../css/main.css" type="text/css" charset="UTF-8" rel="stylesheet" />
+		<link href="css/bootstrap.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
+		<link href="css/main.css" type="text/css" charset="UTF-8" rel="stylesheet" />
+		<link href="css/paging.css" type="text/css" rel="stylesheet" />
 	</head>
+	<script>
+
+	</script>
 	<body>
 		
 		<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left: 250px;" >
@@ -22,20 +26,61 @@
 			<input type="button" class="btn btn-danger" value="删除" id="dropDepartment"/>
 		<br /><br />
 		<table   class="table table-hover table-striped" style="text-align: center;width: 82%;" >
-			<tr><th><input type="checkbox" name="caption" value="0" id="checkAll"></th><th>部门名称</th><th>详细信息</th>
-			
+			<tr><th><input type="checkbox" name="caption" value="0" id="checkAll"></th><th>部门名称</th><th>详细信息</th><th>部门创建时间</th>
+				<th>部门总人数</th>
 			<th>操作</th>
 		
 			</tr>
+			<tr th:each="dept:${deptVOList}">
+				<td><input type="checkbox" name="caption"
+						   th:id="'box_'+${dept.id}" th:value="${dept.id}" /></td>
+				<td>[[${dept.name}]]</td>
+				<td  >[[${dept.remark}]]</td>
+				<td><div th:text="${#dates.format(dept.createDate,'yyyy年MM月dd日 HH时mm分ss秒')}"></div></td>
+				<td th:if="${dept.deptAllNum}==null">0</td>
+				<td th:if="${dept.deptAllNum}!=null">[[${dept.deptAllNum}]]</td>
+				<td><a th:href="'editDept?deptId='+${dept.id}"><span class="glyphicon glyphicon-pencil"></span></a></td></tr>
 		</table>
 		
 		
 		</form>
 		
 		</div>
-		<script type="application/javascript" src="../js/jquery-1.12.4.js"></script>
-		<script type="application/javascript" src="../js/bootstrap.js"></script>
+		<!--分页元素-->
+		<div class="box" id="box" ></div>
+		<!--添加表单提交标志-->
+		<form id="pageForm" style="display: none">
+			<input type="text" id="pages" name="page"/>
+			<input type="button" id="btn" value="tijiao"/>
+			<!--传入分页的参数-->
+			<input type="text" id="actionName" value="selectDept"/>
+		</form>
+
+		<script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+		<script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
+		<script src="js/paging.js" type="application/javascript"></script>
 		<script type="text/javascript">
+            //分页逻辑
+            var setTotalCount = [[${pageInfo.total}]];
+            var spageNum = [[${pageInfo.pages}]];
+            var initPageNos = [[${pageInfo.pageNum}]]
+            $('#box').paging({
+                initPageNo: initPageNos, // 初始页码
+                totalPages: spageNum, //总页数
+                totalCount: '合计 ' + setTotalCount + ' 条数据', // 条目总数
+                slideSpeed: 600, // 缓动速度。单位毫秒
+                jump: true, //是否支持跳转
+                callback: function(page) { // 回调函数
+                    //给标志赋值
+                    $("#pages").val(page);
+                }
+            })
+            $(function () {
+
+                //表格居中
+                $("th").css("text-align","center");
+
+            })
 		/*提交删除*/ 
 			$("#dropDepartment").click(function(){
 				var chex=$("input[id^='box_']:checked");
@@ -43,7 +88,7 @@
 					alert("请选择你要删除的部门");
 				} else {
 					if(confirm("确定要删除该部门吗？")){
-						$("#departmentform").attr("action", "${dzx}/dropDepartment.action");
+						$("#departmentform").attr("action", "deleteDept");
 		 		 		$("#departmentform").submit();
 					}
 				}
@@ -54,7 +99,11 @@
 				
 				$("input[id^='box_']").prop("checked",this.checked);
 			});
-			
+        /*提交查询*/
+        $("#selectDepartment").click(function(){
+            $("#departmentform").attr("action", "selectDept");
+            $("#departmentform").submit();
+        });
 			
 		</script>
 		

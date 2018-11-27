@@ -20,35 +20,36 @@
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
       <ul>
-		<li id="user_Select"  style="list-style: none; cursor: pointer;"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="user/userList.html" target="right" style="text-decoration: none;cursor: pointer;">用户查询</a></li>
-		<s:if test="#session.user.status==1">
-			<li id="user_Add" style="list-style: none;cursor: pointer;"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="user/userAdd.html" target="right" style="text-decoration: none;cursor: pointer;">添加用户</a></li>
-		</s:if>
+		<li id="user_Select"  style="list-style: none; cursor: pointer;"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="selectUser" target="right" style="text-decoration: none;cursor: pointer;">用户查询</a></li>
+
+			<li id="user_Add" style="list-style: none;cursor: pointer;"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="userAdd" target="right" style="text-decoration: none;cursor: pointer;">添加用户</a></li>
+
 	</ul>
       </div>
     </div>
   </div>
+
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
 		 <span class="glyphicon glyphicon-tags">
-         	
-         </span>&nbsp;&nbsp;部门管理
-        </a>
-      </h4>
+
+    </span>&nbsp;&nbsp;部门管理
+    </a>
+    </h4>
+</div>
+<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+    <div class="panel-body">
+        <ul style="list-style: none;cursor: pointer;">
+            <li id="depart_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="selectDept" target="right" style="text-decoration: none;cursor: pointer;">部门查询</a></li>
+
+            <li id="depart_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="deptAdd" target="right" style="text-decoration: none;cursor: pointer;">添加部门</a></li>
+
+        </ul>
     </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-		<ul style="list-style: none;cursor: pointer;">
-		<li id="depart_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="dept/deptList.html" target="right" style="text-decoration: none;cursor: pointer;">部门查询</a></li>
-		<s:if test="#session.user.status==1">
-		<li id="depart_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="dept/deptAdd.html" target="right" style="text-decoration: none;cursor: pointer;">添加部门</a></li>
-		</s:if>
-	</ul>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
@@ -63,9 +64,9 @@
       <div class="panel-body">
       <ul style="list-style: none;cursor: pointer;">
 		<li id="jop_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="job/jobList.html" target="right" style="text-decoration: none;cursor: pointer;">职位查询</a></li>
-		<s:if test="#session.user.status==1">
+
 		<li id="jop_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="job/jobAdd.html" target="right" style="text-decoration: none;cursor: pointer;">添加职位</a></li>
-		</s:if>
+
 	</ul>
       </div>
     </div>
@@ -84,36 +85,57 @@
       <div class="panel-body">
      <ul style="list-style: none;cursor: pointer;">
 		<li id="employ_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="employ/employList.html" target="right" style="text-decoration: none;cursor: pointer;">员工查询</a></li>
-		<s:if test="#session.user.status==1">                                                 
+
 		<li id="employ_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="employ/employAdd.html" target="right" style="text-decoration: none;cursor: pointer;">添加员工</a></li>
-		</s:if>
+
 	</ul>
       </div>
     </div>
   </div>
-  
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingSix">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix" style="text-decoration: none;">
-		<span class="glyphicon glyphicon-save">
-         	
-         </span>&nbsp;&nbsp;下载中心
-        </a>
-      </h4>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingSeven">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven" style="text-decoration: none;">
+		 <span class="glyphicon glyphicon-education">
+
+    </span>&nbsp;&nbsp;学员管理
+                </a>
+            </h4>
+        </div>
+        <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+            <div class="panel-body">
+                <ul style="list-style: none;cursor: pointer;">
+                    <li id="student_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="selectStudent" target="right" style="text-decoration: none;cursor: pointer;">学员查询</a></li>
+
+                    <li id="student_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="studentAdd" target="right" style="text-decoration: none;cursor: pointer;">添加学员</a></li>
+
+                </ul>
+            </div>
+        </div>
     </div>
-    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-      <div class="panel-body">
-     <ul style="list-style: none;cursor: pointer;">
-		<li id="document_Select" ><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="doc/doclist.html" target="right" style="text-decoration: none;cursor: pointer;">文档查询</a></li>
-		<s:if test="#session.user.status==1">
-		<li id="document_Add"><span class="glyphicon glyphicon-open"></span>&nbsp;<a href="doc/docUpload.html" target="right" style="text-decoration: none;cursor: pointer;">上传文档</a></li>
-		</s:if>
-	</ul>
-      </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingSix">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix" style="text-decoration: none;">
+		<span class="glyphicon glyphicon-cog">
+
+         </span>&nbsp;&nbsp;系统设置
+                </a>
+            </h4>
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+            <div class="panel-body">
+                <ul style="list-style: none;cursor: pointer;">
+                    <li id="document_Select" ><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="fieldSet" target="right" style="text-decoration: none;cursor: pointer;">字段设置</a></li>
+                    <li id="document_Add"><span class="glyphicon glyphicon-open"></span>&nbsp;<a href="doc/docUpload.html" target="right" style="text-decoration: none;cursor: pointer;">主题设置</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 </body>
 <script type="application/javascript" charset="UTF-8" src="js/jquery-1.12.4.js"></script>
 <script type="application/javascript" charset="UTF-8" src="js/bootstrap.js"></script>

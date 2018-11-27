@@ -34,4 +34,16 @@
     <select id="selectUserByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.UserVO">
          SELECT id,username,password,status,createDate FROM legao_user WHERE id = #{id};
     </select>
+    <!-- 判断登录名是否重复 -->
+    <select id="findUsername" parameterType="com.zxq.legao.entity.po.UserPO" resultType="com.zxq.legao.entity.vo.UserVO">
+        select id,username,password,status,createDate FROM legao_user where username=#{username};
+    </select>
+    <!--查询用户选中的字段-->
+    <select id="selectFieldsByUserID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.UserVO">
+        SELECT selectStudentFields FROM  legao_user WHERE id = #{id}
+    </select>
+    <!--查询登录名与密码-->
+    <select id="selectUserByNameAndPass" parameterType="com.zxq.legao.entity.po.UserPO" resultType="com.zxq.legao.entity.vo.UserVO">
+        SELECT id,username,password,status,createDate FROM legao_user WHERE username = #{username} AND  password = #{password}
+    </select>
 </mapper>

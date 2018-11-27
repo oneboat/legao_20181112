@@ -1,0 +1,21 @@
+package com.zxq.legao.service;
+
+import com.zxq.legao.entity.po.FollowPO;
+import com.zxq.legao.entity.vo.FollowVO;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+public interface FollowService {
+	int insertFollow(FollowPO followPO);
+
+	int deleteFollow(List<Integer> followIDs);
+
+	int updateFollow(FollowPO followPO);
+
+	String selectFollow(Integer page, FollowPO followPO, HttpServletRequest request);
+
+	List<FollowVO> findAllFollowName(FollowPO follow);
+
+	FollowVO selectFollowByID(Integer followID);
+}

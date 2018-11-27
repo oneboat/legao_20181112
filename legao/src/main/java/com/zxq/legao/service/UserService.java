@@ -1,18 +1,30 @@
 package com.zxq.legao.service;
 
+
 import com.zxq.legao.entity.po.UserPO;
 import com.zxq.legao.entity.vo.UserVO;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public interface UserService {
+public interface UserService  {
 	int insertUser(UserPO userPO);
 
 	int deleteUser(List<Integer> userIDs);
 
 	int updateUser(UserPO userPO);
 
-	List<UserVO> selectUser(UserPO userPO);
+	String selectUser(Integer page, UserPO userPO, HttpServletRequest request);
 
-	UserVO selectUserByID(UserPO userPO);
+	List<UserVO> findUsername(UserPO user);
+
+	boolean isDeleteItself(Integer[] caption,Integer userID);
+
+	UserVO selectUserByID(Integer userID);
+
+	UserVO selectFieldsByUserID(Integer userID);
+
+	UserVO selectUserByNameAndPass (UserPO user);
+
+
 }

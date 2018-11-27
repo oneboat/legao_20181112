@@ -17,7 +17,7 @@ public class CourseVO implements Serializable {
 	private Integer score;
 	private StudentVO studentVO;
 	private Integer studentNumLimit;
-	private TeacherVO teacherVO;//带课老师信息
+	private EmployVO teacherVO;//带课老师信息
 	private Date createDate;
 	private Integer studentNum;//已经报名课程人数
 

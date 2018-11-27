@@ -10,13 +10,14 @@
 
 <body style="background: #F0F4F3;">
 <!--header-->
-<div style="background:#FF7F27;height: 120px;" >
-    <div  style="float: left;margin-top: 15px;">
-        <img src="img/banner.png" class="img-responsive hidden-xs">
+<div style="background:url('img/lego-kids.jpg') no-repeat center ;height: 300px;" >
+    <div  style="float: left;margin-top: 70px;margin-left: 50px">
+        <img src="img/logo.png" class="img-responsive hidden-xs" style="">
+
         <!--配置超小分辨率下的显示效果，出现该图片-->
         <img src="img/logo2.png" class="img-responsive visible-xs" style="margin-top: 15px;"/>
     </div>
-    <div  style="float: right;font-size: 16px;color: #fff;margin-top: 50px;margin-right: 50px;" class=" hidden-xs">
+    <div  style="float: right;font-size: 16px;color: #fff;margin-top: 150px;margin-right: 50px;" class=" hidden-xs">
         <a href="#" style="color: #fff">联系我们</a>&nbsp;/<a href="#" style="color: #fff">帮助中心</a>&nbsp;/<a href="#" style="color: #fff">关于我们</a>
     </div>
 
@@ -170,7 +171,6 @@
             }else{
 
                 $("#pass_word").val(md5Pass);
-                alert($("#pass_word").val());
                 $("#loginForm").attr("action","/toLogin");
                 $("#loginForm").submit();
             }

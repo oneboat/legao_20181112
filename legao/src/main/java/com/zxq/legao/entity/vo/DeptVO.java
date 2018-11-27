@@ -16,6 +16,7 @@ public class DeptVO implements Serializable {
 	private String remark;//部门职能
 	private Date createDate;
 	private Integer deptAllNum;//部门人数
+	private Integer deptID;
 
 
 }
