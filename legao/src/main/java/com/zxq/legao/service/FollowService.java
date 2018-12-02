@@ -15,7 +15,8 @@ public interface FollowService {
 
 	String selectFollow(Integer page, FollowPO followPO, HttpServletRequest request);
 
-	List<FollowVO> findAllFollowName(FollowPO follow);
+	FollowPO selectFollowByID(Integer followID);
 
-	FollowVO selectFollowByID(Integer followID);
+	List<FollowVO> findAllFollowName();
+
 }

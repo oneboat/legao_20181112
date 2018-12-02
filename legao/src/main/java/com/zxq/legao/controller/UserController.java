@@ -2,11 +2,9 @@ package com.zxq.legao.controller;
 
 import com.zxq.legao.entity.po.FollowPO;
 import com.zxq.legao.entity.po.SchoolAreaPO;
+import com.zxq.legao.entity.po.StudentPO;
 import com.zxq.legao.entity.po.UserPO;
-import com.zxq.legao.entity.vo.EmployVO;
-import com.zxq.legao.entity.vo.FollowVO;
-import com.zxq.legao.entity.vo.SchoolAreaVO;
-import com.zxq.legao.entity.vo.UserVO;
+import com.zxq.legao.entity.vo.*;
 import com.zxq.legao.service.FollowService;
 import com.zxq.legao.service.SchoolAreaService;
 import com.zxq.legao.service.StudentService;
@@ -53,9 +51,11 @@ public class UserController {
 			session.setAttribute("user", userVO1);
 			//初始化
 			List<SchoolAreaVO> allSchoolArea = schoolAreaService.findAllSchoolAreaName(new SchoolAreaPO());
-			List<FollowVO> allFollow = followService.findAllFollowName(new FollowPO());
+			List<FollowVO> allFollow = followService.findAllFollowName();
 			List<EmployVO> allTeacherName = studentService.selectTeacherName();
+			List<StudentVO> allStudentName = studentService.selectAllStudentName();
 			ServletContext servletContext = request.getServletContext();
+			servletContext.setAttribute("allStudentName", allStudentName);
 			servletContext.setAttribute("allSchoolArea", allSchoolArea);
 			servletContext.setAttribute("allFollow", allFollow);
 			servletContext.setAttribute("allTeacherName", allTeacherName);

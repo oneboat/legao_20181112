@@ -107,4 +107,9 @@ public class StudentServiceImpl implements StudentService {
 	public List<EmployVO> selectTeacherName() {
 		return studentDao.selectTeacherName();
 	}
+
+	@Override
+	public List<StudentVO> selectAllStudentName() {
+		return studentDao.selectAllStudentName();
+	}
 }

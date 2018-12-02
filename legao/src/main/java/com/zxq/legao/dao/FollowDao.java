@@ -11,6 +11,7 @@ public interface FollowDao {
 	int insertFollow(FollowPO followPO);
 	int deleteFollow(List<Integer> followIDs);
 	int updateFollow(FollowPO followPO);
-	List<FollowVO> selectFollow(FollowPO followPO);
-	FollowVO selectFollowByID(FollowPO followPO);
+	List<FollowPO> selectFollow(FollowPO followPO);
+	FollowPO selectFollowByID(Integer followID);
+	List<FollowVO> findAllFollowName();
 }

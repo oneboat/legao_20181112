@@ -15,4 +15,5 @@ public interface StudentDao {
 	List<StudentVO> selectStudent(@Param("studentPO") StudentPO studentPO, @Param("fields") List<String> fields);
 	StudentVO selectStudentByID(Integer studentPO);
 	List<EmployVO> selectTeacherName();
+	List<StudentVO> selectAllStudentName();
 }

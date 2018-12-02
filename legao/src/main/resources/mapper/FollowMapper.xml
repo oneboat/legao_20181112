@@ -11,7 +11,7 @@
         legao_follow.date,
         legao_follow.`mode`,
         legao_follow.content
-        ) VALUES(#{studentName},#{advisor},#{date},#{mode},#{content});
+        ) VALUES(#{studentName},#{advisor},now(),#{mode},#{content});
     </insert>
     <delete id="deleteFollow" parameterType="java.util.List">
         DELETE FROM legao_follow WHERE id IN
@@ -21,9 +21,9 @@
 
     </delete>
     <update id="updateFollow" parameterType="com.zxq.legao.entity.po.FollowPO">
-        UPDATE legao_follow SET studentName = #{studentName},advisor = #{advisor},date = #{date},mode = #{mode},content = #{content} WHERE id = #{id};
+        UPDATE legao_follow SET studentName = #{studentName},advisor = #{advisor},mode = #{mode},content = #{content} WHERE id = #{id};
     </update>
-    <select id="selectFollow" parameterType="com.zxq.legao.entity.po.FollowPO" resultType="com.zxq.legao.entity.vo.FollowVO">
+    <select id="selectFollow" parameterType="com.zxq.legao.entity.po.FollowPO" resultType="com.zxq.legao.entity.po.FollowPO">
         SELECT
         legao_follow.id,
         legao_follow.studentName,
@@ -35,9 +35,7 @@
         legao_follow
 
         <where>
-            <if test="studentName!=null and studentName!=''">
-                and studentName like '%${studentName}%'
-            </if>
+
             <if test="advisor!=null and advisor!=''">
                 and advisor like '%${advisor}%'
             </if>
@@ -45,7 +43,16 @@
         </where>
 
     </select>
-    <select id="selectFollowByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.FollowVO">
-        SELECT id,advisor FROM legao_follow WHERE id = #{id};
+    <select id="selectFollowByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.FollowPO">
+        SELECT legao_follow.id,
+        legao_follow.studentName,
+        legao_follow.advisor,
+        legao_follow.date,
+        legao_follow.`mode`,
+        legao_follow.content FROM legao_follow WHERE id = #{id};
+    </select>
+
+    <select id="findAllFollowName" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.FollowVO">
+        SELECT advisor FROM legao_follow
     </select>
 </mapper>

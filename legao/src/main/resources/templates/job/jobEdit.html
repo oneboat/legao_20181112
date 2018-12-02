@@ -61,16 +61,7 @@
                 }
             });
     });
-    /* type */
-    $(function () {
-        if ($("#typeInfo").val()=='yes') {
-            $("#addInfo").html('<h3 style="color: green;height: 30px;">添加成功</h3>');
-        } else if ($("#typeInfo").val()=='no') {
-            $("#addInfo").html('<h3 style="color: green;height: 30px;">添加失败</h3>');
-        }
-        /* 定时清除添加成功字样 */
-        setTimeout(function () {$("#addInfo").text('');}, 5000);
-    });
+
 
     /*判断状态，职位名是否为空*/
     $("#btn").click(function(){

@@ -19,4 +19,6 @@ public interface StudentService {
 	StudentVO selectStudentByID(Integer studentID);
 
 	List<EmployVO> selectTeacherName();
+
+	List<StudentVO> selectAllStudentName();
 }

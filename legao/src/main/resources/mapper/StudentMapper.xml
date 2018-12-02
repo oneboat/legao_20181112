@@ -198,4 +198,10 @@
         legao_employ
         WHERE legao_employ.jobID = 1
     </select>
+    <select id="selectAllStudentName" resultType="com.zxq.legao.entity.vo.StudentVO">
+  SELECT
+       name
+        FROM
+        legao_student
+    </select>
 </mapper>

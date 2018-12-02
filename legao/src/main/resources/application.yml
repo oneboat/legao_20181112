@@ -9,7 +9,7 @@ spring:
     password: root
   thymeleaf:
     cache: false
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
 
 logging:

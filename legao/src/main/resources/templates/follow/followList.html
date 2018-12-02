@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>jobList</title>
+	<title>followList</title>
 	<link href="css/bootstrap.css" type="text/css"  rel="stylesheet" />
 	<link href="css/main.css" type="text/css" rel="stylesheet" />
 	<link href="css/paging.css" type="text/css" rel="stylesheet" />
@@ -15,32 +15,33 @@
 <div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;height:700px;" id="content_box">
 	<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;
-	当前位置：职位管理&nbsp;&gt;&nbsp;职位查询
+	当前位置：更进管理&nbsp;&gt;&nbsp;更进查询
 
 	<a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span class="glyphicon glyphicon-print" ></span>&nbsp;打印</a>
 	<a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span class="glyphicon glyphicon-export" ></span>&nbsp;导出</a>
 
 	<hr />
-	<form action=""  id="jobform">
+	<form action=""  id="followform">
 
-		职位名：<input name="name" id="jobname" style="height: 35px;" class="inputCss" th:value="${blurJob}==null? '':${blurJob.name}"  />&nbsp;&nbsp;
+		顾问名：<input name="advisor" id="followname" style="height: 35px;" class="inputCss" th:value="${blurFollow}==null? '':${blurFollow.advisor}"  />&nbsp;&nbsp;
 
-		<input type="button"  value="搜索" class="btn btn-success" id="selectJob"/>&nbsp;
-		<input type="button" class="btn btn-danger" value="删除" id="dropJob"/>
+		<input type="button"  value="搜索" class="btn btn-success" id="selectFollow"/>&nbsp;
+		<input type="button" class="btn btn-danger" value="删除" id="dropFollow"/>
 
 		<br /><br />
-		<table cellspacing="0" cellpadding=""  class="table table-hover table-striped"style="text-align: center;" id="job_tab">
+		<table cellspacing="0" cellpadding=""  class="table table-hover table-striped"style="text-align: center;" id="follow_tab">
 			<tr id="tr_th" ><th ><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
-				<th>职位名称</th><th>职位描述</th><th>该职位目前人数</th><th>创建时间</th><th>操作</th>
+				<th>学生</th><th>顾问</th><th>跟进模式</th><th>跟进内容</th><th>创建时间</th><th>操作</th>
 			</tr>
-			<tr th:each="job:${jobVOList}">
+			<tr th:each="follow:${followVOList}">
 				<td><input type="checkbox" name="caption"
-						   th:id="'box_'+${job.id}" th:value="${job.id}" /></td>
-				<td>[[${job.name}]]</td>
-				<td>[[${job.remark}]]</td>
-				<td>[[${job.jobAllNum}]]</td>
-				<td><div th:text="${#dates.format(job.createDate,'yyyy年MM月dd日 HH时mm分ss秒')}"></div></td>
-				<td><a th:href="'editJob?jobId='+${job.id}"><span class="glyphicon glyphicon-pencil"></span></a></td></tr>
+						   th:id="'box_'+${follow.id}" th:value="${follow.id}" /></td>
+				<td>[[${follow.studentName}]]</td>
+				<td>[[${follow.advisor}]]</td>
+				<td>[[${follow.mode}]]</td>
+				<td>[[${follow.content}]]</td>
+				<td><div th:text="${#dates.format(follow.date,'yyyy年MM月dd日 HH时mm分ss秒')}"></div></td>
+				<td><a th:href="'editFollow?followId='+${follow.id}"><span class="glyphicon glyphicon-pencil"></span></a></td></tr>
 		</table>
 
 	</form>
@@ -48,12 +49,12 @@
 	<div class="box" id="box" ></div>
 	<!--添加表单提交标志-->
 	<form id="pageForm" style="display: none">
-		<input name="name" th:value="${blurJob}==null? '':${blurJob.name}"  />&nbsp;&nbsp;
+		<input name="name" th:value="${blurFollow}==null? '':${blurFollow.advisor}"  />&nbsp;&nbsp;
 		<input type="text" id="pages" name="page"/>
 
 		<input type="button" id="btn" value="tijiao"/>
 		<!--传入分页的参数-->
-		<input type="text" id="actionName" value="selectJob"/>
+		<input type="text" id="actionName" value="selectFollow"/>
 	</form>
 
 	<script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
@@ -62,7 +63,7 @@
 	<script type="text/javascript" th:inline="javascript">
 
         $(function () {
-            //不能删除正在教师的职位
+            //不能删除正在登陆的更进
             var delete_msg = [[${delete_msg}]];
             if (delete_msg){
                 alert(delete_msg);
@@ -75,19 +76,19 @@
 
         })
         /*提交查询*/
-        $("#selectJob").click(function() {
-            $("#jobform").attr("action", "selectJob");
-            $("#jobform").submit();
+        $("#selectFollow").click(function() {
+            $("#followform").attr("action", "selectFollow");
+            $("#followform").submit();
         });
         /*提交删除*/
-        $("#dropJob").click(function() {
+        $("#dropFollow").click(function() {
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
-                alert("请选择你要删除的职位");
+                alert("请选择你要删除的更进");
             } else {
-                if (confirm("确定要删除该职位吗？")) {
-                    $("#jobform").attr("action", "deleteJobs");
-                    $("#jobform").submit();
+                if (confirm("确定要删除该更进吗？")) {
+                    $("#followform").attr("action", "deleteFollows");
+                    $("#followform").submit();
                 }
             }
 

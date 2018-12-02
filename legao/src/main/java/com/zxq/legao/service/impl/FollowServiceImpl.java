@@ -41,7 +41,7 @@ public class FollowServiceImpl implements FollowService {
 		if (page == null){ page = 0;}
 		//page为初始页，pageSize表一页显示多少条
 		PageHelper.startPage(page, ConstUtil.PAGESIZE);
-		List<FollowVO> list = followDao.selectFollow(followPO);
+		List<FollowPO> list = followDao.selectFollow(followPO);
 
 		PageInfo pageInfo = new PageInfo(list);
 		request.setAttribute("pageInfo",pageInfo);
@@ -49,13 +49,15 @@ public class FollowServiceImpl implements FollowService {
 		return "follow/followList";
 	}
 
+
+
 	@Override
-	public List<FollowVO> findAllFollowName(FollowPO follow) {
-		return followDao.selectFollow(follow);
+	public FollowPO selectFollowByID(Integer followID) {
+		return followDao.selectFollowByID(followID);
 	}
 
 	@Override
-	public FollowVO selectFollowByID(Integer followID) {
-		return null;
+	public List<FollowVO> findAllFollowName() {
+		return followDao.findAllFollowName();
 	}
 }
