@@ -19,13 +19,12 @@ public class EmployVO implements Serializable {
 	private Date entryDate;
 	private String basicSalary;
 	private String fullWork;
-	private String EatAllow;
+	private String eatAllow;
 	private String classPay;
-	private Integer allClassTime;
+	private String allClassTime;
 	private String extraPay;
 	private String area;
 	private Integer status;
-	private DeptVO deptVO;
 	private JobVO jobVO;
 
 }

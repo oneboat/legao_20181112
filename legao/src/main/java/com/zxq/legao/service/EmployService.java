@@ -1,6 +1,13 @@
 package com.zxq.legao.service;
 
 
+import com.baomidou.mybatisplus.service.IService;
+import com.zxq.legao.entity.po.EmployPO;
+import com.zxq.legao.entity.vo.EmployVO;
+import com.zxq.legao.entity.vo.EmployVO;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -10,6 +17,15 @@ package com.zxq.legao.service;
  * @author dengzhenxiang
  * @since 2018-11-27
  */
-public interface EmployService  {
+public interface EmployService extends IService<EmployPO> {
+	int insertEmploy(EmployPO employPO);
+
+	int deleteEmploy(List<Integer> employIDs);
+
+	int updateEmploy(EmployPO employPO);
+
+	String selectEmploy(Integer page, EmployPO employPO, HttpServletRequest request);
+
+	EmployPO selectEmployByID(Integer employID);
 
 }

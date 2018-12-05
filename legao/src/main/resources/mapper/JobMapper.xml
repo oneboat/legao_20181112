@@ -60,5 +60,8 @@
         <select id="findJobName" parameterType="com.zxq.legao.entity.po.JobPO" resultType="com.zxq.legao.entity.vo.JobVO">
             select * from legao_job where name=#{name};
         </select>
-
+<!--查找所有的职位-->
+    <select id="selectAllJobName" resultType="com.zxq.legao.entity.vo.JobVO">
+        SELECT id,name from legao_job
+    </select>
 </mapper>

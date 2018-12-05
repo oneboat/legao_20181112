@@ -29,4 +29,7 @@ public interface JobService  {
 
 	List<JobVO> findJobName(JobPO jobPO);
 
+	List<JobVO> selectAllJobName();
+
+
 }

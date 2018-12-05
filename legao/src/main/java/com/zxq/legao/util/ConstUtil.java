@@ -14,5 +14,14 @@ public class ConstUtil {
 	//学生表全部字段名（对应中文名）
 	public final static String[] STUDENT_FIELDS_ZH={"昵称","姓名","家长关系","家长姓名","联系电话","微信","学历","生日","性别","录入日期","备用电话","市场人员","顾问","学员所属地区","期望时间","基本情况","状态","重要程度","来源","老师","校区","跟进"};
 
+	//员工表默认展示字段名（对应数据库）
+	public final static String[] DEFAULT_EMPLOY_FIELDS_DB={"name","telphone","basicSalary","fullWork","EatAllow","classPay","allClassTime","extraPay","status"};
+	//员工默认展示字段名（对应中文名）
+	public final static String[] DEFAULT_EMPLOY_FIELDS_ZH={"姓名","电话","基本工资","全勤","餐补","课时费","总课时（h）","提成","状态"};
+	//员工表全部字段名（对应数据库）
+	public final static String[] EMPLOY_FIELDS_DB={"name","sex","telphone","birthday","entryDate","jobID","basicSalary","fullWork","EatAllow","classPay","allClassTime","extraPay","area","status"};
+	//员工表全部字段名（对应中文名）
+	public final static String[] EMPLOY_FIELDS_ZH={"姓名","性别","联系电话","生日","入职日期","职位","基本工资","全勤","餐补","课时费","总课时（h）","提成","校区","状态"};
+
 
 }

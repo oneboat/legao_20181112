@@ -17,6 +17,7 @@ public class UserVO implements Serializable {
 	private Date createDate;
 	private Boolean ifLoginSuccess;
 	private String selectStudentFields;
+	private String selectEmployStudentFields;
 
 
 }

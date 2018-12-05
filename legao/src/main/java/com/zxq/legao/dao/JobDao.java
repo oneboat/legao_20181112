@@ -29,6 +29,8 @@ public interface JobDao {
 
 	List<JobVO> findJobName(JobPO jobPO);
 
+	List<JobVO> selectAllJobName();
+
 
 
 

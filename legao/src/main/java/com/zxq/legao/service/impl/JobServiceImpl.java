@@ -76,4 +76,9 @@ public class JobServiceImpl implements JobService {
 	public List<JobVO> findJobName(JobPO jobPO) {
 		return jobDao.findJobName(jobPO);
 	}
+
+	@Override
+	public List<JobVO> selectAllJobName(){
+		return jobDao.selectAllJobName();
+	}
 }

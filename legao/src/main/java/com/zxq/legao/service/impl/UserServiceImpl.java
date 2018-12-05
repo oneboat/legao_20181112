@@ -102,6 +102,11 @@ public class UserServiceImpl  implements UserService  {
 	}
 
 	@Override
+	public UserVO selectEmployFieldsByUserID(Integer userID) {
+		return userDao.selectEmployFieldsByUserID(userID);
+	}
+
+	@Override
 	public UserVO selectUserByNameAndPass(UserPO userPO) {
 		if (userPO == null || userPO.toString().equals("")){
 			logger.info("UserPO为空");

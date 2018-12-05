@@ -6,17 +6,27 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * @author dengzhenxiang
+ * @Date 2018/12/5 14:34
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeptVO implements Serializable {
-	private Integer id;
-	private String name;
-	private String remark;//部门职能
-	private Date createDate;
-	private Integer deptAllNum;//部门人数
-	private Integer deptID;
+    private Integer id;
+    private String name;
+    /**
+     * 部门职能
+     */
+
+    private String remark;
+    private Date createDate;
+    /**
+     * 部门总人数
+     */
+    private Integer deptAllNum;
+    private Integer deptID;
 
 
 }

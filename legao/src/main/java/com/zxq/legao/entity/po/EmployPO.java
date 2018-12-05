@@ -1,16 +1,21 @@
-package com.zxq.legao.entity;
+package com.zxq.legao.entity.po;
 
+
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
 /**
  * <p>
- * 
  * </p>
  *
  * @author dengzhenxiang
@@ -19,12 +24,12 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-
-public class Employ implements Serializable {
+@TableName("legao_employ")
+public class EmployPO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
+@TableId(type = IdType.AUTO)
     private Integer id;
 
     private String name;
@@ -32,13 +37,13 @@ public class Employ implements Serializable {
     private String sex;
 
     private String telphone;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     /**
      * 入职日期
      */
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date entryDate;
 
     /**
@@ -63,7 +68,7 @@ public class Employ implements Serializable {
      * 餐补
      */
 
-    private String EatAllow;
+    private String eatAllow;
 
     /**
      * 课时费
@@ -75,7 +80,7 @@ public class Employ implements Serializable {
      * 总课时
      */
 
-    private Integer allClassTime;
+    private String allClassTime;
 
     /**
      * 提成
@@ -120,5 +125,6 @@ public class Employ implements Serializable {
     public static final String AREA = "area";
 
     public static final String STATUS = "status";
+
 
 }

@@ -5,10 +5,7 @@ import com.zxq.legao.entity.po.SchoolAreaPO;
 import com.zxq.legao.entity.po.StudentPO;
 import com.zxq.legao.entity.po.UserPO;
 import com.zxq.legao.entity.vo.*;
-import com.zxq.legao.service.FollowService;
-import com.zxq.legao.service.SchoolAreaService;
-import com.zxq.legao.service.StudentService;
-import com.zxq.legao.service.UserService;
+import com.zxq.legao.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +31,9 @@ public class UserController {
 	@Autowired
 	private StudentService studentService;
 
+	@Autowired
+	private JobService jobService;
+
 	@RequestMapping("/")
 	public String view() {
 		return "login";
@@ -54,11 +54,14 @@ public class UserController {
 			List<FollowVO> allFollow = followService.findAllFollowName();
 			List<EmployVO> allTeacherName = studentService.selectTeacherName();
 			List<StudentVO> allStudentName = studentService.selectAllStudentName();
+			List<JobVO> allJobName = jobService.selectAllJobName();
 			ServletContext servletContext = request.getServletContext();
 			servletContext.setAttribute("allStudentName", allStudentName);
 			servletContext.setAttribute("allSchoolArea", allSchoolArea);
 			servletContext.setAttribute("allFollow", allFollow);
 			servletContext.setAttribute("allTeacherName", allTeacherName);
+			servletContext.setAttribute("allJobName", allJobName);
+
 			return "main";
 		}
 
