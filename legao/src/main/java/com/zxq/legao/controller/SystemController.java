@@ -23,8 +23,8 @@ public class SystemController {
 	public String jumpfieldSet() {
 		return "system/fieldSet";
 	}
-	@RequestMapping("/selectField")
-	public String selectField(StudentVO studentVO, HttpServletRequest request) {
+	@RequestMapping("/selectStudentField")
+	public String selectStudentField(StudentVO studentVO, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		if (userVO!=null){

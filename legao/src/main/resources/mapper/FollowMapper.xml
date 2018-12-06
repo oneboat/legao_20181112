@@ -52,7 +52,7 @@
         legao_follow.content FROM legao_follow WHERE id = #{id};
     </select>
 
-    <select id="findAllFollowName" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.FollowVO">
+    <select id="findAllFollowName" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.FollowPO">
         SELECT advisor FROM legao_follow
     </select>
 </mapper>

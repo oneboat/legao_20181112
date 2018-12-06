@@ -1,5 +1,6 @@
 package com.zxq.legao.entity.vo;
 
+import com.zxq.legao.entity.po.FollowPO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class StudentVO implements Serializable {
 	private Integer importanceGrade;
 	private String teacherName ;
 	private SchoolAreaVO schoolAreaID;
-	private FollowVO followID;
+	private FollowPO followID;
 	private String age;
 	private List<String> selectFields;
 

@@ -57,7 +57,7 @@ public class FollowServiceImpl implements FollowService {
 	}
 
 	@Override
-	public List<FollowVO> findAllFollowName() {
+	public List<FollowPO> findAllFollowName() {
 		return followDao.findAllFollowName();
 	}
 }

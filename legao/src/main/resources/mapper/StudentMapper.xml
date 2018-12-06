@@ -186,7 +186,7 @@
         <result column="teacherName" property="teacherName"></result>
         <association property="schoolAreaID" column="schoolAreaID" select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"
                      javaType="com.zxq.legao.entity.vo.SchoolAreaVO"></association>
-        <association property="followID" column="followID" javaType="com.zxq.legao.entity.vo.FollowVO"
+        <association property="followID" column="followID" javaType="com.zxq.legao.entity.po.FollowPO"
                      select="com.zxq.legao.dao.FollowDao.selectFollowByID"></association>
 
     </resultMap>

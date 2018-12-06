@@ -51,7 +51,7 @@ public class UserController {
 			session.setAttribute("user", userVO1);
 			//初始化
 			List<SchoolAreaVO> allSchoolArea = schoolAreaService.findAllSchoolAreaName(new SchoolAreaPO());
-			List<FollowVO> allFollow = followService.findAllFollowName();
+			List<FollowPO> allFollow = followService.findAllFollowName();
 			List<EmployVO> allTeacherName = studentService.selectTeacherName();
 			List<StudentVO> allStudentName = studentService.selectAllStudentName();
 			List<JobVO> allJobName = jobService.selectAllJobName();

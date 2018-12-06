@@ -17,6 +17,6 @@ public interface FollowService {
 
 	FollowPO selectFollowByID(Integer followID);
 
-	List<FollowVO> findAllFollowName();
+	List<FollowPO> findAllFollowName();
 
 }
