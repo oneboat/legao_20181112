@@ -7,16 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface SchoolAreaService {
-	int insertSchoolArea(SchoolAreaPO schoolAreaPO);
+    int insertSchoolArea(SchoolAreaPO schoolAreaPO);
 
-	int deleteSchoolArea(List<Integer> schoolAreaIDs);
+    int deleteSchoolArea(List<Integer> schoolAreaIDs);
 
-	int updateSchoolArea(SchoolAreaPO schoolAreaPO);
+    int updateSchoolArea(SchoolAreaPO schoolAreaPO);
 
-	String selectSchoolArea(Integer page, SchoolAreaPO schoolAreaPO, HttpServletRequest request);
+    String selectSchoolArea(Integer page, SchoolAreaPO schoolAreaPO, HttpServletRequest request);
 
-	List<SchoolAreaVO> findAllSchoolAreaName(SchoolAreaPO schoolArea);
+    List<SchoolAreaVO> findAllSchoolAreaName(SchoolAreaPO schoolArea);
 
 
-	SchoolAreaVO selectSchoolAreaByID(Integer schoolAreaID);
+    SchoolAreaVO selectSchoolAreaByID(Integer schoolAreaID);
 }

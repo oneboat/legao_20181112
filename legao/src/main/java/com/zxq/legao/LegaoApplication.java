@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = "com.zxq.legao.dao")
 public class LegaoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LegaoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LegaoApplication.class, args);
+    }
 }

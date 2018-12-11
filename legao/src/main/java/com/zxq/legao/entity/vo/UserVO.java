@@ -11,13 +11,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserVO implements Serializable {
-	private Integer id;
-	private String username;
-	private String status;
-	private Date createDate;
-	private Boolean ifLoginSuccess;
-	private String selectStudentFields;
-	private String selectEmployStudentFields;
+    private Integer id;
+    private String username;
+    private String status;
+    private Date createDate;
+    private Boolean ifLoginSuccess;
+    private String selectStudentFields;
+    private String selectEmployFields;
 
 
 }

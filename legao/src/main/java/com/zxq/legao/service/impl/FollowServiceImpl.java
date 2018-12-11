@@ -13,51 +13,54 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 @Service
 public class FollowServiceImpl implements FollowService {
-	@Autowired
-	private FollowDao followDao;
-	@Override
-	public int insertFollow(FollowPO followPO) {
-		return followDao.insertFollow(followPO);
-	}
+    @Autowired
+    private FollowDao followDao;
 
-	@Override
-	public int deleteFollow(List<Integer> followIDs) {
-		return followDao.deleteFollow(followIDs);
-	}
+    @Override
+    public int insertFollow(FollowPO followPO) {
+        return followDao.insertFollow(followPO);
+    }
 
-	@Override
-	public int updateFollow(FollowPO followPO) {
-		return followDao.updateFollow(followPO);
-	}
+    @Override
+    public int deleteFollow(List<Integer> followIDs) {
+        return followDao.deleteFollow(followIDs);
+    }
 
-	@Override
-	public String selectFollow(Integer page, FollowPO followPO, HttpServletRequest request) {
-		//模糊查询保留值
-		if (followPO!=null){
-			request.setAttribute("blurFollow",followPO);
-		}
-		if (page == null){ page = 0;}
-		//page为初始页，pageSize表一页显示多少条
-		PageHelper.startPage(page, ConstUtil.PAGESIZE);
-		List<FollowPO> list = followDao.selectFollow(followPO);
+    @Override
+    public int updateFollow(FollowPO followPO) {
+        return followDao.updateFollow(followPO);
+    }
 
-		PageInfo pageInfo = new PageInfo(list);
-		request.setAttribute("pageInfo",pageInfo);
-		request.setAttribute("followVOList",list);
-		return "follow/followList";
-	}
+    @Override
+    public String selectFollow(Integer page, FollowPO followPO, HttpServletRequest request) {
+        //模糊查询保留值
+        if (followPO != null) {
+            request.setAttribute("blurFollow", followPO);
+        }
+        if (page == null) {
+            page = 0;
+        }
+        //page为初始页，pageSize表一页显示多少条
+        PageHelper.startPage(page, ConstUtil.PAGESIZE);
+        List<FollowPO> list = followDao.selectFollow(followPO);
+
+        PageInfo pageInfo = new PageInfo(list);
+        request.setAttribute("pageInfo", pageInfo);
+        request.setAttribute("followVOList", list);
+        return "follow/followList";
+    }
 
 
+    @Override
+    public FollowPO selectFollowByID(Integer followID) {
+        return followDao.selectFollowByID(followID);
+    }
 
-	@Override
-	public FollowPO selectFollowByID(Integer followID) {
-		return followDao.selectFollowByID(followID);
-	}
-
-	@Override
-	public List<FollowPO> findAllFollowName() {
-		return followDao.findAllFollowName();
-	}
+    @Override
+    public List<FollowPO> findAllFollowName() {
+        return followDao.findAllFollowName();
+    }
 }

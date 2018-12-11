@@ -1,7 +1,6 @@
 package com.zxq.legao.entity;
 
 
-
 ;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,7 +11,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author dengzhenxiang

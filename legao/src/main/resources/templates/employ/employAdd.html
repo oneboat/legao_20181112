@@ -1,121 +1,161 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>employAdd</title>
-	<link href="css/bootstrap.css" type="text/css"  rel="stylesheet" />
-	<link href="css/main.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
-
+    <meta charset="UTF-8">
+    <title>employAdd</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link href="css/main.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
 
 
 </head>
 <body>
 
-<div style="border:#DDDDDD solid 1px;height: 600px;margin-top: 10px;padding: 10px;margin-left:  250px;" id="content_box">
-	<div id="schedule-box" class="boxshaw hidden "></div>
-	<span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-	&nbsp;&nbsp;&nbsp;
-	当前位置：员工管理&nbsp;&gt;&nbsp;添加员工
-	<hr />
-	<!--添加成功字样-->
-	<div id="addInfo"></div>
-	<div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
-	<form id="employform" >
-		<table id="employ_tab" style="width: 100%">
-			<tr>
-				<td>职&nbsp;位：</td>
-				<td>
+<div style="border:#DDDDDD solid 1px;height: 600px;margin-top: 10px;padding: 10px;margin-left:  250px;"
+     id="content_box">
+    <div id="schedule-box" class="boxshaw hidden "></div>
+    <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
+    当前位置：员工管理&nbsp;&gt;&nbsp;添加员工
+    <hr/>
+    <!--添加成功字样-->
+    <div id="addInfo"></div>
+    <div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
+    <form id="employform">
+        <table id="employ_tab" style="width: 100%">
+            <tr>
+                <td>职&nbsp;位：</td>
+                <td>
 
-					<select name="jobID" id="jobID" style="height: 35px;" class="inputCss">
-						<option value="" >----全部----</option>
-						<option  th:each="job:${application.allJobName}" th:value="${job.id}">[[${job.name}]]</option>
-					</select>
-				</td>
-
-
-
-				<td>状态：</td>
-				<td>
-					<select class="inputCss" id="status" name="status">
-						<option value="">--请选择员工状态--</option>
-						<option value="1">在职</option>
-						<option value="2">离职</option>
-						<option value="3">其他</option>
-					</select>
-				</td>
-				<td>性&nbsp;别：</td>
-				<td>
-					<select class="inputCss" id="sex" name="sex">
-						<option value="">--请选择性别--</option>
-						<option value="男">男</option>
-						<option value="女">女</option>
-					</select>
-
-				</td>
-
-			</tr>
-			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
-			<tr>
-				<td>姓&nbsp;名：</td>
-				<td><input  type="text" name="name" class="inputCss" style="width:205px;" placeholder="请输入员工姓名" maxlength="20" id="employ_name"/></td>
-				<td>手&nbsp;机：</td><td><input  type="text" name="telphone" class="inputCss" style="width:205px;" placeholder="请输入员工联系手机号码" id="employ_phone"/></td>
-				<td>出生日期：</td><td><input  type="text" name="birthday" class="inputCss" style="width:205px;" placeholder="请输入员工出生日期" id="employ_birthday"/></td>
+                    <select name="jobID" id="jobID" style="height: 35px;" class="inputCss">
+                        <option value="">----全部----</option>
+                        <option th:each="job:${application.allJobName}" th:value="${job.id}">[[${job.name}]]</option>
+                    </select>
+                </td>
 
 
-			</tr>
-			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
-			<tr>
-				<td>入职日期：</td><td><input  type="text" name="entryDate" class="inputCss" style="width:205px;" placeholder="请输入员工入职日期" id="employ_entryDate"/></td>
-				<td>基本工资：</td><td><input  type="text" name="basicSalary" class="inputCss" style="width:205px;" placeholder="请输入员工的基本工资" id="employ_basicSalary"/></td>
-				<td>是否全勤：</td><td>
-				<select class="inputCss" name="fullWork" id="employ_fullWork">
-					<option value="">--请输入员工是否全勤--</option>
-					<option value="是">是</option>
-					<option value="否">否</option>
-				</select>
-				&nbsp;</td>
+                <td>状态：</td>
+                <td>
+                    <select class="inputCss" id="status" name="status">
+                        <option value="">--请选择员工状态--</option>
+                        <option value="1">在职</option>
+                        <option value="2">离职</option>
+                        <option value="3">其他</option>
+                    </select>
+                </td>
+                <td>性&nbsp;别：</td>
+                <td>
+                    <select class="inputCss" id="sex" name="sex">
+                        <option value="">--请选择性别--</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+
+                </td>
+
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>姓&nbsp;名：</td>
+                <td><input type="text" name="name" class="inputCss" style="width:205px;" placeholder="请输入员工姓名"
+                           maxlength="20" id="employ_name"/></td>
+                <td>手&nbsp;机：</td>
+                <td><input type="text" name="telphone" class="inputCss" style="width:205px;" placeholder="请输入员工联系手机号码"
+                           id="employ_phone"/></td>
+                <td>出生日期：</td>
+                <td><input type="text" name="birthday" class="inputCss" style="width:205px;" placeholder="请输入员工出生日期"
+                           id="employ_birthday"/></td>
 
 
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>入职日期：</td>
+                <td><input type="text" name="entryDate" class="inputCss" style="width:205px;" placeholder="请输入员工入职日期"
+                           id="employ_entryDate"/></td>
+                <td>基本工资：</td>
+                <td><input type="text" name="basicSalary" class="inputCss" style="width:205px;" placeholder="请输入员工的基本工资"
+                           id="employ_basicSalary"/></td>
+                <td>是否全勤：</td>
+                <td>
+                    <select class="inputCss" name="fullWork" id="employ_fullWork">
+                        <option value="">--请输入员工是否全勤--</option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                    &nbsp;
+                </td>
 
 
-			</tr>
-			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
-			<tr>
-				<td>饭&nbsp;补：</td><td><input  type="text" name="eatAllow" class="inputCss" style="width:205px;" placeholder="请输入员工是否享有饭补" id="employ_eatAllow"/></td>
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>饭&nbsp;补：</td>
+                <td><input type="text" name="eatAllow" class="inputCss" style="width:205px;" placeholder="请输入员工是否享有饭补"
+                           id="employ_eatAllow"/></td>
 
-				<td>课时费：</td><td><input  type="text" name="classPay" class="inputCss" style="width:205px;" placeholder="请输入联系员工的课时费" id="employ_classPay"/></td>
-				<td>总课时：</td><td><input  type="text" name="allClassTime" class="inputCss" style="width:205px;" placeholder="请输入员工的总课时" id="employ_allClassTime"/></td>
-
-
-			</tr>
-			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
-			<tr>
-
-				<td>提&nbsp;成：</td><td><input  type="text" name="extraPay" class="inputCss" style="width:205px;" placeholder="请输入员工的提成" id="extraPay"/></td>
-				<td>校区：</td>
-				<td>
-					<select name="area" id="area" style="height: 35px;" class="inputCss"
-							>
-						<option  >----全部----</option>
-						<option  th:each="area:${application.allSchoolArea}">[[${area.name}]]</option>
-					</select>
-				</td>
+                <td>课时费：</td>
+                <td><input type="text" name="classPay" class="inputCss" style="width:205px;" placeholder="请输入联系员工的课时费"
+                           id="employ_classPay"/></td>
+                <td>总课时：</td>
+                <td><input type="text" name="allClassTime" class="inputCss" style="width:205px;" placeholder="请输入员工的总课时"
+                           id="employ_allClassTime"/></td>
 
 
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
 
-			</tr>
-			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
-			<tr style="height: 10px;"><td></td><td></td><td></td></tr>
-			<tr>
-				<td colspan="5" align="center"><input type="button"  value="保存" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="reset" name="cancel" class="btn btn-danger" value="取消"/></td>
-			</tr>
+                <td>提&nbsp;成：</td>
+                <td><input type="text" name="extraPay" class="inputCss" style="width:205px;" placeholder="请输入员工的提成"
+                           id="extraPay"/></td>
+                <td>校区：</td>
+                <td>
+                    <select name="area" id="employ_area" style="height: 35px;" class="inputCss"
+                    >
+                        <option value="">----全部----</option>
+                        <option th:each="area:${application.allSchoolArea}" th:value="${area.name}">[[${area.name}]]
+                        </option>
+                    </select>
+                </td>
 
-		</table>
 
-	</form>
-	<!-- 判断是否添加成功 -->
-	<input type="hidden" th:value="${type}" id="typeInfo"/>
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5" align="center"><input type="button" value="保存" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="reset" name="cancel" class="btn btn-danger" value="取消"/></td>
+            </tr>
+
+        </table>
+
+    </form>
+    <!-- 判断是否添加成功 -->
+    <input type="hidden" th:value="${type}" id="typeInfo"/>
 </div>
 
 <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
@@ -125,26 +165,28 @@
 <script type="text/javascript">
     /* type */
     $(function () {
-        if ($("#typeInfo").val()=='yes') {
+        if ($("#typeInfo").val() == 'yes') {
             $("#addInfo").html('<h3 style="color: green;height: 30px;">添加成功</h3>');
-        } else if ($("#typeInfo").val()=='no') {
+        } else if ($("#typeInfo").val() == 'no') {
             $("#addInfo").html('<h3 style="color: green;height: 30px;">添加失败</h3>');
         }
         /* 定时清除添加成功字样 */
-        setTimeout(function () {$("#addInfo").text('');}, 5000);
-        var window_width=$(window).width();
-        var window_height=$(window).height();
-        $("#content_box").attr("width",window_width-250-250);
+        setTimeout(function () {
+            $("#addInfo").text('');
+        }, 5000);
+        var window_width = $(window).width();
+        var window_height = $(window).height();
+        $("#content_box").attr("width", window_width - 250 - 250);
         //日期插件
         laydate.render({
             elem: '#employ_entryDate',
             theme: '#8D48F9'//指定元素
-            ,trigger: 'click'
+            , trigger: 'click'
         });
         laydate.render({
             elem: '#employ_birthday',
             theme: '#8D48F9'//指定元素
-            ,trigger: 'click'
+            , trigger: 'click'
         });
     });
 
@@ -161,7 +203,7 @@
         var entryDate = $("#employ_entryDate").val();
         var basicSalary = $("#employ_basicSalary").val();
         var fullWork = $("#employ_fullWork").val();
-        var area = $("#area").val();
+        var area = $("#employ_area").val();
         //为字段需要赋默认值
         var employ_eatAllow = $("#employ_eatAllow").val();
         var employ_classPay = $("#employ_classPay").val();
@@ -169,35 +211,35 @@
         var extraPay = $("#extraPay").val();
 
         //创建正则模板
-        var re =/[`~!@#$%^&*_+<>{}\\/'[\]]/im;
-        var phone_regx=/^1(3|4|5|7|8)\d{9}$/;
+        var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
+        var phone_regx = /^1(3|4|5|7|8)\d{9}$/;
         if (jobID.trim() == "") {
             $("#error").text("*请选择员工的职位");
         } else if (status.trim() == "") {
             $("#error").text("*请选择员工的状态");
-        }else if (sex.trim() == "") {
+        } else if (sex.trim() == "") {
             $("#error").text("*请选择员工的性别");
-        }else if (name.trim() == "") {
+        } else if (name.trim() == "") {
             $("#error").text("*员工姓名不能为空，请补充完整");
         } else if (re.test(name.trim())) {
             $("#error").text("*员工姓名存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
-        }else if (telphone.trim() == "") {
+        } else if (telphone.trim() == "") {
             $("#error").text("*手机不能为空，请补充完整");
-        }else if (re.test(telphone.trim())) {
+        } else if (re.test(telphone.trim())) {
             $("#error").text("*手机存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
-        }else if (!phone_regx.test(telphone.trim())) {
+        } else if (!phone_regx.test(telphone.trim())) {
             $("#error").text("*输入的手机格式不对，请正确输入手机格式");
-        }else if (birthday.trim() == "") {
+        } else if (birthday.trim() == "") {
             $("#error").text("*请选择员工的生日");
-        }else if (entryDate.trim() == "") {
+        } else if (entryDate.trim() == "") {
             $("#error").text("*员工的入职日期不能为空，请补充完整");
-        }else if (basicSalary.trim() == "") {
+        } else if (basicSalary.trim() == "") {
             $("#error").text("*员工的基本工资，请补充完整");
-        }else if (fullWork.trim() == "") {
+        } else if (fullWork.trim() == "") {
             $("#error").text("*员工是否全勤，请补充完整");
-        }else if (area.trim() == "") {
+        } else if (area.trim() == "") {
             $("#error").text("*员工所属校区，请补充完整");
-        }else {
+        } else {
             if (employ_eatAllow.trim() == "") {
                 $("#employ_eatAllow").val("无");
             }

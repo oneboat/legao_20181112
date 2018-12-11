@@ -12,13 +12,13 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author dengzhenxiang
  * @since 2018-11-27
  */
 public interface EmployDao extends BaseMapper<EmployPO> {
-	List<EmployVO> selectEmploy(@Param("employPO") EmployPO studentPO, @Param("fields") List<String> fields);
+    List<EmployVO> selectEmploy(@Param("employPO") EmployPO studentPO, @Param("fields") List<String> fields);
 
 }

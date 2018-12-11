@@ -24,7 +24,7 @@
             <if test="employPO.status!=null and employPO.status!=''">
                 and status=${employPO.status}
             </if>
-            <if test="employPO.jobID!=null and employPO.followID!=''">
+            <if test="employPO.jobID!=null">
                 and jobID=${employPO.jobID}
             </if>
 

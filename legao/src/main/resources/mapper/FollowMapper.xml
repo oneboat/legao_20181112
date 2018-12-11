@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zxq.legao.dao.FollowDao">
-    <insert id="insertFollow" parameterType="com.zxq.legao.entity.po.FollowPO" >
-        INSERT  INTO legao_follow(
+    <insert id="insertFollow" parameterType="com.zxq.legao.entity.po.FollowPO">
+        INSERT INTO legao_follow(
         legao_follow.studentName,
         legao_follow.advisor,
         legao_follow.date,
@@ -21,9 +21,11 @@
 
     </delete>
     <update id="updateFollow" parameterType="com.zxq.legao.entity.po.FollowPO">
-        UPDATE legao_follow SET studentName = #{studentName},advisor = #{advisor},mode = #{mode},content = #{content} WHERE id = #{id};
+        UPDATE legao_follow SET studentName = #{studentName},advisor = #{advisor},mode = #{mode},content = #{content}
+        WHERE id = #{id};
     </update>
-    <select id="selectFollow" parameterType="com.zxq.legao.entity.po.FollowPO" resultType="com.zxq.legao.entity.po.FollowPO">
+    <select id="selectFollow" parameterType="com.zxq.legao.entity.po.FollowPO"
+            resultType="com.zxq.legao.entity.po.FollowPO">
         SELECT
         legao_follow.id,
         legao_follow.studentName,

@@ -13,35 +13,34 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentPO implements Serializable {
-	private Integer id;
-	private String nickName;
-	private String name;
-	private String parentName;
-	private String parentRelat;
-	private String sex;
-	private String telphone;
-	private String weChatID;
-	private String education;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date birthday;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date createDate;
-	private String sparePhone;
-	private String markPeople;
-	private String advisor;
-	private String area;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date willDate;
-	private String baseSituation;
-	private Integer status;
-	private String source;
-	private Integer importanceGrade;
-	private String teacherName;
-	private Integer schoolAreaID;
-	private Integer followID;
-	//排序字段
-	private String ifImportanceGradeOrder;
-
+    private Integer id;
+    private String nickName;
+    private String name;
+    private String parentName;
+    private String parentRelat;
+    private String sex;
+    private String telphone;
+    private String weChatID;
+    private String education;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createDate;
+    private String sparePhone;
+    private String markPeople;
+    private String advisor;
+    private String area;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date willDate;
+    private String baseSituation;
+    private Integer status;
+    private String source;
+    private Integer importanceGrade;
+    private String teacherName;
+    private Integer schoolAreaID;
+    private Integer followID;
+    //排序字段
+    private String ifImportanceGradeOrder;
 
 
 }

@@ -5,7 +5,7 @@
 
 <mapper namespace="com.zxq.legao.dao.StudentDao">
     <insert id="insertStudent" parameterType="com.zxq.legao.entity.po.StudentPO">
-        INSERT  INTO legao_student(
+        INSERT INTO legao_student(
         legao_student.nickName,
         legao_student.`name`,
         legao_student.parentName,
@@ -85,8 +85,8 @@
         legao_student.followID = #{followID}
         WHERE id = #{id};
     </update>
-    <select id="selectStudent" 
-            resultType="com.zxq.legao.entity.vo.StudentVO"  statementType="STATEMENT" resultMap="select_studentMap">
+    <select id="selectStudent"
+            resultType="com.zxq.legao.entity.vo.StudentVO" statementType="STATEMENT" resultMap="select_studentMap">
 
         SELECT
         id,
@@ -124,7 +124,7 @@
         </where>
         <if test="studentPO.ifImportanceGradeOrder!=null and studentPO.ifImportanceGradeOrder!=''">
             <if test="studentPO.ifImportanceGradeOrder=='asc'">
-            ORDER BY importanceGrade
+                ORDER BY importanceGrade
             </if>
             <if test="studentPO.ifImportanceGradeOrder=='desc'">
                 ORDER BY importanceGrade desc
@@ -162,7 +162,7 @@
         legao_student
         WHERE id = #{id}
     </select>
-    <resultMap id="select_studentMap" type="com.zxq.legao.entity.vo.StudentVO" >
+    <resultMap id="select_studentMap" type="com.zxq.legao.entity.vo.StudentVO">
         <id column="id" property="id"></id>
         <result column="nickName" property="nickName"></result>
         <result column="name" property="name"></result>
@@ -184,7 +184,8 @@
         <result column="source" property="source"></result>
         <result column="importanceGrade" property="importanceGrade"></result>
         <result column="teacherName" property="teacherName"></result>
-        <association property="schoolAreaID" column="schoolAreaID" select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"
+        <association property="schoolAreaID" column="schoolAreaID"
+                     select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"
                      javaType="com.zxq.legao.entity.vo.SchoolAreaVO"></association>
         <association property="followID" column="followID" javaType="com.zxq.legao.entity.po.FollowPO"
                      select="com.zxq.legao.dao.FollowDao.selectFollowByID"></association>
@@ -199,8 +200,8 @@
         WHERE legao_employ.jobID = 1
     </select>
     <select id="selectAllStudentName" resultType="com.zxq.legao.entity.vo.StudentVO">
-  SELECT
-       name
+        SELECT
+        name
         FROM
         legao_student
     </select>

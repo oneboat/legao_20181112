@@ -2,13 +2,14 @@ package com.zxq.legao.entity;
 
 
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author dengzhenxiang

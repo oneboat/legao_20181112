@@ -10,6 +10,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FollowVO implements Serializable {
-	private Integer id;
-	private String advisor;
+    private Integer id;
+    private String advisor;
 }

@@ -1,6 +1,9 @@
 package com.zxq.legao.service;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 public interface SystemService {
-	int updateFieldsSet(String fieldList,Integer userId);
+    String updateFieldsSet(String field, List<String> caption, HttpServletRequest request);
 
 }

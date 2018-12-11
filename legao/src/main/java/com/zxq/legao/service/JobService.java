@@ -10,26 +10,26 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author dengzhenxiang
  * @since 2018-11-27
  */
-public interface JobService  {
-	int addJob(JobPO jobPO);
+public interface JobService {
+    int addJob(JobPO jobPO);
 
-	int deleteJob(List<Integer> jobIDs);
+    int deleteJob(List<Integer> jobIDs);
 
-	int updateJob(JobPO jobPO);
+    int updateJob(JobPO jobPO);
 
-	String selectJob(Integer page, JobPO jobPO, HttpServletRequest request);
+    String selectJob(Integer page, JobPO jobPO, HttpServletRequest request);
 
-	JobVO selectJobByID(Integer jobID);
+    JobVO selectJobByID(Integer jobID);
 
-	List<JobVO> findJobName(JobPO jobPO);
+    List<JobVO> findJobName(JobPO jobPO);
 
-	List<JobVO> selectAllJobName();
+    List<JobVO> selectAllJobName();
 
 
 }

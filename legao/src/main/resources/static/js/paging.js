@@ -1,11 +1,13 @@
-(function($, window, document) {
+(function ($, window, document) {
     /*最先初始化*/
     var action = $("#actionName").val();
+
     //提交标志
     function formSubmit() {
-        $("#pageForm").attr("action",action);
+        $("#pageForm").attr("action", action);
         $("#pageForm").submit();
     }
+
     // 定义构造函数
     function Paging(el, options) {
         this.el = el;
@@ -15,18 +17,20 @@
             totalCount: options.totalCount || '', // 条目总数
             slideSpeed: options.slideSpeed || 0, // 缓动速度
             jump: options.jump || false, // 支持跳转
-            callback: options.callback || function() {} // 回调函数
+            callback: options.callback || function () {
+            } // 回调函数
         };
         this.init();
     }
+
     // 给实例对象添加公共属性和方法
     Paging.prototype = {
         constructor: Paging,
-        init: function() {
+        init: function () {
             this.createDom();
             this.bindEvents();
         },
-        createDom: function() {
+        createDom: function () {
             var that = this,
                 ulDom = '',
                 jumpDom = '',
@@ -36,7 +40,7 @@
                 wrapLength = 0;
             totalPages > 5 ? wrapLength = 5 * liWidth : wrapLength = totalPages * liWidth;
             for (var i = 1; i <= that.options.totalPages; i++) {
-                i != 1 ? ulDom += '<li id="btn_pageNum"'+ i +'>' + i + '</li>' : ulDom += '<li class="sel-page" >' + i + '</li>';
+                i != 1 ? ulDom += '<li id="btn_pageNum"' + i + '>' + i + '</li>' : ulDom += '<li class="sel-page" >' + i + '</li>';
             }
             that.options.jump ? jumpDom = '<input type="text" placeholder="1" class="jump-text" id="jumpText"><button type="button" class="jump-button" id="btn_jumpBtn">跳转</button>' : jumpDom = '';
             content = '<button type="button" id="btn_firstPage" class="turnPage first-page">首页</button>' +
@@ -56,7 +60,7 @@
                 '</p>';
             that.el.html(content);
         },
-        bindEvents: function() {
+        bindEvents: function () {
             var that = this,
                 pageSelect = $('#pageSelect'), // ul
                 lis = pageSelect.children(), // li的集合
@@ -71,24 +75,24 @@
                 btn_jumpBtn = $('#btn_jumpBtn'),
                 jumpText = $('#jumpText');
 
-            btn_prePage.on('click', function() {
+            btn_prePage.on('click', function () {
                 pageIndex--;
-                if (pageIndex < 1){
+                if (pageIndex < 1) {
                     pageIndex = 1;
                     handles(pageIndex);
-                }else{
+                } else {
                     handles(pageIndex);
                     formSubmit();
                 }
 
             })
 
-            btn_nextPage.on('click', function() {
+            btn_nextPage.on('click', function () {
                 pageIndex++;
-                if (pageIndex > lis.length){
+                if (pageIndex > lis.length) {
                     pageIndex = lis.length;
                     handles(pageIndex);
-                }else{
+                } else {
                     handles(pageIndex);
                     formSubmit();
                 }
@@ -96,19 +100,19 @@
 
             })
 
-            btn_firstPage.on('click', function() {
+            btn_firstPage.on('click', function () {
                 pageIndex = 1;
                 handles(pageIndex);
                 formSubmit();
             })
 
-            btn_lastPage.on('click', function() {
+            btn_lastPage.on('click', function () {
                 pageIndex = totalPages;
                 handles(pageIndex);
                 formSubmit();
             })
 
-            btn_jumpBtn.on('click', function() {
+            btn_jumpBtn.on('click', function () {
                 var jumpNum = parseInt(jumpText.val().replace(/\D/g, ''));
                 if (jumpNum && jumpNum >= 1 && jumpNum <= totalPages) {
                     pageIndex = jumpNum;
@@ -118,7 +122,7 @@
                 formSubmit();
             })
 
-            lis.on('click', function() {
+            lis.on('click', function () {
                 pageIndex = $(this).index() + 1;
                 handles(pageIndex);
                 formSubmit();
@@ -144,7 +148,7 @@
             handles(that.options.pageNo); // 初始化页码位置
         }
     }
-    $.fn.paging = function(options) {
+    $.fn.paging = function (options) {
         return new Paging($(this), options);
     }
 })(jQuery, window, document);

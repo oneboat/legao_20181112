@@ -5,14 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SchoolAreaPO implements Serializable {
-	private Integer id;
-	private String name;
-	private String address;
-	private String responPersonName;
-	private String telphone;
+    private Integer id;
+    private String name;
+    private String address;
+    private String responPersonName;
+    private String telphone;
 
 }

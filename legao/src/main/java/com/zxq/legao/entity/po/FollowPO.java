@@ -10,13 +10,13 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FollowPO implements Serializable{
-	private Integer id;
-	private String studentName;
-	private String advisor;
-	private Date date;
-	private String mode;
-	private String content;
+public class FollowPO implements Serializable {
+    private Integer id;
+    private String studentName;
+    private String advisor;
+    private Date date;
+    private String mode;
+    private String content;
 
-	
+
 }

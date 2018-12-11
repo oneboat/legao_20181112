@@ -11,20 +11,20 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployVO implements Serializable {
-	private Integer id;
-	private String name;
-	private String telphone;
-	private String sex;
-	private Date birthday;
-	private Date entryDate;
-	private String basicSalary;
-	private String fullWork;
-	private String eatAllow;
-	private String classPay;
-	private String allClassTime;
-	private String extraPay;
-	private String area;
-	private Integer status;
-	private JobVO jobVO;
+    private Integer id;
+    private String name;
+    private String telphone;
+    private String sex;
+    private Date birthday;
+    private Date entryDate;
+    private String basicSalary;
+    private String fullWork;
+    private String eatAllow;
+    private String classPay;
+    private String allClassTime;
+    private String extraPay;
+    private String area;
+    private Integer status;
+    private JobVO jobVO;
 
 }

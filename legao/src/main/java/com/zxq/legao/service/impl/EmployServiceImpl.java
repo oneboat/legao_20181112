@@ -38,72 +38,72 @@ import java.util.List;
  */
 @Service
 public class EmployServiceImpl extends ServiceImpl<EmployDao, EmployPO> implements EmployService {
-	@Autowired
-	private EmployDao employDao;
-	@Autowired
-	private UserDao userDao;
+    @Autowired
+    private EmployDao employDao;
+    @Autowired
+    private UserDao userDao;
 
-	@Override
-	@Transactional
-	public int insertEmploy(EmployPO employPO) {
+    @Override
+    @Transactional
+    public int insertEmploy(EmployPO employPO) {
 
-		return employDao.insert(employPO);
-	}
+        return employDao.insert(employPO);
+    }
 
-	@Override
-	@Transactional
-	public int deleteEmploy(List<Integer> employIDs) {
-		return employDao.deleteBatchIds(employIDs);
-	}
+    @Override
+    @Transactional
+    public int deleteEmploy(List<Integer> employIDs) {
+        return employDao.deleteBatchIds(employIDs);
+    }
 
-	@Override
-	@Transactional
-	public int updateEmploy(EmployPO employPO) {
-		return employDao.updateById(employPO);
-	}
+    @Override
+    @Transactional
+    public int updateEmploy(EmployPO employPO) {
+        return employDao.updateById(employPO);
+    }
 
-	@Override
-	public String selectEmploy(Integer page, EmployPO employPO, HttpServletRequest request) {
-		//模糊查询保留值
-		if (employPO != null) {
-			request.setAttribute("blurEmploy", employPO);
-		}
-		if (page == null) {
-			page = 0;
-		}
+    @Override
+    public String selectEmploy(Integer page, EmployPO employPO, HttpServletRequest request) {
+        //模糊查询保留值
+        if (employPO != null) {
+            request.setAttribute("blurEmploy", employPO);
+        }
+        if (page == null) {
+            page = 0;
+        }
 
-		//查询当前登录用户选择展示的字段
-		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO) session.getAttribute("user");
-		String fields = userDao.selectFieldsByUserID(userVO.getId()).getSelectEmployStudentFields();
-		List<EmployVO> list = null;
-		List<String> defaultEmployFieldsDB = Arrays.asList(ConstUtil.DEFAULT_EMPLOY_FIELDS_DB);
-		List<String> defaultEmployFieldsZH = Arrays.asList(ConstUtil.DEFAULT_EMPLOY_FIELDS_ZH);
-		List<String> employFieldsDB = ConverstUtil.stringToList(fields,ConstUtil.EMPLOY_FIELDS_DB);
-		List<String> employFieldsZH = ConverstUtil.stringToList(fields,ConstUtil.EMPLOY_FIELDS_ZH);
-		//page为初始页，pageSize表一页显示多少条
-		PageHelper.startPage(page, ConstUtil.PAGESIZE);
-		if (fields == null){
-			list = employDao.selectEmploy(employPO,defaultEmployFieldsDB);
-			request.setAttribute("FieldZH",defaultEmployFieldsZH);
-		}else {
-			list = employDao.selectEmploy(employPO, employFieldsDB);
-			if (list.get(0).getBirthday() != null){employFieldsZH.add("年龄");}
-			request.setAttribute("FieldZH",employFieldsZH);
-		}
+        //查询当前登录用户选择展示的字段
+        HttpSession session = request.getSession();
+        UserVO userVO = (UserVO) session.getAttribute("user");
+        String fields = userDao.selectEmployFieldsByUserID(userVO.getId()).getSelectEmployFields();
+        List<EmployVO> list = null;
+        List<String> defaultEmployFieldsDB = Arrays.asList(ConstUtil.DEFAULT_EMPLOY_FIELDS_DB);
+        List<String> defaultEmployFieldsZH = Arrays.asList(ConstUtil.DEFAULT_EMPLOY_FIELDS_ZH);
+        List<String> employFieldsDB = ConverstUtil.stringToList(fields, ConstUtil.EMPLOY_FIELDS_DB);
+        List<String> employFieldsZH = ConverstUtil.stringToList(fields, ConstUtil.EMPLOY_FIELDS_ZH);
+        //page为初始页，pageSize表一页显示多少条
+        PageHelper.startPage(page, ConstUtil.PAGESIZE);
+        if (fields == null) {
+            list = employDao.selectEmploy(employPO, defaultEmployFieldsDB);
+            request.setAttribute("FieldZH", defaultEmployFieldsZH);
+        } else {
+            list = employDao.selectEmploy(employPO, employFieldsDB);
+//			if (list.get(0).getBirthday() != null){employFieldsZH.add("年龄");}
+            request.setAttribute("FieldZH", employFieldsZH);
+        }
 
-		//给页面赋值
-		PageInfo pageInfo = new PageInfo(list);
-		request.setAttribute("employVOList", list);
-		request.setAttribute("pageInfo", pageInfo);
-		return "employ/employList";
-	}
+        //给页面赋值
+        PageInfo pageInfo = new PageInfo(list);
+        request.setAttribute("employVOList", list);
+        request.setAttribute("pageInfo", pageInfo);
+        return "employ/employList";
+    }
 
 
-	@Override
-	public EmployPO selectEmployByID(Integer employID) {
-		return employDao.selectById(employID);
-	}
+    @Override
+    public EmployPO selectEmployByID(Integer employID) {
+        return employDao.selectById(employID);
+    }
 
 
 }

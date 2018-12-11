@@ -11,21 +11,21 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author dengzhenxiang
  * @since 2018-11-27
  */
 public interface EmployService extends IService<EmployPO> {
-	int insertEmploy(EmployPO employPO);
+    int insertEmploy(EmployPO employPO);
 
-	int deleteEmploy(List<Integer> employIDs);
+    int deleteEmploy(List<Integer> employIDs);
 
-	int updateEmploy(EmployPO employPO);
+    int updateEmploy(EmployPO employPO);
 
-	String selectEmploy(Integer page, EmployPO employPO, HttpServletRequest request);
+    String selectEmploy(Integer page, EmployPO employPO, HttpServletRequest request);
 
-	EmployPO selectEmployByID(Integer employID);
+    EmployPO selectEmployByID(Integer employID);
 
 }

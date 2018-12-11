@@ -12,10 +12,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobVO implements Serializable {
-	private Integer id;
-	private String name;
-	private String remark;
-	private Date createDate;
-	private Integer jobAllNum;// 获得该职称总人数
+    private Integer id;
+    private String name;
+    private String remark;
+    private Date createDate;
+    private Integer jobAllNum;// 获得该职称总人数
 
 }

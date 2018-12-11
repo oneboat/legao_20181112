@@ -2,7 +2,7 @@ package com.zxq.legao.dao;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author dengzhenxiang

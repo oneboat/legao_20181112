@@ -10,32 +10,26 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author dengzhenxiang
  * @since 2018-11-27
  */
 public interface JobDao {
-	int addJob(JobPO jobPO);
+    int addJob(JobPO jobPO);
 
-	int deleteJob(List<Integer> jobIDs);
+    int deleteJob(List<Integer> jobIDs);
 
-	int updateJob(JobPO jobPO);
+    int updateJob(JobPO jobPO);
 
-	List<JobVO> selectJob(JobPO jobPO);
+    List<JobVO> selectJob(JobPO jobPO);
 
-	JobVO selectJobByID(Integer jobID);
+    JobVO selectJobByID(Integer jobID);
 
-	List<JobVO> findJobName(JobPO jobPO);
+    List<JobVO> findJobName(JobPO jobPO);
 
-	List<JobVO> selectAllJobName();
-
-
-
-
-
-
+    List<JobVO> selectAllJobName();
 
 
 }

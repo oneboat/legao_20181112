@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface StudentService {
-	int insertStudent(StudentPO studentPO);
+    int insertStudent(StudentPO studentPO);
 
-	int deleteStudent(List<Integer> studentIDs);
+    int deleteStudent(List<Integer> studentIDs);
 
-	int updateStudent(StudentPO studentPO);
+    int updateStudent(StudentPO studentPO);
 
-	String selectStudent(Integer page, StudentPO studentPO, HttpServletRequest request);
+    String selectStudent(Integer page, StudentPO studentPO, HttpServletRequest request);
 
-	StudentVO selectStudentByID(Integer studentID);
+    StudentVO selectStudentByID(Integer studentID);
 
-	List<EmployVO> selectTeacherName();
+    List<EmployVO> selectTeacherName();
 
-	List<StudentVO> selectAllStudentName();
+    List<StudentVO> selectAllStudentName();
 }
