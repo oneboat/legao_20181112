@@ -11,6 +11,7 @@ import com.zxq.legao.util.ConstUtil;
 import com.zxq.legao.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -22,15 +23,18 @@ public class SchoolAreaServiceImpl implements SchoolAreaService {
     private SchoolAreaDao schoolAreaDao;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int insertSchoolArea(SchoolAreaPO schoolAreaPO) {
         return schoolAreaDao.insertSchoolArea(schoolAreaPO);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteSchoolArea(List<Integer> schoolAreaIDs) {
         return schoolAreaDao.deleteSchoolArea(schoolAreaIDs);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateSchoolArea(SchoolAreaPO schoolAreaPO) {
         return schoolAreaDao.updateSchoolArea(schoolAreaPO);

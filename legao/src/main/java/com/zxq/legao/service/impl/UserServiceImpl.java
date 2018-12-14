@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    @Transactional()
+    @Transactional(rollbackFor = Exception.class)
     public int insertUser(UserPO userPO) {
         if (userPO == null || userPO.toString().equals("")) {
             logger.info("UserPO为空");
@@ -40,13 +40,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional()
+    @Transactional(rollbackFor = Exception.class)
     public int deleteUser(List<Integer> userIDs) {
         return userDao.deleteUser(userIDs);
     }
 
     @Override
-    @Transactional()
+    @Transactional(rollbackFor = Exception.class)
     public int updateUser(UserPO userPO) {
         return userDao.updateUser(userPO);
     }
@@ -56,12 +56,11 @@ public class UserServiceImpl implements UserService {
         //模糊查询保留值
         if (userPO != null) {
             if (userPO.getUsername() != null || userPO.getStatus() != null)
-                request.setAttribute("blurUser", userPO);
+            { request.setAttribute("blurUser", userPO);}
         }
         if (page == null) {
             page = 0;
         }
-        //page为初始页，pageSize表一页显示多少条
         PageHelper.startPage(page, ConstUtil.PAGESIZE);
         List<UserVO> list = userDao.selectUser(userPO);
         PageInfo pageInfo = new PageInfo(list);

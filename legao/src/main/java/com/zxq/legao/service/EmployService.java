@@ -28,4 +28,6 @@ public interface EmployService extends IService<EmployPO> {
 
     EmployPO selectEmployByID(Integer employID);
 
+    List<EmployPO> selectAllEmploy();
+
 }

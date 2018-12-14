@@ -44,20 +44,20 @@ public class EmployServiceImpl extends ServiceImpl<EmployDao, EmployPO> implemen
     private UserDao userDao;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int insertEmploy(EmployPO employPO) {
 
         return employDao.insert(employPO);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteEmploy(List<Integer> employIDs) {
         return employDao.deleteBatchIds(employIDs);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateEmploy(EmployPO employPO) {
         return employDao.updateById(employPO);
     }
@@ -103,6 +103,11 @@ public class EmployServiceImpl extends ServiceImpl<EmployDao, EmployPO> implemen
     @Override
     public EmployPO selectEmployByID(Integer employID) {
         return employDao.selectById(employID);
+    }
+
+    @Override
+    public List<EmployPO> selectAllEmploy() {
+        return employDao.selectAllEmploy();
     }
 
 

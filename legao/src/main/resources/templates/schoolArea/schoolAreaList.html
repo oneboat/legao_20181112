@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>followList</title>
+    <title>schoolAreaList</title>
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
     <link href="css/paging.css" type="text/css" rel="stylesheet"/>
@@ -15,45 +15,37 @@
 <div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;height:700px;" id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
-    当前位置：更进管理&nbsp;&gt;&nbsp;更进查询
-
-    <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
-            class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
-    <a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span
-            class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
+    当前位置：校区管理&nbsp;&gt;&nbsp;校区查询
 
     <hr/>
-    <form action="" id="followform">
+    <form action="" id="schoolAreaform">
 
-        顾问名：<input name="advisor" id="followname" style="height: 35px;" class="inputCss"
-                   th:value="${blurFollow}==null? '':${blurFollow.advisor}"/>&nbsp;&nbsp;
-
-        <input type="button" value="搜索" class="btn btn-success" id="selectFollow"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropFollow"/>
+        校区：<input name="name" id="schoolAreaname" style="height: 35px;" class="inputCss"
+                   th:value="${blurSchoolArea}==null? '':${blurSchoolArea.name}"/>&nbsp;&nbsp;
+        负责人：<input name="responPersonName" id="responPersonName" style="height: 35px;" class="inputCss"
+                  th:value="${blurSchoolArea}==null? '':${blurSchoolArea.responPersonName}"/>&nbsp;&nbsp;
+        <input type="button" value="搜索" class="btn btn-success" id="selectSchoolArea"/>&nbsp;
+        <input type="button" class="btn btn-danger" value="删除" id="dropSchoolArea"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped" style="text-align: center;"
-               id="follow_tab">
+               id="schoolArea_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
-                <th>学生</th>
-                <th>顾问</th>
-                <th>跟进模式</th>
-                <th>跟进内容</th>
-                <th>创建时间</th>
+                <th>校区</th>
+                <th>地址</th>
+                <th>负责人</th>
+                <th>电话</th>
                 <th>操作</th>
             </tr>
-            <tr th:each="follow:${followVOList}">
+            <tr th:each="schoolArea:${schoolAreaVOList}">
                 <td><input type="checkbox" name="caption"
-                           th:id="'box_'+${follow.id}" th:value="${follow.id}"/></td>
-                <td>[[${follow.studentName}]]</td>
-                <td>[[${follow.advisor}]]</td>
-                <td>[[${follow.mode}]]</td>
-                <td>[[${follow.content}]]</td>
-                <td>
-                    <div th:text="${#dates.format(follow.date,'yyyy年MM月dd日 HH时mm分ss秒')}"></div>
-                </td>
-                <td><a th:href="'editFollow?followId='+${follow.id}"><span
+                           th:id="'box_'+${schoolArea.id}" th:value="${schoolArea.id}"/></td>
+                <td>[[${schoolArea.name}]]</td>
+                <td>[[${schoolArea.address}]]</td>
+                <td>[[${schoolArea.responPersonName}]]</td>
+                <td>[[${schoolArea.telphone}]]</td>
+                <td><a th:href="'editSchoolArea?schoolAreaId='+${schoolArea.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>
@@ -63,12 +55,14 @@
     <div class="box" id="box"></div>
     <!--添加表单提交标志-->
     <form id="pageForm" style="display: none">
-        <input name="name" th:value="${blurFollow}==null? '':${blurFollow.advisor}"/>&nbsp;&nbsp;
+        <input name="name" th:value="${blurSchoolArea}==null? '':${blurSchoolArea.name}"/>&nbsp;&nbsp;
+        <input name="responPersonName" th:value="${blurSchoolArea}==null? '':${blurSchoolArea.responPersonName}"/>&nbsp;&nbsp;
+
         <input type="text" id="pages" name="page"/>
 
         <input type="button" id="btn" value="tijiao"/>
         <!--传入分页的参数-->
-        <input type="text" id="actionName" value="selectFollow"/>
+        <input type="text" id="actionName" value="selectSchoolArea"/>
     </form>
 
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
@@ -77,6 +71,7 @@
     <script type="text/javascript" th:inline="javascript">
 
         $(function () {
+
             //表头元素居中
             $("th").css("text-align", "center");
             var window_width = $(window).width();
@@ -85,19 +80,19 @@
 
         })
         /*提交查询*/
-        $("#selectFollow").click(function () {
-            $("#followform").attr("action", "selectFollow");
-            $("#followform").submit();
+        $("#selectSchoolArea").click(function () {
+            $("#schoolAreaform").attr("action", "selectSchoolArea");
+            $("#schoolAreaform").submit();
         });
         /*提交删除*/
-        $("#dropFollow").click(function () {
+        $("#dropSchoolArea").click(function () {
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
-                alert("请选择你要删除的更进");
+                alert("请选择你要删除的校区");
             } else {
-                if (confirm("确定要删除该更进吗？")) {
-                    $("#followform").attr("action", "deleteFollows");
-                    $("#followform").submit();
+                if (confirm("确定要删除该校区吗？")) {
+                    $("#schoolAreaform").attr("action", "deleteSchoolAreas");
+                    $("#schoolAreaform").submit();
                 }
             }
 

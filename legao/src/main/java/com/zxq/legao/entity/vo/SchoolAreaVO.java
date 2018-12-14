@@ -12,5 +12,8 @@ import java.io.Serializable;
 public class SchoolAreaVO implements Serializable {
     private Integer id;
     private String name;
+    private String address;
+    private String responPersonName;
+    private String telphone;
 
 }

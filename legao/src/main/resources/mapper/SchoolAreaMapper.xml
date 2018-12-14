@@ -41,15 +41,13 @@
             <if test="responPersonName!=null and responPersonName!=''">
                 and responPersonName like '%${responPersonName}%'
             </if>
-            <if test="telphone!=null and telphone!=''">
-                and telphone like '%${telphone}%'
-            </if>
+
         </where>
 
     </select>
     <select id="selectSchoolAreaByID" parameterType="java.lang.Integer"
             resultType="com.zxq.legao.entity.vo.SchoolAreaVO">
-        SELECT id,name FROM legao_schoolArea WHERE id = #{id};
+        SELECT id,name,address,responPersonName,telphone FROM legao_schoolArea WHERE id = #{id};
     </select>
 
 </mapper>

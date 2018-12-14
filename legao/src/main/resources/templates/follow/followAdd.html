@@ -27,7 +27,7 @@
         跟进人:<input name="advisor" id="follow_advisor" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
                    maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
         跟进模式：<input type="text" name="mode" id="follow_mode" style="height: 35px;width:200px ;" class="inputCss"
-                    placeholder="请输入6-12位的数字和字母"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+                    placeholder="请输入跟进模式"/>&nbsp;;&nbsp;&nbsp;&nbsp;
         跟进内容：
         <textarea rows="5" cols="23" id="follow_content" name="content" maxlength="200"
                   placeholder="请输入学员的更进内容,输入长度不大于200的字符..." class="inputCss"></textarea>
@@ -80,7 +80,7 @@
         } else if (follow_content.trim().length == 0) {
             $("#error").text("*请输入跟进内容");
         } else {
-            $("#followAddform").attr("action", "insertFollow");
+            $("#followAddform").attr("action", "saveClassRoom");
             $("#followAddform").submit();
         }
 

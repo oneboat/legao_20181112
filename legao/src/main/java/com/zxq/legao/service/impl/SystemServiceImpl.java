@@ -19,7 +19,7 @@ public class SystemServiceImpl implements SystemService {
     @Autowired
     private SystemDao systemDao;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public String updateFieldsSet(String field, List<String> caption, HttpServletRequest request) {
 

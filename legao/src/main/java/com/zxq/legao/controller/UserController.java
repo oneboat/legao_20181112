@@ -1,9 +1,7 @@
 package com.zxq.legao.controller;
 
-import com.zxq.legao.entity.po.FollowPO;
-import com.zxq.legao.entity.po.SchoolAreaPO;
-import com.zxq.legao.entity.po.StudentPO;
-import com.zxq.legao.entity.po.UserPO;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.zxq.legao.entity.po.*;
 import com.zxq.legao.entity.vo.*;
 import com.zxq.legao.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +32,12 @@ public class UserController {
     @Autowired
     private JobService jobService;
 
+    @Autowired
+    private ClassRoomService classRoomService;
+
+    @Autowired
+    private EmployService employService;
+
     @RequestMapping("/")
     public String view() {
         return "login";
@@ -55,12 +59,16 @@ public class UserController {
             List<EmployVO> allTeacherName = studentService.selectTeacherName();
             List<StudentVO> allStudentName = studentService.selectAllStudentName();
             List<JobVO> allJobName = jobService.selectAllJobName();
+            List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();
+            List<EmployPO> allemploy = (List<EmployPO>) employService.selectAllEmploy();
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("allStudentName", allStudentName);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
             servletContext.setAttribute("allFollow", allFollow);
             servletContext.setAttribute("allTeacherName", allTeacherName);
             servletContext.setAttribute("allJobName", allJobName);
+            servletContext.setAttribute("allClassRoomName", allClassRoomName);
+            servletContext.setAttribute("allemploy", allemploy);
 
             return "main";
         }

@@ -21,4 +21,5 @@ import java.util.List;
 public interface EmployDao extends BaseMapper<EmployPO> {
     List<EmployVO> selectEmploy(@Param("employPO") EmployPO studentPO, @Param("fields") List<String> fields);
 
+    List<EmployPO> selectAllEmploy();
 }

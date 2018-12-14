@@ -49,4 +49,11 @@
         <association property="jobVO" column="jobID" select="com.zxq.legao.dao.JobDao.selectJobByID"
                      javaType="com.zxq.legao.entity.vo.JobVO"></association>
     </resultMap>
+<select id="selectAllEmploy" resultType="com.zxq.legao.entity.po.EmployPO">
+    SELECT
+        legao_employ.`name`
+    FROM
+        legao_employ
+
+</select>
 </mapper>

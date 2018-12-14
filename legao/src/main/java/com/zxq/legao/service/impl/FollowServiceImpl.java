@@ -10,6 +10,7 @@ import com.zxq.legao.service.FollowService;
 import com.zxq.legao.util.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -20,16 +21,19 @@ public class FollowServiceImpl implements FollowService {
     private FollowDao followDao;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int insertFollow(FollowPO followPO) {
         return followDao.insertFollow(followPO);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteFollow(List<Integer> followIDs) {
         return followDao.deleteFollow(followIDs);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateFollow(FollowPO followPO) {
         return followDao.updateFollow(followPO);
     }

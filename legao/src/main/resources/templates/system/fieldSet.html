@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -256,8 +256,8 @@
                         </div>
                         </br></br>
 
-                        <input type="button" value="设置" class="btn btn-success" onclick="btn('selectEmployField')"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="reset" name="cancel" class="btn btn-danger" value="重置"/></td>
+                        <input type="button" value="设置" class="btn btn-success" onclick="btn('selectEmployField')" />&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset" name="cancel" class="btn btn-danger" value="重置" /></td>
                     </div>
 
 
@@ -272,10 +272,11 @@
 
 </div>
 </body>
-<script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+<script src="js/jquery-1.9.1.js" type="application/javascript" charset="UTF-8"></script>
+<script src="js/layer.js"></script>
 <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
 <script src="../layui/layui.js"></script>
-<script src="js/layer.js"></script>
+
 <script>
     //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
     layui.use('element', function () {
@@ -286,6 +287,7 @@
             , form = layui.form;
     });
     $(function () {
+
         setTimeout(function () {
             $("#info").text('');
         }, 5000);
@@ -307,9 +309,10 @@
             contentType: "application/json",
             type: "post",
             success: function (data) {
-                layer.msg(data);
+                alert(data);
             }, error: function () {
-                alert("设置失败")
+                alert("设置失败");
+
             }
         })
 

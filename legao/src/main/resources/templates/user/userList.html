@@ -76,9 +76,10 @@
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/paging.js" type="application/javascript"></script>
+    <script src="js/layer.js"></script>
     <script type="text/javascript" th:inline="javascript">
-
         $(function () {
+            $().alert("sdsa")
             //不能删除正在登陆的用户
             var isDeleteItself = [[${isDeleteItself}]];
             if (isDeleteItself) {
@@ -101,6 +102,7 @@
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
                 alert("请选择你要删除的用户");
+                layer.msg("请选择你要删除的用户");
             } else {
                 if (confirm("确定要删除该用户吗？")) {
                     $("#userform").attr("action", "deleteUsers");

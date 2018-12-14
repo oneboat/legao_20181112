@@ -31,20 +31,20 @@ public class StudentServiceImpl implements StudentService {
     private UserDao userDao;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int insertStudent(StudentPO studentPO) {
 
         return studentDao.insertStudent(studentPO);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteStudent(List<Integer> studentIDs) {
         return studentDao.deleteStudent(studentIDs);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateStudent(StudentPO studentPO) {
         return studentDao.updateStudent(studentPO);
     }

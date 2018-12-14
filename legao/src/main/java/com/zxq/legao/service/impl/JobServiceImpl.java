@@ -30,13 +30,13 @@ public class JobServiceImpl implements JobService {
     @Autowired
     private JobDao jobDao;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addJob(JobPO jobPO) {
         return jobDao.addJob(jobPO);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteJob(List<Integer> jobIDs) {
         for (int i = 0; i < jobIDs.size(); i++) {
@@ -47,7 +47,7 @@ public class JobServiceImpl implements JobService {
         return jobDao.deleteJob(jobIDs);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateJob(JobPO jobPO) {
         return jobDao.updateJob(jobPO);

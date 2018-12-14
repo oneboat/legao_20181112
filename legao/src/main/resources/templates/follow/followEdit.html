@@ -12,8 +12,7 @@
     &nbsp;&nbsp;&nbsp;
     当前位置：跟进管理&nbsp;&gt;&nbsp;修改跟进
     <hr/>
-    <!--添加成功字样-->
-    <div id="addInfo"></div>
+
     <div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
     <form id="followAddform">
         跟进的学员：
@@ -42,8 +41,6 @@
 </div>
 <!-- 判断数据是否符合要求，提交表单的标志 -->
 <input type="hidden" id="submitInfo" value="false"/>
-<!-- 判断是否添加成功 -->
-<input type="hidden" th:value="${type}" id="typeInfo"/>
 
 </body>
 <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
