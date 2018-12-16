@@ -22,4 +22,6 @@ public interface StudentDao {
     List<EmployVO> selectTeacherName();
 
     List<StudentVO> selectAllStudentName();
+
+    int selectCourseAllNum(Integer courseID);
 }

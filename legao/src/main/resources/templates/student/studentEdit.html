@@ -39,7 +39,7 @@ hhy <!DOCTYPE html>
                     <select class="inputCss" id="follow_id" name="followID">
                         <option value="">--请选择更进人--</option>
                         <option th:value="${follow.id}" th:each="follow:${application.allFollow}"
-                                th:selected="${follow.id}==${studentEdit.followID.id}?true:false">[[${follow.advisor}]]
+                                th:selected="(${follow.id}==${studentEdit.followID.id})?true:false">[[${follow.advisor}]]
                         </option>
                     </select>
                 </td>
@@ -150,7 +150,7 @@ hhy <!DOCTYPE html>
                     <select class="inputCss" id="teacher_id" name="teacherName">
                         <option value="">--请选择老师--</option>
                         <option th:value="${teacherName.name}" th:each="teacherName:${application.allTeacherName}"
-                                th:selected="${teacherName.name}==${studentEdit.teacherName}?true:false">
+                                th:selected="(${teacherName.name}==${studentEdit.teacherName})?true:false">
                             [[${teacherName.name}]]
                         </option>
                     </select>
@@ -175,6 +175,17 @@ hhy <!DOCTYPE html>
                 <td></td>
             </tr>
             <tr>
+                <td>所选的课程：</td>
+                <td>
+
+                    <select class="inputCss" id="courseID" name="courseID">
+                        <option value="">--请选择课程--</option>
+                        <option th:value="${courseName.id}" th:each="courseName:${application.allCourseName}"  th:selected="${courseName.name}==${studentEdit.courseID.name}?true:false">
+                            [[${courseName.name}]]
+                        </option>
+                    </select>
+
+                </td>
                 <td>来源：</td>
                 <td><input th:value="${studentEdit.source}" type="text" name="source" class="inputCss"
                            style="width:205px;" placeholder="请输入学员的来源方式" id="student_source"/></td>
@@ -182,10 +193,7 @@ hhy <!DOCTYPE html>
                 <td><input th:value="${#dates.format(studentEdit.willDate,'yyyy-MM-dd')}" type="text" name="willDate"
                            class="inputCss" style="width:205px;" placeholder="请输入学员期望到课时间" id="student_willDate"/></td>
 
-                <td>基本情况：</td>
-                <td><textarea rows="7" th:text="${studentEdit.baseSituation}" cols="20" id="baseSituation"
-                              name="baseSituation" maxlength="200" placeholder="请输入学员的基本情况,输入长度不大于200的字符..."
-                              class="inputCss"></textarea></td>
+
 
 
             </tr>
@@ -194,6 +202,12 @@ hhy <!DOCTYPE html>
                 <td></td>
                 <td></td>
                 <td></td>
+            </tr>
+            <tr>
+                <td>基本情况：</td>
+                <td><textarea rows="5" cols="23" th:text="${studentEdit.baseSituation}"  id="baseSituation"
+                              name="baseSituation" maxlength="200" placeholder="请输入学员的基本情况,输入长度不大于200的字符..."
+                              class="inputCss"></textarea></td>
             </tr>
             <tr>
                 <td colspan="5" align="center"><input type="button" value="保存" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;

@@ -38,6 +38,9 @@ public class UserController {
     @Autowired
     private EmployService employService;
 
+    @Autowired
+    private CourseService courseService;
+
     @RequestMapping("/")
     public String view() {
         return "login";
@@ -60,7 +63,8 @@ public class UserController {
             List<StudentVO> allStudentName = studentService.selectAllStudentName();
             List<JobVO> allJobName = jobService.selectAllJobName();
             List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();
-            List<EmployPO> allemploy = (List<EmployPO>) employService.selectAllEmploy();
+            List<EmployPO> allemploy = employService.selectAllEmploy();
+            List<CoursePO> allCourseName = courseService.findAllCourseName();
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("allStudentName", allStudentName);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
@@ -69,6 +73,7 @@ public class UserController {
             servletContext.setAttribute("allJobName", allJobName);
             servletContext.setAttribute("allClassRoomName", allClassRoomName);
             servletContext.setAttribute("allemploy", allemploy);
+            servletContext.setAttribute("allCourseName", allCourseName);
 
             return "main";
         }

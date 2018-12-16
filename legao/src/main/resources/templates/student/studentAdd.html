@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div style="border:#DDDDDD solid 1px;height: 600px;margin-top: 10px;padding: 10px;margin-left:  250px;"
+<div style="border:#DDDDDD solid 1px;height: 800px;margin-top: 10px;padding: 10px;margin-left:  250px;"
      id="content_box">
     <div id="schedule-box" class="boxshaw hidden "></div>
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -149,11 +149,11 @@
                 <td>
 
                     <select class="inputCss" id="teacher_id" name="teacherName">
-                        <option value="">--请选择老师--</option>
-                        <option th:value="${teacherName.name}" th:each="teacherName:${application.allTeacherName}">
-                            [[${teacherName.name}]]
-                        </option>
-                    </select>
+                    <option value="">--请选择老师--</option>
+                    <option th:value="${teacherName.name}" th:each="teacherName:${application.allTeacherName}">
+                        [[${teacherName.name}]]
+                    </option>
+                </select>
 
                 </td>
                 <td>重要程度：</td>
@@ -173,19 +173,23 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
+            <tr><td>所选的课程：</td>
+                <td>
+
+                    <select class="inputCss" id="courseID" name="courseID">
+                        <option value="">--请选择课程--</option>
+                        <option th:value="${courseName.id}" th:each="courseName:${application.allCourseName}">
+                            [[${courseName.name}]]
+                        </option>
+                    </select>
+
+                </td>
                 <td>来源：</td>
                 <td><input type="text" name="source" class="inputCss" style="width:205px;" placeholder="请输入学员的来源方式"
                            id="student_source"/></td>
                 <td>期望时间：</td>
                 <td><input type="text" name="willDate" class="inputCss" style="width:205px;" placeholder="请输入学员期望到课时间"
                            id="student_willDate"/></td>
-
-                <td>基本情况：</td>
-                <td><textarea rows="5" cols="23" id="baseSituation" name="baseSituation" maxlength="200"
-                              placeholder="请输入学员的基本情况,输入长度不大于200的字符..." class="inputCss"></textarea></td>
-
-
             </tr>
 
             <tr style="height: 10px;">
@@ -194,7 +198,12 @@
                 <td></td>
             </tr>
             <tr>
-                <td colspan="5" align="center"><input type="button" value="保存" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                <td>基本情况：</td>
+                <td><textarea rows="5" cols="23" id="baseSituation" name="baseSituation" maxlength="200"
+                              placeholder="请输入学员的基本情况,输入长度不大于200的字符..." class="inputCss"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="5" align="center"><input type="button" value="添加" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="reset" name="cancel" class="btn btn-danger" value="取消"/></td>
             </tr>
         </table>
@@ -250,6 +259,7 @@
         var follow_id = $("#follow_id").val();
         var student_source = $("#student_source").val();
         var teacher_id = $("#teacher_id").val();
+        var courseID = $("#courseID").val();
         //为字段需要赋默认值
         var student_nickName = $("#student_nickName").val();
         var student_education = $("#student_education").val();
@@ -270,8 +280,8 @@
         var phone_regx = /^1(3|4|5|7|8)\d{9}$/;
         if (schoolArea_id.trim() == "") {
             $("#error").text("*请选择校区");
-        } else if (follow_id.trim() == "") {
-            $("#error").text("*请选择学员跟进人");
+        }  else if (follow_id.trim() == "") {
+            $("#error").text("*请选择学员的更进人");
         } else if (sex.trim() == "") {
             $("#error").text("*请选择性别");
         } else if (name.trim() == "") {
@@ -288,6 +298,8 @@
             $("#error").text("*输入的手机格式不对，请正确输入手机格式");
         } else if (importanceGrade.trim() == "") {
             $("#error").text("*请选择学员重要程度");
+        } else if (courseID.trim() == "") {
+            $("#error").text("*请选择学员所选的课程");
         } else if (teacher_id.trim() == "") {
             $("#error").text("*学员老师不能为空，请补充完整");
         } else if (student_source.trim() == "") {

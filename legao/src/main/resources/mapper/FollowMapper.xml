@@ -55,6 +55,6 @@
     </select>
 
     <select id="findAllFollowName" resultType="com.zxq.legao.entity.po.FollowPO">
-        SELECT advisor FROM legao_follow
+        SELECT id,advisor FROM legao_follow
     </select>
 </mapper>
