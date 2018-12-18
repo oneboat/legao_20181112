@@ -19,7 +19,7 @@ public class CourseVO {
     private String ageArea;
     private String teacherTools;
     private String courseTime;
-    private ClassRoomPO classRoomID;
+    private ClassRoomVO classRoomID;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
     /**

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxq.legao.dao.DateDao">
+    <select id="selectDateByID" resultType="com.zxq.legao.entity.po.DatePO" parameterType="java.lang.Integer">
+        SELECT
+            legao_date.id,
+            legao_date.dateTime,
+            legao_date.`week`
+        FROM
+            legao_date
+        where id = #{id}
+    </select>
+</mapper>

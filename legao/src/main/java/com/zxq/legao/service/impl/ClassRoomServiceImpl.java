@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zxq.legao.dao.ClassRoomDao;
 import com.zxq.legao.entity.po.ClassRoomPO;
+import com.zxq.legao.entity.vo.ClassRoomVO;
 import com.zxq.legao.service.ClassRoomService;
 import com.zxq.legao.util.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
 
 
     @Override
-    public ClassRoomPO selectClassRoomByID(Integer classRoomID) {
+    public ClassRoomVO selectClassRoomByID(Integer classRoomID) {
         return classRoomDao.selectClassRoomByID(classRoomID);
     }
 

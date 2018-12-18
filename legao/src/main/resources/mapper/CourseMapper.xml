@@ -65,7 +65,7 @@
         <result column="teacherTools" property="teacherTools"></result>
         <result column="courseTime" property="courseTime"></result>
         <result column="createDate" property="createDate"></result>
-        <association property="classRoomID" column="classRoomID" javaType="com.zxq.legao.entity.po.ClassRoomPO"
+        <association property="classRoomID" column="classRoomID" javaType="com.zxq.legao.entity.vo.ClassRoomVO"
                      select="com.zxq.legao.dao.ClassRoomDao.selectClassRoomByID"></association>
 
     </resultMap>

@@ -2,6 +2,7 @@ package com.zxq.legao.controller;
 
 
 import com.zxq.legao.entity.po.ClassRoomPO;
+import com.zxq.legao.entity.vo.ClassRoomVO;
 import com.zxq.legao.service.ClassRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,8 +65,8 @@ public class ClassRoomController {
     // 根据id查找跟进人
     @RequestMapping("/editClassRoom")
     public String editClassRoom(@RequestParam("classRoomId") Integer classRoomId, HttpServletRequest request) {
-        ClassRoomPO classRoomPO = classRoomService.selectClassRoomByID(classRoomId);
-        request.setAttribute("classRoomByID", classRoomPO);
+        ClassRoomVO classRoomVO = classRoomService.selectClassRoomByID(classRoomId);
+        request.setAttribute("classRoomByID", classRoomVO);
         return "forward:/editClassRoomFrom";
 
     }

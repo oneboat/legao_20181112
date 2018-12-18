@@ -2,6 +2,7 @@ package com.zxq.legao.service;
 
 
 import com.zxq.legao.entity.po.ClassRoomPO;
+import com.zxq.legao.entity.vo.ClassRoomVO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -23,7 +24,7 @@ public interface ClassRoomService {
 
     String selectClassRoom(Integer page, ClassRoomPO classRoomPO, HttpServletRequest request);
 
-    ClassRoomPO selectClassRoomByID(Integer classRoomID);
+    ClassRoomVO selectClassRoomByID(Integer classRoomID);
 
     List<ClassRoomPO> findAllClassRoomName();
 }

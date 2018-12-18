@@ -1,5 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zxq.legao.dao.ScheduleDao">
+    <insert id="insertSchedule" parameterType="com.zxq.legao.entity.po.SchedulePO">
+        INSERT INTO legao_schedule(legao_schedule.schoolAreaID,
+                                  legao_schedule.`dateID`,
+                                  legao_schedule.teacherName,
+                                  legao_schedule.courseID,
+                                  legao_schedule.classRoomID,
+                                  legao_schedule.studentName,
+                                   legao_schedule.className
+        )
+        VALUES (#{schoolAreaID},
+                #{dateID},
+                #{teacherName},
+                #{courseID},
+                #{classRoomID},
+                #{studentName},
+                #{className});
+    </insert>
+    <delete id="deleteSchedule" parameterType="java.lang.Integer">
+        DELETE FROM legao_schedule WHERE id = #{id};
+
+    </delete>
+    <update id="updateSchedule" parameterType="com.zxq.legao.entity.po.SchedulePO">
+        UPDATE legao_schedule
+        SET
+            schoolAreaID = #{schoolAreaID},
+            dateID       = #{dateID},
+            teacherName  = #{teacherName},
+            courseID     = #{courseID},
+            classRoomID  = #{classRoomID},
+            studentName  = #{studentName},
+            className = #{className}
+        WHERE id = #{id};
+    </update>
+    <select id="selectSchedule"
+            resultType="com.zxq.legao.entity.vo.ScheduleVO" resultMap="select_scheduleMap">
+
+        SELECT
+        legao_schedule.id,
+        legao_schedule.schoolAreaID,
+        legao_schedule.dateID,
+        legao_schedule.courseID,
+        legao_schedule.classRoomID,
+        legao_schedule.className,
+        legao_schedule.teacherName,
+        legao_schedule.studentName
+        FROM
+        legao_schedule
+        <where>
+            <if test="className!=null and className!=''">
+                and className = #{className}
+            </if>
+            <if test="courseID!=null and courseID!=''">
+                and courseID = #{courseID}
+            </if>
+            <if test="classRoomID!=null and classRoomID!=''">
+                and classRoomID = #{classRoomID}
+            </if>
+            <if test="teacherName!=null and teacherName!=''">
+                and teacherName = #{teacherName}
+            </if>
+        </where>
+
+    </select>
+    <select id="selectScheduleByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.ScheduleVO"
+            resultMap="select_scheduleMap">
+
+        SELECT
+            legao_schedule.id,
+            legao_schedule.schoolAreaID,
+            legao_schedule.dateID,
+            legao_schedule.courseID,
+            legao_schedule.classRoomID,
+            legao_schedule.className,
+            legao_schedule.teacherName,
+            legao_schedule.studentName
+        FROM
+            legao_schedule
+
+        WHERE id = #{id}
+    </select>
+    <resultMap id="select_scheduleMap" type="com.zxq.legao.entity.vo.ScheduleVO">
+        <id column="id" property="id"></id>
+        <result column="className" property="className"></result>
+        <result column="teacherName" property="teacherName"></result>
+        <result column="studentName" property="studentName"></result>
+        <association property="dateID" column="dateID"
+                     select="com.zxq.legao.dao.DateDao.selectDateByID"
+                     javaType="com.zxq.legao.entity.po.DatePO"></association>
+        <association property="schoolAreaID" column="schoolAreaID"
+                     select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"
+                     javaType="com.zxq.legao.entity.vo.SchoolAreaVO"></association>
+        <association property="courseID" column="courseID" javaType="com.zxq.legao.entity.vo.CourseVO"
+                     select="com.zxq.legao.dao.CourseDao.selectCourseByID"></association>
+        <association property="classRoomID" column="classRoomID" javaType="com.zxq.legao.entity.vo.ClassRoomVO"
+                     select="com.zxq.legao.dao.ClassRoomDao.selectClassRoomByID"></association>
+    </resultMap>
 
 </mapper>

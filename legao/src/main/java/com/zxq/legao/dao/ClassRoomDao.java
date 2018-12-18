@@ -2,6 +2,7 @@ package com.zxq.legao.dao;
 
 
 import com.zxq.legao.entity.po.ClassRoomPO;
+import com.zxq.legao.entity.vo.ClassRoomVO;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface ClassRoomDao {
 
     List<ClassRoomPO> selectClassRoom(ClassRoomPO classRoomPO);
 
-    ClassRoomPO selectClassRoomByID(Integer classRoomID);
+    ClassRoomVO selectClassRoomByID(Integer classRoomID);
 
     List<ClassRoomPO> findAllClassRoomName();
 }

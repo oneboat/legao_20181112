@@ -41,7 +41,7 @@
         </where>
 
     </select>
-    <select id="selectClassRoomByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.ClassRoomPO">
+    <select id="selectClassRoomByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.ClassRoomVO">
         SELECT
             legao_classroom.id,
             legao_classroom.`name`,
