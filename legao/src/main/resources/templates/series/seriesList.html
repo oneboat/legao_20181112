@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>courseList</title>
+    <title>seriesList</title>
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
     <link href="css/paging.css" type="text/css" rel="stylesheet"/>
@@ -15,7 +15,7 @@
 <div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;height:700px;" id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
-    当前位置：课程管理&nbsp;&gt;&nbsp;课程查询
+    当前位置：课程系列管理&nbsp;&gt;&nbsp;课程系列查询
 
     <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
             class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
@@ -23,38 +23,36 @@
             class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
 
     <hr/>
-    <form action="" id="courseform">
+    <form action="" id="seriesform">
 
-        课程名：<input name="name" id="name" style="height: 35px;" class="inputCss"
-                   th:value="${blurCourse}==null? '':${blurCourse.name}"/>&nbsp;&nbsp;
+        课程系列：<input name="name" id="name" style="height: 35px;" class="inputCss"
+                   th:value="${blurSeries}==null? '':${blurSeries.name}"/>&nbsp;&nbsp;
         年龄段：<input name="ageArea" id="ageArea" style="height: 35px;" class="inputCss"
-                   th:value="${blurCourse}==null? '':${blurCourse.ageArea}"/>&nbsp;&nbsp;
-        <input type="button" value="搜索" class="btn btn-success" id="selectCourse"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropCourse"/>
+                   th:value="${blurSeries}==null? '':${blurSeries.ageArea}"/>&nbsp;&nbsp;
+        <input type="button" value="搜索" class="btn btn-success" id="selectSeries"/>&nbsp;
+        <input type="button" class="btn btn-danger" value="删除" id="dropSeries"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped" style="text-align: center;"
-               id="course_tab">
+               id="series_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
                 <th>课程系列</th>
-                <th>课程</th>
+                <th>课程系列</th>
                 <th>年龄段</th>
                 <th>教具</th>
                 <th>课时</th>
-                <th>总人数</th>
                 <th>操作</th>
             </tr>
-            <tr th:each="course:${courseVOList}">
+            <tr th:each="series:${seriesVOList}">
                 <td><input type="checkbox" name="caption"
-                           th:id="'box_'+${course.id}" th:value="${course.id}"/></td>
-                <td>[[${course.series.name}]]</td>
-                <td>[[${course.name}]]</td>
-                <td>[[${course.ageArea}]]</td>
-                <td>[[${course.teacherTools}]]</td>
-                <td>[[${course.courseTime}]]</td>
-                <td>[[${course.studentNum}]]</td>
-                <td><a th:href="'editCourse?courseId='+${course.id}"><span
+                           th:id="'box_'+${series.id}" th:value="${series.id}"/></td>
+                <td>[[${series.name}]]</td>
+                <td>[[${series.name}]]</td>
+                <td>[[${series.ageArea}]]</td>
+                <td>[[${series.teacherTools}]]</td>
+                <td>[[${series.courseTime}]]</td>
+                <td><a th:href="'editSeries?seriesId='+${series.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>
@@ -64,14 +62,14 @@
     <div class="box" id="box"></div>
     <!--添加表单提交标志-->
     <form id="pageForm" style="display: none">
-        <input name="name" th:value="${blurCourse}==null? '':${blurCourse.name}"/>&nbsp;&nbsp;
-        <input name="ageArea" th:value="${blurCourse}==null? '':${blurCourse.ageArea}"/>&nbsp;&nbsp;
+        <input name="name" th:value="${blurSeries}==null? '':${blurSeries.name}"/>&nbsp;&nbsp;
+        <input name="ageArea" th:value="${blurSeries}==null? '':${blurSeries.ageArea}"/>&nbsp;&nbsp;
 
         <input type="text" id="pages" name="page"/>
 
         <input type="button" id="btn" value="tijiao"/>
         <!--传入分页的参数-->
-        <input type="text" id="actionName" value="selectCourse"/>
+        <input type="text" id="actionName" value="selectSeries"/>
     </form>
 
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
@@ -88,19 +86,19 @@
 
         })
         /*提交查询*/
-        $("#selectCourse").click(function () {
-            $("#courseform").attr("action", "selectCourse");
-            $("#courseform").submit();
+        $("#selectSeries").click(function () {
+            $("#seriesform").attr("action", "selectSeries");
+            $("#seriesform").submit();
         });
         /*提交删除*/
-        $("#dropCourse").click(function () {
+        $("#dropSeries").click(function () {
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
-                alert("请选择你要删除的课程");
+                alert("请选择你要删除的课程系列");
             } else {
-                if (confirm("确定要删除该课程吗？")) {
-                    $("#courseform").attr("action", "deleteCourses");
-                    $("#courseform").submit();
+                if (confirm("确定要删除该课程系列吗？")) {
+                    $("#seriesform").attr("action", "deleteSeriess");
+                    $("#seriesform").submit();
                 }
             }
 

@@ -5,6 +5,7 @@ import com.zxq.legao.entity.po.*;
 import com.zxq.legao.entity.vo.*;
 import com.zxq.legao.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,6 +42,9 @@ public class UserController {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private SeriesService seriesService;
+
     @RequestMapping("/")
     public String view() {
         return "login";
@@ -65,6 +69,7 @@ public class UserController {
             List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();
             List<EmployPO> allemploy = employService.selectAllEmploy();
             List<CoursePO> allCourseName = courseService.findAllCourseName();
+            List<SeriesVO> allSeriesName = seriesService.findAllSeriesName();
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("allStudentName", allStudentName);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
@@ -74,6 +79,7 @@ public class UserController {
             servletContext.setAttribute("allClassRoomName", allClassRoomName);
             servletContext.setAttribute("allemploy", allemploy);
             servletContext.setAttribute("allCourseName", allCourseName);
+            servletContext.setAttribute("allSeriesName",allSeriesName);
 
             return "main";
         }

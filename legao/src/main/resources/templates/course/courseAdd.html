@@ -16,6 +16,14 @@
     <div id="addInfo"></div>
     <div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
     <form id="courseAddform">
+        课程系列:
+            <select class="inputCss" id="seriesID_id" name="seriesID">
+                <option value="">--请选择课程系列--</option>
+                <option th:value="${series.id}" th:each="series:${application.allSeriesName}">
+                    [[${series.name}]]
+                </option>
+            </select>
+
         课程:<input name="name" id="course_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
                    maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
         年龄段：<input type="text" name="ageArea" id="course_ageArea" style="height: 35px;width:200px ;" class="inputCss"
@@ -27,7 +35,7 @@
         </br>
         </br>
         课室：
-        <select class="inputCss" id="classRoomID" name="classRoomID">
+        <select class="inputCss" id="courseTime" name="courseTime">
             <option value="">--请选择课程--</option>
             <option th:value="${courseName.id}" th:each="courseName:${application.allCourseName}">
                 [[${courseName.name}]]
@@ -69,11 +77,13 @@
         var course_name = $("#course_name").val();
         var course_teacherTools = $("#course_teacherTools").val();
         var course_ageArea = $("#course_ageArea").val();
-        var classRoomID = $("#classRoomID").val();
         var courseTime = $("#courseTime").val();
+        var seriesID_id= $("#seriesID_id").val();
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
 
-        if (course_name.trim().length == 0) {
+        if (seriesID_id.trim().length == 0) {
+            $("#error").text("*请选择课程系列");
+        }else if (course_name.trim().length == 0) {
             $("#error").text("*请输入课程名称");
         }  else if (re.test(course_name.trim())) {
             $("#error").text("*课程名称存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
@@ -83,8 +93,8 @@
             $("#error").text("*年龄段存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
         }  else if (course_teacherTools.trim().length == 0) {
             $("#error").text("*请输入课程所需要的教具");
-        }else if (classRoomID.trim().length == 0) {
-            $("#error").text("*请选择课室");
+        }else if (courseTime.trim().length == 0) {
+            $("#error").text("*请输入课时");
         }else {
             $("#courseAddform").attr("action", "insertCourse");
             $("#courseAddform").submit();
