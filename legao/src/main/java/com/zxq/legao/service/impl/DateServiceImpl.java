@@ -2,11 +2,10 @@ package com.zxq.legao.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zxq.legao.dao.FollowDao;
-import com.zxq.legao.entity.po.FollowPO;
-import com.zxq.legao.entity.vo.FollowVO;
-import com.zxq.legao.entity.vo.FollowVO;
-import com.zxq.legao.service.FollowService;
+import com.zxq.legao.dao.DateDao;
+import com.zxq.legao.entity.po.DatePO;
+import com.zxq.legao.entity.vo.DateVO;
+import com.zxq.legao.service.DateService;
 import com.zxq.legao.util.ConstUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,55 +22,55 @@ import java.util.List;
  * @Date 2018/11/11 17:41
  */
 @Service
-public class FollowServiceImpl implements FollowService {
+public class DateServiceImpl implements DateService {
     @Autowired
-    private FollowDao followDao;
+    private DateDao dateDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int insertFollow(FollowPO followPO) {
-        return followDao.insertFollow(followPO);
+    public int insertDate(DatePO datePO) {
+        return dateDao.insertDate(datePO);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int deleteFollow(List<Integer> followIDs) {
-        return followDao.deleteFollow(followIDs);
+    public int deleteDate(List<Integer> dateIDs) {
+        return dateDao.deleteDate(dateIDs);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateFollow(FollowPO followPO) {
-        return followDao.updateFollow(followPO);
+    public int updateDate(DatePO datePO) {
+        return dateDao.updateDate(datePO);
     }
 
     @Override
-    public String selectFollow(Integer page, FollowPO followPO, HttpServletRequest request) {
+    public String selectDate(Integer page, DatePO datePO, HttpServletRequest request) {
         //模糊查询保留值
-        if (followPO != null) {
-            request.setAttribute("blurFollow", followPO);
+        if (datePO != null) {
+            request.setAttribute("blurDate", datePO);
         }
         if (page == null) {
             page = 0;
         }
         //page为初始页，pageSize表一页显示多少条
         PageHelper.startPage(page, ConstUtil.PAGESIZE);
-        List<FollowPO> list = followDao.selectFollow(followPO);
+        List<DateVO> list = dateDao.selectDate(datePO);
 
         PageInfo pageInfo = new PageInfo(list);
         request.setAttribute("pageInfo", pageInfo);
-        request.setAttribute("followVOList", list);
-        return "follow/followList";
+        request.setAttribute("dateVOList", list);
+        return "date/dateList";
     }
 
 
     @Override
-    public FollowPO selectFollowByID(Integer followID) {
-        return followDao.selectFollowByID(followID);
+    public DateVO selectDateByID(Integer dateID) {
+        return dateDao.selectDateByID(dateID);
     }
 
     @Override
-    public List<FollowPO> findAllFollowName() {
-        return followDao.findAllFollowName();
+    public List<DateVO> findAllDate() {
+        return dateDao.selectAllDate();
     }
 }

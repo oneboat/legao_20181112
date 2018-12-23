@@ -178,10 +178,10 @@ hhy <!DOCTYPE html>
                 <td>所选的课程：</td>
                 <td>
 
-                    <select class="inputCss" id="courseID" name="courseID">
+                    <select class="inputCss" id="seriesID" name="seriesID">
                         <option value="">--请选择课程--</option>
-                        <option th:value="${courseName.id}" th:each="courseName:${application.allCourseName}"  th:selected="${courseName.name}==${studentEdit.courseID.name}?true:false">
-                            [[${courseName.name}]]
+                        <option th:value="${seriesName.id}" th:each="seriesName:${application.allSeriesName}"  th:selected="${seriesName.name}==${studentEdit.seriesID.name}?true:false">
+                            [[${seriesName.name}]]
                         </option>
                     </select>
 

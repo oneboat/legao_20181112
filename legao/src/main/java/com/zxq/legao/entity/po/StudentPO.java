@@ -37,7 +37,7 @@ public class StudentPO implements Serializable {
     private String source;
     private Integer importanceGrade;
     private String teacherName;
-    private Integer courseID;
+    private Integer seriesID;
     private Integer schoolAreaID;
     private Integer followID;
     //排序字段

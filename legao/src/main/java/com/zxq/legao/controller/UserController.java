@@ -1,14 +1,11 @@
 package com.zxq.legao.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.zxq.legao.entity.po.*;
 import com.zxq.legao.entity.vo.*;
 import com.zxq.legao.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +13,18 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Description:
+ * <p>
+ * 用户前端控制器
+ * </p>
+ *
+ * @author dengzhenxiang
+ * @Date 2018/11/11 17:41
+ */
 @Controller
 public class UserController {
+
     @Autowired
     private UserService userService;
 
@@ -45,12 +52,17 @@ public class UserController {
     @Autowired
     private SeriesService seriesService;
 
+    @Autowired
+    private DateService dateService;
+
     @RequestMapping("/")
     public String view() {
         return "login";
     }
 
-    //登录
+    /**
+     * 登录
+     */
     @RequestMapping("/toLogin")
     public String toLogin(UserPO userPO, HttpServletRequest request) {
         UserVO userVO1 = userService.selectUserByNameAndPass(userPO);
@@ -70,6 +82,7 @@ public class UserController {
             List<EmployPO> allemploy = employService.selectAllEmploy();
             List<CoursePO> allCourseName = courseService.findAllCourseName();
             List<SeriesVO> allSeriesName = seriesService.findAllSeriesName();
+            List<DateVO> allDate = dateService.findAllDate();
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("allStudentName", allStudentName);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
@@ -79,14 +92,17 @@ public class UserController {
             servletContext.setAttribute("allClassRoomName", allClassRoomName);
             servletContext.setAttribute("allemploy", allemploy);
             servletContext.setAttribute("allCourseName", allCourseName);
-            servletContext.setAttribute("allSeriesName",allSeriesName);
+            servletContext.setAttribute("allSeriesName", allSeriesName);
+            servletContext.setAttribute("allDate", allDate);
 
             return "main";
         }
 
     }
 
-    //注销退出
+    /**
+     * 注销退出
+     */
     @RequestMapping("/logOff")
     public String logOff(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -94,28 +110,36 @@ public class UserController {
         return "login";
     }
 
-    //跳转各个页面
+    /**
+     * 跳转各个页面
+     */
     @RequestMapping("/{view}")
     public String jump(@PathVariable String view) {
         return view;
     }
 
 
-    // 跳转到userAdd
+    /**
+     * 跳转到userAdd
+     */
     @RequestMapping("/userAdd")
     public String jumpUserAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
         return "user/userAdd";
     }
 
-    //查询用户
+    /**
+     * 查询用户
+     */
     @RequestMapping("/selectUser")
     public String selectUser(UserPO userPO, HttpServletRequest request, Integer page) {
 
         return userService.selectUser(page, userPO, request);
     }
 
-    // 添加用户
+    /**
+     * 添加用户
+     */
     @RequestMapping("/insertUser")
     public String insertUser(UserPO user, HttpServletRequest request) {
         if (userService.insertUser(user) > 0) {
@@ -126,10 +150,12 @@ public class UserController {
         return "user/userAdd";
     }
 
-    // 判断登录名是否重复
-    @RequestMapping("/isReLoginname")
+    /**
+     * 判断登录名是否重复
+     */
+    @RequestMapping("/isReLoginName")
     @ResponseBody
-    public String isReLoginname(@RequestBody UserPO userPO) {
+    public String isReLoginName(@RequestBody UserPO userPO) {
         List<UserVO> hasUser = userService.findUsername(userPO);
         if (hasUser.size() > 0) {
             // 设置为false代表登录名重复
@@ -140,7 +166,9 @@ public class UserController {
 
     }
 
-    // 删除用户
+    /**
+     * 删除用户
+     */
     @RequestMapping("/deleteUsers")
     public String deleteUsers(Integer[] caption, HttpServletRequest request) {
         UserVO userVO = (UserVO) request.getSession().getAttribute("user");
@@ -157,30 +185,33 @@ public class UserController {
 
     }
 
-    // 根据id查找用户
+    /**
+     * 根据id查找用户
+     */
     @RequestMapping("/editUser")
     public String editUser(@RequestParam("userId") Integer userId, HttpServletRequest request) {
         UserVO userVO = userService.selectUserByID(userId);
         request.setAttribute("userByID", userVO);
         return "forward:/editUserFrom";
-
     }
 
-    // 根据给编辑页赋值
+    /**
+     * 根据给编辑页赋值
+     */
     @RequestMapping("/editUserFrom")
     public String editUserFrom(HttpServletRequest request) {
         UserVO userVO = (UserVO) request.getAttribute("userByID");
         request.setAttribute("userEdit", userVO);
         return "user/userEdit";
-
     }
 
-    // 保存编辑值
+    /**
+     * 保存编辑值
+     */
     @RequestMapping("/saveUser")
     public String saveUser(UserPO user) {
         userService.updateUser(user);
         return "redirect:/selectUser";
-
     }
 
 }

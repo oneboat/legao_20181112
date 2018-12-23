@@ -80,7 +80,7 @@
         } else if (follow_content.trim().length == 0) {
             $("#error").text("*请输入跟进内容");
         } else {
-            $("#followAddform").attr("action", "saveClassRoom");
+            $("#followAddform").attr("action", "insertFollow");
             $("#followAddform").submit();
         }
 

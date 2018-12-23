@@ -1,6 +1,5 @@
-package com.zxq.legao.entity.po;
+package com.zxq.legao.entity.vo;
 
-import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -8,7 +7,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class DatePO {
+public class DateVO {
     private Integer id;
     private Integer status;
     private String timeSection;

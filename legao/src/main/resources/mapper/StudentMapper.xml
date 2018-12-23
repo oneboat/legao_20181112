@@ -25,7 +25,7 @@
                                   legao_student.source,
                                   legao_student.importanceGrade,
                                   legao_student.teacherName,
-                                  legao_student.courseID,
+                                  legao_student.seriesID,
                                   legao_student.schoolAreaID,
                                   legao_student.followID)
         VALUES (#{nickName},
@@ -48,7 +48,7 @@
                 #{source},
                 #{importanceGrade},
                 #{teacherName},
-                #{courseID},
+                #{seriesID},
                 #{schoolAreaID},
                 #{followID});
     </insert>
@@ -81,15 +81,9 @@
             legao_student.source          = #{source},
             legao_student.importanceGrade = #{importanceGrade},
             legao_student.teacherName     = #{teacherName},
-            legao_student.courseID        = #{courseID}
-            legao_student
-            .
-            schoolAreaID =
-            #{schoolAreaID},
-            legao_student
-            .
-            followID =
-            #{followID}
+            legao_student.seriesID        = #{seriesID},
+            legao_student.schoolAreaID    = #{schoolAreaID},
+            legao_student.followID        = #{followID}
         WHERE id = #{id};
     </update>
     <select id="selectStudent"
@@ -163,7 +157,7 @@
             legao_student.source,
             legao_student.importanceGrade,
             legao_student.teacherName,
-            legao_student.courseID,
+            legao_student.seriesID,
             legao_student.schoolAreaID,
             legao_student.followID
         FROM
@@ -192,9 +186,9 @@
         <result column="source" property="source"></result>
         <result column="importanceGrade" property="importanceGrade"></result>
         <result column="teacherName" property="teacherName"></result>
-        <association property="courseID" column="courseID"
-                     select="com.zxq.legao.dao.CourseDao.selectCourseByID"
-                     javaType="com.zxq.legao.entity.vo.CourseVO"></association>
+        <association property="seriesID" column="seriesID"
+                     select="com.zxq.legao.dao.SeriesDao.selectSeriesByID"
+                     javaType="com.zxq.legao.entity.vo.SeriesVO"></association>
         <association property="schoolAreaID" column="schoolAreaID"
                      select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"
                      javaType="com.zxq.legao.entity.vo.SchoolAreaVO"></association>
@@ -223,7 +217,7 @@
         FROM
             legao_student
         where
-            courseID = #{courseID}
+            seriesID = #{seriesID}
     </select>
 
 </mapper>

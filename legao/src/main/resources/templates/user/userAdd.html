@@ -43,7 +43,7 @@
     /* 登录名不能重复 */
     $("#user_name").blur(function () {
 
-        $.ajax("/isReLoginname",// 发送请求的URL字符串。
+        $.ajax("/isReLoginName",// 发送请求的URL字符串。
             {
                 dataType: "json", // 预期服务器返回的数据类型。
                 type: "post", //  请求方式 POST或GET
@@ -80,6 +80,11 @@
         setTimeout(function () {
             $("#addInfo").text('');
         }, 5000);
+
+        /*自适应*/
+        var window_width = $(window).width();
+        var window_height = $(window).height();
+        $("#content_box").attr("width", window_width - 250 - 250);
     });
 
     /*判断状态，用户名是否为空*/

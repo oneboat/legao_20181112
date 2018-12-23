@@ -1,7 +1,15 @@
 package com.zxq.legao.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
-
+/**
+ * Description:
+ * <p>
+ * MD5加密工具类
+ * </p>
+ *
+ * @author dengzhenxiang
+ * @Date 2018/11/11 17:41
+ */
 public class MD5Util {
     private final static String salt = ConstUtil.MD5_SALT;
 

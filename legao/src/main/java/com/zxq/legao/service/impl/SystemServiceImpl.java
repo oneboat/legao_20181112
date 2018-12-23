@@ -13,7 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+/**
+ * Description:
+ * <p>
+ *     用户前端控制器
+ * </p>
+ * @author dengzhenxiang
+ * @Date 2018/11/11 17:41
+ */
 @Service
 public class SystemServiceImpl implements SystemService {
     @Autowired

@@ -19,44 +19,78 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Description:
+ * <p>
+ * 用户业务层
+ * </p>
+ *
+ * @author dengzhenxiang
+ * @Date 2018/11/11 17:41
+ */
 @Service
 public class UserServiceImpl implements UserService {
-    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 添加用户
+     *
+     * @param userPO
+     * @return
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertUser(UserPO userPO) {
-        if (userPO == null || userPO.toString().equals("")) {
-            logger.info("UserPO为空");
+        if (userPO == null) {
             return 0;
         } else {
-            String saltDB = (new ConstUtil()).MD5_SALT;
+            //加密
+            String saltDB = ConstUtil.MD5_SALT;
             userPO.setPassword(MD5Util.inputPassToDBpass(userPO.getPassword(), saltDB));
             return userDao.insertUser(userPO);
         }
 
     }
 
+    /**
+     * 批量删除用户
+     *
+     * @param userIDs
+     * @return
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteUser(List<Integer> userIDs) {
         return userDao.deleteUser(userIDs);
     }
 
+    /**
+     * 更新用户
+     *
+     * @param userPO
+     * @return
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateUser(UserPO userPO) {
         return userDao.updateUser(userPO);
     }
 
+    /**
+     * 分页查询用户
+     *
+     * @param page
+     * @param userPO
+     * @param request
+     * @return
+     */
     @Override
     public String selectUser(Integer page, UserPO userPO, HttpServletRequest request) {
         //模糊查询保留值
         if (userPO != null) {
-            if (userPO.getUsername() != null || userPO.getStatus() != null)
-            { request.setAttribute("blurUser", userPO);}
+            request.setAttribute("blurUser", userPO);
         }
         if (page == null) {
             page = 0;
@@ -69,11 +103,15 @@ public class UserServiceImpl implements UserService {
         return "user/userList";
     }
 
-
+    /**
+     * 查找用户名
+     *
+     * @param userPO
+     * @return
+     */
     @Override
     public List<UserVO> findUsername(UserPO userPO) {
-        if (userPO == null || userPO.toString().equals("")) {
-            logger.info("UserPO为空");
+        if (userPO == null) {
             return null;
         } else {
             return userDao.findUsername(userPO);
@@ -81,6 +119,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * 判断是否删除正在登录的用户（自己）
+     *
+     * @param caption
+     * @param userID
+     * @return
+     */
     @Override
     public boolean isDeleteItself(Integer[] caption, Integer userID) {
         boolean flag = false;
@@ -92,28 +137,51 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
+    /**
+     * 根据用户id查找用户
+     *
+     * @param userID
+     * @return
+     */
     @Override
     public UserVO selectUserByID(Integer userID) {
         return userDao.selectUserByID(userID);
     }
 
+    /**
+     * 根据用户id查找用户选择展示的学生字段
+     *
+     * @param userID
+     * @return
+     */
     @Override
     public UserVO selectFieldsByUserID(Integer userID) {
         return userDao.selectFieldsByUserID(userID);
     }
 
+    /**
+     * 根据用户id查找用户选择展示的员工字段
+     *
+     * @param userID
+     * @return
+     */
     @Override
     public UserVO selectEmployFieldsByUserID(Integer userID) {
         return userDao.selectEmployFieldsByUserID(userID);
     }
 
+    /**
+     * 根据用户名和登录密码查找是否存在该用户
+     *
+     * @param userPO
+     * @return
+     */
     @Override
     public UserVO selectUserByNameAndPass(UserPO userPO) {
-        if (userPO == null || userPO.toString().equals("")) {
-            logger.info("UserPO为空");
+        if (userPO == null) {
             return null;
         } else {
-            String saltDB = (new ConstUtil()).MD5_SALT;
+            String saltDB = ConstUtil.MD5_SALT;
             userPO.setPassword(MD5Util.inputPassToDBpass(userPO.getPassword(), saltDB));
             return userDao.selectUserByNameAndPass(userPO);
         }

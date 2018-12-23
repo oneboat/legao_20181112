@@ -6,8 +6,16 @@ import com.zxq.legao.entity.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+/**
+ * Description:
+ * <p>
+ *     常量类
+ * </p>
+ * @author dengzhenxiang
+ * @Date 2018/11/11 17:41
+ */
 public interface UserService {
+
     int insertUser(UserPO userPO);
 
     int deleteUser(List<Integer> userIDs);
@@ -25,7 +33,6 @@ public interface UserService {
     UserVO selectFieldsByUserID(Integer userID);
 
     UserVO selectEmployFieldsByUserID(Integer userID);
-
 
     UserVO selectUserByNameAndPass(UserPO user);
 

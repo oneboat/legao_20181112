@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>userList</title>
+    <title>dateList</title>
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
     <link href="css/paging.css" type="text/css" rel="stylesheet"/>
@@ -12,10 +12,10 @@
     </style>
 </head>
 <body>
-<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;" id="content_box">
+<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;height:700px;" id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
-    当前位置：用户管理&nbsp;&gt;&nbsp;用户查询
+    当前位置：系统设置&nbsp;&gt;&nbsp;时间设置
 
     <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
             class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
@@ -23,39 +23,43 @@
             class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
 
     <hr/>
-    <form action="" id="userform">
+    <form action="" id="dateform">
 
-        用户名：<input name="username" id="username" style="height: 35px;" class="inputCss"
-                   th:value="${blurUser}==null? '':${blurUser.username}"/>&nbsp;&nbsp;
-        用户状态：<select name="status" id="status" style="height: 35px;" class="inputCss"
-                     th:value="${blurUser}==null? '':${blurUser.status} ">
-        <option value="">----全部----</option>
-        <option value="1" th:selected="${blurUser}==null? '':(${blurUser.status}==1?true:false)">超级管理员</option>
-        <option value="2" th:selected="${blurUser}==null? '':(${blurUser.status}==2?true:false)">普通用户</option>
-    </select>&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="button" value="搜索" class="btn btn-success" id="selectUser"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropUser"/>
+        时间段：<select name="timeSection" id="timeSection" style="height: 35px;" class="inputCss"
+                   th:value="${blurDate}==null? '':${blurDate.timeSection}">
+        <option value="" th:selected="${blurDate}==null? true:false">----全部----</option>
+        <option th:value="${dates.timeSection}" th:selected="${blurDate}==null? false:(${blurDate.timeSection}==${dates.timeSection}?true:false)" th:each="dates:${application.allDate}">[[${dates.timeSection}]]</option>
+
+    </select>&nbsp;&nbsp;
+
+        备注：<input name="remark" id="remark" style="height: 35px;" class="inputCss"
+                   th:value="${blurDate}==null? '':${blurDate.remark}"/>&nbsp;&nbsp;
+        <input type="button" value="搜索" class="btn btn-success" id="selectDate"/>&nbsp;
+        <input type="button" class="btn btn-danger" value="删除" id="dropDate"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped" style="text-align: center;"
-               id="user_tab">
+               id="date_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
-                <th>登录名</th>
+                <th>时间段</th>
                 <th>状态</th>
-                <th>创建时间</th>
+                <th>备注</th>
                 <th>操作</th>
             </tr>
-            <tr th:each="user:${userVOList}">
+            <tr th:each="date:${dateVOList}">
                 <td><input type="checkbox" name="caption"
-                           th:id="'box_'+${user.id}" th:value="${user.id}"/></td>
-                <td>[[${user.username}]]</td>
-                <td th:if="${user.status}==1">超级管理员</td>
-                <td th:if="${user.status}==2">普通用户</td>
-                <td>
-                    <div th:text="${#dates.format(user.createDate,'yyyy年MM月dd日 HH时mm分ss秒')}"></div>
+                           th:id="'box_'+${date.id}" th:value="${date.id}"/></td>
+                <td>[[${date.timeSection}]]</td>
+                <td th:if="${date.status}==1">
+                    <span class="label label-success">启用中</span></td>
+                <td th:if="${date.status}==2">
+                    <span class="label label-default">停用</span> </td>
+                <td>[[${date.remark}]]</td>
+                <td><a th:href="'editDate?dateId='+${date.id}"><span
+                        class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="dateAdd"><span class="label label-default">添加</span></a>
                 </td>
-                <td><a th:href="'editUser?userId='+${user.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>
 
@@ -64,49 +68,42 @@
     <div class="box" id="box"></div>
     <!--添加表单提交标志-->
     <form id="pageForm" style="display: none">
-        <input name="username" th:value="${blurUser}==null? '':${blurUser.username}"/>&nbsp;&nbsp;
-        <input name="status" th:value="${blurUser}==null? '':${blurUser.status} "/>
+        <input name="timeSection" th:value="${blurDate}==null? '':${blurDate.timeSection}"/>&nbsp;&nbsp;
+        <input name="remark" th:value="${blurDate}==null? '':${blurDate.remark}"/>&nbsp;&nbsp;
         <input type="text" id="pages" name="page"/>
 
         <input type="button" id="btn" value="tijiao"/>
         <!--传入分页的参数-->
-        <input type="text" id="actionName" value="selectUser"/>
+        <input type="text" id="actionName" value="selectDate"/>
     </form>
 
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/paging.js" type="application/javascript"></script>
-    <script src="js/layer.js"></script>
     <script type="text/javascript" th:inline="javascript">
+
         $(function () {
-            //不能删除正在登陆的用户
-            var isDeleteItself = [[${isDeleteItself}]];
-            if (isDeleteItself) {
-                alert("不能删除正在登录的用户");
-            }
             //表头元素居中
             $("th").css("text-align", "center");
             var window_width = $(window).width();
             var window_height = $(window).height();
-            $("#content_box").attr("width", window_width - 250 - 240);
-            $("#content_box").attr("height", window_height-110);
+            $("#content_box").attr("width", window_width - 250 - 250);
 
         })
         /*提交查询*/
-        $("#selectUser").click(function () {
-            $("#userform").attr("action", "selectUser");
-            $("#userform").submit();
+        $("#selectDate").click(function () {
+            $("#dateform").attr("action", "selectDate");
+            $("#dateform").submit();
         });
         /*提交删除*/
-        $("#dropUser").click(function () {
+        $("#dropDate").click(function () {
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
-                alert("请选择你要删除的用户");
-                layer.msg("请选择你要删除的用户");
+                alert("请选择你要删除的时间");
             } else {
-                if (confirm("确定要删除该用户吗？")) {
-                    $("#userform").attr("action", "deleteUsers");
-                    $("#userform").submit();
+                if (confirm("确定要删除该时间吗？")) {
+                    $("#dateform").attr("action", "deleteDates");
+                    $("#dateform").submit();
                 }
             }
 

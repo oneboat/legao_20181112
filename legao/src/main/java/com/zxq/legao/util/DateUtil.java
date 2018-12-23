@@ -3,7 +3,23 @@ package com.zxq.legao.util;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Description:
+ * <p>
+ * 日期工具类
+ * </p>
+ *
+ * @author dengzhenxiang
+ * @Date 2018/11/11 17:41
+ */
 public class DateUtil {
+
+    /**
+     * 更加日期计算年龄
+     *
+     * @param date
+     * @return
+     */
     public static String getAge(Date date) {
         Long currentTime = System.currentTimeMillis();
         if ((currentTime - date.getTime()) <= 0 || date == null) {
