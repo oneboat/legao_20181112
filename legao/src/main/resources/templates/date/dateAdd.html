@@ -16,7 +16,9 @@
     <div id="addInfo"></div>
     <div id="error" style="color:#FF0000;font-size:14px ;height: 20px;"></div>
     <form id="dateAddform">
-        时间：<input type="text" name="timeSection" class="inputCss" style="width:205px;" placeholder="请输入需要设置的时间段"
+        时间：<input type="text" name="timeSection1" class="inputCss" style="width:100px;" placeholder="请输入需要设置的时间段"
+                  id="date_timeSection1"/>&nbsp;&nbsp;至
+        <input type="text" name="timeSection" class="inputCss" style="width:100px;" placeholder="请输入需要设置的时间段"
                   id="date_timeSection"/>&nbsp;&nbsp;&nbsp;&nbsp;
 
         状态: <select name="status" id="date_status" style="height: 35px;" class="inputCss">
@@ -47,7 +49,15 @@
         elem: '#date_timeSection'
         ,theme: '#8D48F9'//指定元素
         , trigger: 'click',
-        type: 'time'
+        type: 'time',
+        format: 'HH:mm'
+    });
+    laydate.render({
+        elem: '#date_timeSection1'
+        ,theme: '#8D48F9'//指定元素
+        , trigger: 'click',
+        type: 'time',
+        format: 'HH:mm'
     });
     /* type */
     $(function () {
@@ -65,13 +75,16 @@
     /*判断状态，时间名是否为空*/
     $("#btn").click(function () {
         var date_timeSection = $("#date_timeSection").val();
+        var date_timeSection1 = $("#date_timeSection1").val();
         var date_status = $("#date_status").val();
         var date_remark = $("#date_remark").val();
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
 
         if (date_timeSection.trim().length == 0) {
             $("#error").text("*请输入时间段");
-        } else if (date_status.trim().length == 0) {
+        } else if (date_timeSection1.trim().length == 0) {
+            $("#error").text("*该请输入时间段");
+        }else if (date_status.trim().length == 0) {
             $("#error").text("*该请输入时间状态");
         } else if (date_remark.trim().length == 0) {
             $("#error").text("*请输入备注");

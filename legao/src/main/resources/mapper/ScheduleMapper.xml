@@ -4,19 +4,19 @@
     <insert id="insertSchedule" parameterType="com.zxq.legao.entity.po.SchedulePO">
         INSERT INTO legao_schedule(legao_schedule.schoolAreaID,
                                   legao_schedule.`dateID`,
-                                  legao_schedule.teacherName,
                                   legao_schedule.courseID,
-                                  legao_schedule.classRoomID,
-                                  legao_schedule.studentName,
-                                   legao_schedule.className
+                                  legao_schedule.classroomID,
+                                  legao_schedule.courseDate,
+                                   legao_schedule.teacherName,
+                                   legao_schedule.courseWeek
         )
         VALUES (#{schoolAreaID},
                 #{dateID},
-                #{teacherName},
                 #{courseID},
-                #{classRoomID},
-                #{studentName},
-                #{className});
+                #{classroomID},
+                #{courseDate},
+                #{teacherName},
+                #{courseWeek});
     </insert>
     <delete id="deleteSchedule" parameterType="java.lang.Integer">
         DELETE FROM legao_schedule WHERE id = #{id};
@@ -27,11 +27,11 @@
         SET
             schoolAreaID = #{schoolAreaID},
             dateID       = #{dateID},
-            teacherName  = #{teacherName},
-            courseID     = #{courseID},
+            courseID  = #{courseID},
             classRoomID  = #{classRoomID},
-            studentName  = #{studentName},
-            className = #{className}
+            courseDate  = #{courseDate},
+            teacherName = #{teacherName},
+            courseWeek = #{courseWeek}
         WHERE id = #{id};
     </update>
     <select id="selectSchedule"
@@ -42,16 +42,15 @@
         legao_schedule.schoolAreaID,
         legao_schedule.dateID,
         legao_schedule.courseID,
-        legao_schedule.classRoomID,
-        legao_schedule.className,
+        legao_schedule.classroomID,
+        legao_schedule.courseDate,
         legao_schedule.teacherName,
-        legao_schedule.studentName
+        legao_schedule.courseWeek
         FROM
         legao_schedule
+
+
         <where>
-            <if test="className!=null and className!=''">
-                and className = #{className}
-            </if>
             <if test="courseID!=null and courseID!=''">
                 and courseID = #{courseID}
             </if>
@@ -61,21 +60,26 @@
             <if test="teacherName!=null and teacherName!=''">
                 and teacherName = #{teacherName}
             </if>
+            <if test="schoolAreaID!=null and schoolAreaID!=''">
+                and schoolAreaID = #{schoolAreaID}
+            </if>
+            <if test="courseDate!=null and courseDate!=''">
+                and courseDate = #{courseDate}
+            </if>
         </where>
 
     </select>
     <select id="selectScheduleByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.ScheduleVO"
             resultMap="select_scheduleMap">
-
         SELECT
             legao_schedule.id,
             legao_schedule.schoolAreaID,
             legao_schedule.dateID,
             legao_schedule.courseID,
-            legao_schedule.classRoomID,
-            legao_schedule.className,
+            legao_schedule.classroomID,
+            legao_schedule.courseDate,
             legao_schedule.teacherName,
-            legao_schedule.studentName
+            legao_schedule.courseWeek
         FROM
             legao_schedule
 
@@ -83,9 +87,8 @@
     </select>
     <resultMap id="select_scheduleMap" type="com.zxq.legao.entity.vo.ScheduleVO">
         <id column="id" property="id"></id>
-        <result column="className" property="className"></result>
         <result column="teacherName" property="teacherName"></result>
-        <result column="studentName" property="studentName"></result>
+        <result column="courseWeek" property="courseWeek"></result>
         <association property="dateID" column="dateID"
                      select="com.zxq.legao.dao.DateDao.selectDateByID"
                      javaType="com.zxq.legao.entity.po.DatePO"></association>

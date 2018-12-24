@@ -22,7 +22,7 @@ public interface ScheduleService {
 
     int updateSchedule(SchedulePO schedulePO);
 
-    String selectSchedule(Integer page, SchedulePO schedulePO, HttpServletRequest request);
+    String selectSchedule( SchedulePO schedulePO, HttpServletRequest request);
 
     ScheduleVO selectScheduleByID(Integer scheduleID);
 

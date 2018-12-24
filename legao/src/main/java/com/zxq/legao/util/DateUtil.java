@@ -40,4 +40,16 @@ public class DateUtil {
         return age;
 
     }
+
+    /**
+     *  计算星期
+     * @param date
+     * @return
+     */
+    public static int getWeek(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int week = calendar.get(Calendar.DAY_OF_WEEK);
+        return week;
+    }
 }

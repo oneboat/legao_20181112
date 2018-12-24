@@ -12,5 +12,6 @@ public class DatePO {
     private Integer id;
     private Integer status;
     private String timeSection;
+    private String timeSection1;
     private String remark;
 }

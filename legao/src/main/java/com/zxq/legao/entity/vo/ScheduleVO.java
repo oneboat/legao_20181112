@@ -6,20 +6,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScheduleVO {
     private  Integer id;
     private  SchoolAreaVO schoolArea;
-    /**
-     * Date实体只有po展示部分，没有前台vo
-     */
-    private  DatePO  datePO;
+    private  DateVO  date;
+    private CourseVO course;
+    private ClassRoomVO classroom;
+    private List<ScheduleVO> student;
+    private Date courseDate;
     private  String teacherName;
-    private CourseVO courseVO;
-    private ClassRoomVO classRoomVO;
-    private  String studentNameVO;
-    private String className;
-
+    private String courseWeek;
 }

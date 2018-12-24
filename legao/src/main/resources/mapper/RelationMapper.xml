@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxq.legao.dao.RelationDao">
+    <insert id="insertRelation" parameterType="com.zxq.legao.entity.po.RelationPO">
+        INSERT INTO legao_relation(legao_relation.id,
+                                   legao_relation.`scheduleID`,
+                                   legao_relation.studentID,
+                                   legao_relation.signInStatus
+        )
+        VALUES (#{id},
+                #{scheduleID},
+                #{studentID},
+                #{signInStatus});
+    </insert>
+    <delete id="deleteRelation" parameterType="java.lang.Integer">
+        DELETE FROM legao_relation WHERE id = #{id};
+
+    </delete>
+    <update id="updateRelation" parameterType="com.zxq.legao.entity.po.RelationPO">
+        UPDATE legao_relation
+        SET
+            id = #{id},
+            scheduleID       = #{scheduleID},
+            studentID  = #{studentID},
+            signInStatus     = #{signInStatus}
+        WHERE id = #{id};
+    </update>
+    <select id="selectRelation"
+            resultType="com.zxq.legao.entity.vo.RelationVO" resultMap="select_relationMap">
+
+        SELECT
+        legao_relation.id,
+        legao_relation.scheduleID,
+        legao_relation.studentID,
+        legao_relation.signInStatus
+        FROM
+        legao_relation
+        <where>
+            <if test="studentID!=null and studentID!=''">
+                and studentID = #{studentID}
+            </if>
+
+        </where>
+
+    </select>
+    <select id="selectRelationByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.RelationVO"
+            resultMap="select_relationMap">
+        SELECT
+            legao_relation.id,
+            legao_relation.scheduleID,
+            legao_relation.studentID,
+            legao_relation.signInStatus
+        FROM
+            legao_relation
+        WHERE id = #{id}
+    </select>
+    <resultMap id="select_relationMap" type="com.zxq.legao.entity.vo.RelationVO">
+        <id column="id" property="id"></id>
+        <result column="signInStatus" property="signInStatus"></result>
+        <association property="scheduleID" column="scheduleID"
+                     select="com.zxq.legao.dao.ScheduleDao.selectScheduleByID"
+                     javaType="com.zxq.legao.entity.vo.SchoolAreaVO"></association>
+        <association property="studentID" column="studentID"
+                     select="com.zxq.legao.dao.StudentDao.selectStudentByID"
+                     javaType="com.zxq.legao.entity.vo.StudentVO"></association>
+    </resultMap>
+
+</mapper>

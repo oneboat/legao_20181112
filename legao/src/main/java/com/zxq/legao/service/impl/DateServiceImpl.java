@@ -29,6 +29,10 @@ public class DateServiceImpl implements DateService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertDate(DatePO datePO) {
+        String part1 = datePO.getTimeSection1();
+        String part2 = datePO.getTimeSection();
+        String timeSection = part1 +" - "+ part2;
+        datePO.setTimeSection(timeSection);
         return dateDao.insertDate(datePO);
     }
 
