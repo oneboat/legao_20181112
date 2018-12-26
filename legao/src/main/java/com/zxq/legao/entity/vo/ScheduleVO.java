@@ -22,4 +22,6 @@ public class ScheduleVO {
     private Date courseDate;
     private  String teacherName;
     private String courseWeek;
+    private String weekOfYear;
+
 }

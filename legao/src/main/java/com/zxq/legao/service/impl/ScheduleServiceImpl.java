@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -29,8 +30,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Transactional(rollbackFor = Exception.class)
     public int insertSchedule(SchedulePO schedulePO) {
         //计算星期
-        int week = DateUtil.getWeek(schedulePO.getCourseDate());
-        schedulePO.setCourseWeek(String.valueOf(week));
+        List<Integer> dateList = DateUtil.getWeek(schedulePO.getCourseDate());
+        schedulePO.setCourseWeek(String.valueOf(dateList.get(0)));
+        schedulePO.setWeekOfYear(String.valueOf(dateList.get(1)));
         return scheduleDao.insertSchedule(schedulePO);
     }
 
@@ -48,7 +50,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public String selectSchedule( SchedulePO schedulePO, HttpServletRequest request) {
-
+        List<ScheduleVO> scheduleVOList = scheduleDao.selectSchedule(schedulePO);
+        request.setAttribute("scheduleVOList", scheduleVOList);
         return "schedule/scheduleList";
     }
 

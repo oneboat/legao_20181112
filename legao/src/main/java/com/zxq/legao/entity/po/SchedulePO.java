@@ -21,4 +21,6 @@ public class SchedulePO implements Serializable {
     private Date courseDate;
     private String courseWeek;
     private String teacherName;
+    private String weekOfYear;
+
 }

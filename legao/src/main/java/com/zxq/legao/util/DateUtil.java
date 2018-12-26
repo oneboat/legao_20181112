@@ -1,7 +1,10 @@
 package com.zxq.legao.util;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Description:
@@ -15,7 +18,7 @@ import java.util.Date;
 public class DateUtil {
 
     /**
-     * 更加日期计算年龄
+     * 根据日期计算年龄
      *
      * @param date
      * @return
@@ -42,14 +45,20 @@ public class DateUtil {
     }
 
     /**
-     *  计算星期
+     *  计算星期,周数
      * @param date
      * @return
      */
-    public static int getWeek(Date date){
+    public static List<Integer> getWeek(Date date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        int week = calendar.get(Calendar.DAY_OF_WEEK);
-        return week;
+        Integer week = calendar.get(Calendar.DAY_OF_WEEK);
+        Integer weekYear = calendar.get(Calendar.WEEK_OF_YEAR);
+        List<Integer> dateList = new ArrayList<>(2);
+        dateList.add(week);
+        dateList.add(weekYear);
+        return dateList;
     }
+
+
 }

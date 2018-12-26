@@ -8,7 +8,8 @@
                                   legao_schedule.classroomID,
                                   legao_schedule.courseDate,
                                    legao_schedule.teacherName,
-                                   legao_schedule.courseWeek
+                                   legao_schedule.courseWeek,
+                                   legao_schedule.weekOfYear
         )
         VALUES (#{schoolAreaID},
                 #{dateID},
@@ -16,7 +17,8 @@
                 #{classroomID},
                 #{courseDate},
                 #{teacherName},
-                #{courseWeek});
+                #{courseWeek},
+                #{weekOfYear});
     </insert>
     <delete id="deleteSchedule" parameterType="java.lang.Integer">
         DELETE FROM legao_schedule WHERE id = #{id};
@@ -28,10 +30,11 @@
             schoolAreaID = #{schoolAreaID},
             dateID       = #{dateID},
             courseID  = #{courseID},
-            classRoomID  = #{classRoomID},
+            classroomID  = #{classroomID},
             courseDate  = #{courseDate},
             teacherName = #{teacherName},
-            courseWeek = #{courseWeek}
+            courseWeek = #{courseWeek},
+            weekOfYear = #{weekOfYear}
         WHERE id = #{id};
     </update>
     <select id="selectSchedule"
@@ -45,17 +48,27 @@
         legao_schedule.classroomID,
         legao_schedule.courseDate,
         legao_schedule.teacherName,
-        legao_schedule.courseWeek
+        legao_schedule.courseWeek,
+        legao_schedule.weekOfYear
         FROM
         legao_schedule
 
 
         <where>
+            <if test="weekOfYear == null">
+                and  YEARWEEK(courseDate) = YEARWEEK(now())
+                and schoolAreaID = 1
+            </if>
+            <if test="weekOfYear != null and weekOfYear !=''">
+                and  weekOfYear = #{weekOfYear}
+                and schoolAreaID = 1
+            </if>
+
             <if test="courseID!=null and courseID!=''">
                 and courseID = #{courseID}
             </if>
-            <if test="classRoomID!=null and classRoomID!=''">
-                and classRoomID = #{classRoomID}
+            <if test="classroomID!=null and classroomID!=''">
+                and classroomID = #{classroomID}
             </if>
             <if test="teacherName!=null and teacherName!=''">
                 and teacherName = #{teacherName}
@@ -66,7 +79,12 @@
             <if test="courseDate!=null and courseDate!=''">
                 and courseDate = #{courseDate}
             </if>
+            <if test="weekOfYear!=null and weekOfYear!=''">
+                and weekOfYear = #{weekOfYear}
+            </if>
+
         </where>
+
 
     </select>
     <select id="selectScheduleByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.ScheduleVO"
@@ -79,7 +97,8 @@
             legao_schedule.classroomID,
             legao_schedule.courseDate,
             legao_schedule.teacherName,
-            legao_schedule.courseWeek
+            legao_schedule.courseWeek,
+            legao_schedule.weekOfYear
         FROM
             legao_schedule
 
@@ -89,15 +108,15 @@
         <id column="id" property="id"></id>
         <result column="teacherName" property="teacherName"></result>
         <result column="courseWeek" property="courseWeek"></result>
-        <association property="dateID" column="dateID"
+        <association property="date" column="dateID"
                      select="com.zxq.legao.dao.DateDao.selectDateByID"
                      javaType="com.zxq.legao.entity.po.DatePO"></association>
-        <association property="schoolAreaID" column="schoolAreaID"
+        <association property="schoolArea" column="schoolAreaID"
                      select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"
                      javaType="com.zxq.legao.entity.vo.SchoolAreaVO"></association>
-        <association property="courseID" column="courseID" javaType="com.zxq.legao.entity.vo.CourseVO"
+        <association property="course" column="courseID" javaType="com.zxq.legao.entity.vo.CourseVO"
                      select="com.zxq.legao.dao.CourseDao.selectCourseByID"></association>
-        <association property="classRoomID" column="classRoomID" javaType="com.zxq.legao.entity.vo.ClassRoomVO"
+        <association property="classroom" column="classroomID" javaType="com.zxq.legao.entity.vo.ClassRoomVO"
                      select="com.zxq.legao.dao.ClassRoomDao.selectClassRoomByID"></association>
     </resultMap>
 

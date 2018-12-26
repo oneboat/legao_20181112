@@ -50,6 +50,9 @@
             legao_date.timeSection
         FROM
             legao_date
+        WHERE
+            status = 1;
+
 
     </select>
 </mapper>

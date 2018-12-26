@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scheduleList</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link href="css/main.css" type="text/css" rel="stylesheet"/>
+    <link href="css/paging.css" type="text/css" rel="stylesheet"/>
+    <style>
+
+
+    </style>
+</head>
+<body>
+<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;" id="content_box">
+    <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
+    当前位置：排课管理&nbsp;&gt;&nbsp;排课查询
+
+    <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
+            class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
+    <a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span
+            class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
+
+    <hr/>
+    <!--排课表-->
+    <form action="" id="scheduleform">
+        <div class="table-responsive">
+<table class="table table-bordered" cellspacing="0" cellpadding=""  style="text-align: center;">
+    <tr ><th colspan="6">第XX周（XX月XX日—XX月XX日） 排课表</th></tr>
+    <tr><th>第几周 课程表</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr>
+    <tr th:each="timeSection:${application.allDate}">
+        <td th:id="'timeSection_' + ${timeSection.id}">[[${timeSection.timeSection}]]</td>
+        <td th:id="'time_' + ${timeSection.id} + '_1'" ></td>
+        <td th:id="'time_' + ${timeSection.id} + '_2'"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_3'"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_4'"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_5'"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_6'"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_7'"></td>
+       </tr>
+
+
+</table>
+        </div>
+    </form>
+
+    <!--添加表单提交标志-->
+    <form id="pageForm" style="display: none">
+        <input name="schedulename" th:value="${blurSchedule}==null? '':${blurSchedule.schedulename}"/>&nbsp;&nbsp;
+        <input name="status" th:value="${blurSchedule}==null? '':${blurSchedule.status} "/>
+    </form>
+
+    <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+    <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
+    <script src="js/layer.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+
+            //表头元素居中
+            $("th").css("text-align", "center");
+            var window_width = $(window).width();
+            var window_height = $(window).height();
+            $("#content_box").attr("width", window_width - 250 - 240);
+            $("#content_box").attr("height", window_height-110);
+
+        })
+        /*提交查询*/
+        $("#selectSchedule").click(function () {
+            $("#scheduleform").attr("action", "selectSchedule");
+            $("#scheduleform").submit();
+        });
+        /*提交删除*/
+        $("#dropSchedule").click(function () {
+            var chex = $("input[id^='box_']:checked");
+            if (chex.length == 0) {
+                alert("请选择你要删除的用户");
+                layer.msg("请选择你要删除的用户");
+            } else {
+                if (confirm("确定要删除该用户吗？")) {
+                    $("#scheduleform").attr("action", "deleteSchedules");
+                    $("#scheduleform").submit();
+                }
+            }
+
+        });
+
+
+
+
+    </script>
+</body>
+</html>
