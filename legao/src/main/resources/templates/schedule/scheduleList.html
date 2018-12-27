@@ -31,13 +31,13 @@
     <tr><th>第几周 课程表</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr>
     <tr th:each="timeSection:${application.allDate}">
         <td th:id="'timeSection_' + ${timeSection.id}">[[${timeSection.timeSection}]]</td>
-        <td th:id="'time_' + ${timeSection.id} + '_1'" ></td>
-        <td th:id="'time_' + ${timeSection.id} + '_2'"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_3'"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_4'"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_5'"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_6'"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_7'"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_2'" class="active"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_3'" ></td>
+        <td th:id="'time_' + ${timeSection.id} + '_4'" class="warning"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_5'" ></td>
+        <td th:id="'time_' + ${timeSection.id} + '_6'" class="info"></td>
+        <td th:id="'time_' + ${timeSection.id} + '_7'" ></td>
+        <td th:id="'time_' + ${timeSection.id} + '_1'" class="success"></td>
        </tr>
 
 
@@ -56,13 +56,38 @@
     <script src="js/layer.js"></script>
     <script type="text/javascript" th:inline="javascript">
         $(function () {
-
             //表头元素居中
             $("th").css("text-align", "center");
             var window_width = $(window).width();
             var window_height = $(window).height();
             $("#content_box").attr("width", window_width - 250 - 240);
             $("#content_box").attr("height", window_height-110);
+            //获取排课信息
+            var tds = $("td[id^='time_']");
+            var scheduleList = [[${scheduleVOList}]];
+            var position,positionID,positionX,positionY;
+            for (var i = 0; i < scheduleList.length; i++) {
+                for (var j =0;j<tds.length;j++){
+                    positionID = $(tds[j]).attr("id")
+                    position = positionID.split("_");
+                    positionX = position[1];
+                    positionY = position[2];
+                    if ((scheduleList[i].date.id == positionX) && (scheduleList[i].courseWeek == positionY)){
+                        $("#"+positionID).append(
+
+                            "课程："+scheduleList[i].course.name+" "
+                            +
+                            "年龄段："+scheduleList[i].course.ageArea+" "
+                            +
+                            "课室："+scheduleList[i].classroom.name+" "
+                            +
+                            "老师："+scheduleList[i].teacherName+" "
+                            +"<br/><br/>");
+                    }
+                }
+                // console.log(scheduleList[0]);
+                // console.log(scheduleList[0].classroom.name)
+            }
 
         })
         /*提交查询*/
