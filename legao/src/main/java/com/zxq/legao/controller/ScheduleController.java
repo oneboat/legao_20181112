@@ -36,13 +36,13 @@ public class ScheduleController {
         return "schedule/scheduleAdd";
     }
 
-    //查询跟进人
+    //查询排课人
     @RequestMapping("/selectSchedule")
     public String selectSchedule(SchedulePO SchedulePO, HttpServletRequest request, Integer page) {
         return scheduleService.selectSchedule(SchedulePO, request);
     }
 
-    // 添加跟进人
+    // 添加排课人
     @RequestMapping("/insertSchedule")
     public String insertSchedule(SchedulePO schedule, HttpServletRequest request) {
         if (scheduleService.insertSchedule(schedule) > 0) {
@@ -53,40 +53,40 @@ public class ScheduleController {
         return "schedule/scheduleAdd";
     }
 
-//    // 删除跟进人
-//    @RequestMapping("/deleteSchedules")
-//    public String deleteSchedules(Integer[] caption, HttpServletRequest request) {
-//
-//        ScheduleService.deleteSchedule(Arrays.asList(caption));
-//
-//        return "forward:/selectSchedule";
-//
-//
-//    }
-//
-//    // 根据id查找跟进人
-//    @RequestMapping("/editSchedule")
-//    public String editSchedule(@RequestParam("ScheduleId") Integer ScheduleId, HttpServletRequest request) {
-//        ScheduleVO ScheduleVO = ScheduleService.selectScheduleByID(ScheduleId);
-//        request.setAttribute("ScheduleByID", ScheduleVO);
-//        return "forward:/editScheduleFrom";
-//
-//    }
-//
-//    // 根据给编辑页赋值
-//    @RequestMapping("/editScheduleFrom")
-//    public String editScheduleFrom(HttpServletRequest request) {
-//        ScheduleVO ScheduleVO = (ScheduleVO) request.getAttribute("ScheduleByID");
-//        request.setAttribute("ScheduleEdit", ScheduleVO);
-//        return "Schedule/ScheduleEdit";
-//
-//    }
-//
-//    // 保存编辑值
-//    @RequestMapping("/saveSchedule")
-//    public String saveSchedule(SchedulePO Schedule) {
-//        ScheduleService.updateSchedule(Schedule);
-//        return "redirect:/selectSchedule";
-//    }
+    // 删除排课
+    @RequestMapping("/deleteSchedules")
+    public String deleteSchedules(Integer[] caption, HttpServletRequest request) {
+
+        scheduleService.deleteSchedule(Arrays.asList(caption));
+
+        return "forward:/selectSchedule";
+
+
+    }
+
+    // 根据id查找排课人
+    @RequestMapping("/editSchedule")
+    public String editSchedule(@RequestParam("scheduleId") Integer scheduleId, HttpServletRequest request) {
+        ScheduleVO scheduleVO = scheduleService.selectScheduleByID(scheduleId);
+        request.setAttribute("scheduleByID", scheduleVO);
+        return "forward:/editScheduleFrom";
+
+    }
+
+    // 根据给编辑页赋值
+    @RequestMapping("/editScheduleFrom")
+    public String editScheduleFrom(HttpServletRequest request) {
+        ScheduleVO scheduleVO = (ScheduleVO) request.getAttribute("scheduleByID");
+        request.setAttribute("scheduleEdit", scheduleVO);
+        return "Schedule/ScheduleEdit";
+
+    }
+
+    // 保存编辑值
+    @RequestMapping("/saveSchedule")
+    public String saveSchedule(SchedulePO Schedule) {
+        scheduleService.updateSchedule(Schedule);
+        return "redirect:/selectSchedule";
+    }
 }
 

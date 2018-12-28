@@ -1,7 +1,9 @@
 package com.zxq.legao.controller;
 
 import com.zxq.legao.entity.po.FollowPO;
+import com.zxq.legao.entity.po.SchoolAreaPO;
 import com.zxq.legao.entity.vo.FollowVO;
+import com.zxq.legao.entity.vo.SchoolAreaVO;
 import com.zxq.legao.service.FollowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
@@ -19,21 +22,30 @@ public class FollowController {
     @Autowired
     private FollowService followService;
 
-    // 跳转到followAdd
+    /**
+     * 跳转到followAdd
+      */
+
     @RequestMapping("/followAdd")
     public String jumpFollowAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
         return "follow/followAdd";
     }
 
-    //查询跟进人
+    /**
+     * 查询跟进人
+     */
+
     @RequestMapping("/selectFollow")
     public String selectFollow(FollowPO followPO, HttpServletRequest request, Integer page) {
 
         return followService.selectFollow(page, followPO, request);
     }
 
-    // 添加跟进人
+    /**
+     * 添加跟进人
+      */
+
     @RequestMapping("/insertFollow")
     public String insertFollow(FollowPO follow, HttpServletRequest request) {
         if (followService.insertFollow(follow) > 0) {
@@ -41,21 +53,32 @@ public class FollowController {
         } else {
             request.setAttribute("type", "no");
         }
+        ServletContext servletContext = request.getServletContext();
+        List<FollowPO> allFollow = followService.findAllFollowName();
+        servletContext.setAttribute("allFollow",allFollow);
         return "follow/followAdd";
     }
 
-    // 删除跟进人
+    /**
+     * 删除跟进人
+      */
+
     @RequestMapping("/deleteFollows")
     public String deleteFollows(Integer[] caption, HttpServletRequest request) {
 
         followService.deleteFollow(Arrays.asList(caption));
-
+        ServletContext servletContext = request.getServletContext();
+        List<FollowPO> allFollow = followService.findAllFollowName();
+        servletContext.setAttribute("allFollow",allFollow);
         return "forward:/selectFollow";
 
 
     }
 
-    // 根据id查找跟进人
+    /**
+     * 根据id查找跟进人
+      */
+
     @RequestMapping("/editFollow")
     public String editFollow(@RequestParam("followId") Integer followId, HttpServletRequest request) {
         FollowPO followPO = followService.selectFollowByID(followId);
@@ -64,7 +87,10 @@ public class FollowController {
 
     }
 
-    // 根据给编辑页赋值
+    /**
+     * 根据给编辑页赋值
+      */
+
     @RequestMapping("/editFollowFrom")
     public String editFollowFrom(HttpServletRequest request) {
         FollowPO followPO = (FollowPO) request.getAttribute("followByID");
@@ -73,10 +99,16 @@ public class FollowController {
 
     }
 
-    // 保存编辑值
+    /**
+     * 保存编辑值
+      */
+
     @RequestMapping("/saveFollow")
-    public String saveFollow(FollowPO follow) {
+    public String saveFollow(FollowPO follow,HttpServletRequest request) {
         followService.updateFollow(follow);
+        ServletContext servletContext = request.getServletContext();
+        List<FollowPO> allFollow = followService.findAllFollowName();
+        servletContext.setAttribute("allFollow",allFollow);
         return "redirect:/selectFollow";
 
     }

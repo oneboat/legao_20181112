@@ -25,21 +25,37 @@
     <hr/>
     <!--排课表-->
     <form action="" id="scheduleform">
+        校区： <select class="inputCss" id="schoolArea_id" name="schoolAreaID">
+        <option value="">--请选择校区--</option>
+        <option th:value="${schoolArea.id}" th:each="schoolArea:${application.allSchoolArea}">
+            [[${schoolArea.name}]]
+        </option>
+
+    </select>&nbsp;&nbsp;
+        周数：<select class="inputCss"  name="weekOfYear">
+        <option value="">--请选择课程所在周--</option>
+        <option th:value="${schedule.weekOfYear}" th:each="schedule:${application.allWeekOfYear}">
+            [[${schedule.weekOfYear}]]
+        </option>
+    </select>
+        <input type="button" value="搜索" class="btn btn-success" id="selectSchedule"/>&nbsp;
+        <input type="button" class="btn btn-danger" value="删除" id="dropSchedule"/>
+
+
         <div class="table-responsive">
+            <div style="text-align: center"><h3>第[[${dateVO.weekOfYear}]]周（[[${dateVO.startWeekDate}]]—[[${dateVO.endWeekDate}]]） 排课表</h3></div>
 <table class="table table-bordered" cellspacing="0" cellpadding=""  style="text-align: center;">
-    <tr ><th colspan="6">第XX周（XX月XX日—XX月XX日） 排课表</th></tr>
-    <tr><th>第几周 课程表</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr>
+    <tr><th>时间段</th><th class="active">星期一</th><th >星期二</th><th class="warning">星期三</th><th >星期四</th><th class="info">星期五</th><th>星期六</th><th class="success">星期日</th></tr>
     <tr th:each="timeSection:${application.allDate}">
         <td th:id="'timeSection_' + ${timeSection.id}">[[${timeSection.timeSection}]]</td>
-        <td th:id="'time_' + ${timeSection.id} + '_2'" class="active"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_3'" ></td>
-        <td th:id="'time_' + ${timeSection.id} + '_4'" class="warning"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_5'" ></td>
-        <td th:id="'time_' + ${timeSection.id} + '_6'" class="info"></td>
-        <td th:id="'time_' + ${timeSection.id} + '_7'" ></td>
-        <td th:id="'time_' + ${timeSection.id} + '_1'" class="success"></td>
+        <td  class="active" ><div th:id="'time_' + ${timeSection.id} + '_2'"></div></td>
+        <td ><div th:id="'time_' + ${timeSection.id} + '_3'" ></div></td>
+        <td  class="warning"><div th:id="'time_' + ${timeSection.id} + '_4'"></div></td>
+        <td ><div th:id="'time_' + ${timeSection.id} + '_5'" ></div></td>
+        <td  class="info"><div th:id="'time_' + ${timeSection.id} + '_6'"></div></td>
+        <td  ><div th:id="'time_' + ${timeSection.id} + '_7'"></div></td>
+        <td  class="success"><div th:id="'time_' + ${timeSection.id} + '_1'"></div></td>
        </tr>
-
 
 </table>
         </div>
@@ -63,7 +79,7 @@
             $("#content_box").attr("width", window_width - 250 - 240);
             $("#content_box").attr("height", window_height-110);
             //获取排课信息
-            var tds = $("td[id^='time_']");
+            var tds = $("div[id^='time_']");
             var scheduleList = [[${scheduleVOList}]];
             var position,positionID,positionX,positionY;
             for (var i = 0; i < scheduleList.length; i++) {
@@ -72,21 +88,21 @@
                     position = positionID.split("_");
                     positionX = position[1];
                     positionY = position[2];
+                    //和时间段的id和星期的id比对，一样则填入
                     if ((scheduleList[i].date.id == positionX) && (scheduleList[i].courseWeek == positionY)){
                         $("#"+positionID).append(
-
-                            "课程："+scheduleList[i].course.name+" "
+                            "<input type='checkbox'  name='caption'id='box_'"+scheduleList[i].id+"'"+" value='"+scheduleList[i].id+"'/>"+
+                            scheduleList[i].course.name+"("
                             +
-                            "年龄段："+scheduleList[i].course.ageArea+" "
+                            scheduleList[i].course.ageArea+" "
                             +
-                            "课室："+scheduleList[i].classroom.name+" "
+                            scheduleList[i].classroom.name+" "
                             +
-                            "老师："+scheduleList[i].teacherName+" "
-                            +"<br/><br/>");
+                            "["+scheduleList[i].teacherName+"]"
+                            +") <a href='editSchedule?scheduleId="+ scheduleList[i].id +"'><span class='glyphicon glyphicon-pencil'></span></a>"+ "<br/><br/>");
                     }
                 }
-                // console.log(scheduleList[0]);
-                // console.log(scheduleList[0].classroom.name)
+
             }
 
         })
@@ -109,6 +125,7 @@
             }
 
         });
+
 
 
 

@@ -75,6 +75,7 @@ public class StudentServiceImpl implements StudentService {
         List<String> defaultStudentFieldsZH = Arrays.asList(ConstUtil.DEFAULT_STUDENT_FIELDS_ZH);
         List<String> studentFieldsDB = ConverstUtil.stringToList(fields, ConstUtil.STUDENT_FIELDS_DB);
         List<String> studentFieldsZH = ConverstUtil.stringToList(fields, ConstUtil.STUDENT_FIELDS_ZH);
+
         //page为初始页，pageSize表一页显示多少条
         PageHelper.startPage(page, ConstUtil.PAGESIZE);
         if (fields == null) {

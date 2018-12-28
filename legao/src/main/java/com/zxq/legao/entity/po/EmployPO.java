@@ -16,6 +16,7 @@ import java.util.Date;
 
 /**
  * <p>
+ *     员工
  * </p>
  *
  * @author dengzhenxiang
@@ -29,14 +30,30 @@ public class EmployPO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * id
+     */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+    /**
+     *员工姓名
+     */
     private String name;
 
+    /**
+     *员工性别
+     */
     private String sex;
 
+    /**
+     *电话
+     */
     private String telphone;
+
+    /**
+     * 生日
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
@@ -93,6 +110,9 @@ public class EmployPO implements Serializable {
      */
     private String area;
 
+    /**
+     * 状态：1表在职，2表离职，3表其他
+     */
     private Integer status;
 
 

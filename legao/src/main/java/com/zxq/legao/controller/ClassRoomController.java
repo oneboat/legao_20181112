@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
@@ -26,21 +27,27 @@ public class ClassRoomController {
     @Autowired
     private ClassRoomService classRoomService;
 
-    // 跳转到classRoomAdd
+    /**
+     *  跳转到classRoomAdd
+      */
     @RequestMapping("/classRoomAdd")
     public String jumpClassRoomAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
         return "classRoom/classRoomAdd";
     }
 
-    //查询跟进人
+    /**
+     *  跳转到classRoomAdd
+     */
     @RequestMapping("/selectClassRoom")
     public String selectClassRoom(ClassRoomPO classRoomPO, HttpServletRequest request, Integer page) {
 
         return classRoomService.selectClassRoom(page, classRoomPO, request);
     }
 
-    // 添加跟进人
+    /**
+     *  跳转到classRoomAdd
+      */
     @RequestMapping("/insertClassRoom")
     public String insertClassRoom(ClassRoomPO classRoom, HttpServletRequest request) {
         if (classRoomService.insertClassRoom(classRoom) > 0) {
@@ -51,7 +58,9 @@ public class ClassRoomController {
         return "classRoom/classRoomAdd";
     }
 
-    // 删除跟进人
+    /**
+     *  跳转到classRoomAdd
+      */
     @RequestMapping("/deleteClassRooms")
     public String deleteClassRooms(Integer[] caption, HttpServletRequest request) {
 
@@ -62,7 +71,9 @@ public class ClassRoomController {
 
     }
 
-    // 根据id查找跟进人
+    /**
+     *  跳转到classRoomAdd
+      */
     @RequestMapping("/editClassRoom")
     public String editClassRoom(@RequestParam("classRoomId") Integer classRoomId, HttpServletRequest request) {
         ClassRoomVO classRoomVO = classRoomService.selectClassRoomByID(classRoomId);
@@ -71,7 +82,9 @@ public class ClassRoomController {
 
     }
 
-    // 根据给编辑页赋值
+    /**
+     *  跳转到classRoomAdd
+      */
     @RequestMapping("/editClassRoomFrom")
     public String editClassRoomFrom(HttpServletRequest request) {
         ClassRoomPO classRoomPO = (ClassRoomPO) request.getAttribute("classRoomByID");
@@ -80,7 +93,9 @@ public class ClassRoomController {
 
     }
 
-    // 保存编辑值
+    /**
+     *  跳转到classRoomAdd
+      */
     @RequestMapping("/saveClassRoom")
     public String saveClassRoom(ClassRoomPO classRoom) {
         classRoomService.updateClassRoom(classRoom);

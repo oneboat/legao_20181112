@@ -23,5 +23,7 @@ public class ScheduleVO {
     private  String teacherName;
     private String courseWeek;
     private String weekOfYear;
+    private SeriesVO series;
+
 
 }

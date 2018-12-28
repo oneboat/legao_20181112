@@ -3,14 +3,14 @@
 <mapper namespace="com.zxq.legao.dao.ScheduleDao">
     <insert id="insertSchedule" parameterType="com.zxq.legao.entity.po.SchedulePO">
         INSERT INTO legao_schedule(legao_schedule.schoolAreaID,
-                                  legao_schedule.`dateID`,
-                                  legao_schedule.courseID,
-                                  legao_schedule.classroomID,
-                                  legao_schedule.courseDate,
+                                   legao_schedule.`dateID`,
+                                   legao_schedule.courseID,
+                                   legao_schedule.classroomID,
+                                   legao_schedule.courseDate,
                                    legao_schedule.teacherName,
                                    legao_schedule.courseWeek,
-                                   legao_schedule.weekOfYear
-        )
+                                   legao_schedule.weekOfYear,
+                                   legao_schedule.seriesID)
         VALUES (#{schoolAreaID},
                 #{dateID},
                 #{courseID},
@@ -18,10 +18,14 @@
                 #{courseDate},
                 #{teacherName},
                 #{courseWeek},
-                #{weekOfYear});
+                #{weekOfYear},
+                #{seriesID});
     </insert>
-    <delete id="deleteSchedule" parameterType="java.lang.Integer">
-        DELETE FROM legao_schedule WHERE id = #{id};
+    <delete id="deleteSchedule" parameterType="java.util.List">
+        DELETE FROM legao_schedule WHERE id IN
+        <foreach collection="list" separator="," close=")" open="(" item="id">
+            #{id}
+        </foreach>
 
     </delete>
     <update id="updateSchedule" parameterType="com.zxq.legao.entity.po.SchedulePO">
@@ -29,12 +33,13 @@
         SET
             schoolAreaID = #{schoolAreaID},
             dateID       = #{dateID},
-            courseID  = #{courseID},
+            courseID     = #{courseID},
             classroomID  = #{classroomID},
-            courseDate  = #{courseDate},
-            teacherName = #{teacherName},
-            courseWeek = #{courseWeek},
-            weekOfYear = #{weekOfYear}
+            courseDate   = #{courseDate},
+            teacherName  = #{teacherName},
+            courseWeek   = #{courseWeek},
+            weekOfYear   = #{weekOfYear},
+            seriesID     = #{seriesID}
         WHERE id = #{id};
     </update>
     <select id="selectSchedule"
@@ -49,41 +54,28 @@
         legao_schedule.courseDate,
         legao_schedule.teacherName,
         legao_schedule.courseWeek,
-        legao_schedule.weekOfYear
+        legao_schedule.weekOfYear,
+        legao_schedule.seriesID
         FROM
         legao_schedule
 
 
         <where>
             <if test="weekOfYear == null">
-                and  YEARWEEK(courseDate) = YEARWEEK(now())
+                and YEARWEEK(courseDate) = YEARWEEK(now())
                 and schoolAreaID = 1
             </if>
             <if test="weekOfYear != null and weekOfYear !=''">
-                and  weekOfYear = #{weekOfYear}
+                and weekOfYear = #{weekOfYear}
                 and schoolAreaID = 1
             </if>
 
-            <if test="courseID!=null and courseID!=''">
-                and courseID = #{courseID}
-            </if>
-            <if test="classroomID!=null and classroomID!=''">
-                and classroomID = #{classroomID}
-            </if>
-            <if test="teacherName!=null and teacherName!=''">
-                and teacherName = #{teacherName}
-            </if>
             <if test="schoolAreaID!=null and schoolAreaID!=''">
                 and schoolAreaID = #{schoolAreaID}
             </if>
-            <if test="courseDate!=null and courseDate!=''">
-                and courseDate = #{courseDate}
-            </if>
-            <if test="weekOfYear!=null and weekOfYear!=''">
-                and weekOfYear = #{weekOfYear}
-            </if>
 
         </where>
+
 
 
     </select>
@@ -98,7 +90,8 @@
             legao_schedule.courseDate,
             legao_schedule.teacherName,
             legao_schedule.courseWeek,
-            legao_schedule.weekOfYear
+            legao_schedule.weekOfYear,
+            legao_schedule.seriesID
         FROM
             legao_schedule
 
@@ -118,6 +111,17 @@
                      select="com.zxq.legao.dao.CourseDao.selectCourseByID"></association>
         <association property="classroom" column="classroomID" javaType="com.zxq.legao.entity.vo.ClassRoomVO"
                      select="com.zxq.legao.dao.ClassRoomDao.selectClassRoomByID"></association>
+        <association property="course" column="courseID" javaType="com.zxq.legao.entity.vo.CourseVO"
+                     select="com.zxq.legao.dao.CourseDao.selectCourseByID"></association>
     </resultMap>
 
+    <!--查询所有的周数-->
+    <select id="findAllweekOfYear" resultType="com.zxq.legao.entity.vo.ScheduleVO">
+        SELECT
+            legao_schedule.weekOfYear
+        FROM
+            legao_schedule
+        group by weekOfYear
+
+    </select>
 </mapper>

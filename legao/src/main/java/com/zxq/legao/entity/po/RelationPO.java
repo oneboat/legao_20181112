@@ -5,13 +5,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
+/**
+ * Description:
+ * <p>
+ *   对应关系
+ * </p>
+ * @author dengzhenxiang
+ * @Date 2018/12/28 22:05
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class RelationPO implements Serializable {
+    private static final long serialVersionUID = 1L;
+    /**
+     * id
+     */
     private Integer id;
+
+    /**
+     * 校区id
+     */
     private Integer scheduleID;
+
+    /**
+     * 学生id
+     */
     private Integer studentID;
+
+    /**
+     * 签到状态：1准时，2迟到，3请假
+     */
     private Integer signInStatus;
 }

@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentPO implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
     private String nickName;
     private String name;
@@ -37,10 +39,12 @@ public class StudentPO implements Serializable {
     private String source;
     private Integer importanceGrade;
     private String teacherName;
-    private Integer seriesID;
+    private Integer courseID;
     private Integer schoolAreaID;
     private Integer followID;
-    //排序字段
+    /**
+     * 排序字段
+     */
     private String ifImportanceGradeOrder;
 
 

@@ -33,10 +33,10 @@
                 <td>课程：</td>
                 <td>
 
-                    <select class="inputCss" id="seriesID" name="seriesID">
-                        <option value="">--请选择课程系列--</option>
-                        <option th:value="${seriesName.id}" th:each="seriesName:${application.allSeriesName}">
-                            [[${seriesName.name}]]
+                    <select class="inputCss" id="seriesID" name="courseID">
+                        <option value="">--请选择课程--</option>
+                        <option th:value="${courseName.id}" th:each="courseName:${application.allCourseName}">
+                            [[${courseName.name}]]
                         </option>
                     </select>
                     &nbsp;&nbsp;&nbsp;&nbsp;

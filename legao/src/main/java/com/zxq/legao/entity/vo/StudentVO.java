@@ -35,7 +35,7 @@ public class StudentVO implements Serializable {
     private String source;
     private Integer importanceGrade;
     private String teacherName;
-    private SeriesVO seriesID;
+    private CourseVO course;
     private SchoolAreaVO schoolAreaID;
     private FollowPO followID;
     private String age;

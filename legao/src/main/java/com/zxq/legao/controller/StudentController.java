@@ -1,6 +1,8 @@
 package com.zxq.legao.controller;
 
+import com.zxq.legao.entity.po.FollowPO;
 import com.zxq.legao.entity.po.StudentPO;
+import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.StudentVO;
 import com.zxq.legao.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,28 +10,38 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    // 跳转到studentAdd
+    /**
+     *     跳转到studentAdd
+      */
     @RequestMapping("/studentAdd")
     public String jumpStudentAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
         return "student/studentAdd";
     }
 
-    //查询学员
+    /**
+     * 查询学员
+     */
+
     @RequestMapping("/selectStudent")
     public String selectStudent(StudentPO studentPO, HttpServletRequest request, Integer page) {
         return studentService.selectStudent(page, studentPO, request);
     }
 
-    // 添加学员
+    /**
+     * 添加学员
+      */
+
     @RequestMapping("/insertStudent")
     public String insertStudent(StudentPO student, HttpServletRequest request) {
         if (studentService.insertStudent(student) > 0) {
@@ -37,21 +49,33 @@ public class StudentController {
         } else {
             request.setAttribute("type", "no");
         }
+        ServletContext servletContext = request.getServletContext();
+        List<EmployVO> allTeacherName = studentService.selectTeacherName();
+        servletContext.setAttribute("allTeacherName", allTeacherName);
         return "student/studentAdd";
     }
 
 
-    // 删除学员
+    /**
+     * 删除学员
+      */
+
     @RequestMapping("/deleteStudents")
-    public String deleteStudents(Integer[] caption) {
+    public String deleteStudents(Integer[] caption,HttpServletRequest request) {
 
         studentService.deleteStudent(Arrays.asList(caption));
+        ServletContext servletContext = request.getServletContext();
+        List<EmployVO> allTeacherName = studentService.selectTeacherName();
+        servletContext.setAttribute("allTeacherName", allTeacherName);
         return "redirect:/selectStudent";
 
 
     }
 
-    // 根据id查找学员
+    /**
+     * 根据id查找学员
+      */
+
     @RequestMapping("/editStudent")
     public String editStudent(@RequestParam("studentId") Integer studentId, HttpServletRequest request) {
         StudentVO studentVO = studentService.selectStudentByID(studentId);
@@ -60,7 +84,10 @@ public class StudentController {
 
     }
 
-    // 根据给编辑页赋值
+    /**
+     * 根据给编辑页赋值
+      */
+
     @RequestMapping("/editStudentFrom")
     public String editStudentFrom(HttpServletRequest request) {
         StudentVO studentVO = (StudentVO) request.getAttribute("studentByID");
@@ -69,10 +96,16 @@ public class StudentController {
 
     }
 
-    // 保存编辑值
+    /**
+     * 保存编辑值
+      */
+
     @RequestMapping("/saveStudent")
-    public String saveStudent(StudentPO student) {
+    public String saveStudent(StudentPO student,HttpServletRequest request) {
         studentService.updateStudent(student);
+        ServletContext servletContext = request.getServletContext();
+        List<EmployVO> allTeacherName = studentService.selectTeacherName();
+        servletContext.setAttribute("allTeacherName", allTeacherName);
         return "redirect:/selectStudent";
 
     }

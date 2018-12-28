@@ -142,7 +142,7 @@
                 <td th:if="${student.teacherName}!=null ">[[${student.teacherName}]]</td>
                 <td th:if="${student.schoolAreaID}!=null">[[${student.schoolAreaID.name}]]</td>
                 <td th:if="${student.followID}!=null">[[${student.followID.advisor}]]</td>
-            <td th:if="${student.seriesID}!=null ">[[${student.seriesID.name}]]</td>
+            <td th:if="${student.course}!=null ">[[${student.course.name}]]</td>
 
             <span th:if="${student.age}!=null ">
             <td th:text="${student.age}"></td>

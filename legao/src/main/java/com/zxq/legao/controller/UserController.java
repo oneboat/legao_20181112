@@ -55,6 +55,9 @@ public class UserController {
     @Autowired
     private DateService dateService;
 
+    @Autowired
+    private ScheduleService scheduleService;
+
     @RequestMapping("/")
     public String view() {
         return "login";
@@ -83,6 +86,7 @@ public class UserController {
             List<CoursePO> allCourseName = courseService.findAllCourseName();
             List<SeriesVO> allSeriesName = seriesService.findAllSeriesName();
             List<DateVO> allDate = dateService.findAllDate();
+            List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("allStudentName", allStudentName);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
@@ -94,6 +98,7 @@ public class UserController {
             servletContext.setAttribute("allCourseName", allCourseName);
             servletContext.setAttribute("allSeriesName", allSeriesName);
             servletContext.setAttribute("allDate", allDate);
+            servletContext.setAttribute("allWeekOfYear", allWeekOfYear);
 
             return "main";
         }

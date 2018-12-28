@@ -18,12 +18,15 @@ import java.util.List;
 public interface ScheduleService {
     int insertSchedule(SchedulePO schedulePO);
 
-    int deleteSchedule(Integer scheduleID);
+    int deleteSchedule(List<Integer> scheduleIDs);
 
     int updateSchedule(SchedulePO schedulePO);
 
     String selectSchedule( SchedulePO schedulePO, HttpServletRequest request);
 
     ScheduleVO selectScheduleByID(Integer scheduleID);
+
+    List<ScheduleVO> findAllweekOfYear();
+
 
 }

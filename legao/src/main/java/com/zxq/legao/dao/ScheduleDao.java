@@ -17,11 +17,14 @@ import java.util.List;
 public interface ScheduleDao {
     int insertSchedule(SchedulePO schedulePO);
 
-    int deleteSchedule(Integer scheduleID);
+    int deleteSchedule(List<Integer> scheduleIDs);
 
     int updateSchedule(SchedulePO schedulePO);
 
     List<ScheduleVO> selectSchedule(SchedulePO schedulePO);
 
     ScheduleVO selectScheduleByID(Integer scheduleID);
+
+    List<ScheduleVO> findAllweekOfYear();
+
 }

@@ -51,6 +51,7 @@ public class EmployController {
         } else {
             request.setAttribute("type", "no");
         }
+
         return "employ/employAdd";
     }
 

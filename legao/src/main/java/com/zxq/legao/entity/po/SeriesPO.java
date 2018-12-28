@@ -8,6 +8,8 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 public class SeriesPO {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
     private String name;
     private String ageArea;
