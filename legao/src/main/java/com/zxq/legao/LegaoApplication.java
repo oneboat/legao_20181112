@@ -4,6 +4,14 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Description:
+ * <p>
+ *     启动类
+ * </p>
+ * @author dengzhenxiang
+ * @Date 2018/12/29 11:56
+ */
 @SpringBootApplication
 @MapperScan(basePackages = "com.zxq.legao.dao")
 public class LegaoApplication {

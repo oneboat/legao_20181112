@@ -2,8 +2,7 @@ package com.zxq.legao.dao;
 
 
 import com.zxq.legao.entity.po.JobPO;
-import com.zxq.legao.entity.po.JobPO;
-import com.zxq.legao.entity.vo.JobVO;
+
 import com.zxq.legao.entity.vo.JobVO;
 
 import java.util.List;

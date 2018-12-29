@@ -78,7 +78,7 @@ public class UserController {
             //初始化
             List<SchoolAreaVO> allSchoolArea = schoolAreaService.findAllSchoolAreaName(new SchoolAreaPO());
             List<FollowPO> allFollow = followService.findAllFollowName();
-            List<EmployVO> allTeacherName = studentService.selectTeacherName();
+            List<EmployVO> allTeacherName = employService.selectAllTeacherName();
             List<StudentVO> allStudentName = studentService.selectAllStudentName();
             List<JobVO> allJobName = jobService.selectAllJobName();
             List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();

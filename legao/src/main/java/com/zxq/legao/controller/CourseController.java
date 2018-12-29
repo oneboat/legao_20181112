@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -27,21 +29,27 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    // 跳转到courseAdd
+    /**
+     * 跳转到courseAdd
+     */
     @RequestMapping("/courseAdd")
     public String jumpCourseAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
         return "course/courseAdd";
     }
 
-    //查询课程
+    /**
+     * 查询课程
+     */
     @RequestMapping("/selectCourse")
     public String selectCourse(CoursePO coursePO, HttpServletRequest request, Integer page) {
 
         return courseService.selectCourse(page, coursePO, request);
     }
 
-    // 添加课程
+    /**
+     * 添加课程
+     */
     @RequestMapping("/insertCourse")
     public String insertCourse(CoursePO course, HttpServletRequest request) {
         if (courseService.insertCourse(course) > 0) {
@@ -49,21 +57,29 @@ public class CourseController {
         } else {
             request.setAttribute("type", "no");
         }
+        ServletContext servletContext = request.getServletContext();
+        List<CoursePO> allCourseName = courseService.findAllCourseName();
+        servletContext.setAttribute("allCourseName", allCourseName);
         return "course/courseAdd";
     }
 
-    // 删除课程
+    /**
+     * 删除课程
+     */
     @RequestMapping("/deleteCourses")
     public String deleteCourses(Integer[] caption, HttpServletRequest request) {
 
         courseService.deleteCourse(Arrays.asList(caption));
-
+        ServletContext servletContext = request.getServletContext();
+        List<CoursePO> allCourseName = courseService.findAllCourseName();
+        servletContext.setAttribute("allCourseName", allCourseName);
         return "forward:/selectCourse";
-
 
     }
 
-    // 根据id查找课程
+    /**
+     * 根据id查找课程
+     */
     @RequestMapping("/editCourse")
     public String editCourse(@RequestParam("courseId") Integer courseId, HttpServletRequest request) {
         CourseVO courseVO = courseService.selectCourseByID(courseId);
@@ -72,7 +88,9 @@ public class CourseController {
 
     }
 
-    // 根据给编辑页赋值
+    /**
+     * 根据给编辑页赋值
+     */
     @RequestMapping("/editCourseFrom")
     public String editCourseFrom(HttpServletRequest request) {
         CourseVO courseVO = (CourseVO) request.getAttribute("courseByID");
@@ -81,10 +99,15 @@ public class CourseController {
 
     }
 
-    // 保存编辑值
+    /**
+     * 保存编辑值
+     */
     @RequestMapping("/saveCourse")
-    public String saveCourse(CoursePO course) {
+    public String saveCourse(CoursePO course, HttpServletRequest request) {
         courseService.updateCourse(course);
+        ServletContext servletContext = request.getServletContext();
+        List<CoursePO> allCourseName = courseService.findAllCourseName();
+        servletContext.setAttribute("allCourseName", allCourseName);
         return "redirect:/selectCourse";
 
     }

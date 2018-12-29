@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -29,20 +31,26 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
 
-    // 跳转到ScheduleAdd
+    /**
+     * 跳转到ScheduleAdd
+     */
     @RequestMapping("/scheduleAdd")
     public String jumpScheduleAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
         return "schedule/scheduleAdd";
     }
 
-    //查询排课人
+    /**
+     * 查询排课人
+     */
     @RequestMapping("/selectSchedule")
     public String selectSchedule(SchedulePO SchedulePO, HttpServletRequest request, Integer page) {
         return scheduleService.selectSchedule(SchedulePO, request);
     }
 
-    // 添加排课人
+    /**
+     * 添加排课人
+     */
     @RequestMapping("/insertSchedule")
     public String insertSchedule(SchedulePO schedule, HttpServletRequest request) {
         if (scheduleService.insertSchedule(schedule) > 0) {
@@ -50,21 +58,31 @@ public class ScheduleController {
         } else {
             request.setAttribute("type", "no");
         }
+        List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
+        ServletContext servletContext = request.getServletContext();
+        servletContext.setAttribute("allWeekOfYear", allWeekOfYear);
+
         return "schedule/scheduleAdd";
     }
 
-    // 删除排课
+    /**
+     * 删除排课
+     */
     @RequestMapping("/deleteSchedules")
     public String deleteSchedules(Integer[] caption, HttpServletRequest request) {
 
         scheduleService.deleteSchedule(Arrays.asList(caption));
-
+        List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
+        ServletContext servletContext = request.getServletContext();
+        servletContext.setAttribute("allWeekOfYear", allWeekOfYear);
         return "forward:/selectSchedule";
 
 
     }
 
-    // 根据id查找排课人
+    /**
+     * 根据id查找排课人
+     */
     @RequestMapping("/editSchedule")
     public String editSchedule(@RequestParam("scheduleId") Integer scheduleId, HttpServletRequest request) {
         ScheduleVO scheduleVO = scheduleService.selectScheduleByID(scheduleId);
@@ -73,7 +91,9 @@ public class ScheduleController {
 
     }
 
-    // 根据给编辑页赋值
+    /**
+     * 根据给编辑页赋值
+     */
     @RequestMapping("/editScheduleFrom")
     public String editScheduleFrom(HttpServletRequest request) {
         ScheduleVO scheduleVO = (ScheduleVO) request.getAttribute("scheduleByID");
@@ -82,10 +102,15 @@ public class ScheduleController {
 
     }
 
-    // 保存编辑值
+    /**
+     * 保存编辑值
+     */
     @RequestMapping("/saveSchedule")
-    public String saveSchedule(SchedulePO Schedule) {
+    public String saveSchedule(SchedulePO Schedule, HttpServletRequest request) {
         scheduleService.updateSchedule(Schedule);
+        List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
+        ServletContext servletContext = request.getServletContext();
+        servletContext.setAttribute("allWeekOfYear", allWeekOfYear);
         return "redirect:/selectSchedule";
     }
 }

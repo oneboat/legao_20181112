@@ -2,7 +2,6 @@ package com.zxq.legao.service;
 
 
 import com.zxq.legao.entity.po.JobPO;
-import com.zxq.legao.entity.po.UserPO;
 import com.zxq.legao.entity.vo.JobVO;
 
 import javax.servlet.http.HttpServletRequest;

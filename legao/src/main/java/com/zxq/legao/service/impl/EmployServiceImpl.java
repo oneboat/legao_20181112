@@ -110,5 +110,9 @@ public class EmployServiceImpl extends ServiceImpl<EmployDao, EmployPO> implemen
         return employDao.selectAllEmploy();
     }
 
+    @Override
+    public List<EmployVO> selectAllTeacherName() {
+        return employDao.selectAllTeacherName();
+    }
 
 }

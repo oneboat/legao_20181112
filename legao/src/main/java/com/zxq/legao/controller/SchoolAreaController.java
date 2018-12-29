@@ -84,8 +84,6 @@ public class SchoolAreaController {
     public String editSchoolArea(@RequestParam("schoolAreaId") Integer schoolAreaId, HttpServletRequest request) {
         SchoolAreaVO schoolAreaVO = schoolAreaService.selectSchoolAreaByID(schoolAreaId);
         request.setAttribute("schoolAreaByID", schoolAreaVO);
-
-
         return "forward:/editSchoolAreaFrom";
 
     }

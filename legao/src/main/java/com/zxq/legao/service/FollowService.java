@@ -1,7 +1,6 @@
 package com.zxq.legao.service;
 
 import com.zxq.legao.entity.po.FollowPO;
-import com.zxq.legao.entity.vo.FollowVO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

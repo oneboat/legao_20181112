@@ -113,10 +113,6 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.selectStudentByID(studentID);
     }
 
-    @Override
-    public List<EmployVO> selectTeacherName() {
-        return studentDao.selectTeacherName();
-    }
 
     @Override
     public List<StudentVO> selectAllStudentName() {

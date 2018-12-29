@@ -15,7 +15,12 @@ public class SchoolAreaPO implements Serializable {
     private Integer id;
     private String name;
     private String address;
+
+    /**
+     * 负责人
+     */
     private String responPersonName;
+
     private String telphone;
 
 }

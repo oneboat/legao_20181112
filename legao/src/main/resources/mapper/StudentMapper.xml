@@ -196,14 +196,7 @@
                      select="com.zxq.legao.dao.FollowDao.selectFollowByID"></association>
 
     </resultMap>
-    <select id="selectTeacherName" resultType="com.zxq.legao.entity.vo.EmployVO">
-        SELECT
-            legao_employ.id,
-            legao_employ.`name`
-        FROM
-            legao_employ
-        WHERE legao_employ.jobID = 1
-    </select>
+
     <select id="selectAllStudentName" resultType="com.zxq.legao.entity.vo.StudentVO">
         SELECT
             name

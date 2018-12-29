@@ -56,4 +56,12 @@
         legao_employ
 
 </select>
+    <select id="selectAllTeacherName" resultType="com.zxq.legao.entity.vo.EmployVO">
+        SELECT
+            legao_employ.id,
+            legao_employ.`name`
+        FROM
+            legao_employ
+        WHERE legao_employ.jobID = 1
+    </select>
 </mapper>

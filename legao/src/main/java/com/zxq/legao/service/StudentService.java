@@ -1,7 +1,6 @@
 package com.zxq.legao.service;
 
 import com.zxq.legao.entity.po.StudentPO;
-import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.StudentVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +16,6 @@ public interface StudentService {
     String selectStudent(Integer page, StudentPO studentPO, HttpServletRequest request);
 
     StudentVO selectStudentByID(Integer studentID);
-
-    List<EmployVO> selectTeacherName();
 
     List<StudentVO> selectAllStudentName();
 }

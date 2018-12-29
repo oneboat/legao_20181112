@@ -1,9 +1,9 @@
 package com.zxq.legao.dao;
 
 import com.zxq.legao.entity.po.StudentPO;
-import com.zxq.legao.entity.vo.EmployVO;
+
 import com.zxq.legao.entity.vo.StudentVO;
-import org.apache.ibatis.annotations.Mapper;
+
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,8 +18,6 @@ public interface StudentDao {
     List<StudentVO> selectStudent(@Param("studentPO") StudentPO studentPO, @Param("fields") List<String> fields);
 
     StudentVO selectStudentByID(Integer studentPO);
-
-    List<EmployVO> selectTeacherName();
 
     List<StudentVO> selectAllStudentName();
 

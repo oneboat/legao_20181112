@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -28,8 +29,8 @@ public class ClassRoomController {
     private ClassRoomService classRoomService;
 
     /**
-     *  跳转到classRoomAdd
-      */
+     * 跳转到classRoomAdd
+     */
     @RequestMapping("/classRoomAdd")
     public String jumpClassRoomAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
@@ -37,7 +38,7 @@ public class ClassRoomController {
     }
 
     /**
-     *  跳转到classRoomAdd
+     * 查找教室
      */
     @RequestMapping("/selectClassRoom")
     public String selectClassRoom(ClassRoomPO classRoomPO, HttpServletRequest request, Integer page) {
@@ -46,8 +47,8 @@ public class ClassRoomController {
     }
 
     /**
-     *  跳转到classRoomAdd
-      */
+     * 添加教室
+     */
     @RequestMapping("/insertClassRoom")
     public String insertClassRoom(ClassRoomPO classRoom, HttpServletRequest request) {
         if (classRoomService.insertClassRoom(classRoom) > 0) {
@@ -55,25 +56,30 @@ public class ClassRoomController {
         } else {
             request.setAttribute("type", "no");
         }
+        ServletContext servletContext = request.getServletContext();
+        List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();
+        servletContext.setAttribute("allClassRoomName", allClassRoomName);
+
         return "classRoom/classRoomAdd";
     }
 
     /**
-     *  跳转到classRoomAdd
-      */
+     * 删除教室
+     */
     @RequestMapping("/deleteClassRooms")
     public String deleteClassRooms(Integer[] caption, HttpServletRequest request) {
-
         classRoomService.deleteClassRoom(Arrays.asList(caption));
-
+        ServletContext servletContext = request.getServletContext();
+        List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();
+        servletContext.setAttribute("allClassRoomName", allClassRoomName);
         return "forward:/selectClassRoom";
 
 
     }
 
     /**
-     *  跳转到classRoomAdd
-      */
+     * 根据教室id查找教室
+     */
     @RequestMapping("/editClassRoom")
     public String editClassRoom(@RequestParam("classRoomId") Integer classRoomId, HttpServletRequest request) {
         ClassRoomVO classRoomVO = classRoomService.selectClassRoomByID(classRoomId);
@@ -83,8 +89,8 @@ public class ClassRoomController {
     }
 
     /**
-     *  跳转到classRoomAdd
-      */
+     * 给编辑页赋值
+     */
     @RequestMapping("/editClassRoomFrom")
     public String editClassRoomFrom(HttpServletRequest request) {
         ClassRoomPO classRoomPO = (ClassRoomPO) request.getAttribute("classRoomByID");
@@ -94,11 +100,14 @@ public class ClassRoomController {
     }
 
     /**
-     *  跳转到classRoomAdd
-      */
+     * 保存编辑页信息
+     */
     @RequestMapping("/saveClassRoom")
-    public String saveClassRoom(ClassRoomPO classRoom) {
+    public String saveClassRoom(ClassRoomPO classRoom, HttpServletRequest request) {
         classRoomService.updateClassRoom(classRoom);
+        ServletContext servletContext = request.getServletContext();
+        List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();
+        servletContext.setAttribute("allClassRoomName", allClassRoomName);
         return "redirect:/selectClassRoom";
 
     }

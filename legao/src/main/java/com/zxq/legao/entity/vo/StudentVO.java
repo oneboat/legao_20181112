@@ -1,6 +1,6 @@
 package com.zxq.legao.entity.vo;
 
-import com.zxq.legao.entity.po.CoursePO;
+
 import com.zxq.legao.entity.po.FollowPO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

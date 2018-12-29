@@ -14,5 +14,8 @@ public class SeriesPO {
     private String name;
     private String ageArea;
     private String teacherTools;
+    /**
+     * 课时
+     */
     private String courseTime;
 }

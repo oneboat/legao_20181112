@@ -30,4 +30,7 @@ public interface EmployService extends IService<EmployPO> {
 
     List<EmployPO> selectAllEmploy();
 
+    List<EmployVO> selectAllTeacherName();
+
+
 }

@@ -16,7 +16,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * <p>
+ * 前端控制器
+ * </p>
+ *
+ * @author dengzhenxiang
+ * @since 2018-11-27
+ */
 @Controller
 public class FollowController {
     @Autowired
@@ -25,7 +32,6 @@ public class FollowController {
     /**
      * 跳转到followAdd
       */
-
     @RequestMapping("/followAdd")
     public String jumpFollowAdd(HttpServletRequest request) {
         request.setAttribute("type", request.getAttribute("type"));
@@ -35,7 +41,6 @@ public class FollowController {
     /**
      * 查询跟进人
      */
-
     @RequestMapping("/selectFollow")
     public String selectFollow(FollowPO followPO, HttpServletRequest request, Integer page) {
 
@@ -45,7 +50,6 @@ public class FollowController {
     /**
      * 添加跟进人
       */
-
     @RequestMapping("/insertFollow")
     public String insertFollow(FollowPO follow, HttpServletRequest request) {
         if (followService.insertFollow(follow) > 0) {
@@ -62,7 +66,6 @@ public class FollowController {
     /**
      * 删除跟进人
       */
-
     @RequestMapping("/deleteFollows")
     public String deleteFollows(Integer[] caption, HttpServletRequest request) {
 
@@ -78,7 +81,6 @@ public class FollowController {
     /**
      * 根据id查找跟进人
       */
-
     @RequestMapping("/editFollow")
     public String editFollow(@RequestParam("followId") Integer followId, HttpServletRequest request) {
         FollowPO followPO = followService.selectFollowByID(followId);
@@ -90,7 +92,6 @@ public class FollowController {
     /**
      * 根据给编辑页赋值
       */
-
     @RequestMapping("/editFollowFrom")
     public String editFollowFrom(HttpServletRequest request) {
         FollowPO followPO = (FollowPO) request.getAttribute("followByID");
@@ -102,7 +103,6 @@ public class FollowController {
     /**
      * 保存编辑值
       */
-
     @RequestMapping("/saveFollow")
     public String saveFollow(FollowPO follow,HttpServletRequest request) {
         followService.updateFollow(follow);
