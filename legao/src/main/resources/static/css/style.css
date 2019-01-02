@@ -21,7 +21,7 @@ body {
 }
 
 a {
-  color: #a0f6aa;
+  color: #F8F8F8;
   text-decoration: none;
 }
 
@@ -30,7 +30,7 @@ h1 {
   width: 90%;
   margin: 2em auto 0;
   font-size: 2.4rem;
-  color: #507b55;
+  color: #F8F8F8;
   font-weight: bold;
 }
 @media only screen and (min-width: 600px) {
@@ -52,9 +52,9 @@ Main Components
 .cd-accordion-menu {
   width: 100%;
   max-width: 600px;
-  background: #4d5158;
-  margin: 4em auto;
-  box-shadow: 0 4px 40px #70ac76;
+  background: #35383D;
+  /*margin: 4em auto;*/
+  box-shadow: -2px 0 2px #ebefee;
 }
 .cd-accordion-menu ul {
   /* by default hide all sub menus */
@@ -122,7 +122,7 @@ Main Components
 .cd-accordion-menu a::after {
   /* image icon */
   left: 36px;
-  background: url(../img/cd-icons.svg) no-repeat -48px 0;
+  background: url(../img/teachManage.png) no-repeat -48px 0;
 }
 .cd-accordion-menu input[type=checkbox]:checked + label::before {
   /* rotate arrow */
@@ -238,3 +238,4 @@ Main Components
   -moz-transition: -moz-transform 0.3s;
   transition: transform 0.3s;
 }
+

@@ -1,7 +1,6 @@
 package com.zxq.legao.entity.vo;
 
 
-import com.zxq.legao.entity.po.DatePO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +23,10 @@ public class ScheduleVO {
     private String courseWeek;
     private String weekOfYear;
     private SeriesVO series;
+    /**
+     * 学生总人数
+     */
+    private Integer totalStu;
 
 
 }

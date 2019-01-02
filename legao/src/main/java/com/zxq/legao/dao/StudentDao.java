@@ -21,5 +21,5 @@ public interface StudentDao {
 
     List<StudentVO> selectAllStudentName();
 
-    int selectCourseAllNum(Integer courseID);
+
 }

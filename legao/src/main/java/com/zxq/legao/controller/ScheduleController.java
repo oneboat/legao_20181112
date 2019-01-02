@@ -4,13 +4,10 @@ package com.zxq.legao.controller;
 import com.zxq.legao.entity.po.SchedulePO;
 import com.zxq.legao.entity.vo.ScheduleVO;
 import com.zxq.legao.service.ScheduleService;
-import com.zxq.legao.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +38,7 @@ public class ScheduleController {
     }
 
     /**
-     * 查询排课人
+     * 查询排课
      */
     @RequestMapping("/selectSchedule")
     public String selectSchedule(SchedulePO SchedulePO, HttpServletRequest request, Integer page) {
@@ -49,7 +46,7 @@ public class ScheduleController {
     }
 
     /**
-     * 添加排课人
+     * 添加排课
      */
     @RequestMapping("/insertSchedule")
     public String insertSchedule(SchedulePO schedule, HttpServletRequest request) {
@@ -81,7 +78,7 @@ public class ScheduleController {
     }
 
     /**
-     * 根据id查找排课人
+     * 根据id查找排课
      */
     @RequestMapping("/editSchedule")
     public String editSchedule(@RequestParam("scheduleId") Integer scheduleId, HttpServletRequest request) {

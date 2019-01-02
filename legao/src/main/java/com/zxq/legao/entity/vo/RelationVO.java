@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RelationVO {
     private Integer id;
-    private SchoolAreaVO schedule;
+    private ScheduleVO schedule;
     private StudentVO student;
     private Integer signInStatus;
+
 }

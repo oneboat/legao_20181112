@@ -98,8 +98,15 @@
                             +
                             scheduleList[i].classroom.name+" "
                             +
+                            "共"
+                            +
+                            scheduleList[i].totalStu+"人 "
+                            +
                             "["+scheduleList[i].teacherName+"]"
-                            +") <a href='editSchedule?scheduleId="+ scheduleList[i].id +"'><span class='glyphicon glyphicon-pencil'></span></a>"+ "<br/><br/>");
+                            +") <a href='editSchedule?scheduleId="+ scheduleList[i].id +"'>" +
+                            "<span class='glyphicon glyphicon-pencil'></span></a>" +
+                            "&nbsp;<a href='editRelation?scheduleId="+ scheduleList[i].id +"'>"+
+                            "<span class='glyphicon glyphicon-floppy-saved'></span></a>"+ "<br/><br/>");
                     }
                 }
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>courseList</title>
+    <title>relationList</title>
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
     <link href="css/paging.css" type="text/css" rel="stylesheet"/>
@@ -15,7 +15,7 @@
 <div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;height:700px;" id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
-    当前位置：课程管理&nbsp;&gt;&nbsp;课程查询
+    当前位置：签到管理&nbsp;&gt;&nbsp;查询签到
 
     <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
             class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
@@ -23,37 +23,50 @@
             class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
 
     <hr/>
-    <form action="" id="courseform">
+    <form action="" id="relationform">
 
-        课程名：<input name="name" id="name" style="height: 35px;" class="inputCss"
-                   th:value="${blurCourse}==null? '':${blurCourse.name}"/>&nbsp;&nbsp;
-        年龄段：<input name="ageArea" id="ageArea" style="height: 35px;" class="inputCss"
-                   th:value="${blurCourse}==null? '':${blurCourse.ageArea}"/>&nbsp;&nbsp;
-        <input type="button" value="搜索" class="btn btn-success" id="selectCourse"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropCourse"/>
+        学员：<select th:name="studentID" class="inputCss" id="studentList"
+                   th:value="${blurRelation}==null? '':${blurRelation.studentID} ">
+        <option value="">--请选择学员--</option>
+        <option th:value="${students.id}" th:each="students:${application.allStudentName}"
+                th:selected="${blurRelation}==null? false:(${blurRelation.studentID}==${students.id}?true:false)">
+            [[${students.name}]]
+        </option>
+    </select>
+        &nbsp;&nbsp;
+
+        <input type="button" value="搜索" class="btn btn-success" id="selectRelation"/>&nbsp;
+        <input type="button" class="btn btn-danger" value="删除" id="dropRelation"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped" style="text-align: center;"
-               id="course_tab">
+               id="relation_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
-                <th>课程系列</th>
                 <th>课程</th>
-                <th>年龄段</th>
-                <th>教具</th>
-                <th>课时</th>
+                <th>学生</th>
+                <th>学员生日|性别</th>
+                <th>老师</th>
+                <th>状态</th>
                 <th>操作</th>
             </tr>
-            <tr th:each="course:${courseVOList}">
+            <tr th:each="relation:${relationVOList}">
                 <td><input type="checkbox" name="caption"
-                           th:id="'box_'+${course.id}" th:value="${course.id}"/></td>
-                <td>[[${course.series.name}]]</td>
-                <td>[[${course.name}]]</td>
-                <td>[[${course.ageArea}]]</td>
-                <td>[[${course.teacherTools}]]</td>
-                <td>[[${course.courseTime}]]</td>
-                <td><a th:href="'editCourse?courseId='+${course.id}"><span
-                        class="glyphicon glyphicon-pencil"></span></a></td>
+                           th:id="'box_'+${relation.id}" th:value="${relation.id}"/></td>
+                <td>[[${relation.schedule.course.name}]]</td>
+                <td>[[${relation.student.name}]]</td>
+                <td>
+                    [[${#dates.format(relation.student.birthday,'yyyy年MM月dd日')}]]|[[${relation.student.sex}]]
+                </td>
+                <td>[[${relation.schedule.teacherName}]]</td>
+                <td th:if="${relation.signInStatus}==1"><span class="label label-success">准时</span></td>
+                <td th:if="${relation.signInStatus}==2"><span class="label label-dange">迟到</span></td>
+                <td th:if="${relation.signInStatus}==3"><span class="label label-default">请假</span></td>
+
+                <td><a th:href="'editRelation?scheduleId='+${relation.schedule.id}"><span
+                        class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+
             </tr>
         </table>
 
@@ -62,14 +75,12 @@
     <div class="box" id="box"></div>
     <!--添加表单提交标志-->
     <form id="pageForm" style="display: none">
-        <input name="name" th:value="${blurCourse}==null? '':${blurCourse.name}"/>&nbsp;&nbsp;
-        <input name="ageArea" th:value="${blurCourse}==null? '':${blurCourse.ageArea}"/>&nbsp;&nbsp;
-
+        <input name="studentID" th:value="${blurRelation}==null? '':${blurRelation.studentID}"/>&nbsp;&nbsp;
         <input type="text" id="pages" name="page"/>
 
         <input type="button" id="btn" value="tijiao"/>
         <!--传入分页的参数-->
-        <input type="text" id="actionName" value="selectCourse"/>
+        <input type="text" id="actionName" value="selectRelation"/>
     </form>
 
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
@@ -85,20 +96,21 @@
             $("#content_box").attr("width", window_width - 250 - 250);
 
         })
+
         /*提交查询*/
-        $("#selectCourse").click(function () {
-            $("#courseform").attr("action", "selectCourse");
-            $("#courseform").submit();
+        $("#selectRelation").click(function () {
+            $("#relationform").attr("action", "selectRelation");
+            $("#relationform").submit();
         });
         /*提交删除*/
-        $("#dropCourse").click(function () {
+        $("#dropRelation").click(function () {
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
-                alert("请选择你要删除的课程");
+                alert("请选择你要删除的签到");
             } else {
-                if (confirm("确定要删除该课程吗？")) {
-                    $("#courseform").attr("action", "deleteCourses");
-                    $("#courseform").submit();
+                if (confirm("确定要删除该签到吗？")) {
+                    $("#relationform").attr("action", "deleteRelations");
+                    $("#relationform").submit();
                 }
             }
 

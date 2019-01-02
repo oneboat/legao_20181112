@@ -119,8 +119,14 @@
             <tr>
 
                 <td>顾问：</td>
-                <td><input type="text" name="advisor" class="inputCss" style="width:205px;" placeholder="请输入学员的顾问"
-                           id="advisor"/></td>
+                <td>
+                    <select class="inputCss" id="advisor" name="advisor">
+                        <option value="">--请输入学员的顾问--</option>
+                        <option th:value="${employ.name}" th:each="employ:${application.allemploy}">
+                            [[${employ.name}]]
+                        </option>
+                    </select>
+                    </td>
                 <td>出生日期：</td>
                 <td><input type="text" name="birthday" class="inputCss" style="width:205px;" placeholder="请输入学员出生日期"
                            id="student_birthday"/></td>
@@ -173,23 +179,16 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr><td>所选的课程系列：</td>
-                <td>
-
-                    <select class="inputCss" id="courseID" name="seriesID">
-                        <option value="">--请选择课程系列--</option>
-                        <option th:value="${seriesName.id}" th:each="seriesName:${application.allSeriesName}">
-                            [[${seriesName.name}]]
-                        </option>
-                    </select>
-
-                </td>
+            <tr>
                 <td>来源：</td>
                 <td><input type="text" name="source" class="inputCss" style="width:205px;" placeholder="请输入学员的来源方式"
                            id="student_source"/></td>
                 <td>期望时间：</td>
                 <td><input type="text" name="willDate" class="inputCss" style="width:205px;" placeholder="请输入学员期望到课时间"
                            id="student_willDate"/></td>
+                <td>基本情况：</td>
+                <td><textarea rows="5" cols="23" id="baseSituation" name="baseSituation" maxlength="200"
+                              placeholder="请输入学员的基本情况,输入长度不大于200的字符..." class="inputCss"></textarea></td>
             </tr>
 
             <tr style="height: 10px;">
@@ -197,11 +196,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
-                <td>基本情况：</td>
-                <td><textarea rows="5" cols="23" id="baseSituation" name="baseSituation" maxlength="200"
-                              placeholder="请输入学员的基本情况,输入长度不大于200的字符..." class="inputCss"></textarea></td>
-            </tr>
+
             <tr>
                 <td colspan="5" align="center"><input type="button" value="添加" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="reset" name="cancel" class="btn btn-danger" value="取消"/></td>

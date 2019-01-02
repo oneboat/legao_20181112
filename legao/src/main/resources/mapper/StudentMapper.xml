@@ -199,18 +199,10 @@
 
     <select id="selectAllStudentName" resultType="com.zxq.legao.entity.vo.StudentVO">
         SELECT
-            name
+            id,name
         FROM
             legao_student
     </select>
 
-    <select id="selectCourseAllNum" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-        SELECT
-            count(1)
-        FROM
-            legao_student
-        where
-            courseID = #{courseID}
-    </select>
 
 </mapper>

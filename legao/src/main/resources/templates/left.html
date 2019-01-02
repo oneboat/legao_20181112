@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery垂直手风琴多级下拉菜单代码</title>
+    <title>left</title>
 
     <link rel="stylesheet" href="css/reset.css" type="text/css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -16,77 +16,125 @@
 <ul class="cd-accordion-menu animated">
     <li class="has-children">
         <input type="checkbox" name ="group-1" id="group-1" checked>
-        <label for="group-1">Group 1</label>
+        <label for="group-1"><span class="glyphicon glyphicon-tasks"></span>教学管理</label>
 
         <ul>
             <li class="has-children">
                 <input type="checkbox" name ="sub-group-1" id="sub-group-1">
-                <label for="sub-group-1">Sub Group 1</label>
+                <label for="sub-group-1">排课管理</label>
 
                 <ul>
-                    <li><a href="#0">Image</a></li>
-                    <li><a href="#0">Image</a></li>
-                    <li><a href="#0">Image</a></li>
+                    <li><a href="selectSchedule" target="right">排课查询</a></li>
+                    <li><a href="scheduleAdd" target="right">添加排课</a></li>
                 </ul>
             </li>
             <li class="has-children">
-                <input type="checkbox" name ="sub-group-2" id="sub-group-2">
-                <label for="sub-group-2">Sub Group 2</label>
-
+                <input type="checkbox" name ="sub-group-2" id="sub-group-3">
+                <label for="sub-group-3">签到管理</label>
                 <ul>
-                    <li class="has-children">
-                        <input type="checkbox" name ="sub-group-level-3" id="sub-group-level-3">
-                        <label for="sub-group-level-3">Sub Group Level 3</label>
+                    <li><a href="selectRelation" target="right">签到查询</a></li>
 
-                        <ul>
-                            <li><a href="#0">Image</a></li>
-                            <li><a href="#0">Image</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#0">Image</a></li>
                 </ul>
+
             </li>
-            <li><a href="#0">Image</a></li>
-            <li><a href="#0">Image</a></li>
+
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-5">
+                <label for="sub-group-5">课程系列管理</label>
+                <ul>
+                    <li><a href="selectSeries" target="right">课程系列查询</a></li>
+                    <li><a href="seriesAdd" target="right">添加课程系列</a></li>
+                </ul>
+
+            </li>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-6">
+                <label for="sub-group-6">课程管理</label>
+                <ul>
+                    <li><a href="selectCourse" target="right">课程查询</a></li>
+                    <li><a href="courseAdd" target="right">添加课程</a></li>
+                </ul>
+
+            </li>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-7">
+                <label for="sub-group-7">教室管理</label>
+                <ul>
+                    <li><a href="classRoomAdd" target="right">教室查询</a></li>
+                    <li><a href="selectClassRoom" target="right">添加教室</a></li>
+                </ul>
+
+            </li>
+
         </ul>
     </li>
 
     <li class="has-children">
         <input type="checkbox" name ="group-2" id="group-2">
-        <label for="group-2">Group 2</label>
+        <label for="group-2">学员管理</label>
 
         <ul>
-            <li><a href="#0">Image</a></li>
-            <li><a href="#0">Image</a></li>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-8">
+                <label for="sub-group-8">跟进管理</label>
+                <ul>
+                    <li><a href="selectFollow" target="right">跟进查询</a></li>
+                    <li><a href="followAdd" target="right">添加跟进</a></li>
+                </ul>
+
+            </li>
+                    <li><a href="selectStudent" target="right">学员查询</a></li>
+                    <li><a href="studentAdd" target="right">添加学员</a></li>
+
         </ul>
     </li>
 
     <li class="has-children">
         <input type="checkbox" name ="group-3" id="group-3">
-        <label for="group-3">Group 3</label>
+        <label for="group-3">校区管理</label>
 
         <ul>
-            <li><a href="#0">Image</a></li>
-            <li><a href="#0">Image</a></li>
+            <li><a href="selectSchoolArea" target="right">校区查询</a></li>
+            <li><a href="schoolAreaAdd" target="right">添加校区</a></li>
         </ul>
     </li>
 
     <li class="has-children">
         <input type="checkbox" name ="group-4" id="group-4">
-        <label for="group-4">Group 4</label>
+        <label for="group-4">员工管理</label>
 
         <ul>
             <li class="has-children">
-                <input type="checkbox" name ="sub-group-3" id="sub-group-3">
-                <label for="sub-group-3">Sub Group 3</label>
+                <input type="checkbox" name ="sub-group-3" id="sub-group-9">
+                <label for="sub-group-9">职位管理</label>
 
                 <ul>
-                    <li><a href="#0">Image</a></li>
-                    <li><a href="#0">Image</a></li>
+                    <li><a href="selectJob" target="right">职位查询</a></li>
+                    <li><a href="jobAdd" target="right">添加职位</a></li>
                 </ul>
             </li>
-            <li><a href="#0">Image</a></li>
-            <li><a href="#0">Image</a></li>
+            <li><a href="selectEmploy" target="right">员工查询</a></li>
+            <li><a href="employAdd" target="right">添加员工</a></li>
+        </ul>
+    </li>
+    <li class="has-children">
+        <input type="checkbox" name ="group-4" id="group-5">
+        <label for="group-5">用户管理</label>
+
+        <ul>
+
+            <li><a href="selectUser" target="right">用户查询</a></li>
+            <li><a href="userAdd" target="right">添加用户</a></li>
+        </ul>
+    </li>
+    <li class="has-children">
+        <input type="checkbox" name ="group-4" id="group-6">
+        <label for="group-6">系统设置</label>
+
+        <ul>
+
+            <li><a href="fieldSet" target="right">字段设置</a></li>
+            <li><a href="selectDate" target="right">时间设置</a></li>
         </ul>
     </li>
 </ul>

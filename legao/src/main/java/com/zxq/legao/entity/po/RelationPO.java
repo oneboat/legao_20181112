@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
+
 /**
  * Description:
  * <p>
@@ -37,4 +39,9 @@ public class RelationPO implements Serializable {
      * 签到状态：1准时，2迟到，3请假
      */
     private Integer signInStatus;
+
+    /**
+     * 接受页面选中的caption
+     */
+    private List<Integer> caption;
 }

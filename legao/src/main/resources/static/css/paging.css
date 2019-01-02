@@ -7,24 +7,52 @@
 .fl {
     float: left;
 }
-
-.box {
-    height: 40px;
-    line-height: 40px;
-    position: absolute;
-    left: 50%;
-    top: 65%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+@media screen and (min-width: 1200px) {
+    .box {
+        height: 35px;
+        line-height: 35px;
+        position: absolute;
+        left: 50%;
+        top: 65%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
 }
+@media screen and (max-width: 1200px) {
+    .box {
+        height: 35px;
+        line-height: 35px;
+        position: absolute;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}
+/* 设置了浏览器宽度不大于1200px时 abc 显示900px宽度 */
+
+@media screen and (max-width: 901px) {
+    .box {
+        height: 35px;
+        line-height: 35px;
+        position: absolute;
+        left: 50%;
+        top: 75%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}
+/* 设置了浏览器宽度不大于901px时 abc 显示200px宽度 */
+
+
 
 .box button {
     padding: 0 10px;
     margin: 0 10px;
-    height: 40px;
+    height: 35px;
     float: left;
     cursor: pointer;
-    border: 1px solid #ebebeb;
+    border: 1px solid #E2E2E2;
     background-color: #ffffff;
 }
 
@@ -34,22 +62,22 @@
 }
 
 .box .pageWrap {
-    height: 40px;
+    height: 35px;
     float: left;
     overflow: hidden;
 }
 
 .box .pageWrap ul {
     width: 100000px;
-    height: 40px;
+    height: 35px;
     float: left;
 }
 
 .box .pageWrap ul li {
     width: 60px;
-    height: 40px;
-    border: 1px solid #ebebeb;
-    line-height: 40px;
+    height: 35px;
+    border: 1px solid #E2E2E2;
+    line-height: 35px;
     box-sizing: border-box;
     cursor: pointer;
     float: left;
@@ -60,12 +88,13 @@
 }
 
 .box .jump-text {
-    width: 60px;
-    height: 40px;
+    width: 40px;
+    height: 35px;
     box-sizing: border-box;
     text-align: center;
     margin: 0 5px;
     float: left;
+    border: 1px solid #E2E2E2;
 }
 
 .box .jump-button {
@@ -77,5 +106,5 @@
 .box .total-count {
     margin-left: 10px;
     float: left;
-    font-size: 14px;
+    font-size: 12px;
 }

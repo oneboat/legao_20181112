@@ -55,14 +55,22 @@
 <!--引入js文件-->
 <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
 <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
-<script type="application/javascript">
+<script type="application/javascript" th:inline="javascript">
 
     $(function () {
+        var msg = [[${msg}]];
+        if (msg == null || msg == "") {
+            $("#alertinfo").text("");
+            $("#alertinfo1").text("");
+        } else {
+            $("#alertinfo").text(msg);
+            $("#alertinfo1").text(msg);
+        }
         var window_width = $(window).width();
         var window_height = $(window).height();
         $("#right").attr("width", window_width - 25);
         $("#right").attr("height", window_height-100);
-        $("#left").attr("height",window_height-50);
+        $("#left").attr("height",window_height);
 
 
     });

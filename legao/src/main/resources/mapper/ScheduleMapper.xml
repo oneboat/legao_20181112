@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zxq.legao.dao.ScheduleDao">
-    <insert id="insertSchedule" parameterType="com.zxq.legao.entity.po.SchedulePO">
+    <insert id="insertSchedule" parameterType="com.zxq.legao.entity.po.SchedulePO"  useGeneratedKeys="true" keyProperty="id">
         INSERT INTO legao_schedule(legao_schedule.schoolAreaID,
                                    legao_schedule.`dateID`,
                                    legao_schedule.courseID,
@@ -59,19 +59,27 @@
         FROM
         legao_schedule
 
-
         <where>
-            <if test="weekOfYear == null">
-                and YEARWEEK(courseDate) = YEARWEEK(now())
-                and schoolAreaID = 1
-            </if>
-            <if test="weekOfYear != null and weekOfYear !=''">
-                and weekOfYear = #{weekOfYear}
-                and schoolAreaID = 1
+            <if test="schoolAreaID==null or  schoolAreaID ==''">
+                <if test="weekOfYear==null or  weekOfYear ==''">
+                    and YEARWEEK(courseDate) = YEARWEEK(now())
+                    and schoolAreaID = 1
+                </if>
+                <if test="weekOfYear!=null and weekOfYear!=''">
+                    and weekOfYear = #{weekOfYear}
+                    and schoolAreaID = 1
+                </if>
             </if>
 
-            <if test="schoolAreaID!=null and schoolAreaID!=''">
-                and schoolAreaID = #{schoolAreaID}
+            <if test="schoolAreaID != null and schoolAreaID !=''">
+                <if test="weekOfYear==null or  weekOfYear ==''">
+                    and schoolAreaID = #{schoolAreaID}
+                    and YEARWEEK(courseDate) = YEARWEEK(now())
+                </if>
+                <if test="weekOfYear!=null and weekOfYear!=''">
+                    and schoolAreaID = #{schoolAreaID}
+                    and weekOfYear = #{weekOfYear}
+                </if>
             </if>
 
         </where>

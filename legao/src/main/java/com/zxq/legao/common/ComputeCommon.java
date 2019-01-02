@@ -6,7 +6,9 @@ import com.zxq.legao.util.DateUtil;
 import java.util.List;
 
 public class ComputeCommon {
-    //计算星期
+    /**
+     * 计算星期
+     */
     public static SchedulePO computeWeek(SchedulePO schedulePO){
         List<Integer> dateList = DateUtil.getWeek(schedulePO.getCourseDate());
         schedulePO.setCourseWeek(String.valueOf(dateList.get(0)));

@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -34,5 +35,9 @@ public class SchedulePO implements Serializable {
      * 在一年中所在的周数
      */
     private String weekOfYear;
+    /**
+     * 学员
+     */
+    private List<Integer> studentList;
 
 }

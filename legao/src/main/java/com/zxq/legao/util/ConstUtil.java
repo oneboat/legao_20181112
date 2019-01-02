@@ -19,7 +19,7 @@ public class ConstUtil {
     /**
      * 每页显示的条数
      */
-    public final static Integer PAGESIZE = 1;
+    public final static Integer PAGESIZE = 8;
 
     /**
      * 学生表默认展示字段名（对应数据库）
