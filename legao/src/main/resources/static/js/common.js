@@ -1,7 +1,17 @@
-var salt = "a1b2c3d4e5";
+//自适应
+$(function () {
+    //表头元素居中
+    $("th").css("text-align", "center");
+    var window_width = $(window).width();
+    var window_height = $(window).height();
+    $("#content_box").css("width", window_width - 255);
+    $("#content_box").css("height", window_height - 20);
 
+})
+//md5加密
+var salt = "a1b2c3d4e5";
 function md5Util(pass_word) {
-    //md5加密
+
     var str = salt.charAt(0) + salt.charAt(2) + pass_word + salt.charAt(4) + salt.charAt(6);
     var md5Pass = md5(str);
     return md5Pass;

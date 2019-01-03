@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
 <body>
-<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;" id="content_box">
+<div id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
     当前位置：排课管理&nbsp;&gt;&nbsp;添加排课
@@ -147,12 +147,7 @@
         }, 5000);
 
         /*自适应*/
-        //表头元素居中
-        $("th").css("text-align", "center");
-        var window_width = $(window).width();
-        var window_height = $(window).height();
-        $("#content_box").attr("width", window_width - 250 - 240);
-        $("#content_box").attr("height", window_height-110);
+
     });
 
     /*判断状态，排课名是否为空*/

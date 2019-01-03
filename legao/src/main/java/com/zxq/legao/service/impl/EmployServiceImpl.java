@@ -5,19 +5,13 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zxq.legao.dao.EmployDao;
-import com.zxq.legao.dao.EmployDao;
 import com.zxq.legao.dao.UserDao;
 import com.zxq.legao.entity.po.EmployPO;
-
-import com.zxq.legao.entity.po.EmployPO;
-import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.UserVO;
 import com.zxq.legao.service.EmployService;
-
 import com.zxq.legao.util.ConstUtil;
 import com.zxq.legao.util.ConverstUtil;
-import com.zxq.legao.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**

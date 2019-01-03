@@ -4,7 +4,14 @@ import com.zxq.legao.entity.po.SchedulePO;
 import com.zxq.legao.util.DateUtil;
 
 import java.util.List;
-
+/**
+ * Description:
+ * <p>
+ *     抽取的公共方法
+ * </p>
+ * @author dengzhenxiang
+ * @Date 2019/1/2 17:59
+ */
 public class ComputeCommon {
     /**
      * 计算星期

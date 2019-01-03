@@ -1,5 +1,9 @@
 server:
   port: 8081
+  #设置session的超时时间，单位是分钟
+  servlet:
+    session:
+      timeout: 60
 
 spring:
   application:
@@ -10,6 +14,7 @@ spring:
     password: root
   thymeleaf:
     cache: false
+
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
   global-config:

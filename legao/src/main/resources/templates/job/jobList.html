@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;height:700px;" id="content_box">
+<div  id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
     当前位置：职位管理&nbsp;&gt;&nbsp;职位查询
@@ -32,7 +32,7 @@
         <input type="button" class="btn btn-danger" value="删除" id="dropJob"/>
 
         <br/><br/>
-        <table cellspacing="0" cellpadding="" class="table table-hover table-striped" style="text-align: center;"
+        <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
                id="job_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
@@ -71,6 +71,7 @@
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/paging.js" type="application/javascript"></script>
+    <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
     <script type="text/javascript" th:inline="javascript">
 
         $(function () {
@@ -79,11 +80,6 @@
             if (delete_msg) {
                 alert(delete_msg);
             }
-            //表头元素居中
-            $("th").css("text-align", "center");
-            var window_width = $(window).width();
-            var window_height = $(window).height();
-            $("#content_box").attr("width", window_width - 250 - 250);
 
         })
         /*提交查询*/

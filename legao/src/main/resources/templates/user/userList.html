@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;" id="content_box">
+<div id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
     当前位置：用户管理&nbsp;&gt;&nbsp;用户查询
@@ -23,6 +23,7 @@
             class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
 
     <hr/>
+    <div>
     <form action="" id="userform">
 
         用户名：<input name="username" id="username" style="height: 35px;" class="inputCss"
@@ -37,7 +38,7 @@
         <input type="button" class="btn btn-danger" value="删除" id="dropUser"/>
 
         <br/><br/>
-        <table cellspacing="0" cellpadding="" class="table table-hover table-striped" style="text-align: center;"
+        <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
                id="user_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
@@ -57,9 +58,11 @@
                 </td>
                 <td><a th:href="'editUser?userId='+${user.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
+
         </table>
 
     </form>
+</div>
     <!--分页元素-->
     <div class="box" id="box"></div>
     <!--添加表单提交标志-->
@@ -72,11 +75,12 @@
         <!--传入分页的参数-->
         <input type="text" id="actionName" value="selectUser"/>
     </form>
-
+</div>
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/paging.js" type="application/javascript"></script>
     <script src="js/layer.js"></script>
+<script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
     <script type="text/javascript" th:inline="javascript">
         $(function () {
             //不能删除正在登陆的用户
@@ -84,12 +88,6 @@
             if (isDeleteItself) {
                 alert("不能删除正在登录的用户");
             }
-            //表头元素居中
-            $("th").css("text-align", "center");
-            var window_width = $(window).width();
-            var window_height = $(window).height();
-            $("#content_box").attr("width", window_width - 250 - 240);
-            $("#content_box").attr("height", window_height-110);
 
         })
         /*提交查询*/

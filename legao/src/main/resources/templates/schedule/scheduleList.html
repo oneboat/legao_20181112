@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<div style="border:#DDDDDD solid 1px;margin-top: 10px;padding: 10px;margin-left: 250px;" id="content_box">
+<div id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
     当前位置：排课管理&nbsp;&gt;&nbsp;排课查询
@@ -70,14 +70,10 @@
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/layer.js"></script>
+    <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
     <script type="text/javascript" th:inline="javascript">
         $(function () {
-            //表头元素居中
-            $("th").css("text-align", "center");
-            var window_width = $(window).width();
-            var window_height = $(window).height();
-            $("#content_box").attr("width", window_width - 250 - 240);
-            $("#content_box").attr("height", window_height-110);
+
             //获取排课信息
             var tds = $("div[id^='time_']");
             var scheduleList = [[${scheduleVOList}]];

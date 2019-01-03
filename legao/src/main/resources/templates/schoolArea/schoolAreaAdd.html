@@ -7,7 +7,7 @@
     <link href="../css/main.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<div style="border:#DDDDDD solid 1px;width: 100%;height: 600px;margin-top: 10px;padding: 10px;margin-left:  250px;">
+<div id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
     当前位置：校区管理&nbsp;&gt;&nbsp;添加校区
@@ -44,6 +44,7 @@
 
 </body>
 <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
+<script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
 
     /* type */
@@ -57,6 +58,7 @@
         setTimeout(function () {
             $("#addInfo").text('');
         }, 5000);
+
     });
 
     /*判断状态，校区名是否为空*/
