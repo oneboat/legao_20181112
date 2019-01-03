@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2018-12-28 22:41:24
+Date: 2019-01-03 21:23:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -61,7 +61,7 @@ CREATE TABLE `legao_date` (
   `status` int(11) DEFAULT NULL COMMENT '1表示启用中，2表示停用',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_date
@@ -74,6 +74,10 @@ INSERT INTO `legao_date` VALUES ('5', '14:04 - 04:04', '1', '1');
 INSERT INTO `legao_date` VALUES ('6', '04:04 - 04:04', '1', '对对对');
 INSERT INTO `legao_date` VALUES ('7', '03:04 - 04:04', '1', '梵蒂冈地方');
 INSERT INTO `legao_date` VALUES ('8', '05:04 - 04:04', '2', '啊实打实');
+INSERT INTO `legao_date` VALUES ('9', '00:00 - 00:00', '1', '王企鹅');
+INSERT INTO `legao_date` VALUES ('10', '02:02 - 02:02', '2', '王企鹅');
+INSERT INTO `legao_date` VALUES ('11', '01:01 - 01:01', '1', '王企鹅');
+INSERT INTO `legao_date` VALUES ('12', '05:05 - 05:05', '2', '王企鹅');
 
 -- ----------------------------
 -- Table structure for legao_employ
@@ -148,20 +152,33 @@ INSERT INTO `legao_job` VALUES ('8', 'dzx', 'dzx', '2018-11-28 20:41:54');
 -- ----------------------------
 DROP TABLE IF EXISTS `legao_relation`;
 CREATE TABLE `legao_relation` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `scheduleID` int(11) DEFAULT NULL COMMENT '排课id',
   `studentID` int(11) DEFAULT NULL COMMENT '学生id',
   `signInStatus` int(11) DEFAULT NULL COMMENT '签到状态：1准时，2迟到，3请假',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_relation
 -- ----------------------------
-INSERT INTO `legao_relation` VALUES ('1', '1', '1', '1');
 INSERT INTO `legao_relation` VALUES ('2', '1', '2', '2');
-INSERT INTO `legao_relation` VALUES ('3', '1', '3', '1');
-INSERT INTO `legao_relation` VALUES ('4', '1', '4', '3');
+INSERT INTO `legao_relation` VALUES ('3', '1', '3', '2');
+INSERT INTO `legao_relation` VALUES ('4', '1', '4', '2');
+INSERT INTO `legao_relation` VALUES ('5', '28', '1', '1');
+INSERT INTO `legao_relation` VALUES ('6', '28', '2', '1');
+INSERT INTO `legao_relation` VALUES ('7', '28', '3', '1');
+INSERT INTO `legao_relation` VALUES ('8', '28', '4', '1');
+INSERT INTO `legao_relation` VALUES ('9', '31', '1', '1');
+INSERT INTO `legao_relation` VALUES ('10', '31', '2', '1');
+INSERT INTO `legao_relation` VALUES ('11', '31', '3', '1');
+INSERT INTO `legao_relation` VALUES ('12', '31', '4', '1');
+INSERT INTO `legao_relation` VALUES ('13', '32', '2', '1');
+INSERT INTO `legao_relation` VALUES ('14', '32', '3', '1');
+INSERT INTO `legao_relation` VALUES ('15', '32', '4', '1');
+INSERT INTO `legao_relation` VALUES ('16', '33', '1', '3');
+INSERT INTO `legao_relation` VALUES ('17', '33', '2', '3');
+INSERT INTO `legao_relation` VALUES ('18', '33', '3', '3');
 
 -- ----------------------------
 -- Table structure for legao_schedule
@@ -179,7 +196,7 @@ CREATE TABLE `legao_schedule` (
   `teacherName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '老师',
   `weekOfYear` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_schedule
@@ -197,6 +214,19 @@ INSERT INTO `legao_schedule` VALUES ('12', '1', '2', '1', '1', '2', '2018-12-24'
 INSERT INTO `legao_schedule` VALUES ('14', '1', '2', '1', '1', '1', '2018-12-30', '1', '刘小', '1');
 INSERT INTO `legao_schedule` VALUES ('15', '1', '7', '1', '1', '1', '2018-12-28', '6', 'd', '52');
 INSERT INTO `legao_schedule` VALUES ('16', '2', '7', '1', '1', '1', '2018-12-28', '6', 'd', '52');
+INSERT INTO `legao_schedule` VALUES ('17', '6', '2', '1', '1', '1', '2018-12-24', '2', '刘小', '52');
+INSERT INTO `legao_schedule` VALUES ('18', '2', '3', '1', '1', '1', '2018-12-24', '2', '刘小', '52');
+INSERT INTO `legao_schedule` VALUES ('19', '1', '5', '1', '1', '1', '2018-12-30', '1', '刘小', '1');
+INSERT INTO `legao_schedule` VALUES ('20', '1', '4', '1', '1', '1', '2018-12-30', '1', '刘小', '1');
+INSERT INTO `legao_schedule` VALUES ('21', '1', '5', '1', '1', '1', '2018-12-31', '2', '刘小', '1');
+INSERT INTO `legao_schedule` VALUES ('22', '1', '3', '1', '1', '1', '2018-12-30', '1', '刘小', '1');
+INSERT INTO `legao_schedule` VALUES ('23', '2', '6', '1', '1', '1', '2018-12-31', '2', '刘小', '1');
+INSERT INTO `legao_schedule` VALUES ('24', '1', '1', '1', '1', '1', '2018-12-23', '1', '刘小', '52');
+INSERT INTO `legao_schedule` VALUES ('28', '1', '1', '1', '1', '1', '2018-12-23', '1', '刘小', '52');
+INSERT INTO `legao_schedule` VALUES ('29', '1', '1', '1', '1', '1', '2018-12-23', '1', '刘小', '52');
+INSERT INTO `legao_schedule` VALUES ('31', '1', '1', '1', '1', '1', '2018-12-23', '1', '刘小', '52');
+INSERT INTO `legao_schedule` VALUES ('32', '1', '2', '1', '1', '1', '2018-12-31', '2', '刘小', '1');
+INSERT INTO `legao_schedule` VALUES ('33', '2', '7', '1', '1', '1', '2019-01-02', '4', '刘小', '1');
 
 -- ----------------------------
 -- Table structure for legao_schoolarea
@@ -209,13 +239,14 @@ CREATE TABLE `legao_schoolarea` (
   `responPersonName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '负责人姓名',
   `telphone` varchar(255) DEFAULT NULL COMMENT '联系电话',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_schoolarea
 -- ----------------------------
 INSERT INTO `legao_schoolarea` VALUES ('1', '惠州校区', '惠城区东阳街220号', '刘小', '15622176645');
 INSERT INTO `legao_schoolarea` VALUES ('2', '深圳', '深圳福田', '邓振祥', '15622187742');
+INSERT INTO `legao_schoolarea` VALUES ('6', '罗湖校区', '深圳罗湖', '张小小', '15622187742');
 
 -- ----------------------------
 -- Table structure for legao_series
@@ -296,7 +327,7 @@ CREATE TABLE `legao_user` (
 -- ----------------------------
 INSERT INTO `legao_user` VALUES ('11', 'sxl', 'd3e3a9203e2a2b56f63260118448b00b', '1', '2018-11-13 22:16:03', null, null);
 INSERT INTO `legao_user` VALUES ('13', 'dzx123', '05dec077316d4b085df5d34987d5f7fe', '1', '2018-11-14 13:14:54', null, null);
-INSERT INTO `legao_user` VALUES ('14', 'dzx', 'e2687a7e9df77a71a4d9382066b3d787', '1', '2018-12-22 15:45:09', '[0,1,14,17,22]', '[0,1,2,4,5,6]');
+INSERT INTO `legao_user` VALUES ('14', 'dzx', 'e2687a7e9df77a71a4d9382066b3d787', '1', '2019-01-02 14:58:15', '[9,10,11,12,13,14]', '[0,1,2,4,5,6]');
 INSERT INTO `legao_user` VALUES ('15', '1', 'e2687a7e9df77a71a4d9382066b3d787', '1', '2018-11-14 13:17:44', null, null);
 INSERT INTO `legao_user` VALUES ('16', '232432', '107dcdb8e15795f25e10da846b72b8b3', '1', '2018-11-14 13:17:49', null, null);
 INSERT INTO `legao_user` VALUES ('17', '123213', '492ab0b70d2a80fa9221e87438b8867f', '1', '2018-11-14 13:17:52', null, null);
