@@ -26,7 +26,7 @@
         签到状态：<select name="signInStatus" class="inputCss" id="studentList">
         <option value="">--请选择签到状态--</option>
         <option value="1">准时</option>
-        <option value="2">迟到</option>
+        <option value="2">未签到</option>
         <option value="3">请假</option>
     </select>
         &nbsp;&nbsp;
@@ -56,7 +56,7 @@
                 </td>
                 <td>[[${relation.schedule.teacherName}]]</td>
                 <td th:if="${relation.signInStatus}==1"><span class="label label-success">准时</span></td>
-                <td th:if="${relation.signInStatus}==2"><span class="label label-dange">迟到</span></td>
+                <td th:if="${relation.signInStatus}==2"><span class="label label-danger">未签到</span></td>
                 <td th:if="${relation.signInStatus}==3"><span class="label label-default">请假</span></td>
 
 

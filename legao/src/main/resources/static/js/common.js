@@ -4,7 +4,7 @@ $(function () {
     $("th").css("text-align", "center");
     var window_width = $(window).width();
     var window_height = $(window).height();
-    $("#content_box").css("width", window_width - 255);
+    $("#content_box").css("width", window_width - 260);
     $("#content_box").css("height", window_height - 20);
 
 })

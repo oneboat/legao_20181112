@@ -63,8 +63,10 @@ public class RelationController {
     @RequestMapping("/editRelation")
     public String editRelation(@RequestParam("scheduleId") Integer scheduleId, HttpServletRequest request) {
         List<RelationVO> relationVOList = relationService.selectRelationByScheduleID(scheduleId);
-        request.setAttribute("relationEdit",relationVOList.get(0));
-        request.setAttribute("relationVOList", relationVOList);
+        if (relationVOList.size()!=0) {
+            request.setAttribute("relationEdit", relationVOList.get(0));
+            request.setAttribute("relationVOList", relationVOList);
+        }
         return "relation/relationEdit";
 
     }

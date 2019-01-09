@@ -102,7 +102,6 @@ public class UserController {
             servletContext.setAttribute("allSeriesName", allSeriesName);
             servletContext.setAttribute("allDate", allDate);
             servletContext.setAttribute("allWeekOfYear", allWeekOfYear);
-
             return "main";
         }
 

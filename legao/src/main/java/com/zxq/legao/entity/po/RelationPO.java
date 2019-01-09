@@ -36,7 +36,7 @@ public class RelationPO implements Serializable {
     private Integer studentID;
 
     /**
-     * 签到状态：1准时，2迟到，3请假
+     * 签到状态：1准时，2未签到，3请假
      */
     private Integer signInStatus;
 

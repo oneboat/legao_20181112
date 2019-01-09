@@ -41,10 +41,11 @@ public class RelationServiceImpl implements RelationService {
     @Transactional(rollbackFor = Exception.class)
     public int updateBatchRelation(RelationPO relationPO) {
         List<Integer> caption = relationPO.getCaption();
-        int captionSize =relationPO.getCaption().size();
+
        if (caption.get(0) == null){caption.remove(0);}
-        for (int i = 0; i <=captionSize; i++) {
-            relationDao.updateBatchRelation(relationPO,i);
+        int captionSize =relationPO.getCaption().size();
+        for (int i = 0; i <captionSize; i++) {
+            relationDao.updateBatchRelation(relationPO,relationPO.getCaption().get(i));
         }
         return 2;
     }

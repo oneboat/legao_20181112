@@ -60,7 +60,7 @@
                 </td>
                 <td>[[${relation.schedule.teacherName}]]</td>
                 <td th:if="${relation.signInStatus}==1"><span class="label label-success">准时</span></td>
-                <td th:if="${relation.signInStatus}==2"><span class="label label-dange">迟到</span></td>
+                <td th:if="${relation.signInStatus}==2"><span class="label label-danger">未签到</span></td>
                 <td th:if="${relation.signInStatus}==3"><span class="label label-default">请假</span></td>
 
                 <td><a th:href="'editRelation?scheduleId='+${relation.schedule.id}"><span
