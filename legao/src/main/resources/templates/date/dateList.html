@@ -44,6 +44,7 @@
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
                 <th>时间段</th>
                 <th>状态</th>
+                <th>优先级</th>
                 <th>备注</th>
                 <th>操作</th>
             </tr>
@@ -55,6 +56,7 @@
                     <span class="label label-success">启用中</span></td>
                 <td th:if="${date.status}==2">
                     <span class="label label-default">停用</span> </td>
+                <td>[[${date.priority}]]</td>
                 <td>[[${date.remark}]]</td>
                 <td><a th:href="'editDate?dateId='+${date.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;

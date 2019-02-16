@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,7 +59,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public String selectSchedule(SchedulePO schedulePO, HttpServletRequest request) {
         List<ScheduleVO> scheduleVOList = scheduleDao.selectSchedule(schedulePO);
-        DateVO dateVO = new DateVO();
+        List<ScheduleVO> newScheduleVOList = new ArrayList<>(20);
+                DateVO dateVO = new DateVO();
         if (scheduleVOList.size() != 0) {
             //取第一条设置本周的起始时间
             ScheduleVO scheduleVO = scheduleVOList.get(0);
@@ -76,6 +78,8 @@ public class ScheduleServiceImpl implements ScheduleService {
                 int totalCount = relationDao.selectStuTotalByScheID(scheduleVOs.getId());
                 scheduleVOs.setTotalStu(totalCount);
             }
+
+
         }
         request.setAttribute("scheduleVOList", scheduleVOList);
         request.setAttribute("dateVO", dateVO);

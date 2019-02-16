@@ -27,4 +27,9 @@ public class DateVO {
      */
     private String endWeekDate;
 
+    /**
+     * 优先级，取值为数字
+     */
+    private Integer priority;
+
 }

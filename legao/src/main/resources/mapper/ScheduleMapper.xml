@@ -85,7 +85,6 @@
         </where>
 
 
-
     </select>
     <select id="selectScheduleByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.ScheduleVO"
             resultMap="select_scheduleMap">
@@ -124,12 +123,17 @@
     </resultMap>
 
     <!--查询所有的周数-->
-    <select id="findAllweekOfYear" resultType="com.zxq.legao.entity.vo.ScheduleVO">
+    <select id="findAllweekOfYear" resultType="com.zxq.legao.entity.vo.ScheduleVO" resultMap="select_allweekOfYearMap">
         SELECT
-            legao_schedule.weekOfYear
+            legao_schedule.weekOfYear,
+            legao_schedule.dateID
         FROM
             legao_schedule
-        group by weekOfYear
+        ORDER BY weekOfYear
 
     </select>
+    <resultMap id="select_allweekOfYearMap" type="com.zxq.legao.entity.vo.ScheduleVO">
+        <result column="weekOfYear" property="weekOfYear"></result>
+        <association property="date" column="dateID" select="com.zxq.legao.dao.DateDao.selectDateByID" javaType="com.zxq.legao.entity.vo.DateVO"></association>
+    </resultMap>
 </mapper>

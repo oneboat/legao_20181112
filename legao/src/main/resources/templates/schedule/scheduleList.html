@@ -26,16 +26,16 @@
     <!--排课表-->
     <form action="" id="scheduleform">
         校区： <select class="inputCss" id="schoolArea_id" name="schoolAreaID">
-        <option value="">--请选择校区--</option>
+        <option value="">---请选择校区----</option>
         <option th:value="${schoolArea.id}" th:each="schoolArea:${application.allSchoolArea}">
             [[${schoolArea.name}]]
         </option>
 
     </select>&nbsp;&nbsp;
         周数：<select class="inputCss"  name="weekOfYear">
-        <option value="">--请选择课程所在周--</option>
+        <option value="" >-------请选择课程所在周------</option>
         <option th:value="${schedule.weekOfYear}" th:each="schedule:${application.allWeekOfYear}">
-            [[${schedule.weekOfYear}]]
+            第[[${schedule.weekOfYear}]]周 [[${schedule.date.timeSection}]]
         </option>
     </select>
         <input type="button" value="搜索" class="btn btn-success" id="selectSchedule"/>&nbsp;

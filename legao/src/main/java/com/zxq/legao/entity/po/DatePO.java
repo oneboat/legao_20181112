@@ -48,4 +48,9 @@ public class DatePO implements Serializable {
      *评论
      */
     private String remark;
+
+    /**
+     * 优先级，取值为数字
+     */
+    private Integer priority;
 }
