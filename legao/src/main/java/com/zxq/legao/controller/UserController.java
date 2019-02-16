@@ -102,6 +102,8 @@ public class UserController {
             servletContext.setAttribute("allSeriesName", allSeriesName);
             servletContext.setAttribute("allDate", allDate);
             servletContext.setAttribute("allWeekOfYear", allWeekOfYear);
+            //session设置过期时间
+            session.setMaxInactiveInterval(3600);
             return "main";
         }
 

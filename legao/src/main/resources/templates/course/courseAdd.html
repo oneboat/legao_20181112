@@ -35,10 +35,10 @@
         <option value="7岁以上" >7岁以上</option>
 
     </select>
-       &nbsp;;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;
         教具：
         <input type="text" name="teacherTools" id="course_teacherTools" style="height: 35px;width:200px ;" class="inputCss"
-               placeholder="请输入课程所需要的教具"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+               placeholder="请输入课程所需要的教具"/>&nbsp;&nbsp;&nbsp;&nbsp;
 
         </br>
         </br>
@@ -48,10 +48,10 @@
             <option th:value="${courseName.id}" th:each="courseName:${application.allCourseName}">
                 [[${courseName.name}]]
             </option>
-        </select>&nbsp;;&nbsp;&nbsp;&nbsp;
+        </select>&nbsp;&nbsp;&nbsp;&nbsp;
         课时：
         <input type="text" name="courseTime" id="course_courseTime" style="height: 35px;width:200px ;" class="inputCss"
-               placeholder="请输入课程所需要的课时"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+               placeholder="请输入课程所需要的课时"/>&nbsp;&nbsp;&nbsp;&nbsp;
 
         <input type="button" value="添加" class="btn btn-success" id="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="reset" class="btn btn-danger" value="取消"/>
