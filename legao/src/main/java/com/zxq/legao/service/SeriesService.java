@@ -18,4 +18,6 @@ public interface SeriesService {
     SeriesVO selectSeriesByID(Integer seriesID);
 
     List<SeriesVO> findAllSeriesName();
+
+
 }

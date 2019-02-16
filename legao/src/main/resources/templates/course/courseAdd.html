@@ -24,10 +24,18 @@
                 </option>
             </select>
 
-        课程:<input name="name" id="course_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
-                   maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
-        年龄段：<input type="text" name="ageArea" id="course_ageArea" style="height: 35px;width:200px ;" class="inputCss"
-                    placeholder="请输入课程所适合的学员年龄段"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+        课程: <input name="name" id="course_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
+                   maxlength="20" />
+       &nbsp;&nbsp;&nbsp;&nbsp;
+       年龄段：<select name="ageArea" id="course_ageArea" style="height: 35px;" class="inputCss">
+        <option value="">----请选择年龄段----</option>
+        <option value="1岁-2岁" >1岁-2岁</option>
+        <option value="3岁-4岁" >3岁-4岁</option>
+        <option value="5岁-6岁" >5岁-6岁</option>
+        <option value="7岁以上" >7岁以上</option>
+
+    </select>
+       &nbsp;;&nbsp;&nbsp;&nbsp;
         教具：
         <input type="text" name="teacherTools" id="course_teacherTools" style="height: 35px;width:200px ;" class="inputCss"
                placeholder="请输入课程所需要的教具"/>&nbsp;;&nbsp;&nbsp;&nbsp;

@@ -1,14 +1,16 @@
 package com.zxq.legao.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.zxq.legao.entity.po.CoursePO;
 import com.zxq.legao.entity.vo.CourseVO;
 import com.zxq.legao.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -109,6 +111,26 @@ public class CourseController {
         List<CoursePO> allCourseName = courseService.findAllCourseName();
         servletContext.setAttribute("allCourseName", allCourseName);
         return "redirect:/selectCourse";
+
+    }
+
+    /**
+     * 根据seriesId找课程
+     */
+
+    @RequestMapping("/selectCourseBySeriesId")
+    @ResponseBody
+    public String selectCourseBySeriesId(@RequestBody CoursePO coursePO) {
+        String courseStr = null;
+        List<CourseVO> courseVOList = courseService.selectCourseBySeriesId(coursePO.getSeriesID());
+        if (courseVOList.size() > 0) {
+
+             courseStr = JSON.toJSONString(courseVOList);
+            return courseStr;
+        } else {
+             courseStr = JSON.toJSONString("");
+            return courseStr;
+        }
 
     }
 }

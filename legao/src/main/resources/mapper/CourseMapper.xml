@@ -68,4 +68,7 @@
     <select id="findAllCourseName"  resultType="com.zxq.legao.entity.po.CoursePO">
         SELECT id,name FROM legao_course
     </select>
+    <select id="selectCourseBySeriesId"  resultType="com.zxq.legao.entity.vo.CourseVO">
+        SELECT id,name FROM legao_course where seriesID = #{seriesID}
+    </select>
 </mapper>

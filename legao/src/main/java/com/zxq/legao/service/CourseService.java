@@ -26,4 +26,7 @@ public interface CourseService {
     CourseVO selectCourseByID(Integer courseID);
 
     List<CoursePO> findAllCourseName();
+
+    List<CourseVO> selectCourseBySeriesId(Integer seriesId);
+
 }

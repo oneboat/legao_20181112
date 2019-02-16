@@ -47,14 +47,14 @@
 <table class="table table-bordered" cellspacing="0" cellpadding=""  style="text-align: center;">
     <tr><th>时间段</th><th class="active">星期一</th><th >星期二</th><th class="warning">星期三</th><th >星期四</th><th class="info">星期五</th><th>星期六</th><th class="success">星期日</th></tr>
     <tr th:each="timeSection:${application.allDate}">
-        <td th:id="'timeSection_' + ${timeSection.id}">[[${timeSection.timeSection}]]</td>
-        <td  class="active" ><div th:id="'time_' + ${timeSection.id} + '_2'"></div></td>
-        <td ><div th:id="'time_' + ${timeSection.id} + '_3'" ></div></td>
-        <td  class="warning"><div th:id="'time_' + ${timeSection.id} + '_4'"></div></td>
-        <td ><div th:id="'time_' + ${timeSection.id} + '_5'" ></div></td>
-        <td  class="info"><div th:id="'time_' + ${timeSection.id} + '_6'"></div></td>
-        <td  ><div th:id="'time_' + ${timeSection.id} + '_7'"></div></td>
-        <td  class="success"><div th:id="'time_' + ${timeSection.id} + '_1'"></div></td>
+        <td th:id="'timeSection_' + ${timeSection.id}" style="display:table-cell; vertical-align:middle">[[${timeSection.timeSection}]]</td>
+        <td  class="active" style="display:table-cell; vertical-align:middle" ><div th:id="'time_' + ${timeSection.id} + '_2'"></div></td>
+        <td style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_3'" ></div></td>
+        <td  class="warning" style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_4'"></div></td>
+        <td style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_5'" ></div></td>
+        <td  class="info" style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_6'"></div></td>
+        <td  style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_7'"></div></td>
+        <td  class="success" style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_1'"></div></td>
        </tr>
 
 </table>

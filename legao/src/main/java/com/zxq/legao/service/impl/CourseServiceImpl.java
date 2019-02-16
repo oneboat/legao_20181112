@@ -75,4 +75,9 @@ public class CourseServiceImpl implements CourseService {
     public List<CoursePO> findAllCourseName() {
         return courseDao.findAllCourseName();
     }
+
+    @Override
+    public List<CourseVO> selectCourseBySeriesId(Integer seriesId) {
+        return courseDao.selectCourseBySeriesId(seriesId);
+    }
 }

@@ -18,8 +18,15 @@
 
         课程系列:<input name="name" id="series_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
                     maxlength="20" th:value="${seriesEdit.name}"/>&nbsp;&nbsp;&nbsp;&nbsp;
-        年龄段：<input type="text" name="ageArea" id="series_ageArea" style="height: 35px;width:200px ;" class="inputCss"
-                   placeholder="请输入课程系列所适合的学员年龄段" th:value="${seriesEdit.ageArea}"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+        年龄段：<select name="ageArea" id="series_ageArea" style="height: 35px;" class="inputCss">
+        <option value="">----请选择年龄段----</option>
+        <option value="1岁-2岁" th:selected="${seriesEdit.ageArea}=='1岁-2岁'">1岁-2岁</option>
+        <option value="3岁-4岁" th:selected="${seriesEdit.ageArea}=='3岁-4岁'">3岁-4岁</option>
+        <option value="5岁-6岁" th:selected="${seriesEdit.ageArea}=='5岁-6岁'">5岁-6岁</option>
+        <option value="7岁以上" th:selected="${seriesEdit.ageArea}=='7岁以上'">7岁以上</option>
+
+    </select>
+       &nbsp;;&nbsp;&nbsp;&nbsp;
         教具：
         <input type="text" name="teacherTools" id="series_teacherTools" style="height: 35px;width:200px ;"
                class="inputCss"

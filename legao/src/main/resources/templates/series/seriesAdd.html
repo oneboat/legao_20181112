@@ -19,17 +19,23 @@
 
         课程系列:<input name="name" id="series_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
                    maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
-        年龄段：<input type="text" name="ageArea" id="series_ageArea" style="height: 35px;width:200px ;" class="inputCss"
-                    placeholder="请输入课程系列所适合的学员年龄段"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+        年龄段：<select name="ageArea" id="series_ageArea" style="height: 35px;" class="inputCss">
+        <option value="">----请选择年龄段----</option>
+        <option value="1岁-2岁" >1岁-2岁</option>
+        <option value="3岁-4岁" >3岁-4岁</option>
+        <option value="5岁-6岁" >5岁-6岁</option>
+        <option value="7岁以上" >7岁以上</option>
+
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;
         教具：
         <input type="text" name="teacherTools" id="series_teacherTools" style="height: 35px;width:200px ;" class="inputCss"
-               placeholder="请输入课程系列所需要的教具"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+               placeholder="请输入课程系列的教具"/>&nbsp;&nbsp;&nbsp;&nbsp;
 
         </br>
         </br>
         课时：
         <input type="text" name="courseTime" id="series_seriesTime" style="height: 35px;width:200px ;" class="inputCss"
-               placeholder="请输入课程系列所需要的课时"/>&nbsp;;&nbsp;&nbsp;&nbsp;
+               placeholder="请输入课程系列的课时"/>&nbsp;&nbsp;&nbsp;&nbsp;
 
         <input type="button" value="添加" class="btn btn-success" id="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="reset" class="btn btn-danger" value="取消"/>
@@ -80,7 +86,7 @@
         } else if (re.test(series_ageArea.trim())) {
             $("#error").text("*年龄段存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
         }  else if (series_teacherTools.trim().length == 0) {
-            $("#error").text("*请输入课程系列所需要的教具");
+            $("#error").text("*请输入课程系列的教具");
         }else if (seriesTime.trim().length == 0) {
             $("#error").text("*请输入课时");
         }else {
