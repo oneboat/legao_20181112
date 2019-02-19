@@ -1,7 +1,9 @@
 package com.zxq.legao.service;
 
-import com.baomidou.mybatisplus.service.IService;
 import com.zxq.legao.entity.po.DepositPO;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +13,16 @@ import com.zxq.legao.entity.po.DepositPO;
  * @author dengzhenxiang
  * @since 2019-02-18
  */
-public interface DepositService extends IService<DepositPO> {
+public interface DepositService  {
+    int insertDeposit(DepositPO depositPO);
 
+    int deleteDeposit(List<Integer> depositIDs);
+
+    int updateDeposit(DepositPO depositPO);
+
+    String selectDeposit(Integer page, DepositPO depositPO, HttpServletRequest request);
+
+    DepositPO selectDepositByID(Integer depositID);
+
+    List<DepositPO> findAllDepositName();
 }

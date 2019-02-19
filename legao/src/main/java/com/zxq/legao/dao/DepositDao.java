@@ -1,7 +1,8 @@
 package com.zxq.legao.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.zxq.legao.entity.po.DepositPO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +12,16 @@ import com.zxq.legao.entity.po.DepositPO;
  * @author dengzhenxiang
  * @since 2019-02-18
  */
-public interface DepositDao extends BaseMapper<DepositPO> {
+public interface DepositDao  {
+    int insertDeposit(DepositPO depositPO);
 
+    int deleteDeposit(List<Integer> depositIDs);
+
+    int updateDeposit(DepositPO depositPO);
+
+    List<DepositPO> selectDeposit(DepositPO depositPO);
+
+    DepositPO selectDepositByID(Integer depositID);
+
+    List<DepositPO> findAllDepositName();
 }
