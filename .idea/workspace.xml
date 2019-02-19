@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="439a8e74-6f92-40cc-9708-4768835b88bd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/legao/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/legao/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,9 +55,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -129,11 +128,12 @@
       <workItem from="1544613082322" duration="25000" />
       <workItem from="1549370867563" duration="17000" />
       <workItem from="1550285162237" duration="29000" />
+      <workItem from="1550385627260" duration="16000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120000" />
+    <option name="totallyTimeSpent" value="136000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -167,7 +167,7 @@
       <window_info anchor="right" id="Database" order="6" weight="0.32995737" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.32995737" />
-      <window_info active="true" anchor="right" id="Maven" order="9" visible="true" weight="0.33742005" />
+      <window_info active="true" anchor="right" id="Maven" order="9" visible="true" weight="0.3411514" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">

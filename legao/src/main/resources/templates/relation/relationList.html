@@ -53,23 +53,24 @@
             <tr th:each="relation:${relationVOList}">
                 <td><input type="checkbox" name="caption"
                            th:id="'box_'+${relation.id}" th:value="${relation.id}"/></td>
-                <td>[[${relation.schedule.course.name}]]</td>
+                <td th:if="${relation.schedule}!=null">[[${relation.schedule.course.name}]]</td>
+                <td th:if="${relation.schedule}==null" style="color: red">该排课信息已被删除</td>
                 <td>[[${relation.student.name}]]</td>
                 <td>
                     [[${#dates.format(relation.student.birthday,'yyyy年MM月dd日')}]]|[[${relation.student.sex}]]
                 </td>
-                <td>[[${relation.schedule.teacherName}]]</td>
+                <td th:if="${relation.schedule}!=null">[[${relation.schedule.teacherName}]]</td>
+                <td th:if="${relation.schedule}==null" style="color: red">该排课信息已被删除</td>
                 <td th:if="${relation.signInStatus}==1"><span class="label label-success">准时</span></td>
                 <td th:if="${relation.signInStatus}==2"><span class="label label-danger">未签到</span></td>
                 <td th:if="${relation.signInStatus}==3"><span class="label label-default">请假</span></td>
 
-                <td><a th:href="'editRelation?scheduleId='+${relation.schedule.id}"><span
+                <td th:if="${relation.schedule}!=null"><a th:href="'editRelation?scheduleId='+${relation.schedule.id}" ><span
                         class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
                 </td>
-
+                <td th:if="${relation.schedule}==null" style="color: red"><span class="glyphicon glyphicon-remove"></span></td>
             </tr>
-        </table>
-
+        </table>金额
     </form>
     <!--分页元素-->
     <div class="box" id="box"></div>

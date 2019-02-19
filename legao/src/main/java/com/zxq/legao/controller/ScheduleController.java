@@ -69,6 +69,7 @@ public class ScheduleController {
     public String deleteSchedules(Integer[] caption, HttpServletRequest request) {
 
         scheduleService.deleteSchedule(Arrays.asList(caption));
+
         List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
         ServletContext servletContext = request.getServletContext();
         servletContext.setAttribute("allWeekOfYear", allWeekOfYear);

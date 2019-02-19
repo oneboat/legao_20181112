@@ -1,11 +1,10 @@
 //package com.zxq.legao.generator;
 //
-//import com.baomidou.mybatisplus.annotation.DbType;
 //import com.baomidou.mybatisplus.generator.AutoGenerator;
 //import com.baomidou.mybatisplus.generator.InjectionConfig;
 //import com.baomidou.mybatisplus.generator.config.*;
 //import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-//
+//import com.baomidou.mybatisplus.generator.config.rules.DbType;
 //import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 //
 //import java.io.File;
@@ -24,17 +23,15 @@
 //    private static final String DB_USERNAME = "root";
 //    private static final String DB_PASSWORD = "root";
 //
-//    private static final String GEN_PATH = new File("legao").getAbsolutePath();
+//    private static final String GEN_PATH = new File("E:\\Idea_workplace2\\legao_20181112\\legao").getAbsolutePath();
 //    private static final String PACKAGE_NAME = "com.zxq.legao";
 //    private static final String AUTHOR_NAME = "dengzhenxiang";
 //    private static final String[] TABLE_PREFIXS = {"legao_"};
 //    private static final String[] TABLE_NAMES = {
-//            "legao_job",
-//            "legao_employ",
-//            "legao_series",
-//            "legao_content",
-//            "legao_classroom",
-//            "legao_schedule"
+//            "legao_classtimepack",
+//            "legao_contract",
+//            "legao_deposit",
+//            "legao_membercard"
 //
 //    };
 //
