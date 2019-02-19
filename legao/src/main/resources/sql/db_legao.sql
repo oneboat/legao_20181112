@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2019-01-09 10:46:59
+Date: 2019-02-19 14:03:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,6 +33,54 @@ CREATE TABLE `legao_classroom` (
 INSERT INTO `legao_classroom` VALUES ('1', 'A203', '3岁半', '小刘');
 
 -- ----------------------------
+-- Table structure for legao_classtimepack
+-- ----------------------------
+DROP TABLE IF EXISTS `legao_classtimepack`;
+CREATE TABLE `legao_classtimepack` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '姓名',
+  `classTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '课时数',
+  `price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '价格',
+  `priority` int(11) DEFAULT NULL COMMENT '优先级',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='课时包表';
+
+-- ----------------------------
+-- Records of legao_classtimepack
+-- ----------------------------
+INSERT INTO `legao_classtimepack` VALUES ('6', null, null, null, null, '1231');
+INSERT INTO `legao_classtimepack` VALUES ('7', null, null, null, null, ' 阿萨德');
+
+-- ----------------------------
+-- Table structure for legao_contract
+-- ----------------------------
+DROP TABLE IF EXISTS `legao_contract`;
+CREATE TABLE `legao_contract` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `contractCode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '合同编号',
+  `studentName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '学生',
+  `signDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '签约日期',
+  `classPackageId` int(11) DEFAULT NULL COMMENT '课时包，关联课时包表id',
+  `price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '价格',
+  `discount` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '折扣',
+  `depositId` int(11) DEFAULT NULL COMMENT '订金id,关联订金表id',
+  `act_pay` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '实付金额',
+  `payType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '支付方式',
+  `presentationClassTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '赠送课时',
+  `startTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '起始日期',
+  `endTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '终止日期',
+  `belongOne` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '业绩所属',
+  `memberCarId` int(11) DEFAULT NULL COMMENT '会员卡id，关联会员卡表id',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同表';
+
+-- ----------------------------
+-- Records of legao_contract
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for legao_course
 -- ----------------------------
 DROP TABLE IF EXISTS `legao_course`;
@@ -44,12 +92,14 @@ CREATE TABLE `legao_course` (
   `courseTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '课时',
   `seriesID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_course
 -- ----------------------------
 INSERT INTO `legao_course` VALUES ('1', '机器人', '3-4岁', '机器人', '12.3', '1');
+INSERT INTO `legao_course` VALUES ('7', 'qwe', '1岁-2岁', '123', '1,123', '1');
+INSERT INTO `legao_course` VALUES ('8', '12321312', '3岁-4岁', '123123', '7,123213', '1');
 
 -- ----------------------------
 -- Table structure for legao_date
@@ -60,24 +110,44 @@ CREATE TABLE `legao_date` (
   `timeSection` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '时间段',
   `status` int(11) DEFAULT NULL COMMENT '1表示启用中，2表示停用',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
+  `priority` int(11) DEFAULT NULL COMMENT '优先级，取值为数字',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_date
 -- ----------------------------
-INSERT INTO `legao_date` VALUES ('1', '10:04 - 04:04', '2', '1');
-INSERT INTO `legao_date` VALUES ('2', '04:04 - 05:04', '1', '1');
-INSERT INTO `legao_date` VALUES ('3', '05:04 - 04:04', '1', '1');
-INSERT INTO `legao_date` VALUES ('4', '12:04 - 04:04', '1', '1');
-INSERT INTO `legao_date` VALUES ('5', '14:04 - 04:04', '1', '1');
-INSERT INTO `legao_date` VALUES ('6', '04:04 - 04:04', '1', '对对对');
-INSERT INTO `legao_date` VALUES ('7', '03:04 - 04:04', '1', '梵蒂冈地方');
-INSERT INTO `legao_date` VALUES ('8', '05:04 - 04:04', '2', '啊实打实');
-INSERT INTO `legao_date` VALUES ('9', '00:00 - 00:00', '1', '王企鹅');
-INSERT INTO `legao_date` VALUES ('10', '02:02 - 02:02', '2', '王企鹅');
-INSERT INTO `legao_date` VALUES ('11', '01:01 - 01:01', '1', '王企鹅');
-INSERT INTO `legao_date` VALUES ('12', '05:05 - 05:05', '2', '王企鹅');
+INSERT INTO `legao_date` VALUES ('1', '10:04 - 04:04', '2', '1', '10');
+INSERT INTO `legao_date` VALUES ('2', '04:04 - 05:04', '1', '1', '9');
+INSERT INTO `legao_date` VALUES ('3', '05:04 - 04:04', '1', '1', '7');
+INSERT INTO `legao_date` VALUES ('4', '12:04 - 04:04', '1', '1', '11');
+INSERT INTO `legao_date` VALUES ('5', '14:04 - 04:04', '1', '1', '12');
+INSERT INTO `legao_date` VALUES ('6', '04:04 - 04:04', '1', '对对对', '5');
+INSERT INTO `legao_date` VALUES ('7', '03:04 - 04:04', '1', '梵蒂冈地方', '4');
+INSERT INTO `legao_date` VALUES ('8', '05:04 - 04:04', '2', '啊实打实', '6');
+INSERT INTO `legao_date` VALUES ('9', '00:00 - 00:00', '1', '王企鹅', '1');
+INSERT INTO `legao_date` VALUES ('10', '02:02 - 02:02', '2', '王企鹅', '3');
+INSERT INTO `legao_date` VALUES ('11', '01:01 - 01:01', '1', '王企鹅', '2');
+INSERT INTO `legao_date` VALUES ('12', '05:05 - 05:05', '2', '王企鹅', '8');
+INSERT INTO `legao_date` VALUES ('13', '00:00 - 00:00', '1', '123', '123');
+
+-- ----------------------------
+-- Table structure for legao_deposit
+-- ----------------------------
+DROP TABLE IF EXISTS `legao_deposit`;
+CREATE TABLE `legao_deposit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `studentName` varchar(255) DEFAULT NULL COMMENT '学生',
+  `adviser` varchar(255) DEFAULT NULL COMMENT '顾问',
+  `moneyAmount` varchar(255) DEFAULT NULL COMMENT '金额',
+  `payType` varchar(255) DEFAULT NULL COMMENT '支付方式',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='订金表';
+
+-- ----------------------------
+-- Records of legao_deposit
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for legao_employ
@@ -105,7 +175,7 @@ CREATE TABLE `legao_employ` (
 -- ----------------------------
 -- Records of legao_employ
 -- ----------------------------
-INSERT INTO `legao_employ` VALUES ('1', '张三', '男', '15622186647', '2018-11-29 00:00:00', '2018-11-05 00:00:00', '8', '50000', '是', '230', '3000', '50', '4000', '惠州校区', '1');
+INSERT INTO `legao_employ` VALUES ('1', '张三', '男', '15622186647', '2018-11-29 00:00:00', '2018-11-05 00:00:00', '8', '50000', '是', '230', '3000', '50', '4000', '----全部----', '1');
 INSERT INTO `legao_employ` VALUES ('2', '刘小', '女', '15622186647', '2018-11-18 20:01:34', '2018-11-18 20:00:29', '1', '50000', '是', '230', '3000', '50', '4000', '惠州校区', '1');
 INSERT INTO `legao_employ` VALUES ('4', 'd', '男', '15622187742', '2018-12-08 00:00:00', '2018-12-08 00:00:00', '1', '111', '否', '无', '无', '无', '无', '----全部----', '1');
 
@@ -148,6 +218,23 @@ INSERT INTO `legao_job` VALUES ('1', '高级教师', '设计课程', '2018-12-01
 INSERT INTO `legao_job` VALUES ('8', 'dzx', 'dzx', '2018-11-28 20:41:54');
 
 -- ----------------------------
+-- Table structure for legao_membercard
+-- ----------------------------
+DROP TABLE IF EXISTS `legao_membercard`;
+CREATE TABLE `legao_membercard` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `memberCardCode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '会员卡编号',
+  `carType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '会员卡类型',
+  `studentName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '学生',
+  `classTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '课时',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员卡表';
+
+-- ----------------------------
+-- Records of legao_membercard
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for legao_relation
 -- ----------------------------
 DROP TABLE IF EXISTS `legao_relation`;
@@ -157,11 +244,16 @@ CREATE TABLE `legao_relation` (
   `studentID` int(11) DEFAULT NULL COMMENT '学生id',
   `signInStatus` int(11) DEFAULT NULL COMMENT '签到状态：1准时，2未签到，3请假',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='签到表';
 
 -- ----------------------------
 -- Records of legao_relation
 -- ----------------------------
+INSERT INTO `legao_relation` VALUES ('1', '1', '2', '3');
+INSERT INTO `legao_relation` VALUES ('2', '1', '3', '3');
+INSERT INTO `legao_relation` VALUES ('3', '1', '4', '3');
+INSERT INTO `legao_relation` VALUES ('4', '2', '1', '2');
+INSERT INTO `legao_relation` VALUES ('5', '3', '1', '3');
 
 -- ----------------------------
 -- Table structure for legao_schedule
@@ -179,11 +271,13 @@ CREATE TABLE `legao_schedule` (
   `teacherName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '老师',
   `weekOfYear` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_schedule
 -- ----------------------------
+INSERT INTO `legao_schedule` VALUES ('1', '2', '2', '1', '1', '1', '2019-02-16', '7', '刘小', '7');
+INSERT INTO `legao_schedule` VALUES ('2', '1', '13', '1', '1', '1', '2019-02-17', '1', '刘小', '8');
 
 -- ----------------------------
 -- Table structure for legao_schoolarea
@@ -216,13 +310,14 @@ CREATE TABLE `legao_series` (
   `courseTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '课时',
   `ageArea` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '年龄段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of legao_series
 -- ----------------------------
-INSERT INTO `legao_series` VALUES ('1', '机器人系列', '机器人，乐高战机', '12.4', '4岁半');
-INSERT INTO `legao_series` VALUES ('2', '1', '1', '1', '1');
+INSERT INTO `legao_series` VALUES ('1', '机器人系列', '机器人，乐高战机', '12.4', '7岁以上');
+INSERT INTO `legao_series` VALUES ('2', '1', '1', '1', '5岁-6岁');
+INSERT INTO `legao_series` VALUES ('4', '123', '123', '123', '1岁-2岁');
 
 -- ----------------------------
 -- Table structure for legao_student
@@ -284,7 +379,7 @@ CREATE TABLE `legao_user` (
 -- ----------------------------
 INSERT INTO `legao_user` VALUES ('11', 'sxl', 'd3e3a9203e2a2b56f63260118448b00b', '1', '2018-11-13 22:16:03', null, null);
 INSERT INTO `legao_user` VALUES ('13', 'dzx123', '05dec077316d4b085df5d34987d5f7fe', '1', '2018-11-14 13:14:54', null, null);
-INSERT INTO `legao_user` VALUES ('14', 'dzx', 'e2687a7e9df77a71a4d9382066b3d787', '1', '2019-01-02 14:58:15', '[9,10,11,12,13,14]', '[0,1,2,4,5,6]');
+INSERT INTO `legao_user` VALUES ('14', 'dzx', 'e2687a7e9df77a71a4d9382066b3d787', '1', '2019-02-17 15:51:22', '[9,10,11,12,13,14]', '[0,2,5,12,13]');
 INSERT INTO `legao_user` VALUES ('15', '1', 'e2687a7e9df77a71a4d9382066b3d787', '1', '2018-11-14 13:17:44', null, null);
 INSERT INTO `legao_user` VALUES ('16', '232432', '107dcdb8e15795f25e10da846b72b8b3', '1', '2018-11-14 13:17:49', null, null);
 INSERT INTO `legao_user` VALUES ('17', '123213', '492ab0b70d2a80fa9221e87438b8867f', '1', '2018-11-14 13:17:52', null, null);
