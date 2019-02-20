@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.zxq.legao.entity.po.ClasstimepackPO;
+import com.zxq.legao.entity.po.DepositPO;
+import com.zxq.legao.entity.po.MembercardPO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -40,8 +43,8 @@ public class ContractVO implements Serializable {
     /**
      * 学生
      */
-    @TableField("studentName")
-    private String studentName;
+    @TableField("studentId")
+    private StudentVO studentVO;
     /**
      * 签约日期
      */
@@ -51,7 +54,7 @@ public class ContractVO implements Serializable {
      * 课时包，关联课时包表id
      */
     @TableField("classPackageId")
-    private ClasstimepackVO classtimepackVO;
+    private ClasstimepackPO classtimepackVO;
     /**
      * 价格
      */
@@ -66,7 +69,7 @@ public class ContractVO implements Serializable {
      * 订金id,关联订金表id
      */
     @TableField("depositId")
-    private DepositVO depositVO;
+    private DepositPO depositVO;
     /**
      * 实付金额
      */
@@ -101,12 +104,15 @@ public class ContractVO implements Serializable {
      * 会员卡id，关联会员卡表id
      */
     @TableField("memberCarId")
-    private MembercardVO membercardVO;
+    private MembercardPO membercardVO;
     /**
      * 备注
      */
     @TableField("remark")
     private String remark;
+
+    private Integer depositId;
+    private Integer memberCarId;
 
 
     public static final String ID = "id";

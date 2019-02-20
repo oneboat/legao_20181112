@@ -12,7 +12,7 @@
             (
             #{schedule.id},
             #{relation},
-            3)
+            2)
         </foreach>
     </insert>
     <insert id="insertRelation" parameterType="com.zxq.legao.entity.po.RelationPO">

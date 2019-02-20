@@ -2,8 +2,10 @@ package com.zxq.legao.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zxq.legao.dao.EmployDao;
 import com.zxq.legao.dao.RelationDao;
 import com.zxq.legao.entity.po.RelationPO;
+import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.RelationVO;
 import com.zxq.legao.service.RelationService;
 import com.zxq.legao.util.ConstUtil;
@@ -13,10 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 @Service
 public class RelationServiceImpl implements RelationService {
     @Autowired
     private RelationDao relationDao;
+    @Autowired
+    private EmployDao employDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -41,12 +46,20 @@ public class RelationServiceImpl implements RelationService {
     @Transactional(rollbackFor = Exception.class)
     public int updateBatchRelation(RelationPO relationPO) {
         List<Integer> caption = relationPO.getCaption();
-
-       if (caption.get(0) == null){caption.remove(0);}
-        int captionSize =relationPO.getCaption().size();
-        for (int i = 0; i <captionSize; i++) {
-            relationDao.updateBatchRelation(relationPO,relationPO.getCaption().get(i));
+        if (caption.get(0) == null) {
+            caption.remove(0);
         }
+        int captionSize = relationPO.getCaption().size();
+        for (int i = 0; i < captionSize; i++) {
+            relationDao.updateBatchRelation(relationPO, relationPO.getCaption().get(i));
+        }
+        //计算老师和学生的课时，老师加课时，学生减课时
+        EmployVO employVO = employDao.selectEmployById(relationPO.getTeacherID());
+        int teacherTime = relationPO.getCaption().size() * relationPO.getClassTimes() + Integer.valueOf(employVO.getAllClassTime());
+        employVO.setAllClassTime(teacherTime + "");
+        employDao.updateAllClassTime(employVO);
+
+//学生减课时 TODO
         return 2;
     }
 

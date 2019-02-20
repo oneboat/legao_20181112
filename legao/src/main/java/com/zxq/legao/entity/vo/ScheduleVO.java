@@ -19,7 +19,7 @@ public class ScheduleVO {
     private ClassRoomVO classroom;
     private List<ScheduleVO> student;
     private Date courseDate;
-    private  String teacherName;
+    private  EmployVO teacherVO;
     private String courseWeek;
     private String weekOfYear;
     private SeriesVO series;

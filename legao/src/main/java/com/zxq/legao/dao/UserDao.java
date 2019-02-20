@@ -26,5 +26,7 @@ public interface UserDao {
 
     UserVO selectEmployFieldsByUserID(Integer userID);
 
+    UserVO selectContractFieldsByUserID(Integer userID);
+
     UserVO selectUserByNameAndPass(UserPO user);
 }

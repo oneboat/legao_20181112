@@ -26,4 +26,8 @@ public interface EmployDao extends BaseMapper<EmployPO> {
 
     List<EmployVO> selectAllTeacherName();
 
+    EmployVO selectEmployById(Integer employId);
+
+    int updateAllClassTime(EmployVO employVO);
+
 }

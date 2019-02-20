@@ -1,7 +1,10 @@
 package com.zxq.legao.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.zxq.legao.entity.po.ContractPO;
+import com.zxq.legao.entity.vo.ContractVO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +14,16 @@ import com.zxq.legao.entity.po.ContractPO;
  * @author dengzhenxiang
  * @since 2019-02-18
  */
-public interface ContractDao extends BaseMapper<ContractPO> {
+public interface ContractDao  {
+    int insertContract(ContractPO contractPO);
 
+    int deleteContract(List<Integer> contractIDs);
+
+    int updateContract(ContractPO contractPO);
+
+    List<ContractVO> selectContract(@Param("contractPO") ContractPO contractPO, @Param("fields") List<String> fields);
+
+    ContractVO selectContractByID(Integer contractPO);
+
+    ContractVO selectContractByStudentId(Integer studentId);
 }

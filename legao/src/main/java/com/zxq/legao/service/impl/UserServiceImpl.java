@@ -9,12 +9,9 @@ import com.zxq.legao.entity.vo.UserVO;
 import com.zxq.legao.service.UserService;
 import com.zxq.legao.util.ConstUtil;
 import com.zxq.legao.util.MD5Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -168,6 +165,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO selectEmployFieldsByUserID(Integer userID) {
         return userDao.selectEmployFieldsByUserID(userID);
+    }
+
+    @Override
+    public UserVO selectContractFieldsByUserID(Integer userID) {
+        return userDao.selectContractFieldsByUserID(userID);
     }
 
     /**

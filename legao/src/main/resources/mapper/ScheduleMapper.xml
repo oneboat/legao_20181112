@@ -7,7 +7,7 @@
                                    legao_schedule.courseID,
                                    legao_schedule.classroomID,
                                    legao_schedule.courseDate,
-                                   legao_schedule.teacherName,
+                                   legao_schedule.teacherID,
                                    legao_schedule.courseWeek,
                                    legao_schedule.weekOfYear,
                                    legao_schedule.seriesID)
@@ -16,7 +16,7 @@
                 #{courseID},
                 #{classroomID},
                 #{courseDate},
-                #{teacherName},
+                #{teacherID},
                 #{courseWeek},
                 #{weekOfYear},
                 #{seriesID});
@@ -36,7 +36,7 @@
             courseID     = #{courseID},
             classroomID  = #{classroomID},
             courseDate   = #{courseDate},
-            teacherName  = #{teacherName},
+            teacherID  = #{teacherID},
             courseWeek   = #{courseWeek},
             weekOfYear   = #{weekOfYear},
             seriesID     = #{seriesID}
@@ -52,7 +52,7 @@
         legao_schedule.courseID,
         legao_schedule.classroomID,
         legao_schedule.courseDate,
-        legao_schedule.teacherName,
+        legao_schedule.teacherID,
         legao_schedule.courseWeek,
         legao_schedule.weekOfYear,
         legao_schedule.seriesID
@@ -95,7 +95,7 @@
             legao_schedule.courseID,
             legao_schedule.classroomID,
             legao_schedule.courseDate,
-            legao_schedule.teacherName,
+            legao_schedule.teacherID,
             legao_schedule.courseWeek,
             legao_schedule.weekOfYear,
             legao_schedule.seriesID
@@ -106,8 +106,10 @@
     </select>
     <resultMap id="select_scheduleMap" type="com.zxq.legao.entity.vo.ScheduleVO">
         <id column="id" property="id"></id>
-        <result column="teacherName" property="teacherName"></result>
         <result column="courseWeek" property="courseWeek"></result>
+        <association property="teacherVO" column="teacherID"
+                     select="com.zxq.legao.dao.EmployDao.selectEmployById"
+                     javaType="com.zxq.legao.entity.po.DatePO"></association>
         <association property="date" column="dateID"
                      select="com.zxq.legao.dao.DateDao.selectDateByID"
                      javaType="com.zxq.legao.entity.po.DatePO"></association>

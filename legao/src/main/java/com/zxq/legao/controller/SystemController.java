@@ -52,4 +52,13 @@ public class SystemController {
         return systemService.updateFieldsSet("selectEmployFields", caption, request);
 
     }
+
+    /**
+     * 更新用户设置的合同模块字段
+     */
+    @PostMapping("/selectContractField")
+    @ResponseBody
+    public String selectContractField(@RequestBody List<String> caption, HttpServletRequest request) {
+        return systemService.updateFieldsSet("selectContractFields", caption, request);
+    }
 }

@@ -36,7 +36,7 @@ public class ClasstimepackController {
     }
 
     /**
-     * 查询跟进人
+     * 查询课时包
      */
     @RequestMapping("/selectClasstimepack")
     public String selectClasstimepack(ClasstimepackPO classtimepackPO, HttpServletRequest request, Integer page) {
@@ -45,7 +45,7 @@ public class ClasstimepackController {
     }
 
     /**
-     * 添加跟进人
+     * 添加课时包
      */
     @RequestMapping("/insertClasstimepack")
     public String insertClasstimepack(ClasstimepackPO classtimepack, HttpServletRequest request) {
@@ -61,7 +61,7 @@ public class ClasstimepackController {
     }
 
     /**
-     * 删除跟进人
+     * 删除课时包
      */
     @RequestMapping("/deleteClasstimepacks")
     public String deleteClasstimepacks(Integer[] caption, HttpServletRequest request) {
@@ -76,7 +76,7 @@ public class ClasstimepackController {
     }
 
     /**
-     * 根据id查找跟进人
+     * 根据id查找课时包
      */
     @RequestMapping("/editClasstimepack")
     public String editClasstimepack(@RequestParam("classtimepackId") Integer classtimepackId, HttpServletRequest request) {

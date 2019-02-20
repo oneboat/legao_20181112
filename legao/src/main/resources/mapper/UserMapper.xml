@@ -48,6 +48,11 @@
             resultType="com.zxq.legao.entity.vo.UserVO">
         SELECT selectEmployFields FROM legao_user WHERE id = #{id}
     </select>
+    <!--查询用户选中的合同模块字段-->
+    <select id="selectContractFieldsByUserID" parameterType="java.lang.Integer"
+            resultType="com.zxq.legao.entity.vo.UserVO">
+        SELECT selectContractFields FROM legao_user WHERE id = #{id}
+    </select>
     <!--查询登录名与密码-->
     <select id="selectUserByNameAndPass" parameterType="com.zxq.legao.entity.po.UserPO"
             resultType="com.zxq.legao.entity.vo.UserVO">

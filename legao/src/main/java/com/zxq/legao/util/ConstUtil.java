@@ -61,5 +61,25 @@ public class ConstUtil {
      */
     public final static String[] EMPLOY_FIELDS_ZH = {"姓名", "性别", "联系电话", "生日", "入职日期", "职位", "基本工资", "全勤", "餐补", "课时费", "总课时（h）", "提成", "校区", "状态"};
 
+    /**
+     * 合同表默认展示字段名（对应数据库）
+     */
+    public final static String[] DEFAULT_CONTRACT_FIELDS_DB = {"contractCode", "studentName", "signDate", "price", "act_pay", "belongOne", "payType", "discount"};
+
+    /**
+     * 合同表默认展示字段名（对应中文名）
+     */
+    public final static String[] DEFAULT_CONTRACT_FIELDS_ZH = {"合同编号", "学生", "签约日期", "价格", "实际支付", "业绩所属", "支付方式", "折扣"};
+
+    /**
+     * 合同表全部字段名（对应数据库）
+     */
+    public final static String[] CONTRACT_FIELDS_DB = {"contractCode", "studentId", "signDate", "classPackageId", "price", "discount", "depositId", "act_pay", "payType", "presentationClassTime", "startTime", "endTime", "belongOne", "memberCarId", "remark"};
+
+    /**
+     * 合同表全部字段名（对应中文名）
+     */
+    public final static String[] CONTRACT_FIELDS_ZH = {"合同编号", "学生", "签约日期", "课时包名称", "价格", "折扣", "订金", "实际支付", "支付方式", "赠送课时", "开始时间", "结束时间", "业绩所属", "会员卡编号", "备注"};
+
 
 }

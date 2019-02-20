@@ -49,13 +49,13 @@
         <association property="jobVO" column="jobID" select="com.zxq.legao.dao.JobDao.selectJobByID"
                      javaType="com.zxq.legao.entity.vo.JobVO"></association>
     </resultMap>
-<select id="selectAllEmploy" resultType="com.zxq.legao.entity.po.EmployPO">
-    SELECT
-        legao_employ.`name`
-    FROM
-        legao_employ
+    <select id="selectAllEmploy" resultType="com.zxq.legao.entity.po.EmployPO">
+        SELECT
+            legao_employ.`name`
+        FROM
+            legao_employ
 
-</select>
+    </select>
     <select id="selectAllTeacherName" resultType="com.zxq.legao.entity.vo.EmployVO">
         SELECT
             legao_employ.id,
@@ -64,4 +64,29 @@
             legao_employ
         WHERE legao_employ.jobID = 1
     </select>
+    <select id="selectEmployById" resultMap="select_employMap" resultType="com.zxq.legao.entity.vo.EmployVO">
+        SELECT
+            legao_employ.id,
+            legao_employ.`name`,
+            legao_employ.sex,
+            legao_employ.telphone,
+            legao_employ.birthday,
+            legao_employ.entryDate,
+            legao_employ.jobID,
+            legao_employ.basicSalary,
+            legao_employ.fullWork,
+            legao_employ.eatAllow,
+            legao_employ.classPay,
+            legao_employ.allClassTime,
+            legao_employ.extraPay,
+            legao_employ.area,
+            legao_employ.`status`
+        FROM
+            legao_employ
+        where id = #{id}
+
+    </select>
+    <update id="updateAllClassTime" parameterType="com.zxq.legao.entity.vo.EmployVO" >
+        update legao_employ set allClassTime = #{allClassTime} where id = #{id}
+    </update>
 </mapper>

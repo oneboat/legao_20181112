@@ -58,6 +58,15 @@ public class UserController {
     @Autowired
     private ScheduleService scheduleService;
 
+    @Autowired
+    private ClasstimepackService classtimepackService;
+
+    @Autowired
+    private MembercardService membercardService;
+
+    @Autowired
+    private DepositService depositService;
+
     @RequestMapping("/")
     public String view() {
         return "login";
@@ -91,6 +100,10 @@ public class UserController {
             List<SeriesVO> allSeriesName = seriesService.findAllSeriesName();
             List<DateVO> allDate = dateService.findAllDate();
             List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
+            List<ClasstimepackPO> allClasstimepack = classtimepackService.findAllClasstimepackName();
+            List<DepositPO> allDeposit = depositService.findAllDepositName();
+            List<MembercardPO> allMembercard = membercardService.findAllMembercardName();
+
             servletContext.setAttribute("allStudentName", allStudentName);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
             servletContext.setAttribute("allFollow", allFollow);
@@ -102,6 +115,9 @@ public class UserController {
             servletContext.setAttribute("allSeriesName", allSeriesName);
             servletContext.setAttribute("allDate", allDate);
             servletContext.setAttribute("allWeekOfYear", allWeekOfYear);
+            servletContext.setAttribute("allClasstimepack", allClasstimepack);
+            servletContext.setAttribute("allDeposit", allDeposit);
+            servletContext.setAttribute("allMembercard", allMembercard);
             //session设置过期时间
             session.setMaxInactiveInterval(3600);
             return "main";

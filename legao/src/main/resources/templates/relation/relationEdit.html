@@ -54,7 +54,7 @@
                 <td>
                     [[${#dates.format(relation.student.birthday,'yyyy年MM月dd日')}]]|[[${relation.student.sex}]]
                 </td>
-                <td>[[${relation.schedule.teacherName}]]</td>
+                <td>[[${relation.schedule.teacherVO.name}]]</td>
                 <td th:if="${relation.signInStatus}==1"><span class="label label-success">准时</span></td>
                 <td th:if="${relation.signInStatus}==2"><span class="label label-danger">未签到</span></td>
                 <td th:if="${relation.signInStatus}==3"><span class="label label-default">请假</span></td>
@@ -64,6 +64,8 @@
             </tr>
         </table>
 <input type="hidden" th:name="scheduleID" th:value="${relationEdit.schedule.id}"/>
+        <input type="hidden" th:name="classTimes" th:value="${relationEdit.schedule.course.courseTime}"/>
+        <input type="hidden" th:name="teacherID" th:value="${relationEdit.schedule.teacherVO.id}"/>
     </form>
 
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>

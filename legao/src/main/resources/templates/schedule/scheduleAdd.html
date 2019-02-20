@@ -87,9 +87,9 @@
                 </td>
                 <td>学员的老师：</td>
                 <td>
-                    <select class="inputCss" id="teacherName" name="teacherName">
+                    <select class="inputCss" id="teacherName" name="teacherID">
                         <option value="">--请选择老师--</option>
-                        <option th:value="${teacherName.name}" th:each="teacherName:${application.allTeacherName}">
+                        <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}">
                             [[${teacherName.name}]]
                         </option>
                     </select>

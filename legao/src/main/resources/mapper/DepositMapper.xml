@@ -52,7 +52,7 @@
     </select>
 
     <select id="findAllDepositName" resultType="com.zxq.legao.entity.po.DepositPO">
-        SELECT id,studentName FROM legao_deposit
+        SELECT id,moneyAmount FROM legao_deposit
     </select>
 </mapper>
 

@@ -34,6 +34,8 @@ public interface UserService {
 
     UserVO selectEmployFieldsByUserID(Integer userID);
 
+    UserVO selectContractFieldsByUserID(Integer userID);
+
     UserVO selectUserByNameAndPass(UserPO user);
 
 

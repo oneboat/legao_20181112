@@ -44,4 +44,14 @@ public class RelationPO implements Serializable {
      * 接受页面选中的caption
      */
     private List<Integer> caption;
+
+    /**
+     * 老师id,计算课时
+     */
+    private Integer teacherID;
+
+    /**
+     * 课程课时，计算课时
+     */
+    private Integer classTimes;
 }

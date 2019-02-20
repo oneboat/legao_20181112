@@ -24,7 +24,7 @@
         <ul class="layui-tab-title">
             <li class="layui-this">学员管理</li>
             <li>员工管理</li>
-            <li>权限分配</li>
+            <li>合同管理</li>
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
@@ -268,9 +268,113 @@
 
                 </form>
             </div>
-            <div class="layui-tab-item">内容3</div>
+            <div class="layui-tab-item">
+
+                <!--合同模块字段设置-->
+                <form class="layui-form" id="selectContractFieldForm">
+                    <h2><span id="info" style="color: green;height: 30px;">[[${setStatus}]]</span></h2>
+                    <div class="layui-form-item" style="margin-left: 30px;">
+
+                        <div data-toggle="tooltip" data-placement="bottom" title="合同编号" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="合同编号" value="0"
+                                   id="selectContractField_contractCode">
+                        </div>
+
+                        <div data-toggle="tooltip" data-placement="bottom" title="学员" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="学员" value="1"
+                                   id="selectContractField_studentName">
+                        </div>
+                        <div data-toggle="tooltip" data-placement="bottom" title="合同签约日期" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="签约日期" value="2"
+                                   id="selectContractField_signDate">
+                        </div>
+
+                        <div data-toggle="tooltip" data-placement="bottom" title="课时包名称" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="课时包名称" value="3"
+                                   id="selectContractField_classPackageId">
+                        </div>
+                        </br></br>
+
+
+                        <div data-toggle="tooltip" data-placement="bottom" title="价格" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="价格" value="4"
+                                   id="selectContractField_price">
+                        </div>
+
+
+                        <div data-toggle="tooltip" data-placement="bottom" title="折扣" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="折扣" value="5"
+                                   id="selectContractField_discount">
+                        </div>
+
+                        <div data-toggle="tooltip" data-placement="bottom" title="订金" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="订金" value="6"
+                                   id="selectContractField_depositId">
+                        </div>
+                        <div data-toggle="tooltip" data-placement="bottom" title="实际支付" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="实际支付" value="7"
+                                   id="selectContractField_actPay">
+                        </div>
+
+                        </br></br>
+                        <div data-toggle="tooltip" data-placement="bottom" title="支付方式" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="支付方式" value="8"
+                                   id="selectContractField_payType">
+                        </div>
+
+                        <div data-toggle="tooltip" data-placement="bottom" title="赠送课时" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="赠送课时" value="9"
+                                   id="selectContractField_presentationClassTime">
+                        </div>
+                        <div data-toggle="tooltip" data-placement="bottom" title="合同起始时间" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="起始时间" value="10"
+                                   id="selectContractField_startTime">
+                        </div>
+                        <div data-toggle="tooltip" data-placement="bottom" title="合同结束时间" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="结束时间" value="11"
+                                   id="selectContractField_endTime">
+                        </div>
+                        </br></br>
+                        <div data-toggle="tooltip" data-placement="bottom" title="业绩所属" style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="业绩所属" value="12"
+                                   id="selectContractField_belongOne">
+                        </div>
+                        <div data-toggle="tooltip" data-placement="bottom" title="会员卡编号"
+                             style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="会员卡编号" value="13"
+                                   id="selectContractField_memberCarId">
+                        </div>
+                        <div data-toggle="tooltip" data-placement="bottom" title="备注"
+                             style="display: inline">
+
+                            <input type="checkbox" name="selectContractField" title="备注" value="14"
+                                   id="selectContractField_remark">
+                        </div>
+                        </br></br>
+
+                        <input type="button" value="设置" class="btn btn-success" onclick="btn('selectContractField')" />&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset" name="cancel" class="btn btn-danger" value="重置" /></td>
+                    </div>
+
+
+                </form>
+
+            </div>
             <div class="layui-tab-item">内容4</div>
-            <div class="layui-tab-item">内容5</div>
         </div>
     </div>
 

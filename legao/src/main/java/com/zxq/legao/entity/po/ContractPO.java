@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -40,12 +41,13 @@ public class ContractPO implements Serializable {
     /**
      * 学生
      */
-    @TableField("studentName")
-    private String studentName;
+    @TableField("studentId")
+    private String studentId;
     /**
      * 签约日期
      */
     @TableField("signDate")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date signDate;
     /**
      * 课时包，关联课时包表id
@@ -86,11 +88,13 @@ public class ContractPO implements Serializable {
      * 起始日期
      */
     @TableField("startTime")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
     /**
      * 终止日期
      */
     @TableField("endTime")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
     /**
      * 业绩所属

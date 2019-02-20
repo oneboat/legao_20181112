@@ -108,4 +108,9 @@ public class EmployServiceImpl extends ServiceImpl<EmployDao, EmployPO> implemen
         return employDao.selectAllTeacherName();
     }
 
+    @Override
+    public int updateAllClassTime(EmployVO employVO) {
+        return employDao.updateAllClassTime(employVO);
+    }
+
 }

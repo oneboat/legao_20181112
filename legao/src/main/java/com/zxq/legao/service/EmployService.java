@@ -4,7 +4,6 @@ package com.zxq.legao.service;
 import com.baomidou.mybatisplus.service.IService;
 import com.zxq.legao.entity.po.EmployPO;
 import com.zxq.legao.entity.vo.EmployVO;
-import com.zxq.legao.entity.vo.EmployVO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,6 +30,9 @@ public interface EmployService extends IService<EmployPO> {
     List<EmployPO> selectAllEmploy();
 
     List<EmployVO> selectAllTeacherName();
+
+    int updateAllClassTime(EmployVO employVO);
+
 
 
 }

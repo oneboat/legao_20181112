@@ -35,7 +35,7 @@ public class RelationController {
     }
 
     /**
-     * 查询签到人
+     * 查询签到
      */
     @RequestMapping("/selectRelation")
     public String selectRelation(RelationPO relationPO, HttpServletRequest request, Integer page) {
@@ -46,7 +46,7 @@ public class RelationController {
 
 
     /**
-     * 删除签到人
+     * 删除签到
       */
     @RequestMapping("/deleteRelations")
     public String deleteRelations(Integer[] caption, HttpServletRequest request) {

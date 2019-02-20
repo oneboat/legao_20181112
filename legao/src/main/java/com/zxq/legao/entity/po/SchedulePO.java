@@ -30,7 +30,7 @@ public class SchedulePO implements Serializable {
     /**
      * 老师
      */
-    private String teacherName;
+    private Integer teacherID;
     /**
      * 在一年中所在的周数
      */

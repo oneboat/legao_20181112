@@ -1,7 +1,10 @@
 package com.zxq.legao.service;
 
-import com.baomidou.mybatisplus.service.IService;
 import com.zxq.legao.entity.po.ContractPO;
+import com.zxq.legao.entity.vo.ContractVO;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +14,20 @@ import com.zxq.legao.entity.po.ContractPO;
  * @author dengzhenxiang
  * @since 2019-02-18
  */
-public interface ContractService extends IService<ContractPO> {
+public interface ContractService {
+    int insertContract(ContractPO contractPO);
+
+    int deleteContract(List<Integer> contractIDs);
+
+    int updateContract(ContractPO contractPO);
+
+    String selectContract(Integer page, ContractPO contractPO, HttpServletRequest request);
+
+    ContractVO selectContractByID(Integer contractID);
+
+    ContractVO selectContractByStudentId(Integer studentId);
+
+
+
 
 }

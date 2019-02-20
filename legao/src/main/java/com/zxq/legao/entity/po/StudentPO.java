@@ -7,7 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -60,7 +59,7 @@ public class StudentPO implements Serializable {
      * 重要程度
      */
     private Integer importanceGrade;
-    private String teacherName;
+    private Integer teacherID;
     private Integer courseID;
     private Integer schoolAreaID;
     private Integer followID;
