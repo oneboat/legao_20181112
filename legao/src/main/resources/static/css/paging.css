@@ -14,7 +14,7 @@
         line-height: 35px;
         position: absolute;
         left: 50%;
-        top: 65%;
+        top: 630px;
         transform: translate(-50%, -50%);
         text-align: center;
     }
@@ -90,7 +90,7 @@
         line-height: 25px;
         position: absolute;
         left: 50%;
-        top: 70%;
+        top: 630px;
         transform: translate(-50%, -50%);
         text-align: center;
     }
@@ -168,7 +168,7 @@
         line-height: 35px;
         position: absolute;
         left: 50%;
-        top: 75%;
+        top: 630px;
         transform: translate(-50%, -50%);
         text-align: center;
     }

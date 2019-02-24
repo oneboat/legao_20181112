@@ -2,8 +2,11 @@ package com.zxq.legao.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zxq.legao.dao.ClasstimepackDao;
 import com.zxq.legao.dao.ContractDao;
+import com.zxq.legao.dao.MembercardDao;
 import com.zxq.legao.dao.UserDao;
+import com.zxq.legao.entity.po.ClasstimepackPO;
 import com.zxq.legao.entity.po.ContractPO;
 import com.zxq.legao.entity.vo.ContractVO;
 import com.zxq.legao.entity.vo.UserVO;
@@ -34,11 +37,19 @@ public class ContractServiceImpl implements ContractService {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private MembercardDao membercardDao;
+    @Autowired
+    private ClasstimepackDao classtimepackDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertContract(ContractPO contractPO) {
-
+        //计算总课时
+//        MembercardPO membercardPO  = membercardDao.selectMembercardByID(contractPO.getMemberCarId());
+        ClasstimepackPO classtimepackPO = classtimepackDao.selectClasstimepackByID(contractPO.getClassPackageId());
+        int remainClassTime = Integer.valueOf(contractPO.getPresentationClassTime())  + Integer.valueOf(classtimepackPO.getClassTime());
+       contractPO.setRemainClassTime(remainClassTime);
         return contractDao.insertContract(contractPO);
     }
 
@@ -98,7 +109,7 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public ContractVO selectContractByStudentId(Integer studentId) {
+    public ContractPO selectContractByStudentId(Integer studentId) {
         return contractDao.selectContractByStudentId(studentId);
     }
 

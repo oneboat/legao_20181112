@@ -97,4 +97,14 @@
         FROM legao_relation
         WHERE scheduleID = #{id}
     </select>
+    <select id="selectRelationByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.RelationPO">
+        SELECT
+            legao_relation.id,
+            legao_relation.scheduleID,
+            legao_relation.studentID,
+            legao_relation.signInStatus
+        FROM
+            legao_relation
+        WHERE id = #{id}
+    </select>
 </mapper>

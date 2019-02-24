@@ -25,5 +25,7 @@ public interface ContractDao  {
 
     ContractVO selectContractByID(Integer contractPO);
 
-    ContractVO selectContractByStudentId(Integer studentId);
+    ContractPO selectContractByStudentId(Integer studentId);
+
+    int updateRemainClassTime(ContractPO contractPO);
 }

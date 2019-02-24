@@ -94,6 +94,8 @@
             <td style="color: red">没有会员卡</td>
             </span>
                 <td th:if="${contract.remark}!=null">[[${contract.remark}]]</td>
+            <td th:if="${contract.allClassTime}!=null">[[${contract.allClassTime}]]</td>
+            <td th:if="${contract.remainClassTime}!=null">[[${contract.remainClassTime}]]</td>
                 <td><a th:href="'editContract?contractId='+${contract.id}"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>

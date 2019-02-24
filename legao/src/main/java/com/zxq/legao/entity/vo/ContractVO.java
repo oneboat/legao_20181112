@@ -110,9 +110,22 @@ public class ContractVO implements Serializable {
      */
     @TableField("remark")
     private String remark;
-
+    /**
+     * 订金表id
+     */
     private Integer depositId;
+    /**
+     * 会员卡id
+     */
     private Integer memberCarId;
+    /**
+     * 总课时
+     */
+    private Integer allClassTime;
+    /**
+     * 剩余课时
+     */
+    private Integer remainClassTime;
 
 
     public static final String ID = "id";

@@ -23,4 +23,6 @@ public interface RelationDao {
     int insertBatchRelation(@Param("list") List<Integer> studentList, @Param("schedule")SchedulePO schedulePO);
 
     int selectStuTotalByScheID(Integer scheduleId);
+
+    RelationPO selectRelationByID(Integer realtionID);
 }

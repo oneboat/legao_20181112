@@ -199,7 +199,7 @@
 
     <select id="selectAllStudentName" resultType="com.zxq.legao.entity.vo.StudentVO">
         SELECT
-            id,name
+            id,name,sex,telphone
         FROM
             legao_student
     </select>

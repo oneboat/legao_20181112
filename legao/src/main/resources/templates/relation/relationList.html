@@ -44,7 +44,7 @@
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
                 <th>课程</th>
-                <th>学生</th>
+                <th>学生|电话</th>
                 <th>学员生日|性别</th>
                 <th>老师</th>
                 <th>状态</th>
@@ -55,11 +55,11 @@
                            th:id="'box_'+${relation.id}" th:value="${relation.id}"/></td>
                 <td th:if="${relation.schedule}!=null">[[${relation.schedule.course.name}]]</td>
                 <td th:if="${relation.schedule}==null" style="color: red">该排课信息已被删除</td>
-                <td>[[${relation.student.name}]]</td>
+                <td>[[${relation.student.name}]]| [[${relation.student.telphone}]]</td>
                 <td>
                     [[${#dates.format(relation.student.birthday,'yyyy年MM月dd日')}]]|[[${relation.student.sex}]]
                 </td>
-                <td th:if="${relation.schedule}!=null">[[${relation.schedule.teacherName}]]</td>
+                <td th:if="${relation.schedule}!=null">[[${relation.schedule.teacherVO.name}]]</td>
                 <td th:if="${relation.schedule}==null" style="color: red">该排课信息已被删除</td>
                 <td th:if="${relation.signInStatus}==1"><span class="label label-success">准时</span></td>
                 <td th:if="${relation.signInStatus}==2"><span class="label label-danger">未签到</span></td>

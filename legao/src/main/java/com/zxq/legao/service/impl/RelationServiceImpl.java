@@ -2,8 +2,10 @@ package com.zxq.legao.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zxq.legao.dao.ContractDao;
 import com.zxq.legao.dao.EmployDao;
 import com.zxq.legao.dao.RelationDao;
+import com.zxq.legao.entity.po.ContractPO;
 import com.zxq.legao.entity.po.RelationPO;
 import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.RelationVO;
@@ -18,10 +20,13 @@ import java.util.List;
 
 @Service
 public class RelationServiceImpl implements RelationService {
+
     @Autowired
     private RelationDao relationDao;
     @Autowired
     private EmployDao employDao;
+    @Autowired
+    private ContractDao contractDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -45,21 +50,38 @@ public class RelationServiceImpl implements RelationService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateBatchRelation(RelationPO relationPO) {
+
         List<Integer> caption = relationPO.getCaption();
         if (caption.get(0) == null) {
             caption.remove(0);
         }
-        int captionSize = relationPO.getCaption().size();
-        for (int i = 0; i < captionSize; i++) {
-            relationDao.updateBatchRelation(relationPO, relationPO.getCaption().get(i));
-        }
-        //计算老师和学生的课时，老师加课时，学生减课时
-        EmployVO employVO = employDao.selectEmployById(relationPO.getTeacherID());
-        int teacherTime = relationPO.getCaption().size() * relationPO.getClassTimes() + Integer.valueOf(employVO.getAllClassTime());
-        employVO.setAllClassTime(teacherTime + "");
-        employDao.updateAllClassTime(employVO);
+        int captionSize = caption.size();
+        if (relationPO.getSignInStatus() == 1) {
+            //计算老师和学生的课时，老师加课时，学生减课时
+            EmployVO employVO = employDao.selectEmployById(relationPO.getTeacherID());
+            int teacherTime = relationPO.getCaption().size() * relationPO.getClassTimes() + Integer.valueOf(employVO.getAllClassTime());
+            employVO.setAllClassTime(teacherTime + "");
+            employDao.updateAllClassTime(employVO);
 
-//学生减课时 TODO
+            //学生减课时 批量签到
+            ContractPO contractPO = null;
+            int temClassTime = 0;
+            RelationPO relationPOByID = null;
+            for (int i = 0; i < captionSize; i++) {
+                 relationPOByID = relationDao.selectRelationByID(relationPO.getCaption().get(i));
+                contractPO = contractDao.selectContractByStudentId(relationPOByID.getStudentID());
+                if(contractPO !=null){
+                    temClassTime = contractPO.getRemainClassTime() - (1 * relationPO.getClassTimes());
+                    contractPO.setRemainClassTime(temClassTime);
+                    contractDao.updateRemainClassTime(contractPO);
+                    relationDao.updateBatchRelation(relationPO, relationPO.getCaption().get(i));
+                }
+            }
+        } else {
+            for (int i = 0; i < captionSize; i++) {
+                relationDao.updateBatchRelation(relationPO, relationPO.getCaption().get(i));
+            }
+        }
         return 2;
     }
 

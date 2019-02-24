@@ -25,7 +25,7 @@ public interface ContractService {
 
     ContractVO selectContractByID(Integer contractID);
 
-    ContractVO selectContractByStudentId(Integer studentId);
+    ContractPO selectContractByStudentId(Integer studentId);
 
 
 

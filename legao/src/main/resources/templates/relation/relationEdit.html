@@ -40,7 +40,7 @@
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="" id="checkAll"/></th>
                 <th>课程</th>
-                <th>学生</th>
+                <th>学生|电话</th>
                 <th>学员生日|性别</th>
                 <th>老师</th>
                 <th>状态</th>
@@ -50,7 +50,7 @@
                 <td><input type="checkbox" name="caption"
                            th:id="'box_'+${relation.id}" th:value="${relation.id}"/></td>
                 <td>[[${relation.schedule.course.name}]]</td>
-                <td>[[${relation.student.name}]]</td>
+                <td>[[${relation.student.name}]]| [[${relation.student.telphone}]]</td>
                 <td>
                     [[${#dates.format(relation.student.birthday,'yyyy年MM月dd日')}]]|[[${relation.student.sex}]]
                 </td>

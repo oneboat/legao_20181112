@@ -5,7 +5,18 @@
     <title>contractAdd</title>
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <link href="css/main.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
-
+    <style>
+        #myInput {
+            background-image: url('https://static.runoob.com/images/mix/searchicon.png'); /* 搜索按钮 */
+            background-position: 10px 12px; /* 定位搜索按钮 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+    </style>
 
 </head>
 <body>
@@ -44,15 +55,18 @@
                         </option>
                     </select>
                 </td>
-                <td>会员卡：</td>
-                <td>
-                    <select class="inputCss" id="memberCarId" name="memberCarId">
-                        <option value="">--请输入会员卡编号--</option>
-                        <option th:value="${membercard.id}" th:each="membercard:${application.allMembercard}">
-                            [[${membercard.memberCardCode}]]
-                        </option>
-                    </select>
-                </td>
+                <td>总课时：</td>
+                <td><input type="text" name="allClassTime" class="inputCss" style="width:205px;" placeholder="请输入总课时"
+                           id="contract_allClassTime"/></td><!---->
+                <!--<td>会员卡：</td>-->
+                <!--<td>-->
+                    <!--<select class="inputCss" id="memberCarId" name="memberCarId">-->
+                        <!--<option value="">&#45;&#45;请输入会员卡编号&#45;&#45;</option>-->
+                        <!--<option value="${membercard.id}" each=membercard:${application.allMembercard}">-->
+                            <!--membercard.memberCardCode-->
+                        <!--</option>-->
+                    <!--</select>-->
+                <!--</td>-->
 
 
 
@@ -63,14 +77,48 @@
                 <td></td>
             </tr>
             <tr>
-                <td>学&nbsp;员：</td>
-                <td>
-                    <select class="inputCss" id="contract_studentName" name="studentId">
-                    <option value="">--请选择学员--</option>
-                    <option th:value="${student.id}" th:each="student:${application.allStudentName}">
-                        [[${student.name}]]
-                    </option>
-                </select>
+
+                <td>学员：</td>
+                <td >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        添加学员<span id="select_info" style="color: red;"></span>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">学员列表</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="搜索...">
+                                    <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
+                                           id="myTable">
+                                        <tr id="tr_th">
+                                            <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
+                                            <th>学员</th>
+                                            <th>性别</th>
+                                            <th>电话</th>
+                                        </tr>
+                                        <tr th:each="students:${application.allStudentName}">
+                                            <td><input type="checkbox" name="caption"
+                                                       th:id="'box_'+${students.id}" th:value="${students.name}"/></td>
+                                            <td>[[${students.name}]]</td>
+                                            <td>[[${students.sex}]]</td>
+                                            <td>[[${students.telphone}]]</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" id="selectStudentBtns">选择</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </td>
 
                 <td>合同编号：</td>
@@ -140,12 +188,15 @@
 
 
             </tr>
+
             <tr style="height: 10px;">
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
-
             <tr>
                 <td colspan="5" align="center"><input type="button" value="添加" class="btn btn-success" id="addbtn"/>&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="reset" name="cancel" class="btn btn-danger" value="取消"/></td>
@@ -153,6 +204,7 @@
         </table>
         <!--隐藏域-->
         <input type="hidden" name="id"/>
+        <input type="hidden" name="studentName" id="contract_studentName " />
     </form>
     <!-- 判断是否添加成功 -->
     <input type="hidden" th:value="${type}" id="typeInfo"/>
@@ -163,6 +215,43 @@
 <script src="laydate/laydate.js" type="text/javascript"></script>
 <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
+    $("#selectStudentBtns").click(function () {
+        var chk_value =[];//定义一个数组
+        var studentListval = "";
+        var reg=/^,/gi;
+
+        $('input[id^="box_"]:checked').each(function(){//遍历每一个名字为box_开头的复选框，其中选中的执行函数
+            chk_value.push($(this).val());//将选中的值添加到数组chk_value中
+            studentListval += (","+$(this).val());
+        });
+        if (chk_value.length > 1){
+            alert("合同中只能有一个学员")
+        }
+        $("#select_info").text("(已选"+chk_value.length+"个学员)");
+        $("#contract_studentName ").val(studentListval.replace(reg,""))
+    });
+    //搜索学员
+    function myFunction() {
+        // 声明变量
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // 循环表格每一行，查找匹配项
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
     /* type */
     $(function () {
         if ($("#typeInfo").val() == 'yes') {
@@ -192,14 +281,18 @@
             , trigger: 'click'
         });
     });
+    /* 全选和反选*/
+    $("#checkAll").click(function () {
 
+        $("input[id^='box_']").prop("checked", this.checked);
+    });
 
     $("#addbtn").click(function () {
 
         //获取表单值
         var classtimepack_id = $("#classtimepack_id").val();
         var deposit_id = $("#deposit_id").val();
-        var memberCarId = $("#memberCarId").val();
+        // var memberCarId = $("#memberCarId").val();
         var contract_contractCode = $("#contract_contractCode").val();
         var contract_studentName = $("#contract_studentName").val();
         var contract_signDate = $("#contract_signDate").val();
@@ -212,6 +305,7 @@
         var contract_actPay = $("#contract_actPay").val();
         var contract_belongOne = $("#contract_belongOne").val();
         var contract_payType = $("#contract_payType").val();
+        var contract_allClassTime = $("#contract_allClassTime").val();
 
         //创建正则模板
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
@@ -242,7 +336,9 @@
             $("#error").text("*实际支付只能为数字");
         }else if (contract_payType.trim() == "") {
             $("#error").text("*支付方式不能为空");
-        } else {
+        }else if (!isNum.test(contract_allClassTime.trim())) {
+            $("#error").text("*总课时只能为数字");
+        }  else {
 
             if (contract_presentationClassTime.trim() == "") {
                 $("#contract_presentationClassTime").val("0");
@@ -250,14 +346,18 @@
             if (deposit_id.trim() == "") {
                 $("#deposit_id").val("-1");
             }
-            if (memberCarId.trim() == "") {
-                $("#memberCarId").val("-1");
-            }
+            // if (memberCarId.trim() == "") {
+            //     $("#memberCarId").val("-1");
+            // }
             if (contract_discount.trim() == "") {
                 $("#baseSituation").text("0");
             }
             if (contract_belongOne.trim() == "") {
                 $("#error").text("无");
+            }
+
+            if (contract_allClassTime.trim() == "") {
+                $("#error").text("0");
             }
 
             $("#contractform").attr("action", "insertContract");
