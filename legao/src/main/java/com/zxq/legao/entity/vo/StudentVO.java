@@ -38,6 +38,8 @@ public class StudentVO implements Serializable {
     private SchoolAreaVO schoolAreaID;
     private FollowPO followID;
     private String age;
+    private Integer follow;
+    private String stuAge;
 
 
 }

@@ -35,27 +35,24 @@
                 </td>
 
 
+                <td>家长姓名：</td>
+                <td><input type="text" name="parentName" class="inputCss" style="width:205px;" placeholder="请输入学员的家长姓名"
+                           id="student_parentName"/></td>
                 <td>跟进人：</td>
                 <td>
                     <select class="inputCss" id="follow_id" name="followID">
-                        <option value="">--请选择更进人--</option>
-                        <option th:value="${follow.id}" th:each="follow:${application.allFollow}">
-                            [[${follow.advisor}]]
+                        <option value="0">--请选择跟进人--</option>
+                        <option th:value="${follow.id}" th:each="follow:${application.allemploy}">
+                            [[${follow.name}]]
                         </option>
                     </select>
-                </td>
-                <td>性别：</td>
-                <td>
-                    <select class="inputCss" id="sex" name="sex">
-                        <option value="">--请选择性别--</option>
-                        <option value="男">男</option>
-                        <option value="女">女</option>
-                    </select>
-
                 </td>
 
             </tr>
             <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -64,47 +61,38 @@
                 <td>姓&nbsp;名：</td>
                 <td><input type="text" name="name" class="inputCss" style="width:205px;" placeholder="请输入学员姓名"
                            maxlength="20" id="student_name"/></td>
-                <td>昵&nbsp;称：</td>
-                <td><input type="text" name="nickName" class="inputCss" style="width:205px;" placeholder="请输入学员昵称"
-                           id="student_nickName" maxlength="18"/></td>
-                <td>家长姓名：</td>
-                <td><input type="text" name="parentName" class="inputCss" style="width:205px;" placeholder="请输入学员的家长姓名"
-                           id="student_parentName"/></td>
-
-
-            </tr>
-            <tr style="height: 10px;">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
                 <td>家长关系：</td>
                 <td><input type="text" name="parentRelat" class="inputCss" style="width:205px;"
                            placeholder="请输入学员与家长的关系" id="student_parentRelat"/></td>
-                <td>手&nbsp;机：</td>
-                <td><input type="text" name="telphone" class="inputCss" style="width:205px;" placeholder="请输入学员联系手机号码"
-                           id="student_phone"/></td>
-                <td>微信账号：</td>
-                <td><input type="text" name="weChatID" class="inputCss" style="width:205px;" placeholder="请输入学员联系微信账号"
-                           id="student_qqNum"/>&nbsp;
-                </td>
 
+
+                <td>顾问：</td>
+                <td>
+                    <select class="inputCss" id="stu_advisor" name="advisor">
+                        <option value="0">--请输入学员的顾问--</option>
+                        <option th:value="${employ.name}" th:each="employ:${application.allemploy}">
+                            [[${employ.name}]]
+                        </option>
+                    </select>
+                </td>
 
             </tr>
             <tr style="height: 10px;">
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-                <td>学&nbsp;历：</td>
-                <td><input type="text" name="education" class="inputCss" style="width:205px;" placeholder="请输入学员学历"
-                           id="student_education"/></td>
+                <td>昵&nbsp;称：</td>
+                <td><input type="text" name="nickName" class="inputCss" style="width:205px;" placeholder="请输入学员昵称"
+                           id="student_nickName" maxlength="18"/></td>
 
-                <td>备用电话：</td>
-                <td><input type="text" name="sparePhone" class="inputCss" style="width:205px;"
-                           placeholder="请输入联系学员的备用电话" id="student_sparePhone"/></td>
+                <td>手&nbsp;机：</td>
+                <td><input type="text" name="telphone" class="inputCss" style="width:205px;" placeholder="请输入学员联系手机号码"
+                           id="student_phone"/></td>
                 <td>市场人员：</td>
                 <td><input type="text" name="markPeople" class="inputCss" style="width:205px;"
                            placeholder="请输入学员专属的市场人员" id="student_markPeople"/></td>
@@ -115,18 +103,80 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-
-                <td>顾问：</td>
+                <td>性别：</td>
                 <td>
-                    <select class="inputCss" id="advisor" name="advisor">
-                        <option value="">--请输入学员的顾问--</option>
-                        <option th:value="${employ.name}" th:each="employ:${application.allemploy}">
-                            [[${employ.name}]]
+                    <select class="inputCss" id="sex" name="sex">
+                        <option value="">--请选择性别--</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+
+                </td>
+                <td>备用电话：</td>
+                <td><input type="text" name="sparePhone" class="inputCss" style="width:205px;"
+                           placeholder="请输入联系学员的备用电话" id="student_sparePhone"/></td>
+                <td>学员的老师：</td>
+                <td>
+
+                    <select class="inputCss" id="teacher_id" name="teacherName">
+                        <option value="">--请选择老师--</option>
+                        <option th:value="${teacherName.name}" th:each="teacherName:${application.allTeacherName}">
+                            [[${teacherName.name}]]
                         </option>
                     </select>
-                    </td>
+
+                </td>
+
+
+
+
+
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>学&nbsp;历：</td>
+                <td><input type="text" name="education" class="inputCss" style="width:205px;" placeholder="请输入学员学历"
+                           id="student_education"/></td>
+
+                <td>微信账号：</td>
+                <td><input type="text" name="weChatID" class="inputCss" style="width:205px;" placeholder="请输入学员联系微信账号"
+                           id="student_qqNum"/>&nbsp;
+                </td>
+                <td>重要程度：</td>
+                <td>
+                    <select name="importanceGrade" id="importanceGrade" style="height: 35px;" class="inputCss">
+                        <option value="">----全部----</option>
+                        <option value="1">重点</option>
+                        <option value="2">优质</option>
+                        <option value="3">会员</option>
+                        <option value="4">一般</option>
+                        <option value="5">放弃</option>
+                        <option value="6">未知</option>
+                    </select>
+                </td>
+
+
+
+
+            </tr>
+            <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
                 <td>出生日期：</td>
                 <td><input type="text" name="birthday" class="inputCss" style="width:205px;" placeholder="请输入学员出生日期"
                            id="student_birthday"/></td>
@@ -134,9 +184,17 @@
                 <td><input type="text" name="area" class="inputCss" style="width:205px;" placeholder="请输入学员所在地区"
                            id="student_area"/></td>
 
+                <td>来源：</td>
+                <td><input type="text" name="source" class="inputCss" style="width:205px;" placeholder="请输入学员的来源方式"
+                           id="student_source"/></td>
+
+
 
             </tr>
             <tr style="height: 10px;">
+                <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -151,41 +209,11 @@
                         <option value="3">号码无效客户</option>
                         <option value="4">其他</option>
                     </select>
-                <td>学员的老师：</td>
-                <td>
-
-                    <select class="inputCss" id="teacher_id" name="teacherName">
-                    <option value="">--请选择老师--</option>
-                    <option th:value="${teacherName.name}" th:each="teacherName:${application.allTeacherName}">
-                        [[${teacherName.name}]]
-                    </option>
-                </select>
-
                 </td>
-                <td>重要程度：</td>
-                <td>
-                    <select name="importanceGrade" id="importanceGrade" style="height: 35px;" class="inputCss">
-                        <option value="">----全部----</option>
-                        <option value="1">重点</option>
-                        <option value="2">优质</option>
-                        <option value="3">会员</option>
-                        <option value="4">一般</option>
-                        <option value="5">放弃</option>
-                        <option value="6">未知</option>
-                    </select>
-            </tr>
-            <tr style="height: 10px;">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>来源：</td>
-                <td><input type="text" name="source" class="inputCss" style="width:205px;" placeholder="请输入学员的来源方式"
-                           id="student_source"/></td>
                 <td>期望时间：</td>
                 <td><input type="text" name="willDate" class="inputCss" style="width:205px;" placeholder="请输入学员期望到课时间"
                            id="student_willDate"/></td>
+
                 <td>基本情况：</td>
                 <td><textarea rows="5" cols="23" id="baseSituation" name="baseSituation" maxlength="200"
                               placeholder="请输入学员的基本情况,输入长度不大于200的字符..." class="inputCss"></textarea></td>
@@ -252,12 +280,12 @@
         var follow_id = $("#follow_id").val();
         var student_source = $("#student_source").val();
         var teacher_id = $("#teacher_id").val();
-        var courseID = $("#courseID").val();
+
         //为字段需要赋默认值
         var student_nickName = $("#student_nickName").val();
         var student_education = $("#student_education").val();
         var student_parentRelat = $("#student_parentRelat").val();
-        var advisor = $("#advisor").val();
+        var advisor = $("#stu_advisor").val();
         var student_sparePhone = $("#student_sparePhone").val();
         var student_qqNum = $("#student_qqNum").val();
         var student_birthday = $("#student_birthday").val();
@@ -273,31 +301,27 @@
         var phone_regx = /^1(3|4|5|7|8)\d{9}$/;
         if (schoolArea_id.trim() == "") {
             $("#error").text("*请选择校区");
-        }  else if (follow_id.trim() == "") {
-            $("#error").text("*请选择学员的更进人");
-        } else if (sex.trim() == "") {
+        }   else if (sex.trim() == "") {
             $("#error").text("*请选择性别");
         } else if (name.trim() == "") {
             $("#error").text("*姓名不能为空，请补充完整");
         } else if (re.test(name.trim())) {
             $("#error").text("*姓名存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
-        } else if (student_parentName.trim() == "") {
-            $("#error").text("*家长姓名不能为空，请补充完整");
         } else if (phone.trim() == "") {
             $("#error").text("*手机不能为空，请补充完整");
         } else if (re.test(phone.trim())) {
             $("#error").text("*手机存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
         } else if (!phone_regx.test(phone.trim())) {
             $("#error").text("*输入的手机格式不对，请正确输入手机格式");
-        } else if (importanceGrade.trim() == "") {
-            $("#error").text("*请选择学员重要程度");
-        } else if (courseID.trim() == "") {
-            $("#error").text("*请选择学员所选的课程");
-        } else if (teacher_id.trim() == "") {
+        }else if (teacher_id.trim() == "") {
             $("#error").text("*学员老师不能为空，请补充完整");
-        } else if (student_source.trim() == "") {
-            $("#error").text("*学员来源不能为空，请补充完整");
-        } else {
+        }else {
+            if (student_parentName.trim() == "") {
+                $("#student_parentName").val("无")
+            }
+            if (importanceGrade.trim() == "") {
+                $("#importanceGrade").val(6)
+            }
             if (student_area.trim() == "") {
                 $("#student_area").val("无");
             }
@@ -308,7 +332,7 @@
                 $("#baseSituation").text("无");
             }
             if (student_source.trim() == "") {
-                $("#error").text("*学员来源不能为空，请补充完整");
+                $("#student_source").val("无")
             }
             if (student_willDate.trim() == "") {
                 $("#student_willDate").val(new Date().Format("yyyy-MM-dd"));
@@ -324,9 +348,6 @@
             }
             if (student_sparePhone.trim() == "") {
                 $("#student_sparePhone").val("无");
-            }
-            if (advisor.trim() == "") {
-                $("#advisor").val("无");
             }
             if (student_parentRelat.trim() == "") {
                 $("#student_parentRelat").val("无");

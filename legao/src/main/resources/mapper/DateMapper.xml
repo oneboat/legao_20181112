@@ -39,7 +39,7 @@
             </if>
 
         </where>
-
+        order by priority
     </select>
     <select id="selectDateByID" resultType="com.zxq.legao.entity.vo.DateVO" parameterType="java.lang.Integer">
         SELECT
@@ -60,7 +60,7 @@
             legao_date
         WHERE
             status = 1
-        order by priority desc;
+        order by priority
 
     </select>
 </mapper>

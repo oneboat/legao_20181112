@@ -67,7 +67,14 @@ public class SchoolAreaController {
      */
     @RequestMapping("/deleteSchoolAreas")
     public String deleteSchoolAreas(Integer[] caption, HttpServletRequest request) {
-
+        if (caption.length!=0){
+            for (int i = 0; i < caption.length; i++) {
+                if (caption[i].equals(1)){
+                    request.setAttribute("delete_msg", "不允许删除初始化值（校区）");
+                     return "forward:/selectSchoolArea";
+                }
+            }
+        }
         schoolAreaService.deleteSchoolArea(Arrays.asList(caption));
         ServletContext servletContext = request.getServletContext();
         List<SchoolAreaVO> allSchoolArea = schoolAreaService.findAllSchoolAreaName(new SchoolAreaPO());

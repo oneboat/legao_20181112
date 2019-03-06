@@ -23,7 +23,7 @@ public interface ContractDao  {
 
     List<ContractVO> selectContract(@Param("contractPO") ContractPO contractPO, @Param("fields") List<String> fields);
 
-    ContractVO selectContractByID(Integer contractPO);
+    ContractPO selectContractByID(Integer contractPO);
 
     ContractPO selectContractByStudentId(Integer studentId);
 

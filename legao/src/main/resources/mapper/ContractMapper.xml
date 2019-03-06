@@ -10,7 +10,7 @@
             legao_contract.price,
             legao_contract.discount,
             legao_contract.depositId,
-            legao_contract.act_pay,
+            legao_contract.actPay,
             legao_contract.payType,
             legao_contract.presentationClassTime,
             legao_contract.startTime,
@@ -18,10 +18,13 @@
             legao_contract.belongOne,
             legao_contract.memberCarId,
             legao_contract.remark,
-            legao_contract.allClassTime,
-            legao_contract.remainClassTime
+            legao_contract.classTime,
+            legao_contract.remainClassTime,
+            legao_contract.schoolAreaId,
+            legao_contract.totalClassTime
         ) VALUES(#{contractCode},#{studentId},#{signDate},#{classPackageId},#{price},#{discount},#{depositId},#{actPay},
-                 #{payType},#{presentationClassTime},#{startTime},#{endTime},#{belongOne},#{memberCarId},#{remark},#{allClassTime},#{remainClassTime}
+                 #{payType},#{presentationClassTime},#{startTime},#{endTime},#{belongOne},#{memberCarId},#{remark},#{classTime},#{remainClassTime}
+                 ,#{schoolAreaId},#{totalClassTime}
         );
     </insert>
     <delete id="deleteContract" parameterType="java.util.List">
@@ -33,10 +36,10 @@
     </delete>
     <update id="updateContract" parameterType="com.zxq.legao.entity.po.ContractPO">
         UPDATE legao_contract SET
-                                  contractCode = #{contractCode},studentId = #{studentId},signDate = #{signDate},classPackageId = #{classPackageId},
-                                  price = #{price},discount = #{discount},depositId = #{depositId},act_pay = #{actPay},
+                                  contractCode = #{contractCode},signDate = #{signDate},classPackageId = #{classPackageId},
+                                  price = #{price},discount = #{discount},depositId = #{depositId},actPay = #{actPay},
                                   payType = #{payType},presentationClassTime = #{presentationClassTime},startTime = #{startTime},endTime = #{endTime},
-                                  belongOne = #{belongOne},memberCarId = #{memberCarId},remark = #{remark},allClassTime = #{allClassTime}
+                                  belongOne = #{belongOne},remark = #{remark},classTime = #{classTime},schoolAreaId = #{schoolAreaId}, remainClassTime = #{remainClassTime}
         WHERE id = #{id};
     </update>
     <select id="selectContract"
@@ -59,7 +62,7 @@
             </if>
         </where>
     </select>
-    <select id="selectContractByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.vo.ContractVO" resultMap="select_contractMap">
+    <select id="selectContractByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.ContractPO" >
         SELECT
             legao_contract.id,
             legao_contract.contractCode,
@@ -69,7 +72,7 @@
             legao_contract.price,
             legao_contract.discount,
             legao_contract.depositId,
-            legao_contract.act_pay,
+            legao_contract.actPay,
             legao_contract.payType,
             legao_contract.presentationClassTime,
             legao_contract.startTime,
@@ -77,8 +80,10 @@
             legao_contract.belongOne,
             legao_contract.memberCarId,
             legao_contract.remark,
-            legao_contract.allClassTime,
-            legao_contract.remainClassTime
+            legao_contract.classTime,
+            legao_contract.remainClassTime,
+            legao_contract.schoolAreaId,
+            legao_contract.totalClassTime
         FROM
             legao_contract
         WHERE id = #{id};
@@ -89,7 +94,7 @@
         <result column="signDate" property="signDate"></result>
         <result column="price" property="price"></result>
         <result column="discount" property="discount"></result>
-        <result column="act_pay" property="actPay"></result>
+        <result column="actPay" property="actPay"></result>
         <result column="payType" property="payType"></result>
         <result column="presentationClassTime" property="presentationClassTime"></result>
         <result column="startTime" property="startTime"></result>
@@ -98,8 +103,10 @@
         <result column="remark" property="remark"></result>
         <result column="memberCarId" property="memberCarId"></result>
         <result column="depositId" property="depositId"></result>
-        <result column="allClassTime" property="allClassTime"></result>
+        <result column="classTime" property="classTime"></result>
         <result column="remainClassTime" property="remainClassTime"></result>
+        <result column="totalClassTime" property="totalClassTime"></result>
+        <result column="depositId" property="depositId"></result>
         <association property="studentVO" column="studentId"
                      select="com.zxq.legao.dao.StudentDao.selectStudentByID"
                      javaType="com.zxq.legao.entity.vo.StudentVO"></association>
@@ -111,6 +118,8 @@
                      javaType="com.zxq.legao.entity.po.MembercardPO"></association>
         <association property="depositVO" column="depositId" javaType="com.zxq.legao.entity.po.DepositPO"
                      select="com.zxq.legao.dao.DepositDao.selectDepositByID"></association>
+        <association property="schoolArea" column="schoolAreaId" javaType="com.zxq.legao.entity.vo.SchoolAreaVO"
+                     select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"></association>
 
     </resultMap>
 <select id="selectContractByStudentId" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.ContractPO" >
@@ -123,16 +132,17 @@
         legao_contract.price,
         legao_contract.discount,
         legao_contract.depositId,
-        legao_contract.act_pay,
+        legao_contract.actPay,
         legao_contract.payType,
         legao_contract.presentationClassTime,
         legao_contract.startTime,
         legao_contract.endTime,
         legao_contract.belongOne,
-        legao_contract.memberCarId,
         legao_contract.remark,
-        legao_contract.allClassTime,
-        legao_contract.remainClassTime
+        legao_contract.classTime,
+        legao_contract.remainClassTime,
+        legao_contract.schoolAreaId,
+        legao_contract.totalClassTime
     FROM
         legao_contract
     WHERE studentId = #{studentId};

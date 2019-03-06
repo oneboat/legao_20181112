@@ -96,7 +96,7 @@ public class ScheduleController {
     public String editScheduleFrom(HttpServletRequest request) {
         ScheduleVO scheduleVO = (ScheduleVO) request.getAttribute("scheduleByID");
         request.setAttribute("scheduleEdit", scheduleVO);
-        return "Schedule/ScheduleEdit";
+        return "schedule/scheduleEdit";
 
     }
 

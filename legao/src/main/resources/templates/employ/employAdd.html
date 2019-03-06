@@ -210,6 +210,7 @@
 
         //创建正则模板
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
+        var isNum = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
         var phone_regx = /^1(3|4|5|7|8)\d{9}$/;
         if (jobID.trim() == "") {
             $("#error").text("*请选择员工的职位");
@@ -237,15 +238,18 @@
             $("#error").text("*员工是否全勤，请补充完整");
         } else if (area.trim() == "") {
             $("#error").text("*员工所属校区，请补充完整");
-        } else {
+        } else if (employ_allClassTime.trim() == "") {
+            $("#error").text("*员工总课时，请补充完整");
+        }else if (employ_allClassTime.trim() == "") {
+            $("#error").text("*员工总课时，请补充完整");
+        }else if (!isNum.test(employ_allClassTime)) {
+            $("#error").text("*员工总课时，请输入数字");
+        }  else {
             if (employ_eatAllow.trim() == "") {
                 $("#employ_eatAllow").val("0");
             }
             if (employ_classPay.trim() == "") {
                 $("#employ_classPay").val("无");
-            }
-            if (employ_allClassTime.trim() == "") {
-                $("#employ_allClassTime").val("0");
             }
             if (extraPay.trim() == "") {
                 $("#extraPay").val("无");

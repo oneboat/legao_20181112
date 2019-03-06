@@ -25,9 +25,9 @@
                                   legao_student.source,
                                   legao_student.importanceGrade,
                                   legao_student.teacherName,
-                                  legao_student.courseID,
                                   legao_student.schoolAreaID,
-                                  legao_student.followID)
+                                  legao_student.followID,
+                                  legao_student.stuAge)
         VALUES (#{nickName},
                 #{name},
                 #{parentName},
@@ -48,9 +48,9 @@
                 #{source},
                 #{importanceGrade},
                 #{teacherName},
-                #{courseID},
                 #{schoolAreaID},
-                #{followID});
+                #{followID},
+                #{stuAge});
     </insert>
     <delete id="deleteStudent" parameterType="java.util.List">
         DELETE FROM legao_student WHERE id IN
@@ -81,7 +81,6 @@
             legao_student.source          = #{source},
             legao_student.importanceGrade = #{importanceGrade},
             legao_student.teacherName     = #{teacherName},
-            legao_student.courseID        = #{courseID},
             legao_student.schoolAreaID    = #{schoolAreaID},
             legao_student.followID        = #{followID}
         WHERE id = #{id};
@@ -157,9 +156,9 @@
             legao_student.source,
             legao_student.importanceGrade,
             legao_student.teacherName,
-            legao_student.courseID,
             legao_student.schoolAreaID,
-            legao_student.followID
+            legao_student.followID,
+            legao_student.stuAge
         FROM
             legao_student
         WHERE id = #{id}
@@ -186,9 +185,8 @@
         <result column="source" property="source"></result>
         <result column="importanceGrade" property="importanceGrade"></result>
         <result column="teacherName" property="teacherName"></result>
-        <association property="course" column="courseID"
-                     select="com.zxq.legao.dao.CourseDao.selectCourseByID"
-                     javaType="com.zxq.legao.entity.vo.CourseVO"></association>
+        <result column="followID" property="follow"></result>
+        <result column="stuAge" property="stuAge"></result>
         <association property="schoolAreaID" column="schoolAreaID"
                      select="com.zxq.legao.dao.SchoolAreaDao.selectSchoolAreaByID"
                      javaType="com.zxq.legao.entity.vo.SchoolAreaVO"></association>

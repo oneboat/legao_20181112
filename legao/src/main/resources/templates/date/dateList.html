@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<div  id="content_box">
+<div  id="content_box" style="overflow: n">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
     当前位置：系统设置&nbsp;&gt;&nbsp;时间设置
@@ -35,8 +35,8 @@
         备注：<input name="remark" id="remark" style="height: 35px;" class="inputCss"
                    th:value="${blurDate}==null? '':${blurDate.remark}"/>&nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectDate"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropDate"/>
-
+        <input type="button" class="btn btn-danger" value="删除" id="dropDate"/>&nbsp;
+        <a th:href="dateAdd"> <input type="button" class="btn btn-info" value="添加" id="dateAdd"/></a>
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
                id="date_tab">

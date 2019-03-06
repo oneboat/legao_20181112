@@ -47,7 +47,8 @@
                            th:id="'box_'+${job.id}" th:value="${job.id}"/></td>
                 <td>[[${job.name}]]</td>
                 <td>[[${job.remark}]]</td>
-                <td>[[${job.jobAllNum}]]</td>
+                <td><span th:if="${job.jobAllNum} == null">0</span>
+                <span th:if="${job.jobAllNum} != null">[[${job.jobAllNum}]]</span></td>
                 <td>
                     <div th:text="${#dates.format(job.createDate,'yyyy年MM月dd日 HH时mm分ss秒')}"></div>
                 </td>

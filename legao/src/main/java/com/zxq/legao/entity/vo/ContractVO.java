@@ -119,13 +119,22 @@ public class ContractVO implements Serializable {
      */
     private Integer memberCarId;
     /**
-     * 总课时
+     * 课时
      */
-    private Integer allClassTime;
+    private String classTime;
     /**
      * 剩余课时
      */
-    private Integer remainClassTime;
+    private String remainClassTime;
+
+    /**
+     * 校区id关联到校区表
+     */
+    private SchoolAreaVO schoolArea;
+    /**
+     * 总课时
+     */
+    private String totalClassTime;
 
 
     public static final String ID = "id";

@@ -68,7 +68,13 @@ public class EmployServiceImpl extends ServiceImpl<EmployDao, EmployPO> implemen
         //查询当前登录用户选择展示的字段
         HttpSession session = request.getSession();
         UserVO userVO = (UserVO) session.getAttribute("user");
-        String fields = userDao.selectEmployFieldsByUserID(userVO.getId()).getSelectEmployFields();
+        UserVO userVO1 = userDao.selectEmployFieldsByUserID(userVO.getId());
+        String fields = "";
+        if (userVO1 == null){
+            fields = null;
+        }else {
+            fields = userDao.selectEmployFieldsByUserID(userVO.getId()).getSelectEmployFields();
+        }
         List<EmployVO> list = null;
         List<String> defaultEmployFieldsDB = Arrays.asList(ConstUtil.DEFAULT_EMPLOY_FIELDS_DB);
         List<String> defaultEmployFieldsZH = Arrays.asList(ConstUtil.DEFAULT_EMPLOY_FIELDS_ZH);

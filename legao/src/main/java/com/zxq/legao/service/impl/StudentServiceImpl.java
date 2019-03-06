@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.zxq.legao.dao.StudentDao;
 import com.zxq.legao.dao.UserDao;
 import com.zxq.legao.entity.po.StudentPO;
-import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.StudentVO;
 import com.zxq.legao.entity.vo.UserVO;
 import com.zxq.legao.service.StudentService;
@@ -19,13 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
+
 /**
  * Description:
  * <p>
- *     用户前端控制器
+ * 用户前端控制器
  * </p>
+ *
  * @author dengzhenxiang
  * @Date 2018/11/11 17:41
  */
@@ -40,6 +40,8 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertStudent(StudentPO studentPO) {
+        String age = DateUtil.getAge(studentPO.getBirthday());
+        studentPO.setStuAge(age);
 
         return studentDao.insertStudent(studentPO);
     }
@@ -69,7 +71,13 @@ public class StudentServiceImpl implements StudentService {
         //查询当前登录用户选择展示的字段
         HttpSession session = request.getSession();
         UserVO userVO = (UserVO) session.getAttribute("user");
-        String fields = userDao.selectFieldsByUserID(userVO.getId()).getSelectStudentFields();
+        UserVO userVO1 = userDao.selectFieldsByUserID(userVO.getId());
+        String fields = "";
+        if (userVO1 == null) {
+            fields = null;
+        } else {
+            fields = userDao.selectFieldsByUserID(userVO.getId()).getSelectStudentFields();
+        }
         List<StudentVO> list = null;
         List<String> defaultStudentFieldsDB = Arrays.asList(ConstUtil.DEFAULT_STUDENT_FIELDS_DB);
         List<String> defaultStudentFieldsZH = Arrays.asList(ConstUtil.DEFAULT_STUDENT_FIELDS_ZH);
@@ -83,23 +91,9 @@ public class StudentServiceImpl implements StudentService {
             request.setAttribute("FieldZH", defaultStudentFieldsZH);
         } else {
             list = studentDao.selectStudent(studentPO, studentFieldsDB);
-            if (list.get(0).getBirthday() != null) {
-                studentFieldsZH.add("年龄");
-            }
             request.setAttribute("FieldZH", studentFieldsZH);
         }
 
-        //计算年龄
-        if (list.size() > 0 && list.get(0).getBirthday() != null) {
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getBirthday() != null) {
-                    Date date = list.get(i).getBirthday();
-                    String age = DateUtil.getAge(date);
-                    list.get(i).setAge(age);
-                }
-
-            }
-        }
         //给页面赋值
         PageInfo pageInfo = new PageInfo(list);
         request.setAttribute("studentVOList", list);

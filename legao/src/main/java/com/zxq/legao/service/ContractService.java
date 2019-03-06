@@ -1,7 +1,6 @@
 package com.zxq.legao.service;
 
 import com.zxq.legao.entity.po.ContractPO;
-import com.zxq.legao.entity.vo.ContractVO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -23,7 +22,7 @@ public interface ContractService {
 
     String selectContract(Integer page, ContractPO contractPO, HttpServletRequest request);
 
-    ContractVO selectContractByID(Integer contractID);
+    ContractPO selectContractByID(Integer contractID);
 
     ContractPO selectContractByStudentId(Integer studentId);
 

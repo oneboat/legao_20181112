@@ -70,7 +70,14 @@
     <script src="js/paging.js" type="application/javascript"></script>
     <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
     <script type="text/javascript" th:inline="javascript">
+        $(function () {
+            //不能删除正在教师的职位
+            var delete_msg = [[${delete_msg}]];
+            if (delete_msg) {
+                alert(delete_msg);
+            }
 
+        })
         /*提交查询*/
         $("#selectSchoolArea").click(function () {
             $("#schoolAreaform").attr("action", "selectSchoolArea");

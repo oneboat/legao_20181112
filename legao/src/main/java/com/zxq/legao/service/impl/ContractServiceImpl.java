@@ -46,10 +46,10 @@ public class ContractServiceImpl implements ContractService {
     @Transactional(rollbackFor = Exception.class)
     public int insertContract(ContractPO contractPO) {
         //计算总课时
-//        MembercardPO membercardPO  = membercardDao.selectMembercardByID(contractPO.getMemberCarId());
         ClasstimepackPO classtimepackPO = classtimepackDao.selectClasstimepackByID(contractPO.getClassPackageId());
-        int remainClassTime = Integer.valueOf(contractPO.getPresentationClassTime())  + Integer.valueOf(classtimepackPO.getClassTime());
+        String remainClassTime = Float.valueOf(contractPO.getPresentationClassTime())  + Float.valueOf(classtimepackPO.getClassTime()) +"";
        contractPO.setRemainClassTime(remainClassTime);
+        contractPO.setTotalClassTime(remainClassTime);
         return contractDao.insertContract(contractPO);
     }
 
@@ -78,7 +78,14 @@ public class ContractServiceImpl implements ContractService {
         //查询当前登录用户选择展示的字段
         HttpSession session = request.getSession();
         UserVO userVO = (UserVO) session.getAttribute("user");
-        String fields = userDao.selectContractFieldsByUserID(userVO.getId()).getSelectContractFields();
+        UserVO userVO1 = userDao.selectContractFieldsByUserID(userVO.getId());
+        String fields = "";
+        if (userVO1 == null){
+            fields = null;
+        }else {
+            fields = userDao.selectContractFieldsByUserID(userVO.getId()).getSelectContractFields();
+        }
+
         List<ContractVO> list = null;
         List<String> defaultContractFieldsDB = Arrays.asList(ConstUtil.DEFAULT_CONTRACT_FIELDS_DB);
         List<String> defaultContractFieldsZH = Arrays.asList(ConstUtil.DEFAULT_CONTRACT_FIELDS_ZH);
@@ -104,7 +111,7 @@ public class ContractServiceImpl implements ContractService {
 
 
     @Override
-    public ContractVO selectContractByID(Integer contractID) {
+    public ContractPO selectContractByID(Integer contractID) {
         return contractDao.selectContractByID(contractID);
     }
 

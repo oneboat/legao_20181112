@@ -64,18 +64,19 @@
                 <td th:if="${contract.signDate}!=null">
                     <span th:text="${#dates.format(contract.signDate,'yyyy年MM月dd日')}"></span></td>
 
-                </td>
+
                 <td th:if="${contract.classtimepackVO}!=null ">
                     [[${contract.classtimepackVO.name}]]
                 </td>
                 <td th:if="${contract.price}!=null"> [[${contract.price}]]</td>
                 <td th:if="${contract.discount}!=null ">[[${contract.discount}]]</td>
-            <span th:if="${contract.depositId} != -1">
-            <td th:if="${contract.depositVO}!=null ">[[${contract.depositVO.moneyAmount}]]</span></td>
-            </span>
-            <span th:if="${contract.depositId} == -1">
-            <td style="color: red">未付订金</td>
-            </span>
+
+                <td th:if="(${contract.depositId}!=0 )?((${contract.depositId}!= null)?true:false):false ">
+                    <span th:if="${contract.depositVO}!=null ">[[${contract.depositVO.moneyAmount}]]</span></td>
+            <td th:if="${contract.depositId}==0 ">
+
+                <span style="color: red">未交订金</span>
+                </td>
                 <td th:if="${contract.actPay}!=null ">[[${contract.actPay}]]</td>
                 <td th:if="${contract.payType}!=null ">[[${contract.payType}]]</td>
                 <td th:if="${contract.presentationClassTime}!=null ">[[${contract.presentationClassTime}]]</td>
@@ -87,15 +88,12 @@
             </td>
 
                 <td th:if="${contract.belongOne}!=null ">[[${contract.belongOne}]]</td>
-            <span th:if="${contract.memberCarId} != -1">
-            <td th:if="${contract.membercardVO}!=null ">[[${contract.membercardVO.memberCardCode}]]</td>
-            </span>
-            <span th:if="${contract.memberCarId} == -1">
-            <td style="color: red">没有会员卡</td>
-            </span>
+
                 <td th:if="${contract.remark}!=null">[[${contract.remark}]]</td>
-            <td th:if="${contract.allClassTime}!=null">[[${contract.allClassTime}]]</td>
+            <td th:if="${contract.classTime}!=null">[[${contract.classTime}]]</td>
             <td th:if="${contract.remainClassTime}!=null">[[${contract.remainClassTime}]]</td>
+            <td th:if="${contract.totalClassTime}!=null">[[${contract.totalClassTime}]]</td>
+            <td th:if="${contract.schoolArea}!=null">[[${contract.schoolArea.name}]]</td>
                 <td><a th:href="'editContract?contractId='+${contract.id}"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>

@@ -118,7 +118,10 @@
                     <span th:text="${#dates.format(student.createDate,'yyyy年MM月dd日')}"></span></td>
                 <td th:if="${student.sparePhone}!=null ">[[${student.sparePhone}]]</td>
                 <td th:if="${student.markPeople}!=null ">[[${student.markPeople}]]</td>
-                <td th:if="${student.advisor}!=null ">[[${student.advisor}]]</td>
+                <td th:if="(${student.advisor}!=0)?((${student.advisor}!=null)?true:false):false">
+                    [[${student.advisor}]]</td>
+            <td th:if="(${student.advisor}==0)">
+                无</td>
                 <td th:if="${student.area}!=null ">[[${student.area}]]</td>
                 <td th:if="${student.willDate}!=null">
                     <span th:text="${#dates.format(student.willDate,'yyyy年MM月dd日')}"></span>
@@ -141,12 +144,15 @@
                 <td th:if="${student.source}!=null ">[[${student.source}]]</td>
                 <td th:if="${student.teacherName}!=null ">[[${student.teacherName}]]</td>
                 <td th:if="${student.schoolAreaID}!=null">[[${student.schoolAreaID.name}]]</td>
-                <td th:if="${student.followID}!=null">[[${student.followID.advisor}]]</td>
-            <td th:if="${student.course}!=null ">[[${student.course.name}]]</td>
-
-            <span th:if="${student.age}!=null ">
-            <td th:text="${student.age}"></td>
-            </span>
+            <td th:if="(${student.follow}!= 0)?((${student.followID}!= null)?true:false):false">
+               [[${student.followID.advisor}]]
+            </td>
+            <td th:if="${student.follow}== 0">
+                无
+            </td>
+            <td th:if="${student.stuAge}!=null ">
+                [[${student.stuAge}]]
+            </td>
                 <td><a th:href="'editStudent?studentId='+${student.id}"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>

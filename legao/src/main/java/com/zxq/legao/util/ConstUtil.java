@@ -24,22 +24,22 @@ public class ConstUtil {
     /**
      * 学生表默认展示字段名（对应数据库）
      */
-    public final static String[] DEFAULT_STUDENT_FIELDS_DB = {"name", "telphone", "importanceGrade", "schoolAreaID", "sex", "status", "source", "followID", "birthday"};
+    public final static String[] DEFAULT_STUDENT_FIELDS_DB = {"nickName", "name", "parentRelat", "parentName", "telphone", "weChatID", "education"};
 
     /**
      * 学生表默认展示字段名（对应中文名）
      */
-    public final static String[] DEFAULT_STUDENT_FIELDS_ZH = {"姓名", "电话", "重要程度", "校区", "性别", "状态", "来源", "跟进人", "生日"};
+    public final static String[] DEFAULT_STUDENT_FIELDS_ZH = {"昵称", "姓名", "家长关系", "家长姓名", "联系电话", "微信", "学历"};
 
     /**
      * 学生表全部字段名（对应数据库）
      */
-    public final static String[] STUDENT_FIELDS_DB = {"nickName", "name", "parentRelat", "parentName", "telphone", "weChatID", "education", "birthday", "sex", "createDate", "sparePhone", "markPeople", "advisor", "area", "willDate", "baseSituation", "status", "importanceGrade", "source", "teacherName", "schoolAreaID", "followID", "courseID"};
+    public final static String[] STUDENT_FIELDS_DB = {"nickName", "name", "parentRelat", "parentName", "telphone", "weChatID", "education", "birthday", "sex", "createDate", "sparePhone", "markPeople", "advisor", "area", "willDate", "baseSituation", "status", "importanceGrade", "source", "teacherName", "schoolAreaID", "followID","stuAge"};
 
     /**
      * 学生表全部字段名（对应中文名）
      */
-    public final static String[] STUDENT_FIELDS_ZH = {"昵称", "姓名", "家长关系", "家长姓名", "联系电话", "微信", "学历", "生日", "性别", "录入日期", "备用电话", "市场人员", "顾问", "学员所属地区", "期望时间", "基本情况", "状态", "重要程度", "来源", "老师", "校区", "跟进", "课程"};
+    public final static String[] STUDENT_FIELDS_ZH = {"昵称", "姓名", "家长关系", "家长姓名", "联系电话", "微信", "学历", "生日", "性别", "录入日期", "备用电话", "市场人员", "顾问", "学员所属地区", "期望时间", "基本情况", "状态", "重要程度", "来源", "老师", "校区", "跟进","学员年龄"};
 
     /**
      * 员工表默认展示字段名（对应数据库）
@@ -64,7 +64,7 @@ public class ConstUtil {
     /**
      * 合同表默认展示字段名（对应数据库）
      */
-    public final static String[] DEFAULT_CONTRACT_FIELDS_DB = {"contractCode", "studentName", "signDate", "price", "act_pay", "belongOne", "payType", "discount"};
+    public final static String[] DEFAULT_CONTRACT_FIELDS_DB = {"contractCode", "studentId", "signDate", "price", "actPay", "belongOne", "payType", "discount"};
 
     /**
      * 合同表默认展示字段名（对应中文名）
@@ -74,12 +74,12 @@ public class ConstUtil {
     /**
      * 合同表全部字段名（对应数据库）
      */
-    public final static String[] CONTRACT_FIELDS_DB = {"contractCode", "studentId", "signDate", "classPackageId", "price", "discount", "depositId", "act_pay", "payType", "presentationClassTime", "startTime", "endTime", "belongOne", "memberCarId", "remark","allClassTime","remainClassTime"};
+    public final static String[] CONTRACT_FIELDS_DB = {"contractCode", "studentId", "signDate", "classPackageId", "price", "discount", "depositId", "actPay", "payType", "presentationClassTime", "startTime", "endTime", "belongOne", "memberCarId", "remark","classTime","remainClassTime","totalClassTime","schoolAreaId"};
 
     /**
      * 合同表全部字段名（对应中文名）
      */
-    public final static String[] CONTRACT_FIELDS_ZH = {"合同编号", "学生", "签约日期", "课时包名称", "价格", "折扣", "订金", "实际支付", "支付方式", "赠送课时", "开始时间", "结束时间", "业绩所属", "会员卡编号", "备注","总课时","剩余课时"};
+    public final static String[] CONTRACT_FIELDS_ZH = {"合同编号", "学生", "签约日期", "课时包名称", "价格", "折扣", "订金", "实际支付", "支付方式", "赠送课时", "开始时间", "结束时间", "业绩所属", "会员卡编号", "备注","课时(h)","剩余课时(h)","总课时(h)","校区"};
 
 
 }

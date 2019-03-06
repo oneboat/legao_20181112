@@ -4,12 +4,9 @@ package com.zxq.legao.controller;
 import com.zxq.legao.entity.po.EmployPO;
 import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.service.EmployService;
-import com.zxq.legao.service.EmployService;
-import com.zxq.legao.service.EmployService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
@@ -60,7 +57,10 @@ public class EmployController {
         }
         ServletContext servletContext = request.getServletContext();
         List<EmployPO> allemploy = employService.selectAllEmploy();
+        List<EmployVO> allTeacherName = employService.selectAllTeacherName();
+        servletContext.setAttribute("allTeacherName", allTeacherName);
         servletContext.setAttribute("allemploy", allemploy);
+
         return "employ/employAdd";
     }
 
@@ -74,6 +74,8 @@ public class EmployController {
         employService.deleteEmploy(Arrays.asList(caption));
         ServletContext servletContext = request.getServletContext();
         List<EmployPO> allemploy = employService.selectAllEmploy();
+        List<EmployVO> allTeacherName = employService.selectAllTeacherName();
+        servletContext.setAttribute("allTeacherName", allTeacherName);
         servletContext.setAttribute("allemploy", allemploy);
         return "redirect:/selectEmploy";
 
@@ -110,6 +112,8 @@ public class EmployController {
         employService.updateEmploy(employ);
         ServletContext servletContext = request.getServletContext();
         List<EmployPO> allemploy = employService.selectAllEmploy();
+        List<EmployVO> allTeacherName = employService.selectAllTeacherName();
+        servletContext.setAttribute("allTeacherName", allTeacherName);
         servletContext.setAttribute("allemploy", allemploy);
         return "redirect:/selectEmploy";
 

@@ -35,9 +35,26 @@
         周数：<select class="inputCss"  name="weekOfYear">
         <option value="" >-------请选择课程所在周------</option>
         <option th:value="${schedule.weekOfYear}" th:each="schedule:${application.allWeekOfYear}">
-            第[[${schedule.weekOfYear}]]周 [[${schedule.date.timeSection}]]
+            第[[${schedule.weekOfYear}]]周 <span th:text="${schedule.date}!=null?${schedule.date.timeSection}:''"></span>
+           <span style="color: red"> <span th:text="${schedule.date}==null?'对应时间段已被删除':''" ></span></span>
         </option>
-    </select>
+    </select>&nbsp;&nbsp;
+     学员的老师：
+
+            <select class="inputCss" id="teacherName" name="teacherID">
+                <option value="">--请选择老师--</option>
+                <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}">
+                    [[${teacherName.name}]]
+                </option>
+            </select>&nbsp;&nbsp;
+       时间段：
+       <select class="inputCss" id="dateID" name="dateID">
+            <option value="">--请选择时间段--</option>
+            <option th:value="${dates.id}" th:each="dates:${application.allDate}">
+                [[${dates.timeSection}]]
+            </option>
+        </select>&nbsp;&nbsp;
+
         <input type="button" value="搜索" class="btn btn-success" id="selectSchedule"/>&nbsp;
         <input type="button" class="btn btn-danger" value="删除" id="dropSchedule"/>
 
@@ -78,7 +95,8 @@
             var tds = $("div[id^='time_']");
             var scheduleList = [[${scheduleVOList}]];
             var position,positionID,positionX,positionY;
-            for (var i = 0; i < scheduleList.length; i++) {
+            var lenth = scheduleList.length;
+            for (var i = 0; i < lenth; i++) {
                 for (var j =0;j<tds.length;j++){
                     positionID = $(tds[j]).attr("id")
                     position = positionID.split("_");
@@ -86,8 +104,14 @@
                     positionY = position[2];
                     //和时间段的id和星期的id比对，一样则填入
                     if ((scheduleList[i].date.id == positionX) && (scheduleList[i].courseWeek == positionY)){
+                        if(scheduleList[i].course == null){
+                            $("#"+positionID).append("<span style='color: red'>["+i+"]课程已被删除<br/><br/></span>")
+                        }else if (scheduleList[i].teacherVO == null){
+                            $("#"+positionID).append("<span style='color: red'>["+i+"]请添加老师<br/><br/></span>")
+                        } else{
                         $("#"+positionID).append(
                             "<input type='checkbox'  name='caption'id='box_'"+scheduleList[i].id+"'"+" value='"+scheduleList[i].id+"'/>"+
+
                             scheduleList[i].course.name+"("
                             +
                             scheduleList[i].course.ageArea+" "
@@ -103,6 +127,7 @@
                             "<span class='glyphicon glyphicon-pencil'></span></a>" +
                             "&nbsp;<a href='editRelation?scheduleId="+ scheduleList[i].id +"'>"+
                             "<span class='glyphicon glyphicon-floppy-saved'></span></a>"+ "<br/><br/>");
+                        }
                     }
                 }
 
@@ -118,10 +143,10 @@
         $("#dropSchedule").click(function () {
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
-                alert("请选择你要删除的用户");
-                layer.msg("请选择你要删除的用户");
+                alert("请选择你要删除的排课");
+                layer.msg("请选择你要删除的排课");
             } else {
-                if (confirm("确定要删除该用户吗？")) {
+                if (confirm("确定要删除该排课吗？")) {
                     $("#scheduleform").attr("action", "deleteSchedules");
                     $("#scheduleform").submit();
                 }

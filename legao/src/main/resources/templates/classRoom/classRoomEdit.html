@@ -19,14 +19,9 @@
 
         教室:<input name="name" id="classRoom_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
                   maxlength="20" th:value="${classRoomEdit.name}"/>&nbsp;&nbsp;&nbsp;&nbsp;
-        年龄段：<select name="ageArea" id="classRoom_ageArea" style="height: 35px;" class="inputCss">
-        <option value="">----请选择年龄段----</option>
-        <option value="1岁-2岁" th:selected="${classRoomEdit.ageArea}=='1岁-2岁'">1岁-2岁</option>
-        <option value="3岁-4岁" th:selected="${classRoomEdit.ageArea}=='3岁-4岁'">3岁-4岁</option>
-        <option value="5岁-6岁" th:selected="${classRoomEdit.ageArea}=='5岁-6岁'">5岁-6岁</option>
-        <option value="7岁以上" th:selected="${classRoomEdit.ageArea}=='7岁以上'">7岁以上</option>
+        年龄段：<input name="ageArea" id="classRoom_ageArea" class="inputCss" style="width:200px ;" placeholder="请输入年龄段"
+                   maxlength="20" th:value="${classRoomEdit.ageArea}"/>
 
-    </select>
        &nbsp;;&nbsp;&nbsp;&nbsp;
         负责人： <select class="inputCss" id="responsePersonName" name="responsePersonName" >
         <option value="">--请选择负责人--</option>

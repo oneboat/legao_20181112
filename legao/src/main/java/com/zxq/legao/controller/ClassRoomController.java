@@ -93,8 +93,8 @@ public class ClassRoomController {
      */
     @RequestMapping("/editClassRoomFrom")
     public String editClassRoomFrom(HttpServletRequest request) {
-        ClassRoomPO classRoomPO = (ClassRoomPO) request.getAttribute("classRoomByID");
-        request.setAttribute("classRoomEdit", classRoomPO);
+        ClassRoomVO classRoomVO = (ClassRoomVO) request.getAttribute("classRoomByID");
+        request.setAttribute("classRoomEdit", classRoomVO);
         return "classRoom/classRoomEdit";
 
     }

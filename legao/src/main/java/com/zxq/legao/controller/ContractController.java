@@ -1,13 +1,17 @@
 package com.zxq.legao.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.zxq.legao.entity.po.ClasstimepackPO;
 import com.zxq.legao.entity.po.ContractPO;
-import com.zxq.legao.entity.vo.ContractVO;
+import com.zxq.legao.service.ClasstimepackService;
 import com.zxq.legao.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -24,6 +28,8 @@ import java.util.Arrays;
 public class ContractController {
     @Autowired
     private ContractService contractService;
+    @Autowired
+    private ClasstimepackService classtimepackService;
 
     /**
      * 跳转到contractAdd
@@ -71,8 +77,8 @@ public class ContractController {
      */
     @RequestMapping("/editContract")
     public String editContract(@RequestParam("contractId") Integer contractId, HttpServletRequest request) {
-        ContractVO contractVO = contractService.selectContractByID(contractId);
-        request.setAttribute("contractByID", contractVO);
+        ContractPO contractPO = contractService.selectContractByID(contractId);
+        request.setAttribute("contractByID", contractPO);
         return "forward:/editContractFrom";
 
     }
@@ -82,8 +88,8 @@ public class ContractController {
      */
     @RequestMapping("/editContractFrom")
     public String editContractFrom(HttpServletRequest request) {
-        ContractVO contractVO = (ContractVO) request.getAttribute("contractByID");
-        request.setAttribute("contractEdit", contractVO);
+        ContractPO contractPO = (ContractPO) request.getAttribute("contractByID");
+        request.setAttribute("contractEdit", contractPO);
         return "contract/contractEdit";
 
     }
@@ -97,5 +103,22 @@ public class ContractController {
         return "redirect:/selectContract";
 
     }
+
+    @RequestMapping("/selectPackByPackId")
+    @ResponseBody
+    public String selectPackByPackId(@RequestBody ClasstimepackPO classtimepackPO) {
+        String courseStr = null;
+        ClasstimepackPO classtimepackPO1 = classtimepackService.selectClasstimepackByID(classtimepackPO.getId());
+        if (classtimepackPO1 !=null) {
+
+            courseStr = JSON.toJSONString(classtimepackPO1);
+            return courseStr;
+        } else {
+            courseStr = JSON.toJSONString("");
+            return courseStr;
+        }
+
+    }
+
 }
 

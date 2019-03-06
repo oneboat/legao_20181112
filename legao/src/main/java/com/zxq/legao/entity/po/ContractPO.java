@@ -112,14 +112,21 @@ public class ContractPO implements Serializable {
     @TableField("remark")
     private String remark;
     /**
-     * 总课时
+     * 课时
      */
-    private Integer allClassTime;
+    private String classTime;
     /**
      * 剩余课时
      */
-    private Integer remainClassTime;
-
+    private String remainClassTime;
+    /**
+     * 校区id关联到校区表
+     */
+    private Integer schoolAreaId;
+    /**
+     * 总课时
+     */
+    private String totalClassTime;
 
     public static final String ID = "id";
 

@@ -72,7 +72,15 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateUser(UserPO userPO) {
-        return userDao.updateUser(userPO);
+        if (userPO == null) {
+            return 0;
+        } else {
+            //加密
+            String saltDB = ConstUtil.MD5_SALT;
+            userPO.setPassword(MD5Util.inputPassToDBpass(userPO.getPassword(), saltDB));
+            return userDao.updateUser(userPO);
+        }
+
     }
 
     /**

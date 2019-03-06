@@ -59,7 +59,7 @@ public class StudentPO implements Serializable {
      * 重要程度
      */
     private Integer importanceGrade;
-    private Integer teacherID;
+    private String teacherName;
     private Integer courseID;
     private Integer schoolAreaID;
     private Integer followID;
@@ -67,6 +67,7 @@ public class StudentPO implements Serializable {
      * 排序字段
      */
     private String ifImportanceGradeOrder;
+    private String stuAge;
 
 
 }

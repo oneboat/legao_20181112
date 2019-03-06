@@ -27,14 +27,9 @@
         课程: <input name="name" id="course_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
                    maxlength="20" />
        &nbsp;&nbsp;&nbsp;&nbsp;
-       年龄段：<select name="ageArea" id="course_ageArea" style="height: 35px;" class="inputCss">
-        <option value="">----请选择年龄段----</option>
-        <option value="1岁-2岁" >1岁-2岁</option>
-        <option value="3岁-4岁" >3岁-4岁</option>
-        <option value="5岁-6岁" >5岁-6岁</option>
-        <option value="7岁以上" >7岁以上</option>
+       年龄段：<input name="ageArea" id="course_ageArea" class="inputCss" style="width:200px ;" placeholder="请输入年龄段"
+                  maxlength="20" />
 
-    </select>
        &nbsp;&nbsp;&nbsp;&nbsp;
         教具：
         <input type="text" name="teacherTools" id="course_teacherTools" style="height: 35px;width:200px ;" class="inputCss"
@@ -42,13 +37,6 @@
 
         </br>
         </br>
-        课室：
-        <select class="inputCss" id="courseTime" name="courseTime">
-            <option value="">--请选择课程--</option>
-            <option th:value="${courseName.id}" th:each="courseName:${application.allCourseName}">
-                [[${courseName.name}]]
-            </option>
-        </select>&nbsp;&nbsp;&nbsp;&nbsp;
         课时：
         <input type="text" name="courseTime" id="course_courseTime" style="height: 35px;width:200px ;" class="inputCss"
                placeholder="请输入课程所需要的课时"/>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -88,10 +76,10 @@
         var course_name = $("#course_name").val();
         var course_teacherTools = $("#course_teacherTools").val();
         var course_ageArea = $("#course_ageArea").val();
-        var courseTime = $("#courseTime").val();
+        var courseTime = $("#course_courseTime").val();
         var seriesID_id= $("#seriesID_id").val();
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
-
+        var isNum = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
         if (seriesID_id.trim().length == 0) {
             $("#error").text("*请选择课程系列");
         }else if (course_name.trim().length == 0) {
@@ -106,6 +94,8 @@
             $("#error").text("*请输入课程所需要的教具");
         }else if (courseTime.trim().length == 0) {
             $("#error").text("*请输入课时");
+        }else if (!isNum.test(courseTime)) {
+            $("#error").text("*课时只允许输入数字");
         }else {
             $("#courseAddform").attr("action", "insertCourse");
             $("#courseAddform").submit();

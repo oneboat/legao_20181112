@@ -68,7 +68,7 @@ public class JobController {
     public String deleteJobs(Integer[] caption, HttpServletRequest request) {
         int flag = jobService.deleteJob(Arrays.asList(caption));
         if (flag == -1) {
-            request.setAttribute("delete_msg", "不允许删除教师职位");
+            request.setAttribute("delete_msg", "不允许删除初始化值（老师）");
         }
         ServletContext servletContext = request.getServletContext();
         List<JobVO> allJobName = jobService.selectAllJobName();
@@ -111,6 +111,20 @@ public class JobController {
         return "redirect:/selectJob";
     }
 
+    /**
+     * 判断登录名是否重复
+     */
+    @RequestMapping("/isReJobName")
+    @ResponseBody
+    public String isReLoginName(@RequestBody JobPO jobPO) {
+        List<JobVO> hasJob = jobService.findJobName(jobPO);
+        if (hasJob.size() > 0) {
+            // 设置为false代表登录名重复
+            return "false";
+        } else {
+            return "true";
+        }
 
+    }
 }
 

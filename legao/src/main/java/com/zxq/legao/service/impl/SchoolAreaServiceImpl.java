@@ -5,16 +5,13 @@ import com.github.pagehelper.PageInfo;
 import com.zxq.legao.dao.SchoolAreaDao;
 import com.zxq.legao.entity.po.SchoolAreaPO;
 import com.zxq.legao.entity.vo.SchoolAreaVO;
-import com.zxq.legao.entity.vo.SchoolAreaVO;
 import com.zxq.legao.service.SchoolAreaService;
 import com.zxq.legao.util.ConstUtil;
-import com.zxq.legao.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.List;
 /**
  * Description:
@@ -38,6 +35,7 @@ public class SchoolAreaServiceImpl implements SchoolAreaService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteSchoolArea(List<Integer> schoolAreaIDs) {
+
         return schoolAreaDao.deleteSchoolArea(schoolAreaIDs);
     }
 

@@ -52,15 +52,18 @@
         var classtimepack_remark = $("#classtimepack_remark").val();
         var isNum = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
-
         if (classtimepack_name.trim().length == 0) {
             $("#error").text("*请输入课时包的名称");
         } else if (re.test(classtimepack_name.trim())) {
             $("#error").text("*课时包的名称存在`~!@#$%^&*_+<>{}\'[]/等的非法字符");
         }else if (classtimepack_classTime.trim().length == 0) {
             $("#error").text("*该请输入课时数");
-        } else if (classtimepack_price.trim().length == 0) {
+        } else if (!isNum.test(classtimepack_classTime)) {
+            $("#error").text("*课时只允许输入数字");
+        }else if (classtimepack_price.trim().length == 0) {
             $("#error").text("*请输入课时包价格");
+        }else if (!isNum.test(classtimepack_price)) {
+            $("#error").text("*课时包价格只允许输入数字");
         } else if (classtimepack_priority.trim().length == 0) {
             $("#error").text("*请输入课时包优先级");
         }else if (!isNum.test(classtimepack_priority)) {

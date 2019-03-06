@@ -54,4 +54,14 @@ public class RelationPO implements Serializable {
      * 课程课时，计算课时
      */
     private Integer classTimes;
+
+    /**
+     * 周数
+     */
+    private String weekOfYear;
+
+    /**
+     * 传送前台来的时间段
+     */
+    private String timeSection;
 }

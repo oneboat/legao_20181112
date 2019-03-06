@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RelationServiceImpl implements RelationService {
@@ -59,19 +60,19 @@ public class RelationServiceImpl implements RelationService {
         if (relationPO.getSignInStatus() == 1) {
             //计算老师和学生的课时，老师加课时，学生减课时
             EmployVO employVO = employDao.selectEmployById(relationPO.getTeacherID());
-            int teacherTime = relationPO.getCaption().size() * relationPO.getClassTimes() + Integer.valueOf(employVO.getAllClassTime());
-            employVO.setAllClassTime(teacherTime + "");
+            String teacherTime = relationPO.getCaption().size() * Float.valueOf(relationPO.getClassTimes()) + Float.valueOf(employVO.getAllClassTime()) +"";
+            employVO.setAllClassTime(teacherTime);
             employDao.updateAllClassTime(employVO);
 
             //学生减课时 批量签到
             ContractPO contractPO = null;
-            int temClassTime = 0;
+            String temClassTime = null;
             RelationPO relationPOByID = null;
             for (int i = 0; i < captionSize; i++) {
-                 relationPOByID = relationDao.selectRelationByID(relationPO.getCaption().get(i));
+                relationPOByID = relationDao.selectRelationByID(relationPO.getCaption().get(i));
                 contractPO = contractDao.selectContractByStudentId(relationPOByID.getStudentID());
-                if(contractPO !=null){
-                    temClassTime = contractPO.getRemainClassTime() - (1 * relationPO.getClassTimes());
+                if (contractPO != null) {
+                    temClassTime = Float.valueOf(contractPO.getRemainClassTime()) - Float.valueOf(1 * relationPO.getClassTimes()) +"";
                     contractPO.setRemainClassTime(temClassTime);
                     contractDao.updateRemainClassTime(contractPO);
                     relationDao.updateBatchRelation(relationPO, relationPO.getCaption().get(i));
@@ -98,10 +99,33 @@ public class RelationServiceImpl implements RelationService {
         PageHelper.startPage(page, ConstUtil.PAGESIZE);
         List<RelationVO> list = relationDao.selectRelation(relationPO);
 
+
+        //按周数来查
+        if ((relationPO.getWeekOfYear() != null) && (!relationPO.getWeekOfYear().equals(""))) {
+            list = list.stream().filter((RelationVO r) -> r.getSchedule() !=null).collect(Collectors.toList());
+            list = list.stream().filter((RelationVO r) -> r.getSchedule().getWeekOfYear().equals(relationPO.getWeekOfYear())).collect(Collectors.toList());
+        }
+
+        //按老师来查
+        if ((relationPO.getTeacherID() != null) && (!relationPO.getTeacherID().equals(""))) {
+            list =list.stream().filter((RelationVO r) -> r.getSchedule() !=null).collect(Collectors.toList());
+            list =list.stream().filter((RelationVO r) -> r.getSchedule().getTeacherVO() !=null).collect(Collectors.toList());
+            list =list.stream().filter((RelationVO r) -> r.getSchedule().getTeacherVO().getId().equals(relationPO.getTeacherID())).collect(Collectors.toList());
+
+        }
+        //按时间段来查
+        if ((relationPO.getTimeSection() != null) && (!relationPO.getTimeSection().equals(""))) {
+            list = list.stream().filter((RelationVO r) -> r.getSchedule() !=null).collect(Collectors.toList());
+            list =  list.stream().filter((RelationVO r) -> r.getSchedule().getDate() !=null).collect(Collectors.toList());
+            list = list.stream().filter((RelationVO r) -> r.getSchedule().getDate().getTimeSection().equals(relationPO.getTimeSection())).collect(Collectors.toList());
+        }
+
+
         PageInfo pageInfo = new PageInfo(list);
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("relationVOList", list);
         return "relation/relationList";
+
     }
 
     @Override

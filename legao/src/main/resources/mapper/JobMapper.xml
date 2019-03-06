@@ -33,7 +33,14 @@
     </update>
     <!--根据id查找职位 -->
     <select id="selectJobByID" parameterType="int" resultType="com.zxq.legao.entity.vo.JobVO">
-        select * from legao_job where id=#{id};
+        SELECT
+            legao_job.id,
+            legao_job.`name`,
+            legao_job.remark,
+            legao_job.createDate
+        FROM
+            legao_job
+        where id=#{id};
     </select>
 
     <!-- 查找职位 -->
@@ -59,7 +66,14 @@
 
     <!-- 判断职位名称是否重复 -->
     <select id="findJobName" parameterType="com.zxq.legao.entity.po.JobPO" resultType="com.zxq.legao.entity.vo.JobVO">
-        select * from legao_job where name=#{name};
+        SELECT
+            legao_job.id,
+            legao_job.`name`,
+            legao_job.remark,
+            legao_job.createDate
+        FROM
+            legao_job
+        where name=#{name};
     </select>
     <!--查找所有的职位-->
     <select id="selectAllJobName" resultType="com.zxq.legao.entity.vo.JobVO">

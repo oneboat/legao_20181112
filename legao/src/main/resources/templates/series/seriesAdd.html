@@ -19,14 +19,9 @@
 
         课程系列:<input name="name" id="series_name" class="inputCss" style="width:200px ;" placeholder="请输入长度不超过20的字符"
                    maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
-        年龄段：<select name="ageArea" id="series_ageArea" style="height: 35px;" class="inputCss">
-        <option value="">----请选择年龄段----</option>
-        <option value="1岁-2岁" >1岁-2岁</option>
-        <option value="3岁-4岁" >3岁-4岁</option>
-        <option value="5岁-6岁" >5岁-6岁</option>
-        <option value="7岁以上" >7岁以上</option>
-
-    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+        年龄段：<input name="ageArea" id="series_ageArea" class="inputCss" style="width:200px ;" placeholder="请输入年龄段"
+                   maxlength="20"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
         教具：
         <input type="text" name="teacherTools" id="series_teacherTools" style="height: 35px;width:200px ;" class="inputCss"
                placeholder="请输入课程系列的教具"/>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -76,7 +71,7 @@
         var series_ageArea = $("#series_ageArea").val();
         var seriesTime = $("#series_seriesTime").val();
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
-
+        var isNum = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
          if (series_name.trim().length == 0) {
             $("#error").text("*请输入课程系列名称");
         }  else if (re.test(series_name.trim())) {
@@ -89,7 +84,9 @@
             $("#error").text("*请输入课程系列的教具");
         }else if (seriesTime.trim().length == 0) {
             $("#error").text("*请输入课时");
-        }else {
+        }else if (!isNum.test(seriesTime)) {
+             $("#error").text("*课时只允许数字");
+         }else {
             $("#seriesAddform").attr("action", "insertSeries");
             $("#seriesAddform").submit();
         }

@@ -27,14 +27,9 @@
 
         课程系列：<input name="name" id="name" style="height: 35px;" class="inputCss"
                    th:value="${blurSeries}==null? '':${blurSeries.name}"/>&nbsp;&nbsp;
-        年龄段：<select name="ageArea" id="classRoom_ageArea" style="height: 35px;" class="inputCss">
-        <option value="">----请选择年龄段----</option>
-        <option value="1岁-2岁" th:selected="${blurSeries}==null? '':(${blurSeries.ageArea}=='1岁-2岁'?true:false)">1岁-2岁</option>
-        <option value="3岁-4岁" th:selected="${blurSeries}==null? '':(${blurSeries.ageArea}=='3岁-4岁'?true:false)">3岁-4岁</option>
-        <option value="5岁-6岁" th:selected="${blurSeries}==null? '':(${blurSeries.ageArea}=='5岁-6岁'?true:false)">5岁-6岁</option>
-        <option value="7岁以上" th:selected="${blurSeries}==null? '':(${blurSeries.ageArea}=='7岁以上'?true:false)">7岁以上</option>
+        年龄段：<input name="ageArea" id="classRoom_ageArea" class="inputCss" style="width:200px ;" placeholder="请输入年龄段"
+                   maxlength="20"/>
 
-    </select>
        &nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectSeries"/>&nbsp;
         <input type="button" class="btn btn-danger" value="删除" id="dropSeries"/>
@@ -45,7 +40,6 @@
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
                 <th>课程系列</th>
-                <th>课程系列</th>
                 <th>年龄段</th>
                 <th>教具</th>
                 <th>课时</th>
@@ -54,7 +48,6 @@
             <tr th:each="series:${seriesVOList}">
                 <td><input type="checkbox" name="caption"
                            th:id="'box_'+${series.id}" th:value="${series.id}"/></td>
-                <td>[[${series.name}]]</td>
                 <td>[[${series.name}]]</td>
                 <td>[[${series.ageArea}]]</td>
                 <td>[[${series.teacherTools}]]</td>

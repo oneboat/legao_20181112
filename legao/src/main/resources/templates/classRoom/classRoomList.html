@@ -27,14 +27,9 @@
 
         教室：<input name="name" id="classRoomname" style="height: 35px;" class="inputCss"
                    th:value="${blurClassRoom}==null? '':${blurClassRoom.name}"/>&nbsp;&nbsp;
-        年龄段：<select name="ageArea" id="classRoom_ageArea" style="height: 35px;" class="inputCss">
-        <option value="">----请选择年龄段----</option>
-        <option value="1岁-2岁" th:selected="${blurClassRoom}==null? '':(${blurClassRoom.ageArea}=='1岁-2岁'?true:false)">1岁-2岁</option>
-        <option value="3岁-4岁" th:selected="${blurClassRoom}==null? '':(${blurClassRoom.ageArea}=='3岁-4岁'?true:false)">3岁-4岁</option>
-        <option value="5岁-6岁" th:selected="${blurClassRoom}==null? '':(${blurClassRoom.ageArea}=='5岁-6岁'?true:false)">5岁-6岁</option>
-        <option value="7岁以上" th:selected="${blurClassRoom}==null? '':(${blurClassRoom.ageArea}=='7岁以上'?true:false)">7岁以上</option>
-
-    </select>&nbsp;&nbsp;
+        年龄段：<input name="ageArea" id="classRoom_ageArea" style="height: 35px;" class="inputCss"
+                   th:value="${blurClassRoom}==null? '':${blurClassRoom.ageArea}"/>
+       &nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectClassRoom"/>&nbsp;
         <input type="button" class="btn btn-danger" value="删除" id="dropClassRoom"/>
 
