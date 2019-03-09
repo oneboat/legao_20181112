@@ -128,6 +128,11 @@ public class ContractPO implements Serializable {
      */
     private String totalClassTime;
 
+    private String signDateStr;
+    private String startTimeStr;
+    private String endTimeStr;
+
+
     public static final String ID = "id";
 
     public static final String CONTRACTCODE = "contractCode";

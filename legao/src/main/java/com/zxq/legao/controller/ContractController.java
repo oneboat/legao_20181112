@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 /**
@@ -45,6 +46,16 @@ public class ContractController {
      */
     @RequestMapping("/selectContract")
     public String selectContract(ContractPO contractPO, HttpServletRequest request, Integer page) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        if(contractPO.getSignDate()!=null){
+            contractPO.setSignDateStr(simpleDateFormat.format(contractPO.getSignDate()));
+        }
+        if(contractPO.getStartTime()!=null){
+            contractPO.setStartTimeStr(simpleDateFormat.format(contractPO.getStartTime()));
+        }
+        if(contractPO.getEndTime()!=null){
+            contractPO.setEndTimeStr(simpleDateFormat.format(contractPO.getEndTime()));
+        }
         return contractService.selectContract(page, contractPO, request);
     }
 

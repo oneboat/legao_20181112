@@ -279,6 +279,7 @@
         //创建正则模板
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
         var isNum = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
+        var timeFlag = new Date(contract_startTime) >new Date(contract_endTime);
         if (classtimepack_id.trim() == "") {
             $("#error").text("*请选择课时包");
         } else if (contract_contractCode.trim() == "") {
@@ -305,6 +306,8 @@
             $("#error").text("*支付方式不能为空");
         } else if (!isNum.test(contract_allClassTime.trim())) {
             $("#error").text("*课时只能为数字");
+        } else if(timeFlag){
+            $("#error").text("*合同起始时间不能大于结束时间");
         } else {
             if (deposit_id.trim() == "") {
                 $("#deposit_id").val("-1");

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -97,6 +98,11 @@ public class RelationServiceImpl implements RelationService {
         }
         //page为初始页，pageSize表一页显示多少条
         PageHelper.startPage(page, ConstUtil.PAGESIZE);
+        if (relationPO.getLastModifyTime() !=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String modifyStr = simpleDateFormat.format(relationPO.getLastModifyTime());
+            relationPO.setLastModifyTimeStr(modifyStr);
+        }
         List<RelationVO> list = relationDao.selectRelation(relationPO);
 
 

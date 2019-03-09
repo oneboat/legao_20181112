@@ -135,6 +135,18 @@ public class ContractVO implements Serializable {
      * 总课时
      */
     private String totalClassTime;
+    /**
+     * 学员id
+     */
+    private Integer studentId;
+    /**
+     * 课时包id
+     */
+    private Integer classPackageId;
+    /**
+     * 校区id
+     */
+    private Integer schoolAreaId;
 
 
     public static final String ID = "id";

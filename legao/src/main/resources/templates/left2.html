@@ -1,324 +1,191 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!doctype html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>left</title>
-    <link href="css/bootstrap.css" type="text/css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+
+
 </head>
 <body style="padding-left: 10px; padding-top: 10px; padding-right: 10px">
-<div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                   aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none;">
-          <span class="glyphicon glyphicon-user">
-         	
-         </span>&nbsp;&nbsp;<span>用户管理 </span>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
+<ul class="cd-accordion-menu animated">
+    <li class="has-children">
+        <input type="checkbox" name ="group-1" id="group-1" checked>
+        <label for="group-1"><span class="glyphicon glyphicon-tasks"></span>教学管理</label>
+
+        <ul>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-1" id="sub-group-1">
+                <label for="sub-group-1">排课管理</label>
+
                 <ul>
-                    <li id="user_Select" style="list-style: none; cursor: pointer;"><span
-                            class="glyphicon glyphicon-search"></span>&nbsp;<a href="selectUser" target="right"
-                                                                               style="text-decoration: none;cursor: pointer;">用户查询</a>
-                    </li>
-
-                    <li id="user_Add" style="list-style: none;cursor: pointer;"><span
-                            class="glyphicon glyphicon-send"></span>&nbsp;<a href="userAdd" target="right"
-                                                                             style="text-decoration: none;cursor: pointer;">添加用户</a>
-                    </li>
+                    <li><a href="selectSchedule" target="right">排课查询</a></li>
+                    <li><a href="scheduleAdd" target="right">添加排课</a></li>
+                </ul>
+            </li>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-3">
+                <label for="sub-group-3">签到管理</label>
+                <ul>
+                    <li><a href="selectRelation" target="right">签到查询</a></li>
 
                 </ul>
-            </div>
-        </div>
-    </div>
 
+            </li>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingThree">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
-                   aria-expanded="false" aria-controls="collapseThree" style="text-decoration: none;">
-		<span class="glyphicon glyphicon-bookmark">
-         	
-         </span>&nbsp;&nbsp;职位管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="jop_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="selectJob"
-                                                                                                 target="right"
-                                                                                                 style="text-decoration: none;cursor: pointer;">职位查询</a>
-                    </li>
-
-                    <li id="jop_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="jobAdd" target="right"
-                                                                                            style="text-decoration: none;cursor: pointer;">添加职位</a>
-                    </li>
-
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-5">
+                <label for="sub-group-5">课程系列管理</label>
+                <ul>
+                    <li><a href="selectSeries" target="right">课程系列查询</a></li>
+                    <li><a href="seriesAdd" target="right">添加课程系列</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingFour">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
-                   aria-expanded="false" aria-controls="collapseFour" style="text-decoration: none;">
-		<span class="glyphicon glyphicon-wrench">
-         	
-         </span>&nbsp;&nbsp;员工管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="employ_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="selectEmploy"
-                                                                                                    target="right"
-                                                                                                    style="text-decoration: none;cursor: pointer;">员工查询</a>
-                    </li>
 
-                    <li id="employ_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="employAdd"
-                                                                                               target="right"
-                                                                                               style="text-decoration: none;cursor: pointer;">添加员工</a>
-                    </li>
-
+            </li>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-6">
+                <label for="sub-group-6">课程管理</label>
+                <ul>
+                    <li><a href="selectCourse" target="right">课程查询</a></li>
+                    <li><a href="courseAdd" target="right">添加课程</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingEight">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight"
-                   aria-expanded="false" aria-controls="collapseEight" style="text-decoration: none;">
-		 <span class="glyphicon glyphicon-education">
-
-    </span>&nbsp;&nbsp;校区管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="schoolArea_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a
-                            href="selectSchoolArea" target="right" style="text-decoration: none;cursor: pointer;">校区查询</a>
-                    </li>
-
-                    <li id="schoolArea_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="schoolAreaAdd"
-                                                                                                target="right"
-                                                                                                style="text-decoration: none;cursor: pointer;">添加校区</a>
-                    </li>
-
+            </li>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-7">
+                <label for="sub-group-7">教室管理</label>
+                <ul>
+                    <li><a href="selectClassRoom" target="right">教室查询</a></li>
+                    <li><a href="classRoomAdd" target="right">添加教室</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTwo">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
-                   aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-		 <span class="glyphicon glyphicon-tags">
+            </li>
 
-    </span>&nbsp;&nbsp;跟进管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="depart_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="selectFollow"
-                                                                                                    target="right"
-                                                                                                    style="text-decoration: none;cursor: pointer;">跟进查询</a>
-                    </li>
+        </ul>
+    </li>
 
-                    <li id="depart_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="followAdd"
-                                                                                               target="right"
-                                                                                               style="text-decoration: none;cursor: pointer;">添加跟进</a>
-                    </li>
+    <li class="has-children">
+        <input type="checkbox" name ="group-2" id="group-2">
+        <label for="group-2">学员管理</label>
 
+        <ul>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-2" id="sub-group-8">
+                <label for="sub-group-8">跟进管理</label>
+                <ul>
+                    <li><a href="selectFollow" target="right">跟进查询</a></li>
+                    <li><a href="followAdd" target="right">添加跟进</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingNight">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNight"
-                   aria-expanded="false" aria-controls="headingNight" style="text-decoration: none;">
-		 <span class="glyphicon glyphicon-blackboard">
+            </li>
+                    <li><a href="selectStudent" target="right">学员查询</a></li>
+                    <li><a href="studentAdd" target="right">添加学员</a></li>
 
-    </span>&nbsp;&nbsp;教室管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseNight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNight">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="classRoom_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a
-                            href="selectClassRoom" target="right" style="text-decoration: none;cursor: pointer;">教室查询</a>
-                    </li>
+        </ul>
+    </li>
 
-                    <li id="classRoom_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="classRoomAdd"
-                                                                                                target="right"
-                                                                                                style="text-decoration: none;cursor: pointer;">添加教室</a>
-                    </li>
+    <li class="has-children">
+        <input type="checkbox" name ="group-3" id="group-3">
+        <label for="group-3">校区管理</label>
 
+        <ul>
+            <li><a href="selectSchoolArea" target="right">校区查询</a></li>
+            <li><a href="schoolAreaAdd" target="right">添加校区</a></li>
+        </ul>
+    </li>
+
+    <li class="has-children">
+        <input type="checkbox" name ="group-4" id="group-4">
+        <label for="group-4">员工管理</label>
+
+        <ul>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-3" id="sub-group-9">
+                <label for="sub-group-9">职位管理</label>
+
+                <ul>
+                    <li><a href="selectJob" target="right">职位查询</a></li>
+                    <li><a href="jobAdd" target="right">添加职位</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
+            </li>
+            <li><a href="selectEmploy" target="right">员工查询</a></li>
+            <li><a href="employAdd" target="right">添加员工</a></li>
+        </ul>
+    </li>
+    <li class="has-children">
+        <input type="checkbox" name ="group-5" id="group-5">
+        <label for="group-5">用户管理</label>
 
+        <ul>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingEleven">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"
-                   aria-expanded="false" aria-controls="collapseEleven" style="text-decoration: none;">
-		 <span class="glyphicon glyphicon-education">
+            <li><a href="selectUser" target="right">用户查询</a></li>
+            <li><a href="userAdd" target="right">添加用户</a></li>
+        </ul>
+    </li>
 
-    </span>&nbsp;&nbsp;课程系列管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="series_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a
-                            href="selectSeries" target="right" style="text-decoration: none;cursor: pointer;">课程系列查询</a>
-                    </li>
+    <li class="has-children">
+        <input type="checkbox" name ="group-6" id="group-6">
+        <label for="group-6">合同管理</label>
 
-                    <li id="series_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="seriesAdd"
-                                                                                                target="right"
-                                                                                                style="text-decoration: none;cursor: pointer;">添加课程系列</a>
-                    </li>
-
+        <ul>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-12" id="sub-group-12">
+                <label for="sub-group-12">课时包管理</label>
+                <ul>
+                    <li><a href="/selectClasstimepack" target="right">课时包查询</a></li>
+                    <li><a href="classtimepackAdd" target="right">添加课时包</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingSeven">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"
-                   aria-expanded="false" aria-controls="collapseSeven" style="text-decoration: none;">
-		 <span class="glyphicon glyphicon-education">
-
-    </span>&nbsp;&nbsp;学员管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="student_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a
-                            href="selectStudent" target="right" style="text-decoration: none;cursor: pointer;">学员查询</a>
-                    </li>
-
-                    <li id="student_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="studentAdd"
-                                                                                                target="right"
-                                                                                                style="text-decoration: none;cursor: pointer;">添加学员</a>
-                    </li>
-
+            </li>
+            <li class="has-children">
+                <input type="checkbox" name ="sub-group-11" id="sub-group-11">
+                <label for="sub-group-11">订金管理</label>
+                <ul>
+                    <li><a href="/selectDeposit" target="right">订金查询</a></li>
+                    <li><a href="depositAdd" target="right">添加订金</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTwelve">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve"
-                   aria-expanded="false" aria-controls="collapseTwelve" style="text-decoration: none;">
-		 <span class="glyphicon glyphicon-education">
+            </li>
+            <!--<li class="has-children">-->
+                <!--<input type="checkbox" name ="sub-group-10" id="sub-group-10">-->
+                <!--<label for="sub-group-10">会员卡管理</label>-->
+                <!--<ul>-->
+                    <!--<li><a href="/selectMembercard" target="right">会员卡查询</a></li>-->
+                    <!--<li><a href="membercardAdd" target="right">添加会员卡</a></li>-->
+                <!--</ul>-->
 
-    </span>&nbsp;&nbsp;排课管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="schedule_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a
-                            href="selectSchedule" target="right" style="text-decoration: none;cursor: pointer;">排课查询</a>
-                    </li>
+            <!--</li>-->
+            <li><a href="/selectContract" target="right">合同查询</a></li>
+            <li><a href="contractAdd" target="right">添加合同</a></li>
 
-                    <li id="schedule_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="scheduleAdd"
-                                                                                                target="right"
-                                                                                                style="text-decoration: none;cursor: pointer;">添加排课</a>
-                    </li>
+        </ul>
 
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTen">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen"
-                   aria-expanded="false" aria-controls="collapseTen" style="text-decoration: none;">
-		 <span class="glyphicon glyphicon-education">
+    </li>
 
-    </span>&nbsp;&nbsp;课程管理
-                </a>
-            </h4>
-        </div>
-        <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="course_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a
-                            href="selectCourse" target="right" style="text-decoration: none;cursor: pointer;">课程查询</a>
-                    </li>
 
-                    <li id="course_Add"><span class="glyphicon glyphicon-send"></span>&nbsp;<a href="/courseAdd"
-                                                                                               target="right"
-                                                                                               style="text-decoration: none;cursor: pointer;">添加课程</a>
-                    </li>
 
-                </ul>
-            </div>
-        </div>
-    </div>
+    <li class="has-children">
+        <input type="checkbox" name ="group-7" id="group-7">
+        <label for="group-7">系统设置</label>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingSix">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"
-                   aria-expanded="false" aria-controls="collapseSix" style="text-decoration: none;">
-		<span class="glyphicon glyphicon-cog">
+        <ul>
 
-         </span>&nbsp;&nbsp;系统设置
-                </a>
-            </h4>
-        </div>
-        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-            <div class="panel-body">
-                <ul style="list-style: none;cursor: pointer;">
-                    <li id="document_Select"><span class="glyphicon glyphicon-search"></span>&nbsp;<a href="fieldSet"
-                                                                                                      target="right"
-                                                                                                      style="text-decoration: none;cursor: pointer;">字段设置</a>
-                    </li>
-                    <li id="document_Add"><span class="glyphicon glyphicon-open"></span>&nbsp;<a
-                            href="selectDate" target="right"
-                            style="text-decoration: none;cursor: pointer;">时间设置</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+            <li><a href="fieldSet" target="right">字段设置</a></li>
+            <li><a href="selectDate" target="right">时间设置</a></li>
+        </ul>
+    </li>
+</ul>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="application/javascript" charset="UTF-8" src="js/main.js"></script>
+
+
 
 </body>
-<script type="application/javascript" charset="UTF-8" src="js/jquery-1.12.4.js"></script>
-<script type="application/javascript" charset="UTF-8" src="js/bootstrap.js"></script>
 </html>

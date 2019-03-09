@@ -43,39 +43,48 @@
     </select>&nbsp;&nbsp;
         老师： <select class="inputCss" id="teacherName" name="teacherID">
         <option value="">--请选择老师--</option>
-        <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}">
+        <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}"
+                th:selected="${blurRelation}==null? false:((${blurRelation.teacherID} == ${teacherName.id})?true:false) ">
             [[${teacherName.name}]]
         </option>
     </select>
     </select>&nbsp;&nbsp;
         时间段：<select class="inputCss" id="dateID" name="timeSection">
         <option value="">--请选择时间段--</option>
-        <option th:value="${dates.timeSection}" th:each="dates:${application.allDate}">
+        <option th:value="${dates.timeSection}" th:each="dates:${application.allDate}"
+                th:selected="${blurRelation}==null? false:((${blurRelation.timeSection} == ${dates.timeSection})?true:false) ">
             [[${dates.timeSection}]]
         </option>
     </select>&nbsp;&nbsp;
+        修改时间：<input name="lastModifyTime" id="contract_lastModifyTime" style="height: 35px;" class="inputCss"
+                    th:value="${blurContract}==null? '':${#dates.format(blurContract.lastModifyTime,'yyyy-MM-dd')}"/>&nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectRelation"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropRelation"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropRelation" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
                id="relation_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
-                <th>课程</th>
+                <th>课程|老师</th>
                 <th>学员|电话</th>
                 <th>学员生日|性别</th>
-                <th>老师</th>
                 <th>周数|时间段</th>
                 <th>状态</th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
             </tr>
             <tr th:each="relation:${relationVOList}">
                 <td><input type="checkbox" name="caption"
                            th:id="'box_'+${relation.id}" th:value="${relation.id}"/></td>
                 <td th:if="${relation.schedule}!=null">
                     <span th:if="${relation.schedule.course} !=null">[[${relation.schedule.course.name}]]</span>
-                    <span th:if="${relation.schedule.course} ==null" style="color: red;">该排课信息已被删除</span>
+                    <span th:if="${relation.schedule.course} ==null" style="color: red;">排课已被删除</span>|
+                    <span th:if="${relation.schedule.teacherVO} !=null">
+                    [[${relation.schedule.teacherVO.name}]]
+                     </span>
+                    <span th:if="${relation.schedule.teacherVO} ==null">
+                    无
+                     </span>
                 </td>
                 <td th:if="${relation.schedule}==null" style="color: red">该排课信息已被删除</td>
                 <td th:if="${relation.student} !=null">[[${relation.student.name}]]| [[${relation.student.telphone}]]</td>
@@ -85,14 +94,6 @@
                     [[${#dates.format(relation.student.birthday,'yyyy年MM月dd日')}]]|[[${relation.student.sex}]]
                 </td>
                 <td th:if="${relation.student} ==null"><span style="color: red">学员已被删除</span></td>
-                <td th:if="${relation.schedule}!=null">
-                    <span th:if="${relation.schedule.teacherVO} !=null">
-                    [[${relation.schedule.teacherVO.name}]]
-                     </span>
-                    <span th:if="${relation.schedule.teacherVO} ==null">
-                    无
-                     </span>
-                </td>
                 <td th:if="${relation.schedule}!=null">
                     <span th:if="${relation.schedule.weekOfYear} !=null">
                     第[[${relation.schedule.weekOfYear}]]周
@@ -110,15 +111,29 @@
                 <td th:if="${relation.schedule}==null">
                     无
                 </td>
-                <td th:if="${relation.schedule}==null" style="color: red">该排课信息已被删除</td>
-                <td th:if="${relation.signInStatus}==1"><span class="label label-success">准时</span></td>
-                <td th:if="${relation.signInStatus}==2"><span class="label label-danger">未签到</span></td>
-                <td th:if="${relation.signInStatus}==3"><span class="label label-default">请假</span></td>
 
-                <td th:if="${relation.schedule}!=null"><a th:href="'editRelation?scheduleId='+${relation.schedule.id}" ><span
-                        class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <td th:if="${relation.signInStatus}==1">
+                    <span class="label label-success">准时</span><br>
+                    <span style="font-size: small">(修改时间：[[${#dates.format(relation.lastModifyTime,'yyyy-MM-dd HH:mm:ss')}]]&nbsp;修改人：[[${relation.modifyPerson}]])</span>
                 </td>
-                <td th:if="${relation.schedule}==null" style="color: red"><span class="glyphicon glyphicon-remove"></span></td>
+                <td th:if="${relation.signInStatus}==2">
+                    <span class="label label-danger">未签到</span><br>
+                    <span style="font-size: small">(修改时间：[[${#dates.format(relation.lastModifyTime,'yyyy-MM-dd HH:mm:ss')}]]&nbsp;修改人：[[${relation.modifyPerson}]])</span>
+
+                </td>
+                <td th:if="${relation.signInStatus}==3"><span class="label label-default">请假</span>
+                    <br>
+                    <span style="font-size: small">(修改时间：[[${#dates.format(relation.lastModifyTime,'yyyy-MM-dd HH:mm:ss')}]]&nbsp;修改人：[[${relation.modifyPerson}]])</span>
+                </td>
+<span th:if="${session.user.status}==1">
+                <td th:if="${relation.schedule}!=null" style="text-align: center" >
+
+                    <span th:if="${relation.student}!=null"><a th:href="'editRelation?scheduleId='+${relation.schedule.id}"><span
+                            class="glyphicon glyphicon-pencil"></span></a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-remove" th:if="${relation.student}==null" style="color: red"></span>
+                </td>
+                <td th:if="${relation.schedule}==null" style="color: red;text-align: center" ><span class="glyphicon glyphicon-remove"></span></td>
+    </span>
             </tr>
         </table>
     </form>
@@ -128,6 +143,8 @@
     <form id="pageForm" style="display: none">
         <input name="studentID" th:value="${blurRelation}==null? '':${blurRelation.studentID}"/>&nbsp;&nbsp;
         <input name="weekOfYear" th:value="${blurRelation}==null? '':${blurRelation.weekOfYear}"/>
+        <input name="teacherID" th:value="${blurRelation}==null? '':${blurRelation.teacherID}"/>
+        <input name="lastModifyTime" th:value="${blurRelation}==null? '':${blurRelation.lastModifyTime}"/>
         <input type="text" id="pages" name="page"/>
 
         <input type="button" id="btn" value="tijiao"/>
@@ -138,9 +155,16 @@
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/paging.js" type="application/javascript"></script>
+    <script src="laydate/laydate.js" type="text/javascript"></script>
     <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
     <script type="text/javascript" th:inline="javascript">
-
+        //日期插件
+        laydate.render({
+            elem: '#contract_lastModifyTime',
+            theme: '#8D48F9'//指定元素
+            , trigger: 'click',
+            type: 'datetime'
+        });
 
         /*提交查询*/
         $("#selectRelation").click(function () {

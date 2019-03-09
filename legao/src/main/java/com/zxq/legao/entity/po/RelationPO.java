@@ -3,8 +3,10 @@ package com.zxq.legao.entity.po;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,4 +66,19 @@ public class RelationPO implements Serializable {
      * 传送前台来的时间段
      */
     private String timeSection;
+    /**
+     * 创建日期
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createDate;
+    /**
+     * 最后一次修改时间
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastModifyTime;
+    /**
+     * 修改人
+     */
+    private String modifyPerson;
+    private String lastModifyTimeStr;
 }

@@ -25,7 +25,7 @@
         负责人：<input name="responPersonName" id="responPersonName" style="height: 35px;" class="inputCss"
                   th:value="${blurSchoolArea}==null? '':${blurSchoolArea.responPersonName}"/>&nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectSchoolArea"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropSchoolArea"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropSchoolArea" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
@@ -36,7 +36,7 @@
                 <th>地址</th>
                 <th>负责人</th>
                 <th>电话</th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
             </tr>
             <tr th:each="schoolArea:${schoolAreaVOList}">
                 <td><input type="checkbox" name="caption"
@@ -45,7 +45,7 @@
                 <td>[[${schoolArea.address}]]</td>
                 <td>[[${schoolArea.responPersonName}]]</td>
                 <td>[[${schoolArea.telphone}]]</td>
-                <td><a th:href="'editSchoolArea?schoolAreaId='+${schoolArea.id}"><span
+                <td th:if="${session.user.status}==1"><a th:href="'editSchoolArea?schoolAreaId='+${schoolArea.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>

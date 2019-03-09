@@ -2,6 +2,7 @@ package com.zxq.legao.controller;
 
 import com.zxq.legao.entity.po.RelationPO;
 import com.zxq.legao.entity.vo.RelationVO;
+import com.zxq.legao.entity.vo.UserVO;
 import com.zxq.legao.service.RelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
@@ -62,6 +64,14 @@ public class RelationController {
       */
     @RequestMapping("/editRelation")
     public String editRelation(@RequestParam("scheduleId") Integer scheduleId, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserVO userVO = (UserVO) session.getAttribute("user");
+        if (userVO!=null) {
+            if (Integer.valueOf(userVO.getStatus()) != 1) {
+                request.setAttribute("msg","抱歉，您没有修改权限");
+                return "forward:/selectSchedule";
+            }
+        }
         List<RelationVO> relationVOList = relationService.selectRelationByScheduleID(scheduleId);
         if (relationVOList.size()!=0) {
             request.setAttribute("relationEdit", relationVOList.get(0));
@@ -76,6 +86,8 @@ public class RelationController {
      */
     @RequestMapping("/updateBatchRelation")
     public String updateBatchRelation(RelationPO relationPO,HttpServletRequest request) {
+        UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+        relationPO.setModifyPerson(userVO.getUsername());
         relationService.updateBatchRelation(relationPO);
         List<RelationVO> relationVOList = relationService.selectRelationByScheduleID(relationPO.getScheduleID());
         request.setAttribute("relationEdit",relationVOList.get(0));

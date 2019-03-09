@@ -27,12 +27,18 @@
 
         学员姓名：<input name="name" id="name" style="height: 35px;" class="inputCss"
                     th:value="${blurStudent}==null? '':${blurStudent.name}"/>&nbsp;&nbsp;
-        手机号码：<input name="telphone" id="telphone" style="height: 35px;" class="inputCss"
+        联系电话：<input name="telphone" id="telphone" style="height: 35px;" class="inputCss"
                     th:value="${blurStudent}==null? '':${blurStudent.telphone}"/>&nbsp;&nbsp;
-        校区：<input name="schoolAreaID" id="schoolAreaID" style="height: 35px;" class="inputCss"
-                  th:value="${blurStudent}==null? '':${blurStudent.schoolAreaID}"/>&nbsp;&nbsp;
         来源：<input name="source" id="source" style="height: 35px;" class="inputCss"
                   th:value="${blurStudent}==null? '':${blurStudent.source}"/>&nbsp;&nbsp;
+        校区：<select name="schoolAreaID" id="schoolAreaID" style="height: 35px;" class="inputCss">
+        <option value="">--请选择校区--</option>
+        <option th:value="${schoolArea.id}" th:each="schoolArea:${application.allSchoolArea}" th:selected="(${blurStudent.schoolAreaID} ==${schoolArea.id})?true:false">
+            [[${schoolArea.name}]]
+        </option>
+    </select>
+       &nbsp;&nbsp;
+
         </br></br>
         重要程度：<select name="importanceGrade" id="importanceGrade" style="height: 35px;" class="inputCss"
                      th:value="${blurStudent}==null? '':${blurStudent.importanceGrade} ">
@@ -65,11 +71,18 @@
         <option value="4" th:selected="${blurStudent}==null? false:(${blurStudent.status}==4?true:false)">其他</option>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;
 
-        跟进：<input name="followID" id="followID" style="height: 35px;" class="inputCss"
-                  th:value="${blurStudent}==null? '':${blurStudent.followID}"/>&nbsp;&nbsp;
+        跟进人：
+
+            <select class="inputCss" id="follow_id" name="followID">
+                <option value="0">--请选择跟进人--</option>
+                <option th:value="${follow.id}" th:each="follow:${application.allemploy}" th:selected="(${blurStudent.followID} ==${follow.id})?true:false">
+                    [[${follow.name}]]
+                </option>
+            </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;
 
         <input type="button" value="搜索" class="btn btn-success" id="selectStudent"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropStudent"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropStudent" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
@@ -90,7 +103,7 @@
                          <span th:case="*">[[${field}]]</span>
                     </span>
                 </th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
 
                 <!--遍历具体值-->
             <tr th:each="student:${studentVOList}">
@@ -144,16 +157,16 @@
                 <td th:if="${student.source}!=null ">[[${student.source}]]</td>
                 <td th:if="${student.teacherName}!=null ">[[${student.teacherName}]]</td>
                 <td th:if="${student.schoolAreaID}!=null">[[${student.schoolAreaID.name}]]</td>
-            <td th:if="(${student.follow}!= 0)?((${student.followID}!= null)?true:false):false">
-               [[${student.followID.advisor}]]
+            <td th:if="(${student.follow}!= null)">
+
+                <span th:if="${student.followID}!=null">[[${student.followID.name}]]</span>
+                <span th:if="${student.followID}==null" style="color: red">跟进信息已被删除或未添加</span>
             </td>
-            <td th:if="${student.follow}== 0">
-                无
-            </td>
+
             <td th:if="${student.stuAge}!=null ">
                 [[${student.stuAge}]]
             </td>
-                <td><a th:href="'editStudent?studentId='+${student.id}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <td th:if="${session.user.status}==1"><a th:href="'editStudent?studentId='+${student.id}"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>
         </table>

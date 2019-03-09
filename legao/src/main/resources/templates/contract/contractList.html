@@ -29,14 +29,20 @@
                     th:value="${blurContract}==null? '':${blurContract.contractCode}"/>&nbsp;&nbsp;
         学员：<select class="inputCss" id="contract_studentName" name="studentId">
         <option value="">--请选择学员--</option>
-        <option th:value="${student.id}" th:each="student:${application.allStudentName}" >
+        <option th:value="${student.id}" th:each="student:${application.allStudentName}" th:selected="${blurContract}==null?false:(${student.id} == ${blurContract.studentId})" >
             [[${student.name}]]
         </option>
     </select>
        &nbsp;&nbsp;
+        签约日期：<input name="signDate" id="contract_signDate" style="height: 35px;" class="inputCss"
+                    th:value="${blurContract}==null? '':${#dates.format(blurContract.signDate,'yyyy-MM-dd')}"/>&nbsp;&nbsp;
+        起始时间：<input name="startTime" id="contract_startTime" style="height: 35px;" class="inputCss"
+                    th:value="${blurContract}==null? '':${#dates.format(blurContract.startTime,'yyyy-MM-dd')}"/>&nbsp;&nbsp;
+        结束时间：<input name="endTime" id="contract_endTime" style="height: 35px;" class="inputCss"
+                    th:value="${blurContract}==null? '':${#dates.format(blurContract.endTime,'yyyy-MM-dd')}"/>&nbsp;&nbsp;
 
         <input type="button" value="搜索" class="btn btn-success" id="selectContract"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropContract"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropContract" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
@@ -49,7 +55,7 @@
                         [[${field}]]
 
                 </th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
 
                 <!--遍历具体值-->
             <tr th:each="contract:${contractVOList}">
@@ -58,25 +64,26 @@
                 <td th:if="${contract.contractCode}!=null  ">
                     [[${contract.contractCode}]]
                 </td>
-                <td th:if="${contract.studentVO}!=null">
-                    [[${contract.studentVO.name}]]
-                </td>
+            <td th:if="${contract.studentId}!=null">
+                <span th:if="${contract.studentVO}!=null">[[${contract.studentVO.name}]]</span>
+                <span th:if="${contract.studentVO}==null" style="color: red">学员已被删除</span>
+            </td>
                 <td th:if="${contract.signDate}!=null">
                     <span th:text="${#dates.format(contract.signDate,'yyyy年MM月dd日')}"></span></td>
 
+            <td th:if="${contract.classPackageId}!=null">
+                <span th:if="${contract.classtimepackVO}!=null">[[${contract.classtimepackVO.name}]]</span>
+                <span th:if="${contract.classtimepackVO}==null" style="color: red">课时包已被删除</span>
+            </td>
 
-                <td th:if="${contract.classtimepackVO}!=null ">
-                    [[${contract.classtimepackVO.name}]]
-                </td>
                 <td th:if="${contract.price}!=null"> [[${contract.price}]]</td>
                 <td th:if="${contract.discount}!=null ">[[${contract.discount}]]</td>
 
-                <td th:if="(${contract.depositId}!=0 )?((${contract.depositId}!= null)?true:false):false ">
-                    <span th:if="${contract.depositVO}!=null ">[[${contract.depositVO.moneyAmount}]]</span></td>
-            <td th:if="${contract.depositId}==0 ">
+            <td th:if="${contract.depositId}!=null">
+                <span th:if="${contract.depositVO}!=null">[[${contract.depositVO.moneyAmount}]]</span>
+                <span th:if="${contract.depositVO}==null" style="color: red">未交订金</span>
+            </td>
 
-                <span style="color: red">未交订金</span>
-                </td>
                 <td th:if="${contract.actPay}!=null ">[[${contract.actPay}]]</td>
                 <td th:if="${contract.payType}!=null ">[[${contract.payType}]]</td>
                 <td th:if="${contract.presentationClassTime}!=null ">[[${contract.presentationClassTime}]]</td>
@@ -93,8 +100,11 @@
             <td th:if="${contract.classTime}!=null">[[${contract.classTime}]]</td>
             <td th:if="${contract.remainClassTime}!=null">[[${contract.remainClassTime}]]</td>
             <td th:if="${contract.totalClassTime}!=null">[[${contract.totalClassTime}]]</td>
-            <td th:if="${contract.schoolArea}!=null">[[${contract.schoolArea.name}]]</td>
-                <td><a th:href="'editContract?contractId='+${contract.id}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <td th:if="${contract.schoolAreaId}!=null">
+                <span th:if="${contract.schoolArea}!=null">[[${contract.schoolArea.name}]]</span>
+                <span th:if="${contract.schoolArea}==null" style="color: red">校区已被删除</span>
+            </td>
+                <td th:if="${session.user.status}==1"><a th:href="'editContract?contractId='+${contract.id}"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>
         </table>
@@ -104,22 +114,42 @@
     <div class="box" id="box"></div>
     <!--添加表单提交标志-->
     <form id="pageForm" style="display: none">
-        <input name="name" th:value="${blurContract}==null? '':${blurContract.contractCode}"/>&nbsp;&nbsp;
-        <input name="status" th:value="${blurContract}==null? '':${blurContract.studentId} "/>
+        <input name="contractCode" th:value="${blurContract}==null? '':${blurContract.contractCode}"/>&nbsp;&nbsp;
+        <input name="studentId" th:value="${blurContract}==null? '':${blurContract.studentId} "/>
+        <input name="startTime" th:value="${blurContract}==null? '':${blurContract.startTime}"/>&nbsp;&nbsp;
+        <input name="endTime" th:value="${blurContract}==null? '':${blurContract.endTime} "/>
+        <input name="signDate" th:value="${blurContract}==null? '':${blurContract.signDate} "/>
         <input type="text" id="pages" name="page"/>
 
         <input type="button" id="btn" value="tijiao"/>
         <!--传入分页的参数-->
         <input type="text" id="actionName" value="selectContract"/>
     </form>
-
+</body>
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
     <script src="js/paging.js" type="application/javascript"></script>
+    <script src="laydate/laydate.js" type="text/javascript"></script>
     <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
     <script type="text/javascript" th:inline="javascript">
-
-
+        //日期插件
+        laydate.render({
+            elem: '#contract_signDate',
+            theme: '#8D48F9'//指定元素
+            , trigger: 'click'
+        });
+        //日期插件
+        laydate.render({
+            elem: '#contract_startTime',
+            theme: '#8D48F9'//指定元素
+            , trigger: 'click'
+        });
+        //日期插件
+        laydate.render({
+            elem: '#contract_endTime',
+            theme: '#8D48F9'//指定元素
+            , trigger: 'click'
+        });
         /*提交查询*/
         $("#selectContract").click(function () {
             $("#contractform").attr("action", "selectContract");
@@ -164,5 +194,5 @@
 
     </script>
 
-</body>
+
 </html>

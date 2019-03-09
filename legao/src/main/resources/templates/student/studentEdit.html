@@ -17,7 +17,7 @@
     &nbsp;&nbsp;&nbsp;
     当前位置：学员管理&nbsp;&gt;&nbsp;修改学员信息
     <hr/>
-    <div id="error" style="color:#FF0000;font-size:14px ;height: 15px;"></div>
+    <div id="error" style="color:#FF0000;font-size:14px ;height: 15px;margin-bottom: 5px;"></div>
     <form id="studentform">
         <table id="student_tab" style="width: 100%">
             <tr>
@@ -39,9 +39,9 @@
                 <td>跟进人：</td>
                 <td>
                     <select class="inputCss" id="follow_id" name="followID">
-                        <option value="">--请选择跟进人--</option>
-                        <option th:value="${follow.id}" th:each="follow:${application.allFollow}"
-                                th:selected="(${studentEdit.followID}==null)?false:((${follow.id}==${studentEdit.followID.id})?true:false)">[[${follow.advisor}]]
+                        <option value="0">--请选择跟进人--</option>
+                        <option th:value="${follow.id}" th:each="follow:${application.allemploy}"
+                                th:selected="(${studentEdit.followID}==null)?false:((${follow.id}==${studentEdit.followID.id})?true:false)">[[${follow.name}]]
                         </option>
                     </select>
                 </td>
@@ -65,9 +65,16 @@
                 <td><input th:value="${studentEdit.parentRelat}" type="text" name="parentRelat" class="inputCss"
                            style="width:205px;" placeholder="请输入学员与家长的关系" id="student_parentRelat"/></td>
 
+
                 <td>顾问：</td>
-                <td><input th:value="${studentEdit.advisor}" type="text" name="advisor" class="inputCss"
-                           style="width:205px;" placeholder="请输入学员的顾问" id="advisor"/></td>
+                <td>
+                    <select class="inputCss" id="stu_advisor" name="advisor">
+                        <option value="0">--请输入学员的顾问--</option>
+                        <option th:value="${employ.name}" th:each="employ:${application.allemploy}" th:selected="(${employ.name}==${studentEdit.advisor})?true:false">
+                            [[${employ.name}]]
+                        </option>
+                    </select>
+                </td>
 
             </tr>
             <tr style="height: 10px;">

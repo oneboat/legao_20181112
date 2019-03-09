@@ -57,8 +57,9 @@ public class JobServiceImpl implements JobService {
     public String selectJob(Integer page, JobPO jobPO, HttpServletRequest request) {
         //模糊查询保留值
         if (jobPO != null) {
-            if (jobPO.getName() != null)
+            if (jobPO.getName() != null) {
                 request.setAttribute("blurJob", jobPO);
+            }
         }
         if (page == null) {
             page = 0;

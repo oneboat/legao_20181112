@@ -29,7 +29,7 @@
                    th:value="${blurMembercard}==null? '':${blurMembercard.memberCardCode}"/>&nbsp;&nbsp;
 
         <input type="button" value="搜索" class="btn btn-success" id="selectMembercard"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropMembercard"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropMembercard" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
@@ -40,7 +40,7 @@
                 <th>会员卡类型</th>
                 <th>学生</th>
                 <th>课时</th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
             </tr>
             <tr th:each="membercard:${membercardVOList}">
                 <td><input type="checkbox" name="caption"
@@ -49,7 +49,7 @@
                 <td>[[${membercard.carType}]]</td>
                 <td>[[${membercard.studentName}]]</td>
                 <td>[[${membercard.classTime}]]</td>
-                <td><a th:href="'editMembercard?membercardId='+${membercard.id}"><span
+                <td th:if="${session.user.status}==1"><a th:href="'editMembercard?membercardId='+${membercard.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>

@@ -39,5 +39,9 @@ public class SchedulePO implements Serializable {
      * 学员
      */
     private List<Integer> studentList;
+    /**
+     * 更改人
+     */
+    private String modifyPerson;
 
 }

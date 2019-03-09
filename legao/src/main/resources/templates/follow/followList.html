@@ -29,7 +29,7 @@
                    th:value="${blurFollow}==null? '':${blurFollow.advisor}"/>&nbsp;&nbsp;
 
         <input type="button" value="搜索" class="btn btn-success" id="selectFollow"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropFollow"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropFollow" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
@@ -41,7 +41,7 @@
                 <th>跟进模式</th>
                 <th>跟进内容</th>
                 <th>创建时间</th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
             </tr>
             <tr th:each="follow:${followVOList}">
                 <td><input type="checkbox" name="caption"
@@ -53,7 +53,7 @@
                 <td>
                     <div th:text="${#dates.format(follow.date,'yyyy年MM月dd日 HH时mm分ss秒')}"></div>
                 </td>
-                <td><a th:href="'editFollow?followId='+${follow.id}"><span
+                <td th:if="${session.user.status}==1"><a th:href="'editFollow?followId='+${follow.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>

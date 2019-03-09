@@ -3,6 +3,7 @@ package com.zxq.legao.controller;
 
 import com.zxq.legao.entity.po.SchedulePO;
 import com.zxq.legao.entity.vo.ScheduleVO;
+import com.zxq.legao.entity.vo.UserVO;
 import com.zxq.legao.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class ScheduleController {
      */
     @RequestMapping("/insertSchedule")
     public String insertSchedule(SchedulePO schedule, HttpServletRequest request) {
-        if (scheduleService.insertSchedule(schedule) > 0) {
+        if (scheduleService.insertSchedule(schedule,request) > 0) {
             request.setAttribute("type", "yes");
         } else {
             request.setAttribute("type", "no");
@@ -83,6 +85,14 @@ public class ScheduleController {
      */
     @RequestMapping("/editSchedule")
     public String editSchedule(@RequestParam("scheduleId") Integer scheduleId, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserVO userVO = (UserVO) session.getAttribute("user");
+        if (userVO!=null) {
+            if (Integer.valueOf(userVO.getStatus()) != 1) {
+                request.setAttribute("msg","抱歉，您没有修改权限");
+                return "forward:/selectSchedule";
+            }
+        }
         ScheduleVO scheduleVO = scheduleService.selectScheduleByID(scheduleId);
         request.setAttribute("scheduleByID", scheduleVO);
         return "forward:/editScheduleFrom";

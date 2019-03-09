@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2018-11-27
  */
 public interface ScheduleService {
-    int insertSchedule(SchedulePO schedulePO);
+    int insertSchedule(SchedulePO schedulePO,HttpServletRequest request);
 
     int deleteSchedule(List<Integer> scheduleIDs);
 

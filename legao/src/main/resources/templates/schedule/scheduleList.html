@@ -32,23 +32,23 @@
         </option>
 
     </select>&nbsp;&nbsp;
-        周数：<select class="inputCss"  name="weekOfYear">
-        <option value="" >-------请选择课程所在周------</option>
+        周数：<select class="inputCss" name="weekOfYear">
+        <option value="">-------请选择课程所在周------</option>
         <option th:value="${schedule.weekOfYear}" th:each="schedule:${application.allWeekOfYear}">
             第[[${schedule.weekOfYear}]]周 <span th:text="${schedule.date}!=null?${schedule.date.timeSection}:''"></span>
-           <span style="color: red"> <span th:text="${schedule.date}==null?'对应时间段已被删除':''" ></span></span>
+            <span style="color: red"> <span th:text="${schedule.date}==null?'对应时间段已被删除':''"></span></span>
         </option>
     </select>&nbsp;&nbsp;
-     学员的老师：
+        学员的老师：
 
-            <select class="inputCss" id="teacherName" name="teacherID">
-                <option value="">--请选择老师--</option>
-                <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}">
-                    [[${teacherName.name}]]
-                </option>
-            </select>&nbsp;&nbsp;
-       时间段：
-       <select class="inputCss" id="dateID" name="dateID">
+        <select class="inputCss" id="teacherName" name="teacherID">
+            <option value="">--请选择老师--</option>
+            <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}">
+                [[${teacherName.name}]]
+            </option>
+        </select>&nbsp;&nbsp;
+        时间段：
+        <select class="inputCss" id="dateID" name="dateID">
             <option value="">--请选择时间段--</option>
             <option th:value="${dates.id}" th:each="dates:${application.allDate}">
                 [[${dates.timeSection}]]
@@ -56,25 +56,51 @@
         </select>&nbsp;&nbsp;
 
         <input type="button" value="搜索" class="btn btn-success" id="selectSchedule"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropSchedule"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropSchedule" th:if="${session.user.status}==1"/>
 
 
         <div class="table-responsive">
-            <div style="text-align: center"><h3>第[[${dateVO.weekOfYear}]]周（[[${dateVO.startWeekDate}]]—[[${dateVO.endWeekDate}]]） 排课表</h3></div>
-<table class="table table-bordered" cellspacing="0" cellpadding=""  style="text-align: center;">
-    <tr><th>时间段</th><th class="active">星期一</th><th >星期二</th><th class="warning">星期三</th><th >星期四</th><th class="info">星期五</th><th>星期六</th><th class="success">星期日</th></tr>
-    <tr th:each="timeSection:${application.allDate}">
-        <td th:id="'timeSection_' + ${timeSection.id}" style="display:table-cell; vertical-align:middle">[[${timeSection.timeSection}]]</td>
-        <td  class="active" style="display:table-cell; vertical-align:middle" ><div th:id="'time_' + ${timeSection.id} + '_2'"></div></td>
-        <td style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_3'" ></div></td>
-        <td  class="warning" style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_4'"></div></td>
-        <td style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_5'" ></div></td>
-        <td  class="info" style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_6'"></div></td>
-        <td  style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_7'"></div></td>
-        <td  class="success" style="display:table-cell; vertical-align:middle"><div th:id="'time_' + ${timeSection.id} + '_1'"></div></td>
-       </tr>
+            <div style="text-align: center"><h3>
+                第[[${dateVO.weekOfYear}]]周（[[${dateVO.startWeekDate}]]—[[${dateVO.endWeekDate}]]） 排课表</h3></div>
+            <table class="table table-bordered" cellspacing="0" cellpadding="" style="text-align: center;">
+                <tr>
+                    <th>时间段</th>
+                    <th class="active">星期一</th>
+                    <th>星期二</th>
+                    <th class="warning">星期三</th>
+                    <th>星期四</th>
+                    <th class="info">星期五</th>
+                    <th>星期六</th>
+                    <th class="success">星期日</th>
+                </tr>
+                <tr th:each="timeSection:${application.allDate}">
+                    <td th:id="'timeSection_' + ${timeSection.id}" style="display:table-cell; vertical-align:middle">
+                        [[${timeSection.timeSection}]]
+                    </td>
+                    <td class="active" style="display:table-cell; vertical-align:middle">
+                        <div th:id="'time_' + ${timeSection.id} + '_2'"></div>
+                    </td>
+                    <td style="display:table-cell; vertical-align:middle">
+                        <div th:id="'time_' + ${timeSection.id} + '_3'"></div>
+                    </td>
+                    <td class="warning" style="display:table-cell; vertical-align:middle">
+                        <div th:id="'time_' + ${timeSection.id} + '_4'"></div>
+                    </td>
+                    <td style="display:table-cell; vertical-align:middle">
+                        <div th:id="'time_' + ${timeSection.id} + '_5'"></div>
+                    </td>
+                    <td class="info" style="display:table-cell; vertical-align:middle">
+                        <div th:id="'time_' + ${timeSection.id} + '_6'"></div>
+                    </td>
+                    <td style="display:table-cell; vertical-align:middle">
+                        <div th:id="'time_' + ${timeSection.id} + '_7'"></div>
+                    </td>
+                    <td class="success" style="display:table-cell; vertical-align:middle">
+                        <div th:id="'time_' + ${timeSection.id} + '_1'"></div>
+                    </td>
+                </tr>
 
-</table>
+            </table>
         </div>
     </form>
 
@@ -90,43 +116,46 @@
     <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
     <script type="text/javascript" th:inline="javascript">
         $(function () {
-
+            var msg = [[${msg}]];
+            if (msg) {
+                alert(msg);
+            }
             //获取排课信息
             var tds = $("div[id^='time_']");
             var scheduleList = [[${scheduleVOList}]];
-            var position,positionID,positionX,positionY;
+            var position, positionID, positionX, positionY;
             var lenth = scheduleList.length;
             for (var i = 0; i < lenth; i++) {
-                for (var j =0;j<tds.length;j++){
+                for (var j = 0; j < tds.length; j++) {
                     positionID = $(tds[j]).attr("id")
                     position = positionID.split("_");
                     positionX = position[1];
                     positionY = position[2];
                     //和时间段的id和星期的id比对，一样则填入
-                    if ((scheduleList[i].date.id == positionX) && (scheduleList[i].courseWeek == positionY)){
-                        if(scheduleList[i].course == null){
-                            $("#"+positionID).append("<span style='color: red'>["+i+"]课程已被删除<br/><br/></span>")
-                        }else if (scheduleList[i].teacherVO == null){
-                            $("#"+positionID).append("<span style='color: red'>["+i+"]请添加老师<br/><br/></span>")
-                        } else{
-                        $("#"+positionID).append(
-                            "<input type='checkbox'  name='caption'id='box_'"+scheduleList[i].id+"'"+" value='"+scheduleList[i].id+"'/>"+
+                    if ((scheduleList[i].date.id == positionX) && (scheduleList[i].courseWeek == positionY)) {
+                        if (scheduleList[i].course == null) {
+                            $("#" + positionID).append("<span style='color: red'>[" + i + "]课程已被删除<br/><br/></span>")
+                        } else if (scheduleList[i].teacherVO == null) {
+                            $("#" + positionID).append("<span style='color: red'>[" + i + "]请添加老师<br/><br/></span>")
+                        } else {
+                            $("#" + positionID).append(
+                                "<input type='checkbox'  name='caption'id='box_'" + scheduleList[i].id + "'" + " value='" + scheduleList[i].id + "'/>" +
 
-                            scheduleList[i].course.name+"("
-                            +
-                            scheduleList[i].course.ageArea+" "
-                            +
-                            scheduleList[i].classroom.name+" "
-                            +
-                            "共"
-                            +
-                            scheduleList[i].totalStu+"人 "
-                            +
-                            "["+scheduleList[i].teacherVO.name+"]"
-                            +") <a href='editSchedule?scheduleId="+ scheduleList[i].id +"'>" +
-                            "<span class='glyphicon glyphicon-pencil'></span></a>" +
-                            "&nbsp;<a href='editRelation?scheduleId="+ scheduleList[i].id +"'>"+
-                            "<span class='glyphicon glyphicon-floppy-saved'></span></a>"+ "<br/><br/>");
+                                scheduleList[i].course.name + "("
+                                +
+                                scheduleList[i].course.ageArea + " "
+                                +
+                                scheduleList[i].classroom.name + " "
+                                +
+                                "共"
+                                +
+                                scheduleList[i].totalStu + "人 "
+                                +
+                                "[" + scheduleList[i].teacherVO.name + "]"
+                                + ") <a href='editSchedule?scheduleId=" + scheduleList[i].id + "' >" +
+                                "<span class='glyphicon glyphicon-pencil'></span></a>" +
+                                "&nbsp;<a href='editRelation?scheduleId=" + scheduleList[i].id + "'>" +
+                                "<span class='glyphicon glyphicon-floppy-saved'></span></a>" + "<br/><br/>");
                         }
                     }
                 }
@@ -153,9 +182,6 @@
             }
 
         });
-
-
-
 
 
     </script>

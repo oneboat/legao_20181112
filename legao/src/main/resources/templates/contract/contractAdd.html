@@ -368,6 +368,8 @@
         //创建正则模板
         var re = /[`~!@#$%^&*_+<>{}\\/'[\]]/im;
         var isNum = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
+        var timeFlag = new Date(contract_startTime) >new Date(contract_endTime);
+
          if (schoolArea_id.trim() == "") {
             $("#error").text("*校区不能为空，请补充完整");
         }else if (classtimepack_id.trim() == "") {
@@ -402,12 +404,14 @@
             $("#error").text("*赠送课时请输入具体值，若无请输入0");
         } else if (!isNum.test(contract_presentationClassTime.trim())) {
             $("#error").text("*赠送课时只能为数字");
-        }   else {
+        }else if(timeFlag){
+             $("#error").text("*合同起始时间不能大于结束时间");
+         }  else {
              if (contract_remark.trim() == "") {
                  $("#contract_remark").val("无");
              }
             if (contract_discount.trim() == "") {
-                $("#baseSituation").val("无");
+                $("#contract_discount").val("无");
             }
             if (contract_belongOne.trim() == "") {
                 $("#contract_belongOne").val("无");

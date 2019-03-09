@@ -7,13 +7,13 @@
     <link rel="shortcut icon" href="img/legao.png"/>
     <link href="css/main.css" type="text/css" charset="UTF-8" rel="stylesheet"/>
 </head>
-<body>
+<body style="overflow:scroll;overflow-y:hidden">
 
 <!--其他分辨率下的显示效果-->
 <iframe width="100%" height="120px" src="top" frameborder="no" scrolling="no" name="top" class="hidden-sm hidden-xs"
-        id="top"></iframe>
+        id="top" ></iframe>
 
-<div class="main hidden-xs hidden-sm" style="width: 100%;">
+<div class="main hidden-xs hidden-sm" style="width: 100%;overflow: hidden">
     <iframe width="250px"  src="left" frameborder="no" scrolling="no"
             style="position: absolute;left: 0;top: 0px;" name="left" id="left">你的浏览器不支持iframe
     </iframe>
@@ -68,8 +68,8 @@
         }
         var window_width = $(window).width();
         var window_height = $(window).height();
-        $("#right").css("width", window_width - 7 );
-        $("#right").css("height", window_height - 20);
+        $("#right").css("width", window_width );
+        $("#right").css("height", window_height - 120);
         $("#left").css("height", window_height);
 
     });

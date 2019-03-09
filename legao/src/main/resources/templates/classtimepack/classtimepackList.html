@@ -29,7 +29,7 @@
                    th:value="${blurClasstimepack}==null? '':${blurClasstimepack.name}"/>&nbsp;&nbsp;
 
         <input type="button" value="搜索" class="btn btn-success" id="selectClasstimepack"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropClasstimepack"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropClasstimepack" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
@@ -41,7 +41,7 @@
                 <th>价格</th>
                 <th>优先级</th>
                 <th>备注</th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
             </tr>
             <tr th:each="classtimepack:${classtimepackVOList}">
                 <td><input type="checkbox" name="caption"
@@ -51,7 +51,7 @@
                 <td>[[${classtimepack.price}]]</td>
                 <td>[[${classtimepack.priority}]]</td>
                 <td>[[${classtimepack.remark}]]</td>
-                <td><a th:href="'editClasstimepack?classtimepackId='+${classtimepack.id}"><span
+                <td th:if="${session.user.status}==1"><a th:href="'editClasstimepack?classtimepackId='+${classtimepack.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>

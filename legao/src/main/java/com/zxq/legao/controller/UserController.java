@@ -32,9 +32,6 @@ public class UserController {
     private SchoolAreaService schoolAreaService;
 
     @Autowired
-    private FollowService followService;
-
-    @Autowired
     private StudentService studentService;
 
     @Autowired
@@ -90,7 +87,6 @@ public class UserController {
             session.setAttribute("user", userVO1);
             //初始化
             List<SchoolAreaVO> allSchoolArea = schoolAreaService.findAllSchoolAreaName(new SchoolAreaPO());
-            List<FollowPO> allFollow = followService.findAllFollowName();
             List<EmployVO> allTeacherName = employService.selectAllTeacherName();
             List<StudentVO> allStudentName = studentService.selectAllStudentName();
             List<JobVO> allJobName = jobService.selectAllJobName();
@@ -106,7 +102,6 @@ public class UserController {
 
             servletContext.setAttribute("allStudentName", allStudentName);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
-            servletContext.setAttribute("allFollow", allFollow);
             servletContext.setAttribute("allTeacherName", allTeacherName);
             servletContext.setAttribute("allJobName", allJobName);
             servletContext.setAttribute("allClassRoomName", allClassRoomName);

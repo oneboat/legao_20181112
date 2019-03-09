@@ -58,7 +58,16 @@
                 and contractCode like '%${contractPO.contractCode}%'
             </if>
             <if test="contractPO.studentId!=null and contractPO.studentId!=''">
-                and studentId = ${contractPO.studentId}
+                and studentId = '${contractPO.studentId}'
+            </if>
+            <if test="contractPO.startTimeStr!=null and contractPO.startTimeStr!=''">
+                and startTime = '${contractPO.startTimeStr}'
+            </if>
+            <if test="contractPO.endTimeStr!=null and contractPO.endTimeStr!=''">
+                and endTime = '${contractPO.endTimeStr}'
+            </if>
+            <if test="contractPO.signDateStr!=null and contractPO.signDateStr!=''">
+                and signDate = '${contractPO.signDateStr}'
             </if>
         </where>
     </select>
@@ -107,6 +116,9 @@
         <result column="remainClassTime" property="remainClassTime"></result>
         <result column="totalClassTime" property="totalClassTime"></result>
         <result column="depositId" property="depositId"></result>
+        <result column="studentId" property="studentId"></result>
+        <result column="classPackageId" property="classPackageId"></result>
+        <result column="schoolAreaId" property="schoolAreaId"></result>
         <association property="studentVO" column="studentId"
                      select="com.zxq.legao.dao.StudentDao.selectStudentByID"
                      javaType="com.zxq.legao.entity.vo.StudentVO"></association>

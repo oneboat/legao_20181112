@@ -1,191 +1,172 @@
-<!doctype html>
-<html lang="zh">
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>left</title>
-
-    <link rel="stylesheet" href="css/reset.css" type="text/css" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-
-
-
+<meta charset="utf-8">
+<title>扁平化可伸展导航</title>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<style>
+body, html { height: 100%; background: #ffffff; overflow: hidden; }
+* { margin: 0; padding: 0 }
+body { font: 14px "微软雅黑", "FontAwesome", "Arial Narrow", HELVETICA; -webkit-text-size-adjust: 100%; }
+li { list-style: none }
+a { text-decoration: none; }
+/* navMenu */
+.navMenubox { width: 220px;  background: #1c2229; margin-top: 10px;margin-left: 10px;  }
+.navMenu-top { padding: 10px; color: #fff; border-bottom: 1px solid rgba(255,255,255,.1) }
+.navMenu> li { display: block; margin: 0; padding: 0; border: 0px; }
+.navMenu>li>a { display: block; overflow: hidden; padding-left: 0px; line-height: 40px; color: #ABB1B7; transition: all .3s; position: relative; text-decoration: none; font-size: 17px; border-top: 1px solid #222932; border-bottom: 2px solid #191e24; }
+.navMenu > li:nth-of-type(1)> a { border-top: 1px solid transparent; }
+.navMenu > li:last-child > a { border-bottom: 1px solid transparent; }
+.navMenu>li>a>i { font-size: 20px; float: left; font-style: normal; margin: 0 5px; }
+.navMenu li a .arrow:before { display: block; float: right; margin-top: 1px; margin-right: 15px; display: inline; font-size: 16px; font-family: FontAwesome; height: auto; content: "\f105"; font-weight: 300; text-shadow: none; }
+.navMenu li a .arrow.open:before { float: right; margin-top: 1px; margin-right: 15px; display: inline; font-family: FontAwesome; height: auto; font-size: 16px; content: "\f107"; font-weight: 300; text-shadow: none; }
+.navMenu>li>a.active, .navMenu>li>a:hover { color: #FFF; background: #12181b; }
+.navMenu>li>ul.sub-menu, .navMenu>li>ul.sub-menu>li>ul.sub-menu { display: none; list-style: none; clear: both; margin: 8px 0px 0px 10px; padding-bottom: 5px; }
+.navMenu>li.active > ul.sub-menu, .navMenu>li>ul.sub-menu>li.active >ul.sub-menu { }
+.navMenu>li>ul.sub-menu li { background: none; margin: 0px; padding: 0px; }
+.navMenu>li>ul.sub-menu li>a { display: block; font-size: 16px; line-height: 36px; padding-left: 20px; color: #ABB1B7; clear: both; }
+.navMenu>li>ul.sub-menu li>a.active, .navMenu>li>ul.sub-menu li>a:hover, .navMenu>li>ul.sub-menu>li.active >a { color: #FFF; background: #12181b; }
+.icon_1:before { content: "\f0ac"; }
+.icon_2:before { content: "\f0ac"; }
+.icon_3:before { content: "\f0ac"; }
+/*---------------------*/
+</style>
 </head>
-<body style="padding-left: 10px; padding-top: 10px; padding-right: 10px">
-<ul class="cd-accordion-menu animated">
-    <li class="has-children">
-        <input type="checkbox" name ="group-1" id="group-1" checked>
-        <label for="group-1"><span class="glyphicon glyphicon-tasks"></span>教学管理</label>
-
-        <ul>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-1" id="sub-group-1">
-                <label for="sub-group-1">排课管理</label>
-
-                <ul>
-                    <li><a href="selectSchedule" target="right">排课查询</a></li>
-                    <li><a href="scheduleAdd" target="right">添加排课</a></li>
-                </ul>
-            </li>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-2" id="sub-group-3">
-                <label for="sub-group-3">签到管理</label>
-                <ul>
-                    <li><a href="selectRelation" target="right">签到查询</a></li>
-
-                </ul>
-
-            </li>
-
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-2" id="sub-group-5">
-                <label for="sub-group-5">课程系列管理</label>
-                <ul>
-                    <li><a href="selectSeries" target="right">课程系列查询</a></li>
-                    <li><a href="seriesAdd" target="right">添加课程系列</a></li>
-                </ul>
-
-            </li>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-2" id="sub-group-6">
-                <label for="sub-group-6">课程管理</label>
-                <ul>
-                    <li><a href="selectCourse" target="right">课程查询</a></li>
-                    <li><a href="courseAdd" target="right">添加课程</a></li>
-                </ul>
-
-            </li>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-2" id="sub-group-7">
-                <label for="sub-group-7">教室管理</label>
-                <ul>
-                    <li><a href="selectClassRoom" target="right">教室查询</a></li>
-                    <li><a href="classRoomAdd" target="right">添加教室</a></li>
-                </ul>
-
-            </li>
+<body>
+<div class="navMenubox">
+  <div id="slimtest1">
+    <div class="navMenu-top">
+      <div id="mini" style=""><i class="fa fa-bars fa-2x"></i></div>
+    </div>
+    <ul class="navMenu">
+      <li> <a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">学员管理</span> <span class="arrow"></span> </a>
+        <ul class="sub-menu">
+          <li><a href="selectStudent" target="right"><span>学员查询</span></a></li>
+          <li th:if="${session.user.status}==1"><a href="studentAdd" target="right"><span>添加学员</span></a></li>
+          <li > <a href="javascript:;" class="afinve"><span>跟进管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="selectFollow" target="right"><span>跟进查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="followAdd" target="right">添加跟进</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li > <a href="javascript:;" class="afinve"> <i class="icon_2"></i> <span class="nav-text">教学管理</span> <span class="arrow"></span> </a>
+        <ul class="sub-menu">
+          <li > <a href="javascript:;" class="afinve"><span>排课管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="selectSchedule" target="right"><span>排课查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="scheduleAdd" target="right">添加排课</span></a></li>
+            </ul>
+          </li>
+          <li > <a href="javascript:;" class="afinve"><span>签到管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="selectRelation" target="right"><span>签到查询</span></a></li>
+            </ul>
+          </li>
+          <li > <a href="javascript:;" class="afinve"><span>课程系列管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="selectSeries" target="right"><span>课程系列查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="seriesAdd" target="right"><span>添加课程系列</span></a></li>
+            </ul>
+          </li>
+          <li > <a href="javascript:;" class="afinve"><span>课程管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="selectCourse" target="right"><span>课程查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="courseAdd" target="right"><span>添加课程</span></a></li>
+            </ul>
+          </li>
+          <li > <a href="javascript:;" class="afinve"><span>教室管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="selectClassRoom" target="right">教室查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="classRoomAdd" target="right"><span>添加教室</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li > <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">校区管理</span> <span class="arrow"></span> </a>
+        <ul class="sub-menu">
+          <li><a href="selectSchoolArea" target="right"><span>校区查询</span></a></li>
+          <li th:if="${session.user.status}==1"><a href="schoolAreaAdd" target="right"><span>添加校区</span></a></li>
 
         </ul>
+      </li>
+      <li > <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">员工管理</span> <span class="arrow"></span> </a>
+      <ul class="sub-menu">
+        <li><a href="selectEmploy" target="right"><span>员工查询</span></a></li>
+        <li th:if="${session.user.status}==1"><a href="employAdd" target="right"><span>添加员工</span></a></li>
+        <li > <a href="javascript:;" class="afinve"><span>职位管理</span><span class="arrow"></span></a>
+          <ul class="sub-menu">
+            <li><a href="selectJob" target="right"><span>职位查询</span></a></li>
+            <li th:if="${session.user.status}==1"><a href="jobAdd" target="right"><span>添加职位</span></a></li>
+          </ul>
+        </li>
+
+      </ul>
     </li>
-
-    <li class="has-children">
-        <input type="checkbox" name ="group-2" id="group-2">
-        <label for="group-2">学员管理</label>
-
-        <ul>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-2" id="sub-group-8">
-                <label for="sub-group-8">跟进管理</label>
-                <ul>
-                    <li><a href="selectFollow" target="right">跟进查询</a></li>
-                    <li><a href="followAdd" target="right">添加跟进</a></li>
-                </ul>
-
-            </li>
-                    <li><a href="selectStudent" target="right">学员查询</a></li>
-                    <li><a href="studentAdd" target="right">添加学员</a></li>
-
+      <li > <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">合同管理</span> <span class="arrow"></span> </a>
+        <ul class="sub-menu">
+          <li><a href="/selectContract" target="right"><span>合同查询</span></a></li>
+          <li th:if="${session.user.status}==1"><a href="contractAdd" target="right"><span>添加合同</span></a></li>
+          <li > <a href="javascript:;" class="afinve"><span>课时包管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="/selectClasstimepack" target="right"><span>课时包查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="classtimepackAdd" target="right"><span>添加课时包</span></a></li>
+            </ul>
+          </li>
+          <li > <a href="javascript:;" class="afinve"><span>订金管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="/selectDeposit" target="right"><span>订金查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="depositAdd" target="right"><span>添加订金</span></a></li>
+            </ul>
+          </li>
         </ul>
-    </li>
-
-    <li class="has-children">
-        <input type="checkbox" name ="group-3" id="group-3">
-        <label for="group-3">校区管理</label>
-
-        <ul>
-            <li><a href="selectSchoolArea" target="right">校区查询</a></li>
-            <li><a href="schoolAreaAdd" target="right">添加校区</a></li>
+      </li>
+      <li th:if="${session.user.status}==1" > <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">系统管理</span> <span class="arrow"></span> </a>
+        <ul class="sub-menu">
+          <li > <a href="javascript:;" class="afinve"><span>用户管理</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="selectUser" target="right"><span>用户查询</span></a></li>
+              <li th:if="${session.user.status}==1"><a href="userAdd" target="right"><span>添加用户</span></a></li>
+            </ul>
+          </li>
+          <li > <a href="javascript:;" class="afinve"><span>系统设置</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+              <li><a href="fieldSet" target="right"><span>字段设置</span></a></li>
+              <li><a href="selectDate" target="right"><span>时间设置</span></a></li>
+            </ul>
+          </li>
         </ul>
-    </li>
-
-    <li class="has-children">
-        <input type="checkbox" name ="group-4" id="group-4">
-        <label for="group-4">员工管理</label>
-
-        <ul>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-3" id="sub-group-9">
-                <label for="sub-group-9">职位管理</label>
-
-                <ul>
-                    <li><a href="selectJob" target="right">职位查询</a></li>
-                    <li><a href="jobAdd" target="right">添加职位</a></li>
-                </ul>
-            </li>
-            <li><a href="selectEmploy" target="right">员工查询</a></li>
-            <li><a href="employAdd" target="right">添加员工</a></li>
-        </ul>
-    </li>
-    <li class="has-children">
-        <input type="checkbox" name ="group-5" id="group-5">
-        <label for="group-5">用户管理</label>
-
-        <ul>
-
-            <li><a href="selectUser" target="right">用户查询</a></li>
-            <li><a href="userAdd" target="right">添加用户</a></li>
-        </ul>
-    </li>
-
-    <li class="has-children">
-        <input type="checkbox" name ="group-6" id="group-6">
-        <label for="group-6">合同管理</label>
-
-        <ul>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-12" id="sub-group-12">
-                <label for="sub-group-12">课时包管理</label>
-                <ul>
-                    <li><a href="/selectClasstimepack" target="right">课时包查询</a></li>
-                    <li><a href="classtimepackAdd" target="right">添加课时包</a></li>
-                </ul>
-
-            </li>
-            <li class="has-children">
-                <input type="checkbox" name ="sub-group-11" id="sub-group-11">
-                <label for="sub-group-11">订金管理</label>
-                <ul>
-                    <li><a href="/selectDeposit" target="right">订金查询</a></li>
-                    <li><a href="depositAdd" target="right">添加订金</a></li>
-                </ul>
-
-            </li>
-            <!--<li class="has-children">-->
-                <!--<input type="checkbox" name ="sub-group-10" id="sub-group-10">-->
-                <!--<label for="sub-group-10">会员卡管理</label>-->
-                <!--<ul>-->
-                    <!--<li><a href="/selectMembercard" target="right">会员卡查询</a></li>-->
-                    <!--<li><a href="membercardAdd" target="right">添加会员卡</a></li>-->
-                <!--</ul>-->
-
-            <!--</li>-->
-            <li><a href="/selectContract" target="right">合同查询</a></li>
-            <li><a href="contractAdd" target="right">添加合同</a></li>
-
-        </ul>
-
-
-    </li>
-
-
-
-    <li class="has-children">
-        <input type="checkbox" name ="group-7" id="group-7">
-        <label for="group-7">系统设置</label>
-
-        <ul>
-
-            <li><a href="fieldSet" target="right">字段设置</a></li>
-            <li><a href="selectDate" target="right">时间设置</a></li>
-        </ul>
-    </li>
-</ul>
-
+      </li>
+    </ul>
+  </div>
+</div>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script type="application/javascript" charset="UTF-8" src="js/main.js"></script>
-
-
-
+<script src="js/jquery.slimscroll.min.js"></script> 
+<script>
+$(function(){
+    // nav收缩展开
+     $('.navMenu li a').on('click',function(){
+			 var parent = $(this).parent().parent();//获取当前页签的父级的父级
+			 var labeul =$(this).parent("li").find(">ul")	 
+             if ($(this).parent().hasClass('open') == false) {
+                //展开未展开
+				   parent.find('ul').slideUp(300);
+				   parent.find("li").removeClass("open")
+				   parent.find('li a').removeClass("active").find(".arrow").removeClass("open")
+                  $(this).parent("li").addClass("open").find(labeul).slideDown(300);
+				  $(this).addClass("active").find(".arrow").addClass("open")
+            }else{
+				 $(this).parent("li").removeClass("open").find(labeul).slideUp(300);
+				  if($(this).parent().find("ul").length>0){
+					$(this).removeClass("active").find(".arrow").removeClass("open")
+				  }else{
+					$(this).addClass("active") 
+				  }
+            }
+      
+    });
+});
+</script>
 </body>
 </html>

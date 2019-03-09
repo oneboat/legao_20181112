@@ -7,6 +7,7 @@ import com.zxq.legao.dao.ScheduleDao;
 import com.zxq.legao.entity.po.SchedulePO;
 import com.zxq.legao.entity.vo.DateVO;
 import com.zxq.legao.entity.vo.ScheduleVO;
+import com.zxq.legao.entity.vo.UserVO;
 import com.zxq.legao.service.ScheduleService;
 import com.zxq.legao.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int insertSchedule(SchedulePO schedulePO) {
+    public int insertSchedule(SchedulePO schedulePO,HttpServletRequest request) {
         //计算星期
         ComputeCommon.computeWeek(schedulePO);
         //添加排课的同时，添加签到信息
         int flag = scheduleDao.insertSchedule(schedulePO);
+        UserVO userVO = (UserVO) request.getSession().getAttribute("user");
+        schedulePO.setModifyPerson(userVO.getUsername());
         relationDao.insertBatchRelation(schedulePO.getStudentList(), schedulePO);
         return flag;
     }

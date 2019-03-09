@@ -26,5 +26,6 @@ public class EmployVO implements Serializable {
     private String area;
     private Integer status;
     private JobVO jobVO;
+    private Integer jobID;
 
 }

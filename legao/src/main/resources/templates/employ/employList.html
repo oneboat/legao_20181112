@@ -53,7 +53,7 @@
             </option>
         </select>&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectEmploy"/>&nbsp;
-        <input type="button" class="btn btn-danger" value="删除" id="dropEmploy"/>
+        <input type="button" class="btn btn-danger" value="删除" id="dropEmploy" th:if="${session.user.status}==1"/>
 
         <br/><br/>
         <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
@@ -66,7 +66,7 @@
                     <span>[[${field}]]</span>
 
                 </th>
-                <th>操作</th>
+                <th th:if="${session.user.status}==1">操作</th>
 
                 <!--遍历具体值-->
             <tr th:each="employ:${employVOList}">
@@ -82,7 +82,10 @@
                     <span th:text="${#dates.format(employ.birthday,'yyyy年MM月dd日')}"></span></td>
                 <td th:if="${employ.entryDate}!=null">
                     <span th:text="${#dates.format(employ.entryDate,'yyyy年MM月dd日')}"></span></td>
-                <td th:if="${employ.jobVO}!=null ">[[${employ.jobVO.name}]]</td>
+                <td th:if="${employ.jobID}!=null ">
+                    <span th:if="${employ.jobVO}!=null ">[[${employ.jobVO.name}]]</span>
+                    <span th:if="${employ.jobVO} ==null ">该职位已被删除</span>
+                </td>
 
                 <td th:if="${employ.basicSalary}!=null ">[[${employ.basicSalary}]]</td>
                 <td th:if="${employ.fullWork}!=null ">[[${employ.fullWork}]]</td>
@@ -99,7 +102,7 @@
                     <span th:if="${employ.status}==3">其他</span>
 
                 </td>
-                <td><a th:href="'editEmploy?employId='+${employ.id}"><span
+                <td th:if="${session.user.status}==1"><a th:href="'editEmploy?employId='+${employ.id}"><span
                         class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>
