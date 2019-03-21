@@ -3,6 +3,7 @@ package com.zxq.legao.controller;
 import com.zxq.legao.entity.po.*;
 import com.zxq.legao.entity.vo.*;
 import com.zxq.legao.service.*;
+import com.zxq.legao.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -72,7 +73,7 @@ public class UserController {
     /**
      * 登录
      */
-    @RequestMapping("/toLogin")
+    @PostMapping("/toLogin")
     public String toLogin(UserPO userPO, HttpServletRequest request) {
         UserVO userVO1 = userService.selectUserByNameAndPass(userPO);
         if (userVO1 == null || userVO1.getUsername().equals("")) {
@@ -95,7 +96,7 @@ public class UserController {
             List<CoursePO> allCourseName = courseService.findAllCourseName();
             List<SeriesVO> allSeriesName = seriesService.findAllSeriesName();
             List<DateVO> allDate = dateService.findAllDate();
-            List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
+            List<ScheduleVO> allWeekOfYear = DateUtil.getDatebyWeekOfYear(scheduleService.findAllweekOfYear());
             List<ClasstimepackPO> allClasstimepack = classtimepackService.findAllClasstimepackName();
             List<DepositPO> allDeposit = depositService.findAllDepositName();
             List<MembercardPO> allMembercard = membercardService.findAllMembercardName();
@@ -133,11 +134,31 @@ public class UserController {
     /**
      * 跳转各个页面
      */
-    @RequestMapping("/{view}")
-    public String jump(@PathVariable String view) {
-        return view;
+    @RequestMapping("/left")
+    public String jumpLeft() {
+        return "left";
     }
-
+    /**
+     * 跳转各个页面
+     */
+    @RequestMapping("/main")
+    public String jumpMain() {
+        return "main";
+    }
+    /**
+     * 跳转各个页面
+     */
+    @RequestMapping("/right")
+    public String jumpRight() {
+        return "right";
+    }
+    /**
+     * 跳转各个页面
+     */
+    @RequestMapping("/top")
+    public String jumpTop() {
+        return "top";
+    }
 
     /**
      * 跳转到userAdd
