@@ -116,6 +116,12 @@
         FROM legao_relation
         WHERE scheduleID = #{id}
     </select>
+    <!--查询当前排课学生-->
+    <select id="selectStudentNumByschID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.RelationPO">
+        SELECT studentID
+        FROM legao_relation
+        WHERE scheduleID = #{id}
+    </select>
     <select id="selectRelationByID" parameterType="java.lang.Integer" resultType="com.zxq.legao.entity.po.RelationPO">
         SELECT
             legao_relation.id,

@@ -67,13 +67,13 @@ public class UserController {
 
     @RequestMapping("/")
     public String view() {
-        return "login";
+            return "login";
     }
 
     /**
      * 登录
      */
-    @PostMapping("/toLogin")
+    @RequestMapping("/toLogin")
     public String toLogin(UserPO userPO, HttpServletRequest request) {
         UserVO userVO1 = userService.selectUserByNameAndPass(userPO);
         if (userVO1 == null || userVO1.getUsername().equals("")) {

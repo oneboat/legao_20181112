@@ -24,5 +24,7 @@ public interface RelationDao {
 
     int selectStuTotalByScheID(Integer scheduleId);
 
+    List<RelationPO> selectStudentNumByschID(Integer scheduleId);
+
     RelationPO selectRelationByID(Integer realtionID);
 }

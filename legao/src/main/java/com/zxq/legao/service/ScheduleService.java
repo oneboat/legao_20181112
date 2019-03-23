@@ -20,7 +20,7 @@ public interface ScheduleService {
 
     int deleteSchedule(List<Integer> scheduleIDs);
 
-    int updateSchedule(SchedulePO schedulePO);
+    int updateSchedule(SchedulePO schedulePO,HttpServletRequest request);
 
     String selectSchedule( SchedulePO schedulePO, HttpServletRequest request);
 

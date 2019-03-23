@@ -27,6 +27,18 @@ public class ScheduleVO {
      * 学生总人数
      */
     private Integer totalStu;
+    /**
+     * 本周开始时间
+     */
+    private String weekStartTime;
+    /**
+     * 本周结束时间
+     */
+    private String weekEndTime;
+    /**
+     * 所有学生
+     */
+    private String studengNames;
 
 
 }

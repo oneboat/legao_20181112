@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -44,13 +45,21 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int insertContract(ContractPO contractPO) {
-        //计算总课时
-        ClasstimepackPO classtimepackPO = classtimepackDao.selectClasstimepackByID(contractPO.getClassPackageId());
-        String remainClassTime = Float.valueOf(contractPO.getPresentationClassTime())  + Float.valueOf(classtimepackPO.getClassTime()) +"";
-       contractPO.setRemainClassTime(remainClassTime);
-        contractPO.setTotalClassTime(remainClassTime);
-        return contractDao.insertContract(contractPO);
+    public String insertContract(ContractPO contractPO,HttpServletRequest request) {
+        ContractPO contractPO1 = contractDao.selectContractByStudentId(Integer.valueOf(contractPO.getStudentId()));
+        if (contractPO1==null){
+            //计算总课时
+            ClasstimepackPO classtimepackPO = classtimepackDao.selectClasstimepackByID(contractPO.getClassPackageId());
+            String remainClassTime = Float.valueOf(contractPO.getPresentationClassTime())  + Float.valueOf(classtimepackPO.getClassTime()) +"";
+            contractPO.setRemainClassTime(remainClassTime);
+            contractPO.setTotalClassTime(remainClassTime);
+            contractDao.insertContract(contractPO);
+            return "";
+        }else {
+            request.setAttribute("msg","该学员已有一份合同");
+            return "contract/contractAdd";
+        }
+
     }
 
     @Override
@@ -62,6 +71,7 @@ public class ContractServiceImpl implements ContractService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateContract(ContractPO contractPO) {
+
         return contractDao.updateContract(contractPO);
     }
 
@@ -102,6 +112,9 @@ public class ContractServiceImpl implements ContractService {
             request.setAttribute("FieldZH", contractFieldsZH);
         }
 
+        if (contractPO.getStudentId() !=null){
+            list.stream().filter(e -> e.getStudentVO().getName().equals(contractPO.getStudentId())).collect(Collectors.toList());
+        }
         //给页面赋值
         PageInfo pageInfo = new PageInfo(list);
         request.setAttribute("contractVOList", list);

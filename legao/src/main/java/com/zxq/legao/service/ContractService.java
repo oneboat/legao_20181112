@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2019-02-18
  */
 public interface ContractService {
-    int insertContract(ContractPO contractPO);
+    String insertContract(ContractPO contractPO,HttpServletRequest request);
 
     int deleteContract(List<Integer> contractIDs);
 

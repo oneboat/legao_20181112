@@ -27,15 +27,11 @@
 
         合同编号：<input name="contractCode" id="contractCode" style="height: 35px;" class="inputCss"
                     th:value="${blurContract}==null? '':${blurContract.contractCode}"/>&nbsp;&nbsp;
-        学员：<select class="inputCss" id="contract_studentName" name="studentId">
-        <option value="">--请选择学员--</option>
-        <option th:value="${student.id}" th:each="student:${application.allStudentName}" th:selected="${blurContract}==null?false:(${student.id} == ${blurContract.studentId})" >
-            [[${student.name}]]
-        </option>
-    </select>
-       &nbsp;&nbsp;
+        学员：<input name="studentId" id="contractCode" style="height: 35px;" class="inputCss"
+                  th:value="${blurContract}==null? '':${blurContract.studentId}"/>&nbsp;&nbsp;
         签约日期：<input name="signDate" id="contract_signDate" style="height: 35px;" class="inputCss"
                     th:value="${blurContract}==null? '':${#dates.format(blurContract.signDate,'yyyy-MM-dd')}"/>&nbsp;&nbsp;
+        <br> <br>
         起始时间：<input name="startTime" id="contract_startTime" style="height: 35px;" class="inputCss"
                     th:value="${blurContract}==null? '':${#dates.format(blurContract.startTime,'yyyy-MM-dd')}"/>&nbsp;&nbsp;
         结束时间：<input name="endTime" id="contract_endTime" style="height: 35px;" class="inputCss"

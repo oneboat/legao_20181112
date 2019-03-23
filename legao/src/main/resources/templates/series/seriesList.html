@@ -27,8 +27,8 @@
 
         课程系列：<input name="name" id="name" style="height: 35px;" class="inputCss"
                    th:value="${blurSeries}==null? '':${blurSeries.name}"/>&nbsp;&nbsp;
-        年龄段：<input name="ageArea" id="classRoom_ageArea" class="inputCss" style="width:200px ;" placeholder="请输入年龄段"
-                   maxlength="20"/>
+        年龄段：<input name="ageArea" id="classRoom_ageArea" class="inputCss" style="width:200px ;"
+                   th:value="${blurSeries}==null? '':${blurSeries.ageArea}"/>
 
        &nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectSeries"/>&nbsp;

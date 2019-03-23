@@ -104,8 +104,55 @@
 
             </tr>
 
-            <tr>
+            <tr style="height: 10px;">
 
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>学员：</td>
+                <td >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        添加学员<span id="select_info" style="color: red;"></span>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                        <div class="modal-dialog " role="document" >
+                            <div class="modal-content" >
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">学员列表</h4>
+                                </div>
+                                <div class="modal-body" style="width:598px;height:450px;overflow-y:scroll;" >
+                                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="搜索...">
+                                    <table cellspacing="0" cellpadding="" class="table table-hover table-striped table-bordered" style="text-align: center;"
+                                           id="myTable">
+                                        <tr id="tr_th">
+                                            <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
+                                            <th>姓名</th>
+                                            <th>性别</th>
+                                            <th>电话</th>
+                                        </tr>
+                                        <tr th:each="students:${application.allStudentName}">
+                                            <td><input type="checkbox" name="caption"
+                                                       th:id="'box_'+${students.id}" th:value="${students.id}"/></td>
+                                            <td>[[${students.name}]]</td>
+                                            <td>[[${students.sex}]]</td>
+                                            <td>[[${students.telphone}]]</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" id="selectStudentBtns">选择</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -119,6 +166,7 @@
 
                     <input type="reset" name="cancel" class="btn btn-danger" value="取消排课"/></td>
             </tr>
+            <input type="hidden" name="studentList" id="studentList" />
         </table>
         <!--scheduleID-->
         <input type="hidden" th:value="${scheduleEdit.id}" name="id"/>
@@ -132,8 +180,31 @@
 <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
 <script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
 <script src="laydate/laydate.js" type="text/javascript"></script>
-<script src="js/common.js" type="application/javascript" charset="UTF-8"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+
 <script type="text/javascript">
+    //搜索学员
+    function myFunction() {
+        // 声明变量
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // 循环表格每一行，查找匹配项
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 
     $("#selectStudentBtns").click(function () {
         var chk_value =[];//定义一个数组
@@ -147,6 +218,12 @@
         $("#select_info").text("(已选"+chk_value.length+"个学员)");
         $("#studentList").val(studentListval.replace(reg,""))
     });
+    /* 全选和反选*/
+    $("#checkAll").click(function () {
+
+        $("input[id^='box_']").prop("checked", this.checked);
+    });
+
     //日期插件
     laydate.render({
         elem: '#student_courseDate',
@@ -164,6 +241,7 @@
         var courseDate = $("#student_courseDate").val();
         var classroomID = $("#classroomID").val();
         var teacherName = $("#teacherName").val();
+        var studentList = $("#studentList").val();
 
         if (schoolArea_id.trim().length == 0) {
             $("#error").text("*请选择校区");
@@ -179,6 +257,8 @@
             $("#error").text("*请选择时间段");
         } else if (teacherName.trim().length == 0) {
             $("#error").text("*请选择上课老师");
+        }else if (studentList.length == 0) {
+            $("#error").text("*请选择上课学员");
         } else {
             $("#scheduleEditform").attr("action", "saveSchedule");
             $("#scheduleEditform").submit();

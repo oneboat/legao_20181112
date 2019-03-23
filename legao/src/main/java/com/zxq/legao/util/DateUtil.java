@@ -1,5 +1,7 @@
 package com.zxq.legao.util;
 
+import com.zxq.legao.entity.vo.ScheduleVO;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,6 +54,8 @@ public class DateUtil {
     public static List<Integer> getWeek(Date date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
         Integer week = calendar.get(Calendar.DAY_OF_WEEK);
         Integer weekYear = calendar.get(Calendar.WEEK_OF_YEAR);
         List<Integer> dateList = new ArrayList<>(2);
@@ -70,16 +74,49 @@ public class DateUtil {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM月dd日");
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        //设置本周的第一天为周一，符合国情，计算起始周
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
-        Date startTime = calendar.getTime();
-        dateList.add(simpleDateFormat.format(startTime));
-        //计算结束周
-        calendar.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY+6);
-        Date endTime = calendar.getTime();
-        dateList.add(simpleDateFormat.format(endTime));
+        // 判断要计算的日期是否是周日，如果是则减一天计算周六的，否则会出问题，计算到下一周去了
+        int dayWeek = calendar.get(Calendar.DAY_OF_WEEK);// 获得当前日期是一个星期的第几天
+        if (1 == dayWeek) {
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+        }
+        // 获得当前日期是一个星期的第几天
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        // 获取该周第一天
+        calendar.add(Calendar.DATE, calendar.getFirstDayOfWeek() - day);
+        dateList.add(simpleDateFormat.format(calendar.getTime()));
+        // 获取该周最后一天
+        calendar.add(Calendar.DATE, 6);
+        dateList.add(simpleDateFormat.format(calendar.getTime()));
         return dateList;
     }
 
+    /**
+     * 根据某年的周数获取日期范围
+     * @param scheduleVO
+     */
+    public static  List<ScheduleVO> getDatebyWeekOfYear(List<ScheduleVO> scheduleVO){
+        if (scheduleVO.isEmpty()){
+            return null;
+        }
+        int size = scheduleVO.size();
+        int year = Calendar.getInstance().get((Calendar.YEAR));
+        int week = 0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM月dd日");
+        for (int i = 0; i <size ; i++) {
+            week = Integer.valueOf(scheduleVO.get(i).getWeekOfYear());
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, 0, 1);
+            //算出第一周还剩几天 +1是因为1号是1天
+            int dayOfWeek = 7- calendar.get(Calendar.DAY_OF_WEEK)+2;
+            //周数减去第一周再减去要得到的周
+            week -=2;
+            calendar.add(Calendar.DAY_OF_YEAR, week*7+dayOfWeek);
+            scheduleVO.get(i).setWeekStartTime(simpleDateFormat.format(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_YEAR, 6);
+            scheduleVO.get(i).setWeekEndTime(simpleDateFormat.format(calendar.getTime()));
+        }
+        return scheduleVO;
+}
 }

@@ -60,28 +60,29 @@
         FROM
         legao_schedule
         <where>
+            <if test="schoolAreaID!=null and schoolAreaID !=''">
+                and schoolAreaID = #{schoolAreaID}
+            </if>
+            <if test="weekOfYear!=null and weekOfYear !=''">
+                and weekOfYear = #{weekOfYear}
+            </if>
+            <if test="teacherID!=null and teacherID !=''">
+                and teacherID = #{teacherID}
+            </if>
+            <if test="dateID!=null and dateID !=''">
+                and dateID = #{dateID}
+            </if>
 
             <choose>
-                <when test="schoolAreaID!=null and schoolAreaID !=''">
-                    and schoolAreaID = #{schoolAreaID}
+                <when test="schoolAreaID ==null and
+                            weekOfYear ==null and
+                            teacherID == null and
+                            dateID ==null
+                            ">
 
-                </when>
-                <when test="weekOfYear!=null and weekOfYear !=''">
-                    and weekOfYear = #{weekOfYear}
-
-                </when>
-                <when test="teacherID!=null and teacherID !=''">
-                    and teacherID = #{teacherID}
-
-                </when>
-                <when test="dateID!=null and dateID !=''">
-                    and dateID = #{dateID}
-
-                </when>
-                <otherwise>
                     YEARWEEK(courseDate) = YEARWEEK(now())
                     and schoolAreaID = 1
-                </otherwise>
+                </when>
             </choose>
 
 

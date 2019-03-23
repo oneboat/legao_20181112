@@ -115,7 +115,7 @@ public class ScheduleController {
      */
     @RequestMapping("/saveSchedule")
     public String saveSchedule(SchedulePO Schedule, HttpServletRequest request) {
-        scheduleService.updateSchedule(Schedule);
+        scheduleService.updateSchedule(Schedule,request);
         List<ScheduleVO> allWeekOfYear = scheduleService.findAllweekOfYear();
         ServletContext servletContext = request.getServletContext();
         servletContext.setAttribute("allWeekOfYear", allWeekOfYear);

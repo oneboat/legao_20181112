@@ -64,7 +64,7 @@ public class ContractController {
      */
     @RequestMapping("/insertContract")
     public String insertContract(ContractPO contract, HttpServletRequest request) {
-        if (contractService.insertContract(contract) > 0) {
+        if (contractService.insertContract(contract,request).equals("")) {
             request.setAttribute("type", "yes");
         } else {
             request.setAttribute("type", "no");
@@ -109,7 +109,7 @@ public class ContractController {
      * 保存编辑值
      */
     @RequestMapping("/saveContract")
-    public String saveContract(ContractPO contract,HttpServletRequest request) {
+    public String saveContract(ContractPO contract) {
         contractService.updateContract(contract);
         return "redirect:/selectContract";
 

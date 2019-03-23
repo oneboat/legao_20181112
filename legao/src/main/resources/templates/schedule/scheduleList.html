@@ -27,30 +27,33 @@
     <form action="" id="scheduleform">
         校区： <select class="inputCss" id="schoolArea_id" name="schoolAreaID">
         <option value="">---请选择校区----</option>
-        <option th:value="${schoolArea.id}" th:each="schoolArea:${application.allSchoolArea}">
+        <option th:value="${schoolArea.id}" th:each="schoolArea:${application.allSchoolArea}"
+                th:selected="(${blurSchedule}!=null)?((${blurSchedule.schoolAreaID} == ${schoolArea.id})?true:false):false">
             [[${schoolArea.name}]]
         </option>
 
     </select>&nbsp;&nbsp;
         周数：<select class="inputCss" name="weekOfYear">
-        <option value="">-------请选择课程所在周------</option>
-        <option th:value="${schedule.weekOfYear}" th:each="schedule:${application.allWeekOfYear}">
-            第[[${schedule.weekOfYear}]]周 <span th:text="${schedule.date}!=null?${schedule.date.timeSection}:''"></span>
-            <span style="color: red"> <span th:text="${schedule.date}==null?'对应时间段已被删除':''"></span></span>
+        <option value="">--请选择周数--</option>
+        <option th:value="${schedule.weekOfYear}" th:each="schedule:${application.allWeekOfYear}"
+                th:selected="(${blurSchedule}!=null)?((${blurSchedule.weekOfYear} == ${schedule.weekOfYear})?true:false):false">
+            第[[${schedule.weekOfYear}]]周
         </option>
     </select>&nbsp;&nbsp;
         学员的老师：
 
         <select class="inputCss" id="teacherName" name="teacherID">
             <option value="">--请选择老师--</option>
-            <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}">
+            <option th:value="${teacherName.id}" th:each="teacherName:${application.allTeacherName}"
+                    th:selected="(${blurSchedule}!=null)?((${blurSchedule.teacherID} == ${teacherName.id})?true:false):false">
                 [[${teacherName.name}]]
             </option>
         </select>&nbsp;&nbsp;
         时间段：
         <select class="inputCss" id="dateID" name="dateID">
             <option value="">--请选择时间段--</option>
-            <option th:value="${dates.id}" th:each="dates:${application.allDate}">
+            <option th:value="${dates.id}" th:each="dates:${application.allDate}"
+                    th:selected="(${blurSchedule}!=null)?((${blurSchedule.dateID} == ${dates.id})?true:false):false">
                 [[${dates.timeSection}]]
             </option>
         </select>&nbsp;&nbsp;
@@ -102,12 +105,7 @@
 
             </table>
         </div>
-    </form>
 
-    <!--添加表单提交标志-->
-    <form id="pageForm" style="display: none">
-        <input name="schedulename" th:value="${blurSchedule}==null? '':${blurSchedule.schedulename}"/>&nbsp;&nbsp;
-        <input name="status" th:value="${blurSchedule}==null? '':${blurSchedule.status} "/>
     </form>
 
     <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
@@ -134,9 +132,13 @@
                     //和时间段的id和星期的id比对，一样则填入
                     if ((scheduleList[i].date.id == positionX) && (scheduleList[i].courseWeek == positionY)) {
                         if (scheduleList[i].course == null) {
-                            $("#" + positionID).append("<span style='color: red'>[" + i + "]课程已被删除<br/><br/></span>")
+                            $("#" + positionID).append(
+                                "<input type='checkbox'  name='caption'id='box_'" + scheduleList[i].id + "'" + " value='" + scheduleList[i].id + "'/>"
+                                +"<span style='color: red'>[" + i + "]课程已被删除<br/><br/></span>")
                         } else if (scheduleList[i].teacherVO == null) {
-                            $("#" + positionID).append("<span style='color: red'>[" + i + "]请添加老师<br/><br/></span>")
+                            $("#" + positionID).append(
+                                "<input type='checkbox'  name='caption'id='box_'" + scheduleList[i].id + "'" + " value='" + scheduleList[i].id + "'/>"
+                                +"<span style='color: red'>[" + i + "]请添加老师<br/><br/></span>")
                         } else {
                             $("#" + positionID).append(
                                 "<input type='checkbox'  name='caption'id='box_'" + scheduleList[i].id + "'" + " value='" + scheduleList[i].id + "'/>" +
@@ -146,6 +148,8 @@
                                 scheduleList[i].course.ageArea + " "
                                 +
                                 scheduleList[i].classroom.name + " "
+                                +
+                                "(<span style='color: #8D48F9'>"+scheduleList[i].studengNames + "</span>)"
                                 +
                                 "共"
                                 +

@@ -55,7 +55,7 @@ public class RelationPO implements Serializable {
     /**
      * 课程课时，计算课时
      */
-    private Integer classTimes;
+    private String classTimes;
 
     /**
      * 周数

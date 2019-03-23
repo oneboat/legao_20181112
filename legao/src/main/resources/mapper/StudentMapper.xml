@@ -202,5 +202,9 @@
             legao_student
     </select>
 
-
+<select id="selectStudentNameByID" resultType="com.zxq.legao.entity.po.StudentPO" parameterType="java.lang.Integer">
+    select name from
+        legao_student
+where id = #{id}
+</select>
 </mapper>

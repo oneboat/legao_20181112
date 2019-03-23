@@ -15,7 +15,7 @@
 <div  id="content_box">
     <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;
-    当前位置：更进管理&nbsp;&gt;&nbsp;更进查询
+    当前位置：跟进管理&nbsp;&gt;&nbsp;跟进查询
 
     <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
             class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
@@ -27,7 +27,8 @@
 
         顾问名：<input name="advisor" id="followname" style="height: 35px;" class="inputCss"
                    th:value="${blurFollow}==null? '':${blurFollow.advisor}"/>&nbsp;&nbsp;
-
+学员：<input name="studentName" id="studentName" style="height: 35px;" class="inputCss"
+                     th:value="${blurFollow}==null? '':${blurFollow.studentName}"/>&nbsp;&nbsp;
         <input type="button" value="搜索" class="btn btn-success" id="selectFollow"/>&nbsp;
         <input type="button" class="btn btn-danger" value="删除" id="dropFollow" th:if="${session.user.status}==1"/>
 
@@ -36,7 +37,7 @@
                id="follow_tab">
             <tr id="tr_th">
                 <th><input type="checkbox" name="caption" value="0" id="checkAll"/></th>
-                <th>学生</th>
+                <th>学员</th>
                 <th>顾问</th>
                 <th>跟进模式</th>
                 <th>跟进内容</th>
@@ -47,7 +48,8 @@
                 <td><input type="checkbox" name="caption"
                            th:id="'box_'+${follow.id}" th:value="${follow.id}"/></td>
                 <td>[[${follow.studentName}]]</td>
-                <td>[[${follow.advisor}]]</td>
+                <td th:if="${follow.advisor}!=0">[[${follow.advisor}]]</td>
+                <td th:if="${follow.advisor}==0">无</td>
                 <td>[[${follow.mode}]]</td>
                 <td>[[${follow.content}]]</td>
                 <td>
@@ -63,7 +65,9 @@
     <div class="box" id="box"></div>
     <!--添加表单提交标志-->
     <form id="pageForm" style="display: none">
-        <input name="name" th:value="${blurFollow}==null? '':${blurFollow.advisor}"/>&nbsp;&nbsp;
+        <input name="advisor" th:value="${blurFollow}==null? '':${blurFollow.advisor}"/>&nbsp;&nbsp;
+        <input name="studentName" th:value="${blurFollow}==null? '':${blurFollow.studentName}"/>&nbsp;&nbsp;
+
         <input type="text" id="pages" name="page"/>
 
         <input type="button" id="btn" value="tijiao"/>
@@ -87,9 +91,9 @@
         $("#dropFollow").click(function () {
             var chex = $("input[id^='box_']:checked");
             if (chex.length == 0) {
-                alert("请选择你要删除的更进");
+                alert("请选择你要删除的跟进");
             } else {
-                if (confirm("确定要删除该更进吗？")) {
+                if (confirm("确定要删除该跟进吗？")) {
                     $("#followform").attr("action", "deleteFollows");
                     $("#followform").submit();
                 }

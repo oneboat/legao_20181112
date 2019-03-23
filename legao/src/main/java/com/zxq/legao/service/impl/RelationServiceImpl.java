@@ -73,7 +73,7 @@ public class RelationServiceImpl implements RelationService {
                 relationPOByID = relationDao.selectRelationByID(relationPO.getCaption().get(i));
                 contractPO = contractDao.selectContractByStudentId(relationPOByID.getStudentID());
                 if (contractPO != null) {
-                    temClassTime = Float.valueOf(contractPO.getRemainClassTime()) - Float.valueOf(1 * relationPO.getClassTimes()) +"";
+                    temClassTime = Float.valueOf(contractPO.getRemainClassTime()) - Float.valueOf(relationPO.getClassTimes()) +"";
                     contractPO.setRemainClassTime(temClassTime);
                     contractDao.updateRemainClassTime(contractPO);
                     relationDao.updateBatchRelation(relationPO, relationPO.getCaption().get(i));

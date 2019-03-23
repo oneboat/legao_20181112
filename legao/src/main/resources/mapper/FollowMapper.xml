@@ -41,7 +41,9 @@
             <if test="advisor!=null and advisor!=''">
                 and advisor like '%${advisor}%'
             </if>
-
+            <if test="studentName!=null and studentName!=''">
+                and studentName like '%${studentName}%'
+            </if>
         </where>
 
     </select>
