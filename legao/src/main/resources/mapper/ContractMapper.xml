@@ -164,4 +164,8 @@
             remainClassTime = #{remainClassTime}
         WHERE id = #{id};
     </update>
+
+    <select id="selectStudentInContract"  resultType="java.lang.Integer">
+        select studentId from legao_contract
+    </select>
 </mapper>

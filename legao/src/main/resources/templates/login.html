@@ -49,8 +49,8 @@
 
         <h1 style="text-align: center;">登录</h1>
         <div class="form-group has-feedback">
-            <label class="control-label">登录名:</label>
-            <input class="form-control" name="username" id="user_name" placeholder="请输入登录名"/>
+            <label class="control-label">用户名:</label>
+            <input class="form-control" name="username" id="user_name" placeholder="请输入用户名"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
 
@@ -82,8 +82,8 @@
 
         <h1 style="text-align: center;">登录</h1>
         <div class="form-group has-feedback">
-            <label class="control-label">登录名:</label>
-            <input class="form-control" name="username" id="user_name1" placeholder="请输入登录名"/>
+            <label class="control-label">用户名:</label>
+            <input class="form-control" name="username" id="user_name1" placeholder="请输入用户名"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
 
@@ -166,7 +166,7 @@
             var regx = /^(\w){6,12}$/g;
 
             if (username.trim() == '') {
-                $("#alertinfo").text("*登录名不能为空");
+                $("#alertinfo").text("*用户名不能为空");
             } else if (pass_word.trim() == '') {
                 $("#alertinfo").text("*密码不能为空");
             } else if (random_box.trim() == '') {
@@ -195,7 +195,7 @@
             var regx = /^(\w){6,12}$/g;
 
             if (user_name1.trim() == '') {
-                $("#alertinfo1").text("*登录名不能为空");
+                $("#alertinfo1").text("*用户名不能为空");
             } else if (pass_word1.trim() == '') {
                 $("#alertinfo1").text("*密码不能为空");
             } else if (random_box1.trim() == '') {

@@ -26,6 +26,8 @@ public interface ContractService {
 
     ContractPO selectContractByStudentId(Integer studentId);
 
+    List<Integer> selectStudentInContract();
+
 
 
 

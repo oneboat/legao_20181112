@@ -1,7 +1,6 @@
 package com.zxq.legao.controller;
 
 import com.zxq.legao.entity.po.StudentPO;
-import com.zxq.legao.entity.vo.EmployVO;
 import com.zxq.legao.entity.vo.StudentVO;
 import com.zxq.legao.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class StudentController {
             request.setAttribute("type", "no");
         }
         ServletContext servletContext = request.getServletContext();
-        List<StudentVO> allStudentName = studentService.selectAllStudentName();
+        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
         servletContext.setAttribute("allStudentName", allStudentName);
         return "student/studentAdd";
     }
@@ -67,7 +66,7 @@ public class StudentController {
     public String deleteStudents(Integer[] caption,HttpServletRequest request) {
         studentService.deleteStudent(Arrays.asList(caption));
         ServletContext servletContext = request.getServletContext();
-        List<StudentVO> allStudentName = studentService.selectAllStudentName();
+        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
         servletContext.setAttribute("allStudentName", allStudentName);
         return "redirect:/selectStudent";
 
@@ -103,7 +102,7 @@ public class StudentController {
     public String saveStudent(StudentPO student,HttpServletRequest request) {
         studentService.updateStudent(student);
         ServletContext servletContext = request.getServletContext();
-        List<StudentVO> allStudentName = studentService.selectAllStudentName();
+        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
         servletContext.setAttribute("allStudentName", allStudentName);
         return "redirect:/selectStudent";
 

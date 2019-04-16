@@ -18,4 +18,6 @@ public interface StudentService {
     StudentVO selectStudentByID(Integer studentID);
 
     List<StudentVO> selectAllStudentName();
+
+    List<StudentVO> selectAllStudentNameInContract();
 }

@@ -55,7 +55,6 @@ public class DateUtil {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
-        calendar.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
         Integer week = calendar.get(Calendar.DAY_OF_WEEK);
         Integer weekYear = calendar.get(Calendar.WEEK_OF_YEAR);
         List<Integer> dateList = new ArrayList<>(2);

@@ -28,4 +28,6 @@ public interface ContractDao  {
     ContractPO selectContractByStudentId(Integer studentId);
 
     int updateRemainClassTime(ContractPO contractPO);
+
+    List<Integer> selectStudentInContract();
 }

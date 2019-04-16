@@ -133,5 +133,10 @@ public class ContractServiceImpl implements ContractService {
         return contractDao.selectContractByStudentId(studentId);
     }
 
+    @Override
+    public List<Integer> selectStudentInContract() {
+        return contractDao.selectStudentInContract();
+    }
+
 
 }

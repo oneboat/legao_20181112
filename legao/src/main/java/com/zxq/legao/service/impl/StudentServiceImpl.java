@@ -2,6 +2,7 @@ package com.zxq.legao.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zxq.legao.dao.ContractDao;
 import com.zxq.legao.dao.StudentDao;
 import com.zxq.legao.dao.UserDao;
 import com.zxq.legao.entity.po.StudentPO;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +38,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private ContractDao contractDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -111,5 +116,19 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentVO> selectAllStudentName() {
         return studentDao.selectAllStudentName();
+    }
+
+    @Override
+    public List<StudentVO> selectAllStudentNameInContract() {
+        List<Integer> list = contractDao.selectStudentInContract();
+        List<StudentVO> studentVOS = null;
+        if (!list.isEmpty()){
+            studentVOS = new ArrayList<>(list.size());
+            for (Integer i:list) {
+                StudentVO studentVO = studentDao.selectStudentByID(i);
+                studentVOS.add(studentVO);
+            }
+        }
+        return studentVOS;
     }
 }
