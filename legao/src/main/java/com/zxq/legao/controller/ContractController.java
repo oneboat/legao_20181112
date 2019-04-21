@@ -4,8 +4,10 @@ package com.zxq.legao.controller;
 import com.alibaba.fastjson.JSON;
 import com.zxq.legao.entity.po.ClasstimepackPO;
 import com.zxq.legao.entity.po.ContractPO;
+import com.zxq.legao.entity.vo.StudentVO;
 import com.zxq.legao.service.ClasstimepackService;
 import com.zxq.legao.service.ContractService;
+import com.zxq.legao.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -31,6 +35,8 @@ public class ContractController {
     private ContractService contractService;
     @Autowired
     private ClasstimepackService classtimepackService;
+    @Autowired
+    private StudentService studentService;
 
     /**
      * 跳转到contractAdd
@@ -69,6 +75,9 @@ public class ContractController {
         } else {
             request.setAttribute("type", "no");
         }
+        ServletContext servletContext = request.getServletContext();
+        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
+        servletContext.setAttribute("allStudentName", allStudentName);
         return "contract/contractAdd";
     }
 
@@ -79,6 +88,9 @@ public class ContractController {
     @RequestMapping("/deleteContracts")
     public String deleteContracts(Integer[] caption,HttpServletRequest request) {
         contractService.deleteContract(Arrays.asList(caption));
+        ServletContext servletContext = request.getServletContext();
+        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
+        servletContext.setAttribute("allStudentName", allStudentName);
         return "redirect:/selectContract";
 
     }
@@ -109,8 +121,11 @@ public class ContractController {
      * 保存编辑值
      */
     @RequestMapping("/saveContract")
-    public String saveContract(ContractPO contract) {
+    public String saveContract(ContractPO contract,HttpServletRequest request) {
         contractService.updateContract(contract);
+        ServletContext servletContext = request.getServletContext();
+        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
+        servletContext.setAttribute("allStudentName", allStudentName);
         return "redirect:/selectContract";
 
     }

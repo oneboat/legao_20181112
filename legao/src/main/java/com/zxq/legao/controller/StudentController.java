@@ -53,8 +53,11 @@ public class StudentController {
             request.setAttribute("type", "no");
         }
         ServletContext servletContext = request.getServletContext();
-        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
-        servletContext.setAttribute("allStudentName", allStudentName);
+
+        List<StudentVO> allStudentNames = studentService.selectAllStudentName();
+        servletContext.setAttribute("allStudentNames", allStudentNames);
+
+
         return "student/studentAdd";
     }
 
@@ -66,8 +69,9 @@ public class StudentController {
     public String deleteStudents(Integer[] caption,HttpServletRequest request) {
         studentService.deleteStudent(Arrays.asList(caption));
         ServletContext servletContext = request.getServletContext();
-        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
-        servletContext.setAttribute("allStudentName", allStudentName);
+
+        List<StudentVO> allStudentNames = studentService.selectAllStudentName();
+        servletContext.setAttribute("allStudentNames", allStudentNames);
         return "redirect:/selectStudent";
 
 
@@ -102,8 +106,9 @@ public class StudentController {
     public String saveStudent(StudentPO student,HttpServletRequest request) {
         studentService.updateStudent(student);
         ServletContext servletContext = request.getServletContext();
-        List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
-        servletContext.setAttribute("allStudentName", allStudentName);
+
+        List<StudentVO> allStudentNames = studentService.selectAllStudentName();
+        servletContext.setAttribute("allStudentNames", allStudentNames);
         return "redirect:/selectStudent";
 
     }

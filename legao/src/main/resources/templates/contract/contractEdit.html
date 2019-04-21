@@ -80,7 +80,7 @@
                 <td>
                     <select class="inputCss" id="contract_studentName" name="studentId" disabled="disabled">
                         <option value="">--请选择学员--</option>
-                        <option th:value="${student.id}" th:each="student:${application.allStudentName}"
+                        <option th:value="${student.id}" th:each="student:${application.allStudentNames}"
                                 th:selected="(${contractEdit.studentId}==${student.id})?true:false">
                             [[${student.name}]]
                         </option>

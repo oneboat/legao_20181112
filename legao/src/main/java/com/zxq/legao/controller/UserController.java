@@ -90,6 +90,7 @@ public class UserController {
             List<SchoolAreaVO> allSchoolArea = schoolAreaService.findAllSchoolAreaName(new SchoolAreaPO());
             List<EmployVO> allTeacherName = employService.selectAllTeacherName();
             List<StudentVO> allStudentName = studentService.selectAllStudentNameInContract();
+            List<StudentVO> allStudentNames =  studentService.selectAllStudentName();
             List<JobVO> allJobName = jobService.selectAllJobName();
             List<ClassRoomPO> allClassRoomName = classRoomService.findAllClassRoomName();
             List<EmployPO> allemploy = employService.selectAllEmploy();
@@ -102,6 +103,7 @@ public class UserController {
             List<MembercardPO> allMembercard = membercardService.findAllMembercardName();
 
             servletContext.setAttribute("allStudentName", allStudentName);
+            servletContext.setAttribute("allStudentNames", allStudentNames);
             servletContext.setAttribute("allSchoolArea", allSchoolArea);
             servletContext.setAttribute("allTeacherName", allTeacherName);
             servletContext.setAttribute("allJobName", allJobName);
