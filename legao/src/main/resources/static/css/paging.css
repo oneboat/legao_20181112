@@ -12,10 +12,6 @@
     .box {
         height: 35px;
         line-height: 35px;
-        position: absolute;
-        left: 50%;
-        bottom: 30px;
-        transform: translate(-50%, -50%);
         text-align: center;
     }
 
@@ -88,10 +84,6 @@
     .box {
         height: 25px;
         line-height: 25px;
-        position: absolute;
-        left: 50%;
-        bottom: 30px;
-        transform: translate(-50%, -50%);
         text-align: center;
     }
 
@@ -166,10 +158,6 @@
     .box {
         height: 35px;
         line-height: 35px;
-        position: absolute;
-        left: 50%;
-        bottom: 30px;
-        transform: translate(-50%, -50%);
         text-align: center;
     }
 

@@ -57,9 +57,6 @@
             <if test="contractPO.contractCode!=null and contractPO.contractCode!=''">
                 and contractCode like '%${contractPO.contractCode}%'
             </if>
-            <if test="contractPO.studentId!=null and contractPO.studentId!=''">
-                and studentId = '${contractPO.studentId}'
-            </if>
             <if test="contractPO.startTimeStr!=null and contractPO.startTimeStr!=''">
                 and startTime = '${contractPO.startTimeStr}'
             </if>

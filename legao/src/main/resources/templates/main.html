@@ -17,7 +17,7 @@
     <iframe width="250px"  src="left" frameborder="no" scrolling="no"
             style="position: absolute;left: 0;top: 0px;" name="left" id="left">你的浏览器不支持iframe
     </iframe>
-    <iframe src="right" frameborder="no" scrolling="no" marginheight="0" marginwidth="0" noresize="noresize"
+    <iframe src="right" frameborder="no"  marginheight="0" marginwidth="0" noresize="noresize"
             name="right" id="right">你的浏览器不支持iframe
     </iframe>
 </div>
@@ -69,7 +69,7 @@
         var window_width = $(window).width();
         var window_height = $(window).height();
         $("#right").css("width", window_width );
-        $("#right").css("height", window_height - 120);
+        $("#right").css("height", window_height + 1000);
         $("#left").css("height", window_height);
 
     });

@@ -22,22 +22,22 @@ public class ConstUtil {
     public final static Integer PAGESIZE = 5;
 
     /**
-     * 学生表默认展示字段名（对应数据库）
+     * 学员表默认展示字段名（对应数据库）
      */
     public final static String[] DEFAULT_STUDENT_FIELDS_DB = {"nickName", "name", "parentRelat", "parentName", "telphone", "weChatID", "education"};
 
     /**
-     * 学生表默认展示字段名（对应中文名）
+     * 学员表默认展示字段名（对应中文名）
      */
     public final static String[] DEFAULT_STUDENT_FIELDS_ZH = {"昵称", "姓名", "家长关系", "家长姓名", "联系电话", "微信", "学校"};
 
     /**
-     * 学生表全部字段名（对应数据库）
+     * 学员表全部字段名（对应数据库）
      */
     public final static String[] STUDENT_FIELDS_DB = {"nickName", "name", "parentRelat", "parentName", "telphone", "weChatID", "education", "birthday", "sex", "createDate", "sparePhone", "markPeople", "advisor", "area", "willDate", "baseSituation", "status", "importanceGrade", "source", "teacherName", "schoolAreaID", "followID","stuAge"};
 
     /**
-     * 学生表全部字段名（对应中文名）
+     * 学员表全部字段名（对应中文名）
      */
     public final static String[] STUDENT_FIELDS_ZH = {"昵称", "姓名", "家长关系", "家长姓名", "联系电话", "微信", "学校", "生日", "性别", "录入日期", "备用电话", "市场人员", "顾问", "学员所属地区", "期望时间", "基本情况", "状态", "重要程度", "来源", "老师", "校区", "跟进","学员年龄"};
 
@@ -69,7 +69,7 @@ public class ConstUtil {
     /**
      * 合同表默认展示字段名（对应中文名）
      */
-    public final static String[] DEFAULT_CONTRACT_FIELDS_ZH = {"合同编号", "学生", "签约日期", "价格", "实际支付", "业绩所属", "支付方式", "折扣"};
+    public final static String[] DEFAULT_CONTRACT_FIELDS_ZH = {"合同编号", "学员", "签约日期", "价格", "实际支付", "业绩所属", "支付方式", "折扣"};
 
     /**
      * 合同表全部字段名（对应数据库）
@@ -79,7 +79,7 @@ public class ConstUtil {
     /**
      * 合同表全部字段名（对应中文名）
      */
-    public final static String[] CONTRACT_FIELDS_ZH = {"合同编号", "学生", "签约日期", "课时包名称", "价格", "折扣", "订金", "实际支付", "支付方式", "赠送课时", "开始时间", "结束时间", "业绩所属", "会员卡编号", "备注","课时(h)","剩余课时(h)","总课时(h)","校区"};
+    public final static String[] CONTRACT_FIELDS_ZH = {"合同编号", "学员", "签约日期", "课时包名称", "价格", "折扣", "订金", "实际支付", "支付方式", "赠送课时", "开始时间", "结束时间", "业绩所属", "会员卡编号", "备注","课时(h)","剩余课时(h)","总课时(h)","校区"};
 
 
 }

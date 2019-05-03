@@ -21,7 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * <p>
@@ -112,8 +113,8 @@ public class ContractServiceImpl implements ContractService {
             request.setAttribute("FieldZH", contractFieldsZH);
         }
 
-        if (contractPO.getStudentId() !=null){
-            list.stream().filter(e -> e.getStudentVO().getName().equals(contractPO.getStudentId())).collect(Collectors.toList());
+        if (contractPO.getStudentId() !=null && !contractPO.getStudentId().equals("") ){
+            list = list.stream().filter(e -> contractPO.getStudentId().equals(e.getStudentVO().getName())).collect(toList());
         }
         //给页面赋值
         PageInfo pageInfo = new PageInfo(list);

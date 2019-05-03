@@ -10,16 +10,20 @@
 <script>
 
 </script>
-<body>
+<div>
 
-<div id="content_box">
-    <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;
-    当前位置：部门管理&nbsp;&gt;&nbsp;部门查询
-    <a style="margin-left: 530px;cursor: pointer;text-decoration: none;color: #000000; " href="#"><span
-            class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
-    <a style="margin-left: 100px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span
-            class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
+<div id="content_box" style="display:flex;flex-direction:column;">
+
+    <div style="float:left;">
+        <span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+        当前位置：部门管理&nbsp;&gt;&nbsp;部门查询
+
+        <a style="cursor: pointer;text-decoration: none;color: #000000;margin-left: 100px" href="#"><span
+                class="glyphicon glyphicon-print"></span>&nbsp;打印</a>
+        <a style="margin-left: 50px;cursor: pointer;text-decoration: none;color: #000000;" href="#"><span
+                class="glyphicon glyphicon-export"></span>&nbsp;导出</a>
+    </div>
     <hr/>
     <form action="" id="departmentform">
 
@@ -56,7 +60,7 @@
 
 </div>
 <!--分页元素-->
-<div class="box" id="box"></div>
+<div class="box" id="box" style="align-self:center;"></div>
 <!--添加表单提交标志-->
 <form id="pageForm" style="display: none">
     <input type="text" id="pages" name="page"/>
@@ -64,7 +68,7 @@
     <!--传入分页的参数-->
     <input type="text" id="actionName" value="selectDept"/>
 </form>
-
+</div>
 <script src="js/jquery-1.12.4.js" type="application/javascript" charset="UTF-8"></script>
 <script src="js/bootstrap.js" type="application/javascript" charset="UTF-8"></script>
 <script src="js/paging.js" type="application/javascript"></script>
